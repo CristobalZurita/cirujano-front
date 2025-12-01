@@ -89,3 +89,18 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
     width: 30px;
     background-color: $primary;
 }
+/* Ajuste especial solo para el logo del hero */
+.foxy-hero-header-logo.image-view {
+  width: 70vw !important;        /* más ancho: prueba 70–80vw */
+  max-width: 1100px !important;  /* tamaño máximo en pantallas grandes */
+  height: auto !important;
+  overflow: visible;
+  border-radius: 0;
+}
+
+.foxy-hero-header-logo.image-view .image {
+  display: block;
+  width: 100% !important;        /* que el PNG use todo el contenedor */
+  height: auto !important;       /* mantiene proporción horizontal */
+  object-fit: contain;
+}

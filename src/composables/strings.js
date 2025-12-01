@@ -12,7 +12,7 @@ const MAP = {
     "error_fill_all_fields": "Please fill all the fields.",
     "error_invalid_email": "Please enter a valid e-mail address.",
     "error_sending_message": "There was an error sending the message.",
-    "latest_release": "Latest Release",
+    "latest_release": "Novedades",
     "loading": "Loading...",
     "message": "Message",
     "name": "Name",

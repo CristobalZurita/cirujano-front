@@ -3,7 +3,7 @@
         <div class="image-wrapper">
             <ImageView :src="image"
                        alt="Logo"
-                       class="image-wrapper-view"/>
+                        class="article-logo"/>
         </div>
 
         <div class="description-wrapper">
@@ -31,6 +31,15 @@ const parsedParagraphs = computed(() => {
 <style lang="scss" scoped>
 @import "/src/scss/_theming.scss";
 
+.article-logo {
+    max-width: 320px;  // ajusta este número a gusto (180, 200, 250, etc.)
+    max-height: 320px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+
 article.foxy-info-block-article {
     display: flex;
     flex-direction: row;
@@ -43,7 +52,7 @@ article.foxy-info-block-article {
 
 div.image-wrapper {
     @include generate-dynamic-styles-with-hash((
-        xxxl: (min-width: 380px, margin-right: 4rem),
+        xxxl: (min-width: 30px, margin-right: 4rem),
         xxl:  (min-width: min(33vw, 300px), margin-right: 3.5rem),
         lg:   (min-width: 0, margin-right:0, margin-bottom:2rem, max-width:40vw, max-height:200px)
     ));

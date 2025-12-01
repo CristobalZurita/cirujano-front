@@ -9,7 +9,7 @@
          }">
         <!-- Loader Content -->
         <div class="foxy-loader-content">
-            <ImageView src="images/logo/agency-logo-small.png"
+            <ImageView src="images/logo/logo_square_004.png"
                        alt="Logo"
                        class="image-view-logo"
                        :class="{
@@ -274,15 +274,15 @@ div.image-view-logo {
     z-index: 10;
     opacity: 0;
 
-    width: 75px;
-    height: 75px;
+    width: 250px;
+    height: 250px;
     @include media-breakpoint-down(lg) {
-        width: 68px;
-        height: 68px;
+        width: 190px;
+        height: 190px;
     }
     @include media-breakpoint-down(sm) {
-        width: 60px;
-        height: 60px;
+        width: 160px;
+        height: 160px;
     }
 
     &-animated {

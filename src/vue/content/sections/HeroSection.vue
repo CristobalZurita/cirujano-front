@@ -1,12 +1,12 @@
 <template>
     <!-- Heading Section -->
     <PageHeader :id="props.id"
-                title="*Foxy* Landing Page"
-                subtitle="An agency template by <strong>Ryan Balieiro</strong> – made with <strong>Vue3</strong> and <strong>Bootstrap 5</strong>"
-                logo-url="images/logo/agency-logo.png"
+                title="*Cirujano de Sintetizadores* "
+                subtitle="Hecho por <strong>Cristóbal Zurita</strong> – con <strong>Vue3</strong> y <strong>Bootstrap 5</strong>"
+                logo-url="images/logo/NUEVO_cirujano.png"
                 :show-button="true"
                 button-icon="fa-solid fa-search"
-                button-label="Find Out More"
+                button-label="Descubre más"
                 button-url="#about"/>
 </template>
 

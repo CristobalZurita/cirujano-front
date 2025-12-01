@@ -1,7 +1,7 @@
 <template>
     <!-- Navigation -->
-    <Navigation logo="images/logo/agency-logo-small.png"
-                label="*Foxy* Template"/>
+    <Navigation logo="images/logo/logo_square_002.png"
+                label="*Cirujano* de Sintetizadores"/>
 
     <!-- Content Display -->
     <router-view/>
@@ -10,51 +10,51 @@
     <Footer>
         <FooterBlock :darken="false"
                      :row="true">
-            <FooterColumn title="About"
+            <|ooterColumn title="Sobre el taller"
                           faIcon="pi pi-lightbulb me-2"
                           :description="[
-                              `This template is maintained by Ryan Balieiro and is based on the <a href='https://vuejs.org/'>Vue</a> framework and the <a href='https://getbootstrap.com/'>Bootstrap</a> framework.`
+                              `Cirujano de Sintetizadores es un taller especializado en reparación, restauración y modificación de sintetizadores, teclados y equipos de audio profesionales.`,
+                              `Trabajamos con diagnóstico detallado, repuestos de calidad y un enfoque orientado a conservar y realzar el carácter sonoro original de cada instrumento.`
                           ]"
                           :links="[
-                              {label: `Privacy Policy`, href: `/privacy-policy`, faIcon: null},
-                              {label: `License`, href: `/license`, faIcon: null},
-                              {label: `Github Repo`, href: `https://github.com/ryanbalieiro/vue-agency-landing-page-template`, faIcon: null},
+                              {label: `Política de privacidad`, href: `/privacy-policy`, faIcon: null},
+                              {label: `Términos y condiciones`, href: `/license`, faIcon: null},
+                              {label: `Repositorio del proyecto`, href: `https://github.com/CristobalZurita/cirujano-front`, faIcon: null},
                           ]"
                           :displayLinksAsButtons="false"/>
 
-            <FooterColumn title="Connect With Us"
+            <FooterColumn title="Redes y presencia"
                           faIcon=""
                           :description="[
                           ]"
                           :links="[
-                              {label: `Linkedin`, href: `https://linkedin.com`, faIcon:`fa-brands fa-linkedin`},
-                              {label: `Twitter`, href: `https://x.com`, faIcon:`fa-brands fa-x-twitter`},
-                              {label: `TikTok`, href: `https://tiktok.com`, faIcon:`fa-brands fa-tiktok`},
-                              {label: `Spotify`, href: `https://spotify.com`, faIcon:`fa-brands fa-spotify`},
+                              {label: `Instagram`, href: `https://www.instagram.com/cirujanodesintetizadores/`, faIcon:`fa-brands fa-instagram`},
+                              {label: `Facebook`, href: `https://www.facebook.com/Cirujanodesintetizadores/`, faIcon:`fa-brands fa-facebook`},
                           ]"
                           :displayLinksAsButtons="true"/>
 
-            <FooterColumn title="Contact Info"
+            <FooterColumn title="Información de contacto"
                           faIcon="pi pi-envelope me-2 pe-1"
                           :description="[
-                              `999 Vue Developer's Avenue, 4A Suite 32`,
-                              `Cupertino – CA 01235`
+                              `Valparaíso – Chile`,
+                              `Atención con coordinación previa.`
                           ]"
                           :links="[
-                              {label: `(555) 555-1234`, href: `tel:123456789`, faIcon: 'pi pi-phone'},
-                              {label: `contact@foxyagency.com`, href: `mailto:foxy@agency.com`, faIcon: 'fa-regular fa-envelope'},
+                              {label: `+56 9 8295 7538`, href: `tel:+56 9 8295 7538`, faIcon: 'pi pi-phone'},
+                              {label: `contacto@cirujanodesintetizadores.com`, href: `mailto:contacto@cirujanodesintetizadores.com`, faIcon: 'fa-regular fa-envelope'},
                           ]"
                           :displayLinksAsButtons="false"/>
         </FooterBlock>
 
         <FooterBlock :darken="true"
                      :row="false">
-            <FooterCopyright holder="Ryan Balieiro"
-                             url="https://github.com/ryanbalieiro"
-                             license="Distributed Under the MIT License"/>
+            <FooterCopyright holder="Cirujano de Sintetizadores"
+                             url="https://www.cirujanodesintetizadores.com"
+                             license="Todos los derechos reservados"/>
         </FooterBlock>
     </Footer>
 </template>
+
 
 <script setup>
 import Navigation from "/src/vue/components/nav/Navigation.vue"
