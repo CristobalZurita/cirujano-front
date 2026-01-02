@@ -187,28 +187,27 @@ if (st === "loaded" || st === "error")
 }
 
 const _incrementDisplayPercentage = (currentPercentage) => {
-  // currentPercentage viene 0..100 (float)
-  const target = Math.floor(currentPercentage)
+    let diff = currentPercentage - percentage.value
+    if (diff < 0) diff = 0
 
-if (target <= percentage.value) {
-  // si el target se estancó, igual avanza lentamente para no quedar pegado
-  percentage.value = Math.min(100, percentage.value + 1)
+    if (diff <= 0) return  // ← Aquí debe ir la condición
 
-}
+    const step = didEmitReady.value ?
+        8 :
+        Math.round(4 + Math.random() * 4)
 
+    const smootheningPercentageIncrement = diff > step ? step : Math.round(diff)
+    percentage.value += smootheningPercentageIncrement
+    percentage.value = utils.clamp(percentage.value, 0, 100)
 
-  // sube suave, pero siempre avanza al menos 1
-  const diff = target - percentage.value
-  const step = Math.max(1, Math.floor(diff / 8))
+    if(percentage.value > 12 && !didEmitReady.value) {
+        emit('ready')
+        didEmitReady.value = true
+    }
 
-  percentage.value = Math.min(100, percentage.value + step)
-
-  // cuando llega a 100, termina el loader
-  if (percentage.value >= 100) {
-    // este nombre tiene que existir en tu archivo.
-    // Si tu función se llama distinto, usa el nombre real (ver punto 3).
-    _onLoadingComplete()
-  }
+    if(percentage.value === 100 || loadingTime.value >= 8000) {
+        _onLoadingComplete()
+    }
 }
 
 
