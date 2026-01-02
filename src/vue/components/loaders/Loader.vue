@@ -155,14 +155,16 @@ const _executeWaitingForCompletionStep = () => {
 }
 
 const _updateProgress = (dt) => {
-    const isPageLoaded = Boolean(document.querySelector('.foxy-page-wrapper'))
+    const isPageLoaded = Boolean(document.querySelector('#app')?.children.length > 0)
+
 
     loadingTime.value += isPageLoaded ?
         dt :
         dt / 16
 
     const imageLoadPercentage = _getImageLoadPercentage()
-    const minTimePercentage = utils.clamp(loadingTime.value*80/500, 0, 100)
+  const minTimePercentage = utils.clamp(loadingTime.value*100/1500, 0, 100)
+
 
     const currentPercentage = (imageLoadPercentage + minTimePercentage)/2
     _incrementDisplayPercentage(currentPercentage)
@@ -173,8 +175,10 @@ const _getImageLoadPercentage = () => {
     const imageLoadProgress = {loaded: 0, total: 0}
     Array.from(imageElements).map(item => {
         imageLoadProgress.total++
-        if(item.getAttribute('load-status') === "loaded")
-            imageLoadProgress.loaded++
+const st = item.getAttribute('load-status')
+if (st === "loaded" || st === "error")
+    imageLoadProgress.loaded++
+
     })
 
     if(imageLoadProgress.total <= 0)
@@ -183,27 +187,30 @@ const _getImageLoadPercentage = () => {
 }
 
 const _incrementDisplayPercentage = (currentPercentage) => {
-    const diff = currentPercentage - percentage.value
-    if(diff < 0)
-        return
+  // currentPercentage viene 0..100 (float)
+  const target = Math.floor(currentPercentage)
 
-    const step = didEmitReady.value ?
-        8 :
-        Math.round(4 + Math.random() * 4)
+if (target <= percentage.value) {
+  // si el target se estancó, igual avanza lentamente para no quedar pegado
+  percentage.value = Math.min(100, percentage.value + 1)
 
-    const smootheningPercentageIncrement = diff > step ? step : Math.round(diff)
-    percentage.value += smootheningPercentageIncrement
-    percentage.value = utils.clamp(percentage.value, 0, 100)
-
-    if(percentage.value > 12 && !didEmitReady.value) {
-        emit('ready')
-        didEmitReady.value = true
-    }
-
-    if(percentage.value === 100 || loadingTime.value >= 8000) {
-        _onLoadingComplete()
-    }
 }
+
+
+  // sube suave, pero siempre avanza al menos 1
+  const diff = target - percentage.value
+  const step = Math.max(1, Math.floor(diff / 8))
+
+  percentage.value = Math.min(100, percentage.value + step)
+
+  // cuando llega a 100, termina el loader
+  if (percentage.value >= 100) {
+    // este nombre tiene que existir en tu archivo.
+    // Si tu función se llama distinto, usa el nombre real (ver punto 3).
+    _onLoadingComplete()
+  }
+}
+
 
 const _onLoadingComplete = () => {
     scheduler.schedule(() => {

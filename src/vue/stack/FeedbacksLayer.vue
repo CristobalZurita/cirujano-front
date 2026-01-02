@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import {inject, provide, ref, watch} from "vue"
+import {inject, ref} from "vue"
 import ActivitySpinner from "/src/vue/components/loaders/ActivitySpinner.vue"
 import Loader from "/src/vue/components/loaders/Loader.vue"
 
@@ -30,11 +30,10 @@ const spinnerMessage = inject("spinnerMessage")
 
 const isReady = ref(!loaderEnabled)
 
-watch(() => loaderEnabled.value, () => {
-    if(loaderEnabled.value) {
-        loaderAnimationStatus.value = LoaderAnimationStatus.INITIALIZED
-    }
-})
+if (loaderEnabled) {
+  loaderAnimationStatus.value = LoaderAnimationStatus.INITIALIZED
+}
+
 
 const _onLoaderRendered = () => {
     loaderAnimationStatus.value = LoaderAnimationStatus.RENDERED
