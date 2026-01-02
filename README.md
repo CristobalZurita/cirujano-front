@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="public/images/logo/logo_square_004.pnggency-logo.png" width="160" alt="Logo Cirujano de Sintetizadores">
+    <img src="public/images/logo/logo_square_004.png" width="160" alt="Logo Cirujano de Sintetizadores">
 </p>
 
 # Cirujano de Sintetizadores – Landing Page
