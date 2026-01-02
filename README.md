@@ -26,25 +26,21 @@ Si necesitas **desarrollar una página web similar, asesoría técnica en electr
 
 > Capturas de ejemplo (reemplaza por tus propias imágenes si lo deseas)
 
-![Preview](readme-assets/foxy-promo.png)
 
 ### 1. Layout base
 
 La interfaz combina tonos naranjos con fondos oscuros y claros, manteniendo una estética moderna, limpia y enfocada en la lectura cómoda de los contenidos del taller.
 
-![Layout](readme-assets/foxy-preview.png)
 
 ### 2. Versión escritorio
 
 El diseño se adapta correctamente a monitores 4:3, 16:9 y ultra-wide, manteniendo la barra de navegación superior fija y las secciones ordenadas en una sola página.
 
-![Desktop](readme-assets/foxy-desktop.png)
 
 ### 3. Versión móvil
 
 En dispositivos móviles, el menú se contrae en un **navbar colapsable**, conservando la fluidez del scroll entre las secciones.
 
-![Mobile](readme-assets/foxy-mobile.png)
 
 ---
 
