@@ -111,7 +111,7 @@
         <PageSectionFooter title="Work with us and *save money!*"
                            description="Want a quote for the project budget? Reach out to us, and we'll promptly provide the information you need. Our team is here to assist you in any way we can!"
                            :include-divider="true"
-                           button-label="Contact Us!"
+                           button-label="Contactanos!"
                            button-fa-icon="fa-solid fa-message"
                            button-url="#contact"/>
     </PageSection>

@@ -1,52 +1,64 @@
-<p align="center">
-    <img src="public/images/logo/logo_square_004.png" width="160" alt="Logo Cirujano de Sintetizadores">
-</p>
-
-# Cirujano de Sintetizadores – Landing Page
-
-Este repositorio contiene la **landing page oficial de Cirujano de Sintetizadores**, taller dedicado a la reparación, mantenimiento y personalización de sintetizadores, drum machines, teclados y otros equipos de audio profesional.
-
-El sitio está desarrollado con **Vue 3 (Composition API)**, **Vite** y **Bootstrap 5**, y sirve como carta de presentación del taller: servicios, historia, preguntas frecuentes, galería y formulario de contacto.
-
-Si necesitas **desarrollar una página web similar, asesoría técnica en electrónica musical o soporte especializado**, puedes escribir a través de los **canales oficiales de contacto** indicados en la propia página (sección *Contacto*).
+# 📁 ARCHIVOS CORREGIDOS V2 - CIRUJANO DE SINTETIZADORES
+## Con tipografías más grandes + responsividad mejorada
 
 ---
 
-## Características principales
+## 🗂️ DÓNDE VA CADA ARCHIVO
 
-- 🌐 Single-page app hecha con **Vue 3 – Composition API**.  
-- ⚡ Empaquetado con **Vite** para un desarrollo rápido.  
-- 🎨 Diseño responsive basado en **Bootstrap 5** y SCSS.  
-- ✉️ Formulario de contacto integrado con **EmailJS** (sin backend propio).  
-- 🧩 Secciones fácilmente reutilizables y modificables (`About`, `Services`, `History`, `Q&A`, etc.).  
-
----
-
-## Vista previa
-
-> Capturas de ejemplo (reemplaza por tus propias imágenes si lo deseas)
-
-
-### 1. Layout base
-
-La interfaz combina tonos naranjos con fondos oscuros y claros, manteniendo una estética moderna, limpia y enfocada en la lectura cómoda de los contenidos del taller.
-
-
-### 2. Versión escritorio
-
-El diseño se adapta correctamente a monitores 4:3, 16:9 y ultra-wide, manteniendo la barra de navegación superior fija y las secciones ordenadas en una sola página.
-
-
-### 3. Versión móvil
-
-En dispositivos móviles, el menú se contrae en un **navbar colapsable**, conservando la fluidez del scroll entre las secciones.
-
+| Archivo | Destino en tu proyecto |
+|---------|------------------------|
+| `index.html` | `./index.html` (raíz) |
+| `_variables.scss` | `./src/scss/_variables.scss` |
+| `_typography.scss` | `./src/scss/_typography.scss` |
+| `HeroSection.vue` | `./src/vue/content/sections/HeroSection.vue` |
+| `Master.vue` | `./src/vue/content/Master.vue` |
+| `ReviewsSection.vue` | `./src/vue/content/sections/ReviewsSection.vue` |
+| `FaqSection.vue` | `./src/vue/content/sections/FaqSection.vue` |
+| `HomePage.vue` | `./src/vue/content/pages/HomePage.vue` |
+| `vite.config.js` | `./vite.config.js` (raíz) |
+| `client-instagram.svg` | `./public/images/clients/client-instagram.svg` |
 
 ---
 
-## Getting Started
+## ⚠️ PROBLEMA DEL HERO QUE NO SE VE
 
-### 1. Clonar este repositorio
+**El Hero SÍ existe**, pero si entras con `#about` en la URL, salta directo a esa sección.
 
-```bash
-git clone https://github.com/CristobalZurita/cirujano-front.git
+### Solución:
+- Entra a `http://localhost:5173/` (sin hash)
+- O entra a `http://localhost:5173/#hero`
+
+El Hero con el logo y "Descubre más" aparecerá correctamente.
+
+---
+
+## 📏 CAMBIOS EN TAMAÑOS DE FUENTE
+
+### Textos (body, párrafos)
+| Clase | ANTES | AHORA |
+|-------|-------|-------|
+| text-1 | 0.85rem | **1.0rem** |
+| text-2 | 0.9rem | **1.1rem** |
+| text-3 | 0.95rem | **1.15rem** |
+| text-4 | 1.0rem | **1.2rem** |
+| text-5 | 1.05rem | **1.25rem** |
+
+### Títulos (headings)
+| Elemento | ANTES | AHORA |
+|----------|-------|-------|
+| h1 | 3rem | **3.5rem** |
+| h2 | 2.5rem | **2.8rem** |
+| h3 | 2rem | **2.2rem** |
+| h4 | 1.5rem | **1.7rem** |
+| h5 | 1.3rem | **1.4rem** |
+| h6 | 1.1rem | **1.2rem** |
+
+---
+
+## 📺 RESPONSIVIDAD PARA PANTALLAS GRANDES
+
+Agregado soporte para TV 4K, 8K y ultra-wide en `_typography.scss`
+
+---
+
+**Fecha:** 2 de enero de 2026
