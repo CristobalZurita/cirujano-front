@@ -3,7 +3,9 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/vue-agency-landing-page-template/',
+    // Para dominio propio: '/'
+    // Para GitHub Pages: '/cirujano-front/'
+    base: '/',
     plugins: [vue()],
     css: {
         preprocessorOptions: {

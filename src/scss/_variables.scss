@@ -4,19 +4,26 @@ $fa-font-path:"@fortawesome/fontawesome-free/webfonts";
 /** Overriding Bootstrap's contrast ratio. **/
 $min-contrast-ratio: 1.5 !default;
 
-/** Typography **/
-$font-family-base: "Saira", sans-serif;
-$headings-font-family: "Patua One", sans-serif;
+/** Typography - Según Manual de Identidad Cirujano de Sintetizadores **/
+$font-family-base: "Saira Condensed", "Saira", sans-serif;
+$headings-font-family: "Oswald", sans-serif;
 
-/** Bootstrap Colors **/
-$primary: #ff5900;
-$dark: #212529;
+/** Bootstrap Colors - Paleta del Manual de Identidad **/
+$primary: #ec6b00;       // Orange (PANTONE 7577 C)
+$dark: #3e3c38;          // Vintage Black (PANTONE Black 7 C)
 $success: #038600;
-$light: #fcfcfc;
+$light: #d3d0c3;         // Vintage Beige (PANTONE 7527 C)
 $white: white;
 
+/** Colores Adicionales del Manual de Identidad **/
+$vintage-orange: #cc7d43;    // Paleta secundaria web
+$fluor-green: #d9ff4e;       // Acentos especiales
+$vintage-beige: #d3d0c3;     // Fondos claros
+$vintage-black: #3e3c38;     // Textos oscuros
+$orange-primary: #ec6b00;    // Naranja principal
+
 /** General **/
-$background-color: #fefefe;
+$background-color: #d3d0c3;
 $nav-background-color: $dark;
 $footer-bg-color: $dark;
 $footer-bg-highlight-color: darken($dark, 1%);
@@ -26,9 +33,9 @@ $navbar-height: 71px;
 
 /** Texts **/
 $headings-color: $dark;
-$text-normal: black;
+$text-normal: #3e3c38;
 $text-normal-contrast: white;
-$text-muted: #757575;
+$text-muted: #6c757d;
 
 /** Light Shades **/
 $light-1: #f8f9fa;

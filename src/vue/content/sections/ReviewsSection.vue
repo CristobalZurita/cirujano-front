@@ -1,45 +1,42 @@
 <template>
-    <!-- Services Section -->
+    <!-- Sección de Opiniones -->
     <PageSection variant="primary"
                  :id="props.id">
-        <!-- Title -->
-        <PageSectionHeader title="Client *Reviews*"
-                           subtitle="What people say about us!"/>
+        <!-- Título -->
+        <PageSectionHeader title="Opiniones de *Clientes*"
+                           subtitle="Lo que dicen quienes han confiado en nosotros"/>
 
-        <!-- Content -->
+        <!-- Contenido -->
         <PageSectionContent>
             <ArticleTestimonials>
-                <ItemTestimonial title="Spotify"
-                                 image="images/clients/client-spotify.svg"
-                                 quote="I am absolutely <b>blown away</b> by the Vue3 website template! The minimalist design is simply stunning, and it's <b>incredibly easy</b> to customize to fit my needs. Plus, it loads super fast, which is crucial for my business. I highly recommend this template to you!"
-                                 author="John Lee"
-                                 role="Engineer"/>
-
-                <ItemTestimonial title="Voloco"
-                                 image="images/clients/client-voloco.svg"
-                                 quote="I can't say enough good things about this website template. As someone <b>with no coding experience</b>, I was able to create a professional-looking website in no time."
-                                 author="Any Heather"
-                                 role="HR Lead"/>
+                <ItemTestimonial title="Instagram"
+                                 image="images/clients/client-instagram.svg"
+                                 quote="Llevé mi <b>Juno-106</b> que llevaba años sin funcionar y lo dejaron como nuevo. <b>Excelente diagnóstico</b> y muy buena comunicación durante todo el proceso. 100% recomendado para cualquier sintetizador vintage."
+                                 author="Músico Independiente"
+                                 role="Valparaíso"/>
 
                 <ItemTestimonial title="Facebook"
                                  image="images/clients/client-facebook.svg"
-                                 quote="<b>The Vue3 theme surpassed expectations</b> with its stunning design, seamless integration, and excellent performance. Highly recommended for a transformative website experience."
-                                 author="Mark Zuckie"
-                                 role="CEO"/>
+                                 quote="<b>Profesionalismo y pasión</b> por los sintetizadores. Me repararon un Korg M1 que otros técnicos no pudieron arreglar. El trabajo fue impecable y el precio muy justo."
+                                 author="Productor Musical"
+                                 role="Santiago"/>
 
-                <ItemTestimonial title="Microsoft"
-                                 image="images/clients/client-microsoft.svg"
-                                 quote="This is hands down <b>the best website template</b> I've ever used. The lightweight codebase makes for a lightning-fast site, and the fully flexible nature allowed me to create a unique and engaging experience for my users."
-                                 author="Bill Gates"
-                                 role="CEO"/>
-
-                <ItemTestimonial title="Nasa"
-                                 image="images/clients/client-nasa.svg"
-                                 quote="I am absolutely thrilled to express my admiration for this top-notch template with its <b>simple and intuitive design</b>! Words alone cannot do justice to the delight it has brought into my life."
-                                 author="John Suarez"
-                                 role="Tech Analyst"/>
+                <ItemTestimonial title="Instagram"
+                                 image="images/clients/client-instagram.svg"
+                                 quote="Necesitaba una <b>modificación especial</b> para mi drum machine y no solo lo hicieron perfecto, sino que me explicaron todo el proceso. <b>Gran conocimiento técnico</b> y muy buen trato."
+                                 author="DJ & Productor"
+                                 role="Viña del Mar"/>
             </ArticleTestimonials>
         </PageSectionContent>
+
+        <!-- Footer con redes sociales -->
+        <PageSectionFooter title="Síguenos en *Redes Sociales*"
+                           description="Encuentra más de nuestro trabajo y novedades en nuestras redes oficiales."
+                           :include-divider="true"
+                           :description-text-class="`text-3`"
+                           button-label="Instagram"
+                           button-fa-icon="fa-brands fa-instagram"
+                           button-url="https://www.instagram.com/cirujanodesintetizadores/"/>
     </PageSection>
 </template>
 
@@ -47,6 +44,7 @@
 import PageSection from "/src/vue/components/layout/PageSection.vue"
 import PageSectionHeader from "/src/vue/components/layout/PageSectionHeader.vue"
 import PageSectionContent from "/src/vue/components/layout/PageSectionContent.vue"
+import PageSectionFooter from "/src/vue/components/layout/PageSectionFooter.vue"
 import ArticleTestimonials from "/src/vue/components/articles/ArticleTestimonials.vue"
 import ItemTestimonial from "/src/vue/components/articles/items/ItemTestimonial.vue"
 

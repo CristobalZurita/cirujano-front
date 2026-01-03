@@ -2,7 +2,7 @@
     <!-- Heading Section -->
     <PageHeader :id="props.id"
                 title="*Cirujano de Sintetizadores* "
-                subtitle="Hecho por <strong>Cristóbal Zurita</strong> – con <strong>Vue3</strong> y <strong>Bootstrap 5</strong>"
+                subtitle="<strong>MANTENCIÓN</strong> • <strong>RESTAURACIÓN</strong> • <strong>REPARACIÓN</strong>"
                 logo-url="images/logo/NUEVO_cirujano.png"
                 :show-button="true"
                 button-icon="fa-solid fa-search"

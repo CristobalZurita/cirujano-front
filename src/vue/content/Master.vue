@@ -10,7 +10,7 @@
     <Footer>
         <FooterBlock :darken="false"
                      :row="true">
-            <|ooterColumn title="Sobre el taller"
+            <FooterColumn title="Sobre el taller"
                           faIcon="pi pi-lightbulb me-2"
                           :description="[
                               `Cirujano de Sintetizadores es un taller especializado en reparación, restauración y modificación de sintetizadores, teclados y equipos de audio profesionales.`,
@@ -28,8 +28,8 @@
                           :description="[
                           ]"
                           :links="[
-                              {label: `Instagram`, href: `https://www.instagram.com/cirujanodesintetizadores/`, faIcon:`fa-brands fa-instagram`},
-                              {label: `Facebook`, href: `https://www.facebook.com/Cirujanodesintetizadores/`, faIcon:`fa-brands fa-facebook`},
+                              {label: `Instagram`, href: `https://www.instagram.com/cirujanodesintetizadores/`, faIcon: `fa-brands fa-instagram`},
+                              {label: `Facebook`, href: `https://www.facebook.com/Cirujanodesintetizadores/`, faIcon: `fa-brands fa-facebook`},
                           ]"
                           :displayLinksAsButtons="true"/>
 
@@ -40,7 +40,7 @@
                               `Atención con coordinación previa.`
                           ]"
                           :links="[
-                              {label: `+56 9 8295 7538`, href: `tel:+56 9 8295 7538`, faIcon: 'pi pi-phone'},
+                              {label: `+56 9 8295 7538`, href: `tel:+56982957538`, faIcon: 'pi pi-phone'},
                               {label: `contacto@cirujanodesintetizadores.com`, href: `mailto:contacto@cirujanodesintetizadores.com`, faIcon: 'fa-regular fa-envelope'},
                           ]"
                           :displayLinksAsButtons="false"/>
@@ -54,7 +54,6 @@
         </FooterBlock>
     </Footer>
 </template>
-
 
 <script setup>
 import Navigation from "/src/vue/components/nav/Navigation.vue"
