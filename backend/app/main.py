@@ -14,6 +14,7 @@ import logging
 
 from app.core.config import settings
 from app.core.database import init_db, close_db
+from app.api.v1.router import api_router
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -62,6 +63,9 @@ app.add_middleware(
 )
 
 logger.info(f"CORS configured for origins: {settings.ALLOWED_ORIGINS}")
+
+# Include API v1 routes
+app.include_router(api_router)
 
 
 # Health check endpoint

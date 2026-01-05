@@ -1,26 +1,21 @@
 <template>
   <div class="diagnostic-wizard">
-    <!-- Step 1: Brand Selection -->
+    <!-- Step 1: Brand Selection (Dropdown A→Z) -->
     <div v-if="currentStep === 1" class="step-container">
       <h3 class="step-title">Paso 1: Selecciona la marca</h3>
-      <div class="brand-grid">
-        <button
-          v-for="brand in sortedBrands"
-          :key="brand.id"
-          @click="selectBrand(brand.id)"
-          class="brand-card"
-          :class="{ active: diagnostic.selectedBrand.value === brand.id }"
-        >
-          <div class="brand-tier" :data-tier="brand.tier">
-            {{ tierLabels[brand.tier] }}
-          </div>
-          <div class="brand-name">{{ brand.name }}</div>
-          <div class="brand-year">{{ brand.founded }}</div>
-        </button>
+
+      <div class="brand-select">
+        <select v-model="selectedBrandLocal" @change="onBrandChange">
+          <option value="">-- Selecciona una marca --</option>
+          <option v-for="brand in brandsApi" :key="brand.id" :value="brand.id">
+            {{ brand.name }}
+          </option>
+        </select>
       </div>
+
       <button
         @click="nextStep"
-        :disabled="!diagnostic.selectedBrand.value"
+        :disabled="!selectedBrandLocal"
         class="btn btn-next"
       >
         Continuar <i class="fas fa-arrow-right"></i>
@@ -36,30 +31,21 @@
         </button>
       </div>
 
-      <div v-if="availableModels.length > 0" class="model-list">
-        <button
-          v-for="instrument in availableModels"
-          :key="instrument.id"
-          @click="selectModel(instrument.id)"
-          class="model-item"
-          :class="{ active: diagnostic.selectedModel.value === instrument.id }"
-        >
-          <div class="model-info">
-            <h4>{{ instrument.model }}</h4>
-            <p class="model-type">{{ instrument.type }} ({{ instrument.year }})</p>
-            <p class="model-description">{{ instrument.description }}</p>
+      <div v-if="modelsApi.length > 0" class="model-select">
+        <select v-model="selectedModelLocal" @change="onModelChange">
+          <option value="">-- Selecciona un modelo --</option>
+          <option v-for="m in modelsApi" :key="m.id" :value="m.id">{{ m.model }}</option>
+        </select>
+
+        <div v-if="instrumentPreview" class="model-preview">
+          <img :src="instrumentPreview" :alt="currentInstrument?.model || 'Instrument image'" />
+          <div class="model-preview-info">
+            <h4>{{ currentInstrument?.model }}</h4>
+            <p>{{ currentInstrument?.type }} ({{ currentInstrument?.year }})</p>
+            <p v-if="currentInstrument?.description">{{ currentInstrument.description }}</p>
+            <p v-if="currentInstrument?.valor_estimado">Valor est.: ${{ formatPrice((currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2) }}</p>
           </div>
-          <div class="model-price" v-if="instrument.valor_estimado">
-            <span class="label">Valor est.</span>
-            <span class="price">
-              ${
-              formatPrice(
-                (instrument.valor_estimado.min + instrument.valor_estimado.max) / 2
-              )
-              }}
-            </span>
-          </div>
-        </button>
+        </div>
       </div>
 
       <div v-else class="empty-state">
@@ -279,7 +265,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useDiagnostic } from '@/composables/useDiagnostic'
 
 const diagnostic = useDiagnostic()
@@ -299,6 +285,59 @@ const sortedBrands = computed(() => {
     const tierOrder = { legendary: 0, professional: 1, standard: 2, specialized: 3, boutique: 4, historic: 5 }
     return tierOrder[a.tier] - tierOrder[b.tier]
   })
+})
+
+// API-driven lists (prefer backend for dynamic data)
+const brandsApi = ref([])
+const modelsApi = ref([])
+const selectedBrandLocal = ref('')
+const selectedModelLocal = ref('')
+const instrumentPreview = ref(null)
+
+const fetchBrands = async () => {
+  try {
+    const res = await fetch('/api/v1/brands/')
+    if (res.ok) brandsApi.value = await res.json()
+    else brandsApi.value = diagnostic.brands.value.sort((a,b)=>a.name.localeCompare(b.name))
+  } catch (e) {
+    brandsApi.value = diagnostic.brands.value.sort((a,b)=>a.name.localeCompare(b.name))
+  }
+}
+
+const fetchModels = async (brandId) => {
+  modelsApi.value = []
+  try {
+    const res = await fetch(`/api/v1/brands/${brandId}/models`)
+    if (res.ok) modelsApi.value = await res.json()
+    else modelsApi.value = diagnostic.getModelsByBrand(brandId)
+  } catch (e) {
+    modelsApi.value = diagnostic.getModelsByBrand(brandId)
+  }
+}
+
+const fetchInstrumentDetails = async (instrumentId) => {
+  try {
+    const res = await fetch(`/api/v1/instruments/${instrumentId}`)
+    if (!res.ok) {
+      instrumentPreview.value = null
+      currentInstrument.value = null
+      return
+    }
+    const json = await res.json()
+    // update local diagnostic instrument if exists
+    diagnostic.selectedModel.value = instrumentId
+    // set preview image (absolute or relative)
+    instrumentPreview.value = json.imagen_url || '/images/placeholder.png'
+    // also update currentInstrument reactive view by mutating source data (in-memory)
+    // if using local instruments data, replace or augment it
+    return json
+  } catch (e) {
+    instrumentPreview.value = null
+  }
+}
+
+onMounted(() => {
+  fetchBrands()
 })
 
 const availableModels = computed(() => {
@@ -343,6 +382,22 @@ const selectBrand = (brandId) => {
 const selectModel = (instrumentId) => {
   diagnostic.selectedModel.value = instrumentId
   diagnostic.clearFaults()
+}
+
+const onBrandChange = () => {
+  const bid = selectedBrandLocal.value
+  diagnostic.selectedBrand.value = bid
+  diagnostic.selectedModel.value = null
+  selectedModelLocal.value = ''
+  instrumentPreview.value = null
+  if (bid) fetchModels(bid)
+}
+
+const onModelChange = async () => {
+  const mid = selectedModelLocal.value
+  if (!mid) return
+  diagnostic.selectedModel.value = mid
+  await fetchInstrumentDetails(mid)
 }
 
 const isSelected = (faultId) => {
@@ -508,6 +563,50 @@ Fecha: ${new Date().toLocaleDateString('es-CL')}
     @media (max-width: 768px) {
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
       gap: 0.75rem;
+    }
+  }
+
+  .brand-select {
+    margin-bottom: 1.5rem;
+
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+  }
+
+  .model-select {
+    margin-bottom: 1.5rem;
+
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .model-preview {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      img {
+        width: 180px;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        object-fit: contain;
+        background: #fafafa;
+      }
+
+      .model-preview-info {
+        flex: 1;
+      }
     }
   }
 
