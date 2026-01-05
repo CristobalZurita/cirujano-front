@@ -31,6 +31,8 @@ const loaderAnimationStatus = ref(null)
 const projectModalTarget = ref(null)
 const spinnerActive = ref(false)
 const spinnerMessage = ref("")
+const floatingButtonVisible = ref(false) // Aparece solo después de primera interacción
+const hasUserInteracted = ref(false) // Flag para detectar primera interacción
 
 /**
  * @param {Boolean} enabled
@@ -52,6 +54,8 @@ provide("loaderAnimationStatus", loaderAnimationStatus)
 provide("projectModalTarget", projectModalTarget)
 provide("spinnerActive", spinnerActive)
 provide("spinnerMessage", spinnerMessage)
+provide("floatingButtonVisible", floatingButtonVisible)
+provide("hasUserInteracted", hasUserInteracted)
 
 provide("setSpinnerEnabled", setSpinnerEnabled)
 </script>

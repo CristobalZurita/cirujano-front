@@ -59,4 +59,9 @@ const router = createRouter({
     ]
 })
 
+// Reset hash on initial load to start at Hero section
+if (window.location.hash && window.location.pathname === '/') {
+    window.location.hash = ''
+}
+
 createApp(App).use(router).mount("#app")

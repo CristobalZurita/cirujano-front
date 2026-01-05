@@ -1,0 +1,940 @@
+<template>
+  <div class="diagnostic-wizard">
+    <!-- Step 1: Brand Selection -->
+    <div v-if="currentStep === 1" class="step-container">
+      <h3 class="step-title">Paso 1: Selecciona la marca</h3>
+      <div class="brand-grid">
+        <button
+          v-for="brand in sortedBrands"
+          :key="brand.id"
+          @click="selectBrand(brand.id)"
+          class="brand-card"
+          :class="{ active: diagnostic.selectedBrand.value === brand.id }"
+        >
+          <div class="brand-tier" :data-tier="brand.tier">
+            {{ tierLabels[brand.tier] }}
+          </div>
+          <div class="brand-name">{{ brand.name }}</div>
+          <div class="brand-year">{{ brand.founded }}</div>
+        </button>
+      </div>
+      <button
+        @click="nextStep"
+        :disabled="!diagnostic.selectedBrand.value"
+        class="btn btn-next"
+      >
+        Continuar <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- Step 2: Model Selection -->
+    <div v-if="currentStep === 2" class="step-container">
+      <h3 class="step-title">Paso 2: Selecciona el modelo</h3>
+      <div class="back-button">
+        <button @click="previousStep" class="btn-text">
+          <i class="fas fa-arrow-left"></i> Volver
+        </button>
+      </div>
+
+      <div v-if="availableModels.length > 0" class="model-list">
+        <button
+          v-for="instrument in availableModels"
+          :key="instrument.id"
+          @click="selectModel(instrument.id)"
+          class="model-item"
+          :class="{ active: diagnostic.selectedModel.value === instrument.id }"
+        >
+          <div class="model-info">
+            <h4>{{ instrument.model }}</h4>
+            <p class="model-type">{{ instrument.type }} ({{ instrument.year }})</p>
+            <p class="model-description">{{ instrument.description }}</p>
+          </div>
+          <div class="model-price" v-if="instrument.valor_estimado">
+            <span class="label">Valor est.</span>
+            <span class="price">
+              ${
+              formatPrice(
+                (instrument.valor_estimado.min + instrument.valor_estimado.max) / 2
+              )
+              }}
+            </span>
+          </div>
+        </button>
+      </div>
+
+      <div v-else class="empty-state">
+        <p>No hay modelos registrados para esta marca aún.</p>
+      </div>
+
+      <button
+        @click="nextStep"
+        :disabled="!diagnostic.selectedModel.value"
+        class="btn btn-next"
+      >
+        Continuar <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- Step 3: Fault Selection -->
+    <div v-if="currentStep === 3" class="step-container">
+      <h3 class="step-title">Paso 3: Describe los problemas</h3>
+      <div class="back-button">
+        <button @click="previousStep" class="btn-text">
+          <i class="fas fa-arrow-left"></i> Volver
+        </button>
+      </div>
+
+      <div class="current-selection">
+        <strong>{{ diagnostic.selectedBrand.value }}</strong> →
+        <strong>{{ currentInstrument?.model }}</strong>
+      </div>
+
+      <div v-if="availableFaults.length > 0" class="faults-container">
+        <div class="warning-box" v-if="hasPrecedenceFault">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>Se detectó una falla crítica. Las demás opciones serán ignoradas.</span>
+        </div>
+
+        <div
+          v-for="fault in availableFaults"
+          :key="fault.id"
+          class="fault-item"
+          :class="{
+            disabled: hasPrecedenceFault && !isSelected(fault.id),
+            critical: fault.category === 'critical'
+          }"
+        >
+          <label class="fault-checkbox">
+            <input
+              type="checkbox"
+              :value="fault.id"
+              :checked="isSelected(fault.id)"
+              @change="toggleFault(fault.id)"
+              :disabled="hasPrecedenceFault && !isSelected(fault.id)"
+            />
+            <span class="checkmark"></span>
+          </label>
+
+          <div class="fault-info">
+            <div class="fault-header">
+              <i :class="`fas ${fault.icon}`"></i>
+              <strong>{{ fault.name }}</strong>
+            </div>
+            <p class="fault-description">{{ fault.description }}</p>
+            <span class="fault-price" v-if="fault.basePrice">
+              Desde ${{ formatPrice(fault.basePrice) }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div v-else class="empty-state">
+        <p>No hay fallas registradas para este modelo.</p>
+      </div>
+
+      <button
+        @click="nextStep"
+        :disabled="diagnostic.selectedFaults.value.length === 0"
+        class="btn btn-next"
+      >
+        Continuar <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- Step 4: Client Info -->
+    <div v-if="currentStep === 4" class="step-container">
+      <h3 class="step-title">Paso 4: Información de contacto</h3>
+      <div class="back-button">
+        <button @click="previousStep" class="btn-text">
+          <i class="fas fa-arrow-left"></i> Volver
+        </button>
+      </div>
+
+      <form @submit.prevent="nextStep" class="client-form">
+        <div class="form-group">
+          <label for="clientName">Nombre *</label>
+          <input
+            v-model="diagnostic.clientName.value"
+            type="text"
+            id="clientName"
+            placeholder="Tu nombre completo"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="clientEmail">Email *</label>
+          <input
+            v-model="diagnostic.clientEmail.value"
+            type="email"
+            id="clientEmail"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="clientPhone">Teléfono</label>
+          <input
+            v-model="diagnostic.clientPhone.value"
+            type="tel"
+            id="clientPhone"
+            placeholder="+56912345678"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-next">
+          Ver Cotización <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Step 5: Quote Result -->
+    <div v-if="currentStep === 5" class="step-container quote-result">
+      <h3 class="step-title">Tu Cotización</h3>
+
+      <div class="quote-summary">
+        <div class="equipment-info">
+          <h4>{{ currentBrand?.name }} {{ currentInstrument?.model }}</h4>
+          <p class="equipment-value" v-if="currentInstrument?.valor_estimado">
+            Valor estimado: ${{
+              formatPrice(
+                (currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2
+              )
+            }}
+          </p>
+        </div>
+
+        <div class="faults-summary">
+          <h5>Problemas detectados:</h5>
+          <ul>
+            <li v-for="faultId in diagnostic.getEffectiveFaults()" :key="faultId">
+              {{ diagnostic.faults.value[faultId]?.name }}
+              <span class="fault-base-price">
+                +${{ formatPrice(diagnostic.faults.value[faultId]?.basePrice) }}
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pricing-breakdown">
+          <div class="price-row">
+            <span>Subtotal (diagnóstico):</span>
+            <span>${{ formatPrice(quoteData?.baseCost) }}</span>
+          </div>
+          <div class="price-row">
+            <span>Factor complejidad ({{ currentBrand?.tier }}):</span>
+            <span>× {{ quoteData?.complexityFactor.toFixed(2) }}</span>
+          </div>
+          <div class="price-row">
+            <span>Factor valor equipo:</span>
+            <span>× {{ quoteData?.valueFactor.toFixed(2) }}</span>
+          </div>
+          <div class="price-row total">
+            <span>Cotización Total:</span>
+            <span class="total-price">${{ formatPrice(quoteData?.finalCost) }}</span>
+          </div>
+        </div>
+
+        <div class="client-info-display">
+          <p><strong>Nombre:</strong> {{ diagnostic.clientName.value }}</p>
+          <p><strong>Email:</strong> {{ diagnostic.clientEmail.value }}</p>
+          <p v-if="diagnostic.clientPhone.value">
+            <strong>Teléfono:</strong> {{ diagnostic.clientPhone.value }}
+          </p>
+        </div>
+
+        <div class="action-buttons">
+          <button @click="submitQuote" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Enviar Cotización
+          </button>
+          <button @click="downloadQuote" class="btn btn-secondary">
+            <i class="fas fa-download"></i> Descargar PDF
+          </button>
+          <button @click="startOver" class="btn btn-outline">
+            <i class="fas fa-redo"></i> Nueva Cotización
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useDiagnostic } from '@/composables/useDiagnostic'
+
+const diagnostic = useDiagnostic()
+const currentStep = ref(1)
+
+const tierLabels = {
+  legendary: 'Legendario',
+  professional: 'Profesional',
+  standard: 'Estándar',
+  specialized: 'Especializado',
+  boutique: 'Boutique',
+  historic: 'Histórico'
+}
+
+const sortedBrands = computed(() => {
+  return diagnostic.brands.value.sort((a, b) => {
+    const tierOrder = { legendary: 0, professional: 1, standard: 2, specialized: 3, boutique: 4, historic: 5 }
+    return tierOrder[a.tier] - tierOrder[b.tier]
+  })
+})
+
+const availableModels = computed(() => {
+  return diagnostic.getModelsByBrand(diagnostic.selectedBrand.value)
+})
+
+const currentInstrument = computed(() => {
+  return diagnostic.getInstrument(diagnostic.selectedModel.value)
+})
+
+const currentBrand = computed(() => {
+  return diagnostic.getBrand(diagnostic.selectedBrand.value)
+})
+
+const availableFaults = computed(() => {
+  return diagnostic.getAvailableFaults()
+})
+
+const hasPrecedenceFault = computed(() => {
+  return diagnostic.selectedFaults.value.some(id => diagnostic.faults.value[id]?.isPrecedence)
+})
+
+const quoteData = computed(() => {
+  return diagnostic.calculateQuote()
+})
+
+const formatPrice = (price) => {
+  if (!price) return '0'
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+    minimumFractionDigits: 0
+  }).format(price).replace(/\s/g, '')
+}
+
+const selectBrand = (brandId) => {
+  diagnostic.selectedBrand.value = brandId
+  diagnostic.selectedModel.value = null
+  diagnostic.clearFaults()
+}
+
+const selectModel = (instrumentId) => {
+  diagnostic.selectedModel.value = instrumentId
+  diagnostic.clearFaults()
+}
+
+const isSelected = (faultId) => {
+  return diagnostic.selectedFaults.value.includes(faultId)
+}
+
+const toggleFault = (faultId) => {
+  if (isSelected(faultId)) {
+    diagnostic.removeFault(faultId)
+  } else {
+    diagnostic.addFault(faultId)
+  }
+}
+
+const nextStep = () => {
+  if (currentStep.value < 5) {
+    currentStep.value++
+  }
+}
+
+const previousStep = () => {
+  if (currentStep.value > 1) {
+    currentStep.value--
+  }
+}
+
+const startOver = () => {
+  diagnostic.reset()
+  currentStep.value = 1
+}
+
+const submitQuote = () => {
+  const data = diagnostic.getQuoteData()
+  // TODO: Enviar a backend
+  console.log('Quote submitted:', data)
+  // TODO: Show success message
+}
+
+const downloadQuote = () => {
+  // TODO: Generate and download PDF
+  console.log('Download PDF')
+}
+</script>
+
+<style scoped lang="scss">
+@import '@/scss/variables';
+
+.diagnostic-wizard {
+  padding: 3rem 2rem;
+
+  .step-container {
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .step-title {
+    font-size: $text-4;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .back-button {
+    margin-bottom: 2rem;
+
+    .btn-text {
+      background: none;
+      border: none;
+      color: $primary;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: darken($primary, 15%);
+      }
+    }
+  }
+
+  // Brand Grid
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 0.75rem;
+    }
+  }
+
+  .brand-card {
+    padding: 1.5rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+
+    &:hover {
+      border-color: $primary;
+      box-shadow: 0 4px 12px rgba($primary, 0.2);
+    }
+
+    &.active {
+      border-color: $primary;
+      background: rgba($primary, 0.05);
+      box-shadow: 0 4px 16px rgba($primary, 0.3);
+    }
+
+    .brand-tier {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+
+      &[data-tier='legendary'] {
+        background: #ffd700;
+        color: #333;
+      }
+
+      &[data-tier='professional'] {
+        background: #c0c0c0;
+        color: #333;
+      }
+
+      &[data-tier='standard'] {
+        background: #cd7f32;
+        color: white;
+      }
+
+      &[data-tier='specialized'] {
+        background: $primary;
+        color: white;
+      }
+
+      &[data-tier='boutique'] {
+        background: $dark;
+        color: white;
+      }
+
+      &[data-tier='historic'] {
+        background: #666;
+        color: white;
+      }
+    }
+
+    .brand-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: $dark;
+      margin: 0.5rem 0;
+    }
+
+    .brand-year {
+      font-size: 0.75rem;
+      color: #999;
+    }
+  }
+
+  // Model List
+  .model-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .model-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+
+    &:hover {
+      border-color: $primary;
+      box-shadow: 0 4px 12px rgba($primary, 0.2);
+    }
+
+    &.active {
+      border-color: $primary;
+      background: rgba($primary, 0.05);
+    }
+
+    .model-info {
+      flex: 1;
+
+      h4 {
+        margin: 0 0 0.25rem 0;
+        color: $dark;
+        font-size: 1.1rem;
+      }
+
+      .model-type {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.85rem;
+        color: #999;
+      }
+
+      .model-description {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    }
+
+    .model-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.25rem;
+      margin-left: 1rem;
+
+      .label {
+        font-size: 0.75rem;
+        color: #999;
+      }
+
+      .price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: $primary;
+      }
+    }
+  }
+
+  // Faults Container
+  .faults-container {
+    margin-bottom: 2rem;
+  }
+
+  .warning-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #856404;
+
+    i {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .fault-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover:not(.disabled) {
+      border-color: $primary;
+      background: rgba($primary, 0.02);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &.critical {
+      border-color: #ffc107;
+      background: rgba(#ffc107, 0.05);
+    }
+
+    .fault-checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 0.25rem;
+      cursor: pointer;
+      position: relative;
+
+      input {
+        display: none;
+
+        &:checked ~ .checkmark {
+          background: $primary;
+          border-color: $primary;
+
+          &::after {
+            display: block;
+          }
+        }
+      }
+
+      .checkmark {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+
+        &::after {
+          content: '';
+          display: none;
+          width: 4px;
+          height: 8px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    .fault-info {
+      flex: 1;
+
+      .fault-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+
+        i {
+          color: $primary;
+          font-size: 1.1rem;
+        }
+
+        strong {
+          color: $dark;
+          font-size: 0.95rem;
+        }
+      }
+
+      .fault-description {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .fault-price {
+        display: inline-block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: $primary;
+      }
+    }
+  }
+
+  // Client Form
+  .client-form {
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: $dark;
+      font-size: 0.95rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+      }
+
+      &::placeholder {
+        color: #999;
+      }
+    }
+  }
+
+  // Quote Result
+  .quote-result {
+    .quote-summary {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .equipment-info {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #eee;
+
+      h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.3rem;
+        color: $dark;
+      }
+
+      .equipment-value {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    }
+
+    .faults-summary {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #eee;
+
+      h5 {
+        margin: 0 0 1rem 0;
+        color: $dark;
+        font-size: 0.95rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 0.5rem 0;
+          color: #666;
+          font-size: 0.9rem;
+          display: flex;
+          justify-content: space-between;
+
+          .fault-base-price {
+            font-weight: 600;
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    .pricing-breakdown {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba($primary, 0.05);
+      border-radius: 8px;
+
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        color: #666;
+
+        &.total {
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 2px solid rgba($primary, 0.2);
+          font-weight: 700;
+          color: $dark;
+          font-size: 1.1rem;
+
+          .total-price {
+            color: $primary;
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+
+    .client-info-display {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #f5f5f5;
+      border-radius: 6px;
+
+      p {
+        margin: 0.5rem 0;
+        font-size: 0.9rem;
+
+        strong {
+          color: $dark;
+        }
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      @media (max-width: 600px) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  // Buttons
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.btn-next {
+      background: $primary;
+      color: white;
+      width: 100%;
+
+      &:hover:not(:disabled) {
+        background: darken($primary, 10%);
+        box-shadow: 0 4px 12px rgba($primary, 0.3);
+      }
+    }
+
+    &.btn-primary {
+      background: $primary;
+      color: white;
+      flex: 1;
+
+      &:hover {
+        background: darken($primary, 10%);
+      }
+    }
+
+    &.btn-secondary {
+      background: $dark;
+      color: white;
+      flex: 1;
+
+      &:hover {
+        background: darken($dark, 10%);
+      }
+    }
+
+    &.btn-outline {
+      background: white;
+      color: $primary;
+      border: 2px solid $primary;
+      flex: 1;
+
+      &:hover {
+        background: rgba($primary, 0.05);
+      }
+    }
+  }
+
+  .current-selection {
+    padding: 1rem;
+    background: rgba($primary, 0.05);
+    border-left: 4px solid $primary;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: $dark;
+  }
+
+  .empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

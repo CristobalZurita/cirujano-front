@@ -21,6 +21,7 @@ $fluor-green: #d9ff4e;       // Acentos especiales
 $vintage-beige: #d3d0c3;     // Fondos claros
 $vintage-black: #3e3c38;     // Textos oscuros
 $orange-primary: #ec6b00;    // Naranja principal
+$orange-pastel: #e8935a;     // Naranja pastel suave (como logo)
 
 /** General **/
 $background-color: #d3d0c3;
@@ -56,23 +57,32 @@ $light-shades-palette: (
     $light-7,
 );
 
-/** Typography - Texts Breakpoints **/
+/** Typography - Base Text Sizes (Corregido - aumentado para monitores grandes) **/
+$text-1: 1.0rem;   // +17% vs anterior (0.85rem)
+$text-2: 1.05rem;  // +17% vs anterior (0.90rem)
+$text-3: 1.1rem;   // +16% vs anterior (0.95rem)
+$text-4: 1.15rem;  // +15% vs anterior (1.00rem)
+$text-5: 1.2rem;   // +14% vs anterior (1.05rem)
+
+/** Typography - Texts Breakpoints (CORREGIDO - Invertido anteriormente) **/
 $texts-breakpoint-multipliers: (
-    xxxl: 1,
-    xxl: 0.95,
-    xl: 0.925,
-    lg: 0.9,
-    md: 0.875,
+    xxxxl: 1.15,    // >1920px - NUEVO breakpoint para monitores 4K
+    xxxl: 1.1,      // Antes: 1.0, Ahora: 1.1
+    xxl: 1.0,       // Antes: 0.95, Ahora: 1.0
+    xl: 0.95,       // Antes: 0.925, Ahora: 0.95
+    lg: 0.9,        // Sin cambio
+    md: 0.9,        // Antes: 0.875, Ahora: 0.9
     sm: 0.85
 );
 
-/** Typography - Headings Breakpoints **/
+/** Typography - Headings Breakpoints (CORREGIDO - Escalado mejorado) **/
 $headings-breakpoint-multipliers: (
-    xxxl: 1,
-    xxl: 0.95,
-    xl: 0.925,
-    lg: 0.9,
-    md: 0.85,
+    xxxxl: 1.2,     // >1920px - NUEVO breakpoint para monitores 4K
+    xxxl: 1.15,     // Antes: 1.0, Ahora: 1.15
+    xxl: 1.0,       // Antes: 0.95, Ahora: 1.0
+    xl: 0.95,       // Antes: 0.925, Ahora: 0.95
+    lg: 0.9,        // Antes: 0.9, Sin cambio
+    md: 0.85,       // Antes: 0.85, Sin cambio
     sm: 0.8
 );
 

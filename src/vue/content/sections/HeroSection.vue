@@ -1,13 +1,12 @@
 <template>
     <!-- Heading Section -->
     <PageHeader :id="props.id"
-                title="*Cirujano de Sintetizadores* "
-                subtitle="<strong>MANTENCIÓN</strong> • <strong>RESTAURACIÓN</strong> • <strong>REPARACIÓN</strong>"
+                title="*<strong>MANTENCIÓN</strong> • <strong>RESTAURACIÓN</strong> • <strong>REPARACIÓN</strong>* "
+                subtitle=""
                 logo-url="images/logo/NUEVO_cirujano.png"
-                :show-button="true"
-                button-icon="fa-solid fa-search"
-                button-label="Descubre más"
-                button-url="#about"/>
+                :show-button="false"
+                :show-cta-buttons="true"
+                @scroll-to-top="scrollToTop"/>
 </template>
 
 <script setup>
@@ -16,8 +15,11 @@ import PageHeader from "/src/vue/components/layout/PageHeader.vue"
 const props = defineProps({
     id: String
 })
+
+const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 </script>
 
 <style lang="scss" scoped>
-@import "/src/scss/_theming.scss";
 </style>

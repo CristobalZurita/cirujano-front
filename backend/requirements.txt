@@ -1,0 +1,37 @@
+# FastAPI and Uvicorn
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Database
+sqlalchemy==2.0.23
+alembic==1.12.1
+psycopg2-binary==2.9.9
+pydantic-settings==2.1.0
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Validation
+pydantic[email]==2.5.0
+email-validator==2.1.0
+
+# Utilities
+python-dotenv==1.0.0
+httpx==0.25.1
+
+# Development
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.12.0
+ruff==0.1.8
+
+# Optional: For async PostgreSQL support
+asyncpg==0.29.0
+
+# Optional: For Redis caching
+redis==5.0.1
+
+# Optional: For Celery async tasks
+celery==5.3.4

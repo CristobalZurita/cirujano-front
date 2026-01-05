@@ -145,7 +145,7 @@ const _executeAnimatingProgressStep = () => {
 const _executeWaitingForCompletionStep = () => {
     currentStep.value = Steps.WAITING_FOR_COMPLETION
 
-    const dt = 1000 / 30
+    const dt = 1000 / 31
     loadingTime.value = 0
     didEmitReady.value = false
 
@@ -280,15 +280,15 @@ div.image-view-logo {
     z-index: 10;
     opacity: 0;
 
-    width: 250px;
-    height: 250px;
+    width: 562px;
+    height: 562px;
     @include media-breakpoint-down(lg) {
-        width: 190px;
-        height: 190px;
+        width: 427px;
+        height: 427px;
     }
     @include media-breakpoint-down(sm) {
-        width: 160px;
-        height: 160px;
+        width: 360px;
+        height: 360px;
     }
 
     &-animated {

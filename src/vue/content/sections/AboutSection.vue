@@ -17,14 +17,6 @@
                               ]"/>
 
         </PageSectionContent>
-
-        <!-- Footer -->
-        <PageSectionFooter title="Haz una *Cotización*"
-                           description="Cotiza con nosotros diferentes tipos de trabajos y obten una atención personalizada."
-                           :include-divider="true"
-                           button-label="Cotizar ahora"
-                           button-fa-icon="fa-solid fa-file-circle-check"
-                           button-url="https://github.com/ryanbalieiro/vue-agency-landing-page-template"/>
     </PageSection>
 </template>
 
@@ -32,7 +24,6 @@
 import PageSection from "/src/vue/components/layout/PageSection.vue"
 import PageSectionHeader from "/src/vue/components/layout/PageSectionHeader.vue"
 import PageSectionContent from "/src/vue/components/layout/PageSectionContent.vue"
-import PageSectionFooter from "/src/vue/components/layout/PageSectionFooter.vue"
 import ArticleInfoBlock from "/src/vue/components/articles/ArticleInfoBlock.vue"
 
 const props = defineProps({

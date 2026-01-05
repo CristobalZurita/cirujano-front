@@ -6,6 +6,9 @@
     <!-- Content Display -->
     <router-view/>
 
+    <!-- Floating Quote Button - Visible in all pages -->
+    <FloatingQuoteButton/>
+
     <!-- Footer -->
     <Footer>
         <FooterBlock :darken="false"
@@ -61,6 +64,7 @@ import Footer from "/src/vue/components/footer/Footer.vue"
 import FooterBlock from "/src/vue/components/footer/FooterBlock.vue"
 import FooterCopyright from "/src/vue/components/footer/FooterCopyright.vue"
 import FooterColumn from "/src/vue/components/footer/FooterColumn.vue"
+import FloatingQuoteButton from "/src/vue/components/widgets/FloatingQuoteButton.vue"
 </script>
 
 <style lang="scss" scoped>

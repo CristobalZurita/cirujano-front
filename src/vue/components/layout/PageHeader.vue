@@ -18,6 +18,18 @@
                 <h4 class="subheading"
                     v-html="parsedSubtitle"/>
 
+                <!-- CTA Buttons -->
+                <div v-if="showCtaButtons" class="hero-cta-buttons">
+                    <button class="btn-hero" @click="$emit('scroll-to-top')">
+                        <i class="fa-solid fa-search"></i>
+                        <span>Descubre más</span>
+                    </button>
+                    <a href="#diagnostic-section" class="btn-hero btn-hero-primary">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                        <span>Cotiza tu instrumento</span>
+                    </a>
+                </div>
+
                 <!-- Button -->
                 <Link v-if="showButton"
                       :url="props.buttonUrl">
@@ -46,6 +58,7 @@ const props = defineProps({
     subtitle: String,
     logoUrl: String,
     showButton: Boolean,
+    showCtaButtons: Boolean,
     buttonLabel: String,
     buttonIcon: String,
     buttonUrl: String
@@ -119,6 +132,63 @@ header.foxy-header {
         padding: calc(var(--logo-proportion)/20) 0;
         line-height: 24px;
         text-align: center;
+    }
+
+    .hero-cta-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 1rem;
+
+        @include media-breakpoint-down(md) {
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+    }
+
+    .btn-hero {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.125rem 2.3rem;
+        border-radius: 4rem;
+        border: 2px solid $orange-pastel;
+        background-color: $orange-pastel;
+        color: white;
+        font-family: $headings-font-family;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 1.125rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+
+        i {
+            font-size: 1.2rem;
+        }
+
+        &:hover {
+            background-color: #ff7f1f;
+            border-color: #ff7f1f;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &.btn-hero-primary {
+            background-color: $orange-pastel;
+            color: white;
+            border-color: $orange-pastel;
+
+            &:hover {
+                background-color: #ff7f1f;
+                border-color: #ff7f1f;
+            }
+        }
     }
 }
 </style>
