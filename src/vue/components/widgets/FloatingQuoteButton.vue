@@ -66,27 +66,13 @@ onUnmounted(() => {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 999;
+  z-index: 50;
   display: flex;
   align-items: center;
   gap: 1rem;
 
   @media (max-width: 768px) {
-    bottom: 1.5rem;
-    right: 1.5rem;
-
-    .quote-btn {
-      padding: 0.75rem;
-      border-radius: 50%;
-
-      .btn-text {
-        display: none;
-      }
-
-      i {
-        margin-right: 0;
-      }
-    }
+    display: none;
   }
 
   .quote-btn {
@@ -95,15 +81,15 @@ onUnmounted(() => {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.875rem 1.875rem;
-    background-color: #f5d4b8;
-    color: $primary;
-    border: 2px solid #f5d4b8;
+    background-color: #ff8c00;
+    color: white;
+    border: 2px solid #ff8c00;
     border-radius: 50px;
     font-size: 1rem;
     font-weight: 700;
     font-family: $headings-font-family;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba($orange-pastel, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -114,10 +100,10 @@ onUnmounted(() => {
 
     &:hover:not(.pulse) {
       transform: scale(1.15);
-      background-color: #ff7f1f;
-      border-color: #ff7f1f;
+      background-color: #ff6600;
+      border-color: #ff6600;
       color: white;
-      box-shadow: 0 8px 24px rgba(#ff7f1f, 0.5);
+      box-shadow: 0 8px 24px rgba(255, 102, 0, 0.6);
     }
 
     &:active {
@@ -166,15 +152,15 @@ onUnmounted(() => {
 @keyframes float-pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 4px 12px rgba($orange-pastel, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
   }
   50% {
     transform: scale(1.08);
-    box-shadow: 0 6px 16px rgba($orange-pastel, 0.3);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5), 0 10px 24px rgba(0, 0, 0, 0.2);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 4px 12px rgba($orange-pastel, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
   }
 }
 

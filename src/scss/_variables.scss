@@ -36,7 +36,7 @@ $navbar-height: 71px;
 $headings-color: $dark;
 $text-normal: #3e3c38;
 $text-normal-contrast: white;
-$text-muted: #6c757d;
+$text-muted: #5a5652;
 
 /** Light Shades **/
 $light-1: #f8f9fa;
@@ -57,33 +57,33 @@ $light-shades-palette: (
     $light-7,
 );
 
-/** Typography - Base Text Sizes (Corregido - aumentado para monitores grandes) **/
-$text-1: 1.0rem;   // +17% vs anterior (0.85rem)
-$text-2: 1.05rem;  // +17% vs anterior (0.90rem)
-$text-3: 1.1rem;   // +16% vs anterior (0.95rem)
-$text-4: 1.15rem;  // +15% vs anterior (1.00rem)
-$text-5: 1.2rem;   // +14% vs anterior (1.05rem)
+/** Typography - Base Text Sizes (Optimized for readability) **/
+$text-1: 1.05rem;   // Small text - increased from 1.0rem
+$text-2: 1.1rem;    // Captions - increased from 1.05rem
+$text-3: 1.15rem;   // Body text - increased from 1.1rem
+$text-4: 1.2rem;    // Normal paragraph - increased from 1.15rem
+$text-5: 1.3rem;    // Lead text - increased from 1.2rem
 
-/** Typography - Texts Breakpoints (CORREGIDO - Invertido anteriormente) **/
+/** Typography - Texts Breakpoints (MOBILE-FIRST: larger base on small screens) **/
 $texts-breakpoint-multipliers: (
-    xxxxl: 1.15,    // >1920px - NUEVO breakpoint para monitores 4K
-    xxxl: 1.1,      // Antes: 1.0, Ahora: 1.1
-    xxl: 1.0,       // Antes: 0.95, Ahora: 1.0
-    xl: 0.95,       // Antes: 0.925, Ahora: 0.95
-    lg: 0.9,        // Sin cambio
-    md: 0.9,        // Antes: 0.875, Ahora: 0.9
-    sm: 0.85
+    xxxxl: 1.15,    // >1920px - 4K monitors
+    xxxl: 1.1,      // Desktop
+    xxl: 1.0,       // Laptop
+    xl: 0.95,       // Tablet landscape
+    lg: 0.95,       // Tablet
+    md: 1.0,        // Tablet portrait - INCREASED from 0.9 for better mobile readability
+    sm: 1.05        // Mobile - INCREASED from 0.85 for readability on small screens
 );
 
-/** Typography - Headings Breakpoints (CORREGIDO - Escalado mejorado) **/
+/** Typography - Headings Breakpoints (MOBILE-FIRST: larger headings on small screens) **/
 $headings-breakpoint-multipliers: (
-    xxxxl: 1.2,     // >1920px - NUEVO breakpoint para monitores 4K
-    xxxl: 1.15,     // Antes: 1.0, Ahora: 1.15
-    xxl: 1.0,       // Antes: 0.95, Ahora: 1.0
-    xl: 0.95,       // Antes: 0.925, Ahora: 0.95
-    lg: 0.9,        // Antes: 0.9, Sin cambio
-    md: 0.85,       // Antes: 0.85, Sin cambio
-    sm: 0.8
+    xxxxl: 1.2,     // >1920px - 4K monitors
+    xxxl: 1.15,     // Desktop
+    xxl: 1.0,       // Laptop
+    xl: 0.95,       // Tablet landscape
+    lg: 0.95,       // Tablet
+    md: 0.95,       // Tablet portrait - INCREASED from 0.85
+    sm: 0.95        // Mobile - INCREASED from 0.8 for better readability
 );
 
 /** Typography - Headings Base Sizes **/

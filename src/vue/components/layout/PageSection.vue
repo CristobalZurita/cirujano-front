@@ -37,11 +37,11 @@ const classList = computed(() => {
 
 section.foxy-section {
     @include generate-dynamic-styles-with-hash((
-        xxxl: (padding: 4rem 0em 5rem),
-        xxl:  (padding: 3rem 0rem 3.5rem),
-        lg:   (padding: 2.5rem 0rem 3.5rem),
-        md:   (padding: 2.25rem 0rem 3.25rem),
-        sm:   (padding: 2rem 0rem 3rem),
+        xxxl: (padding: 5rem 0em 5.5rem),  // Increased for large screens
+        xxl:  (padding: 4rem 0rem 4.5rem),  // Increased for consistency
+        lg:   (padding: 3rem 0rem 3.5rem),  // Laptop
+        md:   (padding: 3rem 0rem 3.5rem),  // Tablet portrait - INCREASED from 2.25/3.25
+        sm:   (padding: 2.5rem 0rem 3rem),  // Mobile - INCREASED from 2/3
     ));
 
     background-color: $background-color;

@@ -10,25 +10,32 @@
         <!-- Contenido -->
         <PageSectionContent>
             <ArticleCustomContent class="p-0">
-                <ContactForm/>
+                <!-- Formulario de contacto -->
+                <div class="contact-form-wrapper">
+                    <ContactForm/>
+                </div>
 
-                <!-- Mapa de ubicación (Google Maps embed) -->
-                <div class="contact-map" aria-label="Ubicación taller">
-                  <div class="map-wrapper">
-                    <iframe
-                      title="Mapa - Eusebio Lillo 362, Valparaíso"
-                      src="https://www.google.com/maps?q=Eusebio%20Lillo%20362,%20Valparaiso,%20Chile%2C%20CP%202350454&output=embed"
-                      loading="lazy"
-                      referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                  </div>
+                <!-- Mapa de ubicación (Google Maps embed) - Abajo del formulario -->
+                <div class="contact-map-section">
+                    <h3>Nuestra ubicación</h3>
+                    
+                    <div class="contact-map-container">
+                        <div class="map-wrapper">
+                            <iframe
+                                title="Mapa - Eusebio Lillo 362, Valparaíso"
+                                src="https://www.google.com/maps?q=Eusebio%20Lillo%20362,%20Valparaiso,%20Chile%2C%20CP%202350454&output=embed"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
 
-                  <div class="address">
-                    <strong>Dirección:</strong>
-                    <div>Eusebio Lillo 362, Valparaíso</div>
-                    <div>CP: 2350454</div>
-                    <div>Chile</div>
-                  </div>
+                        <div class="address-info">
+                            <h4>Dirección</h4>
+                            <p>Eusebio Lillo 362</p>
+                            <p>Valparaíso, Chile</p>
+                            <p>CP: 2350454</p>
+                        </div>
+                    </div>
                 </div>
 
             </ArticleCustomContent>
@@ -51,36 +58,122 @@ const props = defineProps({
 <style lang="scss" scoped>
 @import "@/scss/_theming.scss";
 
-.contact-map {
-  margin-top: 2rem;
+.contact-form-wrapper {
+  margin-bottom: 3rem;
+}
+
+.contact-map-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--color-primary, #ff7a00);
+  }
+}
+
+.contact-map-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 2rem;
+  align-items: stretch;
+}
 
-  .map-wrapper {
+.map-wrapper {
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
+  iframe {
     width: 100%;
-    max-width: 600px;
-    height: 450px;
-    border: 0;
-    border-radius: 8px;
-    overflow: hidden;
+    height: 100%;
+    border: none;
+  }
+}
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+.address-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-primary, #ff7a00);
   }
 
-  .address {
-    margin-top: 1rem;
-    text-align: center;
-    color: #666;
+  p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #d0d0d0;
+    margin: 0.5rem 0;
+  }
+}
 
-    strong {
-      font-weight: bold;
-      color: var(--color-primary, #0066cc);
-    }
+/* TABLET */
+@media (max-width: 1024px) {
+  .map-wrapper {
+    height: 350px;
+  }
+
+  .contact-map-section {
+    margin-top: 3rem;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .contact-form-wrapper {
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-map-section {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+
+  .contact-map-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .map-wrapper {
+    height: 280px;
+  }
+
+  .address-info {
+    padding: 1.5rem;
+  }
+
+  .address-info h4 {
+    font-size: 1.1rem;
+  }
+
+  .address-info p {
+    font-size: 1rem;
+  }
+}
+
+/* MOBILE PEQUEÑO */
+@media (max-width: 480px) {
+  .contact-map-container {
+    gap: 1.5rem;
+  }
+
+  .map-wrapper {
+    height: 240px;
+  }
+
+  .contact-map-section h3 {
+    font-size: 1.2rem;
   }
 }
 </style>

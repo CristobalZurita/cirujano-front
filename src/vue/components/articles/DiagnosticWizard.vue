@@ -7,7 +7,7 @@
       <div class="brand-select">
         <select v-model="selectedBrandLocal" @change="onBrandChange">
           <option value="">-- Selecciona una marca --</option>
-          <option v-for="brand in brandsApi" :key="brand.id" :value="brand.id">
+          <option v-for="brand in allBrands" :key="brand.id" :value="brand.id">
             {{ brand.name }}
           </option>
         </select>
@@ -31,19 +31,19 @@
         </button>
       </div>
 
-      <div v-if="modelsApi.length > 0" class="model-select">
+      <div v-if="allModels.length > 0" class="model-select">
         <select v-model="selectedModelLocal" @change="onModelChange">
           <option value="">-- Selecciona un modelo --</option>
-          <option v-for="m in modelsApi" :key="m.id" :value="m.id">{{ m.model }}</option>
+          <option v-for="m in allModels" :key="m.id" :value="m.id">{{ m.model }}</option>
         </select>
 
         <div v-if="instrumentPreview" class="model-preview">
-          <img :src="instrumentPreview" :alt="modelDisplayData?.model || 'Instrument image'" />
+          <img :src="instrumentPreview" :alt="currentInstrument?.model || 'Instrument image'" />
           <div class="model-preview-info">
-            <h4>{{ modelDisplayData?.model || 'Cargando...' }}</h4>
-            <p v-if="modelDisplayData?.type">{{ modelDisplayData.type }} ({{ modelDisplayData?.year }})</p>
-            <p v-if="modelDisplayData?.description">{{ modelDisplayData.description }}</p>
-            <p v-if="modelDisplayData?.valor_estimado">Valor est.: ${{ formatPrice((modelDisplayData.valor_estimado.min + modelDisplayData.valor_estimado.max) / 2) }}</p>
+            <h4>{{ currentInstrument?.model || 'Cargando...' }}</h4>
+            <p v-if="currentInstrument?.type">{{ currentInstrument.type }} ({{ currentInstrument?.year }})</p>
+            <p v-if="currentInstrument?.description">{{ currentInstrument.description }}</p>
+            <p v-if="currentInstrument?.valor_estimado">Valor est.: ${{ formatPrice((currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2) }}</p>
           </div>
         </div>
       </div>
@@ -71,8 +71,8 @@
       </div>
 
       <div class="current-selection">
-        <strong>{{ diagnostic.selectedBrand.value }}</strong> →
-        <strong>{{ modelDisplayData?.model }}</strong>
+        <strong>{{ selectedBrandLocal ? catalog.getBrandById(selectedBrandLocal)?.name : 'Marca' }}</strong> →
+        <strong>{{ currentInstrument?.model || 'Modelo' }}</strong>
       </div>
 
       <div v-if="availableFaults.length > 0" class="faults-container">
@@ -195,11 +195,11 @@
 
       <div class="quote-summary">
         <div class="equipment-info">
-          <h4>{{ currentBrand?.name }} {{ modelDisplayData?.model }}</h4>
-          <p class="equipment-value" v-if="modelDisplayData?.valor_estimado">
+          <h4>{{ catalog.getBrandById(selectedBrandLocal)?.name }} {{ currentInstrument?.model }}</h4>
+          <p class="equipment-value" v-if="currentInstrument?.valor_estimado">
             Valor estimado: ${{
               formatPrice(
-                (modelDisplayData.valor_estimado.min + modelDisplayData.valor_estimado.max) / 2
+                (currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2
               )
             }}
           </p>
@@ -267,95 +267,29 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useDiagnostic } from '@/composables/useDiagnostic'
+import { useInstrumentsCatalog } from '@/composables/useInstrumentsCatalog'
 
 const diagnostic = useDiagnostic()
+const catalog = useInstrumentsCatalog()
 const currentStep = ref(1)
 
-const tierLabels = {
-  legendary: 'Legendario',
-  professional: 'Profesional',
-  standard: 'Estándar',
-  specialized: 'Especializado',
-  boutique: 'Boutique',
-  historic: 'Histórico'
-}
-
-const sortedBrands = computed(() => {
-  return diagnostic.brands.value.sort((a, b) => {
-    const tierOrder = { legendary: 0, professional: 1, standard: 2, specialized: 3, boutique: 4, historic: 5 }
-    return tierOrder[a.tier] - tierOrder[b.tier]
-  })
-})
-
-// API-driven lists (prefer backend for dynamic data)
-const brandsApi = ref([])
-const modelsApi = ref([])
+// Local UI state
 const selectedBrandLocal = ref('')
 const selectedModelLocal = ref('')
 const instrumentPreview = ref(null)
-const currentInstrument = ref(null)  // Store instrument data from API
+const currentInstrument = ref(null)
 
-const fetchBrands = async () => {
-  try {
-    const res = await fetch('/api/v1/brands/')
-    if (res.ok) brandsApi.value = await res.json()
-    else brandsApi.value = diagnostic.brands.value.sort((a,b)=>a.name.localeCompare(b.name))
-  } catch (e) {
-    brandsApi.value = diagnostic.brands.value.sort((a,b)=>a.name.localeCompare(b.name))
-  }
-}
+// Use catalog directly
+const allBrands = computed(() => catalog.getAllBrands(true))
 
-const fetchModels = async (brandId) => {
-  modelsApi.value = []
-  try {
-    const res = await fetch(`/api/v1/brands/${brandId}/models`)
-    if (res.ok) modelsApi.value = await res.json()
-    else modelsApi.value = diagnostic.getModelsByBrand(brandId)
-  } catch (e) {
-    modelsApi.value = diagnostic.getModelsByBrand(brandId)
-  }
-}
-
-const fetchInstrumentDetails = async (instrumentId) => {
-  try {
-    const res = await fetch(`/api/v1/instruments/${instrumentId}`)
-    if (!res.ok) {
-      instrumentPreview.value = '/images/placeholder.svg'
-      currentInstrument.value = null
-      return
-    }
-    const json = await res.json()
-    // update local diagnostic instrument
-    diagnostic.selectedModel.value = instrumentId
-    // set preview image (fallback to placeholder SVG)
-    instrumentPreview.value = json.imagen_url || '/images/placeholder.svg'
-    // store full instrument data for reactive display
-    currentInstrument.value = json
-    return json
-  } catch (e) {
-    instrumentPreview.value = '/images/placeholder.svg'
-    currentInstrument.value = null
-  }
-}
-
-onMounted(() => {
-  fetchBrands()
-})
-
-const availableModels = computed(() => {
-  return diagnostic.getModelsByBrand(diagnostic.selectedBrand.value)
-})
-
-// Use API-fetched data when available, fallback to local
-const modelDisplayData = computed(() => {
-  if (currentInstrument.value) {
-    return currentInstrument.value
-  }
-  return diagnostic.getInstrument(diagnostic.selectedModel.value)
+const allModels = computed(() => {
+  return selectedBrandLocal.value 
+    ? catalog.getInstrumentsByBrand(selectedBrandLocal.value)
+    : []
 })
 
 const currentBrand = computed(() => {
-  return diagnostic.getBrand(diagnostic.selectedBrand.value)
+  return catalog.getBrandById(selectedBrandLocal.value)
 })
 
 const availableFaults = computed(() => {
@@ -396,7 +330,7 @@ const onBrandChange = () => {
   diagnostic.selectedModel.value = null
   selectedModelLocal.value = ''
   instrumentPreview.value = null
-  if (bid) fetchModels(bid)
+  currentInstrument.value = null
 }
 
 const onModelChange = async () => {
@@ -406,10 +340,14 @@ const onModelChange = async () => {
     currentInstrument.value = null
     return
   }
-  // Show placeholder immediately
-  instrumentPreview.value = '/images/placeholder.svg'
-  // Then fetch details
-  await fetchInstrumentDetails(mid)
+  
+  // Get from catalog (no API call)
+  const inst = catalog.getInstrumentById(mid)
+  if (inst) {
+    diagnostic.selectedModel.value = mid
+    instrumentPreview.value = inst.imagePath
+    currentInstrument.value = inst
+  }
 }
 
 const isSelected = (faultId) => {
