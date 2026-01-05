@@ -335,14 +335,6 @@
       "founded": 1984,
       "country": "Japan",
       "description": "Roland Juno - línea de sintetizadores"
-    },
-    {
-      "id": "kawai",
-      "name": "Kawai",
-      "tier": "established",
-      "founded": 1927,
-      "country": "Japan",
-      "description": "Teclados, pianos digitales y sintetizadores japoneses"
     }
   ]
 }

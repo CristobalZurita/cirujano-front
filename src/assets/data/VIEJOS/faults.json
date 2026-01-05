@@ -9,10 +9,7 @@
       "basePrice": 150000,
       "isPrecedence": true,
       "icon": "fa-plug",
-      "affectedComponents": [
-        "power_supply",
-        "main_board"
-      ],
+      "affectedComponents": ["power_supply", "main_board"],
       "diagnosticNote": "Si se marca esta falla, se ignoran todas las demás opciones de diagnóstico"
     },
     "POWER_UNSTABLE": {
@@ -22,10 +19,7 @@
       "precedence": 2,
       "description": "El equipo prende y apaga de forma intermitente",
       "basePrice": 80000,
-      "components": [
-        "power_supply",
-        "capacitors"
-      ],
+      "components": ["power_supply", "capacitors"],
       "icon": "fa-flash"
     },
     "KEYBOARD_DEAD_KEY": {
@@ -36,10 +30,7 @@
       "description": "Una o más teclas no responden",
       "basePrice": 25000,
       "multiplier": 1.5,
-      "applicableTo": [
-        "synth",
-        "keyboard"
-      ],
+      "applicableTo": ["synth", "keyboard"],
       "icon": "fa-key"
     },
     "KEYBOARD_STUCK_KEY": {
@@ -50,10 +41,7 @@
       "description": "Una o más teclas están pegadas o no regresan",
       "basePrice": 15000,
       "multiplier": 1.2,
-      "applicableTo": [
-        "synth",
-        "keyboard"
-      ],
+      "applicableTo": ["synth", "keyboard"],
       "icon": "fa-exclamation"
     },
     "BUTTON_STUCK": {
@@ -64,9 +52,7 @@
       "description": "Botones que no regresan o están pegados",
       "basePrice": 12000,
       "multiplier": 1.1,
-      "applicableTo": [
-        "all"
-      ],
+      "applicableTo": ["all"],
       "icon": "fa-circle"
     },
     "BUTTON_DEAD": {
@@ -77,9 +63,7 @@
       "description": "Botones que no responden",
       "basePrice": 15000,
       "multiplier": 1.2,
-      "applicableTo": [
-        "all"
-      ],
+      "applicableTo": ["all"],
       "icon": "fa-circle-exclamation"
     },
     "ENCODER_INTERMITTENT": {
@@ -90,10 +74,7 @@
       "description": "Control rotatorio con respuesta intermitente",
       "basePrice": 18000,
       "multiplier": 1.3,
-      "applicableTo": [
-        "digital",
-        "hybrid"
-      ],
+      "applicableTo": ["digital", "hybrid"],
       "icon": "fa-rotate"
     },
     "FADER_INTERMITTENT": {
@@ -104,10 +85,7 @@
       "description": "Control deslizante con respuesta inconsistente",
       "basePrice": 20000,
       "multiplier": 1.4,
-      "applicableTo": [
-        "analog",
-        "hybrid"
-      ],
+      "applicableTo": ["analog", "hybrid"],
       "icon": "fa-sliders"
     },
     "AUDIO_DISTORTED": {
@@ -117,11 +95,7 @@
       "precedence": 4,
       "description": "El sonido sale con distorsión anormal",
       "basePrice": 40000,
-      "affectedComponents": [
-        "amplifier",
-        "dac",
-        "output_stage"
-      ],
+      "affectedComponents": ["amplifier", "dac", "output_stage"],
       "icon": "fa-volume-high"
     },
     "AUDIO_NO_OUTPUT": {
@@ -131,11 +105,7 @@
       "precedence": 4,
       "description": "No hay sonido en las salidas",
       "basePrice": 60000,
-      "affectedComponents": [
-        "audio_jack",
-        "amplifier",
-        "dac"
-      ],
+      "affectedComponents": ["audio_jack", "amplifier", "dac"],
       "icon": "fa-volume-xmark"
     },
     "AUDIO_WEAK": {
@@ -145,10 +115,7 @@
       "precedence": 4,
       "description": "El sonido sale muy bajo",
       "basePrice": 35000,
-      "affectedComponents": [
-        "amplifier",
-        "output_stage"
-      ],
+      "affectedComponents": ["amplifier", "output_stage"],
       "icon": "fa-volume-low"
     },
     "OSCILLATOR_UNSTABLE": {
@@ -158,14 +125,8 @@
       "precedence": 4,
       "description": "El oscilador varía de frecuencia o tono",
       "basePrice": 50000,
-      "affectedComponents": [
-        "oscillator",
-        "capacitors"
-      ],
-      "applicableTo": [
-        "analog",
-        "synth"
-      ],
+      "affectedComponents": ["oscillator", "capacitors"],
+      "applicableTo": ["analog", "synth"],
       "icon": "fa-wave-sine"
     },
     "FILTER_DEAD": {
@@ -175,13 +136,8 @@
       "precedence": 4,
       "description": "El filtro no responde o no afecta el sonido",
       "basePrice": 55000,
-      "affectedComponents": [
-        "filter_board"
-      ],
-      "applicableTo": [
-        "analog",
-        "synth"
-      ],
+      "affectedComponents": ["filter_board"],
+      "applicableTo": ["analog", "synth"],
       "icon": "fa-filter"
     },
     "ENVELOPE_BROKEN": {
@@ -191,13 +147,8 @@
       "precedence": 4,
       "description": "ADSR no funciona correctamente",
       "basePrice": 45000,
-      "affectedComponents": [
-        "envelope_generator"
-      ],
-      "applicableTo": [
-        "analog",
-        "synth"
-      ],
+      "affectedComponents": ["envelope_generator"],
+      "applicableTo": ["analog", "synth"],
       "icon": "fa-mountain"
     },
     "LCD_DEAD": {
@@ -207,12 +158,8 @@
       "precedence": 4,
       "description": "Pantalla completamente negra o no responde",
       "basePrice": 35000,
-      "affectedComponents": [
-        "lcd_screen"
-      ],
-      "applicableTo": [
-        "digital"
-      ],
+      "affectedComponents": ["lcd_screen"],
+      "applicableTo": ["digital"],
       "icon": "fa-square"
     },
     "LCD_LOW_CONTRAST": {
@@ -222,13 +169,8 @@
       "precedence": 4,
       "description": "Pantalla visible pero con contraste muy bajo",
       "basePrice": 25000,
-      "affectedComponents": [
-        "lcd_screen",
-        "potentiometer"
-      ],
-      "applicableTo": [
-        "digital"
-      ],
+      "affectedComponents": ["lcd_screen", "potentiometer"],
+      "applicableTo": ["digital"],
       "icon": "fa-sun"
     },
     "USB_NOT_RECOGNIZED": {
@@ -238,13 +180,8 @@
       "precedence": 4,
       "description": "Puerto USB no es reconocido por la computadora",
       "basePrice": 30000,
-      "affectedComponents": [
-        "usb_port",
-        "usb_controller"
-      ],
-      "applicableTo": [
-        "digital"
-      ],
+      "affectedComponents": ["usb_port", "usb_controller"],
+      "applicableTo": ["digital"],
       "icon": "fa-usb"
     },
     "MIDI_NOT_RECOGNIZED": {
@@ -254,13 +191,8 @@
       "precedence": 4,
       "description": "Entrada/salida MIDI no responde",
       "basePrice": 28000,
-      "affectedComponents": [
-        "midi_port",
-        "midi_circuit"
-      ],
-      "applicableTo": [
-        "all"
-      ],
+      "affectedComponents": ["midi_port", "midi_circuit"],
+      "applicableTo": ["all"],
       "icon": "fa-plug"
     },
     "AFTERTOUCH_BROKEN": {
@@ -270,12 +202,8 @@
       "precedence": 4,
       "description": "Sensor de presión de teclas dañado",
       "basePrice": 45000,
-      "affectedComponents": [
-        "aftertouch_sensor"
-      ],
-      "applicableTo": [
-        "weighted_keyboard"
-      ],
+      "affectedComponents": ["aftertouch_sensor"],
+      "applicableTo": ["weighted_keyboard"],
       "icon": "fa-hand-pointer"
     },
     "PITCH_WHEEL_BROKEN": {
@@ -285,12 +213,8 @@
       "precedence": 4,
       "description": "Rueda de modulación/pitch no funciona",
       "basePrice": 22000,
-      "affectedComponents": [
-        "pitch_wheel"
-      ],
-      "applicableTo": [
-        "synth"
-      ],
+      "affectedComponents": ["pitch_wheel"],
+      "applicableTo": ["synth"],
       "icon": "fa-dharmachakra"
     },
     "BATTERY_DEAD": {
@@ -300,12 +224,8 @@
       "precedence": 3,
       "description": "Batería recargable sin carga o alcalines agotadas",
       "basePrice": 8000,
-      "affectedComponents": [
-        "battery"
-      ],
-      "applicableTo": [
-        "portable"
-      ],
+      "affectedComponents": ["battery"],
+      "applicableTo": ["portable"],
       "icon": "fa-battery-empty"
     },
     "CAPACITOR_BLOWN": {
@@ -315,13 +235,8 @@
       "precedence": 5,
       "description": "Uno o más condensadores electrolíticos dañados",
       "basePrice": 35000,
-      "affectedComponents": [
-        "capacitors",
-        "power_board"
-      ],
-      "applicableTo": [
-        "all"
-      ],
+      "affectedComponents": ["capacitors", "power_board"],
+      "applicableTo": ["all"],
       "icon": "fa-fire"
     },
     "CONNECTOR_LOOSE": {
@@ -331,13 +246,8 @@
       "precedence": 5,
       "description": "Conector de audio u otro puerto suelto",
       "basePrice": 12000,
-      "affectedComponents": [
-        "audio_jack",
-        "connectors"
-      ],
-      "applicableTo": [
-        "all"
-      ],
+      "affectedComponents": ["audio_jack", "connectors"],
+      "applicableTo": ["all"],
       "icon": "fa-link-slash"
     },
     "COSMETIC_DAMAGE": {
@@ -347,12 +257,8 @@
       "precedence": 6,
       "description": "Rayones, abolladuras, pintura desgastada",
       "basePrice": 20000,
-      "affectedComponents": [
-        "casing"
-      ],
-      "applicableTo": [
-        "all"
-      ],
+      "affectedComponents": ["casing"],
+      "applicableTo": ["all"],
       "icon": "fa-hammer"
     },
     "WATER_DAMAGE": {
@@ -362,12 +268,8 @@
       "precedence": 2,
       "description": "Exposición a líquidos",
       "basePrice": 120000,
-      "affectedComponents": [
-        "all"
-      ],
-      "applicableTo": [
-        "all"
-      ],
+      "affectedComponents": ["all"],
+      "applicableTo": ["all"],
       "icon": "fa-water",
       "multiplier": 2.5
     }

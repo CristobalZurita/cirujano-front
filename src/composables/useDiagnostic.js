@@ -271,10 +271,41 @@ export function useDiagnostic() {
   }
 
   /**
+   * Validate name: Letters (including accents) and spaces, 2-50 chars
+   */
+  const validateName = (name) => {
+    if (!name) return false
+    return /^[A-Za-zÀ-ÿ\s]{2,50}$/.test(name.trim())
+  }
+
+  /**
+   * Validate email: Standard email format
+   */
+  const validateEmail = (email) => {
+    if (!email) return false
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())
+  }
+
+  /**
+   * Validate phone: Optional, but if provided must be 8-15 digits with optional +
+   */
+  const validatePhone = (phone) => {
+    if (!phone) return true // Phone is optional
+    return /^\+?[0-9]{8,15}$/.test(phone.trim().replace(/\s/g, ''))
+  }
+
+  /**
    * Validate current selection
    */
   const isValid = () => {
-    return selectedBrand.value && selectedModel.value && selectedFaults.value.length > 0 && clientEmail.value && clientEmail.value.includes('@')
+    return (
+      selectedBrand.value &&
+      selectedModel.value &&
+      selectedFaults.value.length > 0 &&
+      validateName(clientName.value) &&
+      validateEmail(clientEmail.value) &&
+      validatePhone(clientPhone.value)
+    )
   }
 
   /**
@@ -343,6 +374,9 @@ export function useDiagnostic() {
     getEffectiveFaults,
     calculateQuote,
     isValid,
+    validateName,
+    validateEmail,
+    validatePhone,
     reset,
     getQuoteData
   }

@@ -158,8 +158,13 @@
             type="text"
             id="clientName"
             placeholder="Tu nombre completo"
+            pattern="[A-Za-zÀ-ÿ\s]{2,50}"
+            title="Solo letras y espacios, mínimo 2 caracteres"
             required
           />
+          <small v-if="diagnostic.clientName.value && !diagnostic.validateName(diagnostic.clientName.value)" class="error-text">
+            Solo se permiten letras y espacios (mínimo 2 caracteres)
+          </small>
         </div>
 
         <div class="form-group">
@@ -169,8 +174,12 @@
             type="email"
             id="clientEmail"
             placeholder="tu@email.com"
+            title="Ingresa un email válido"
             required
           />
+          <small v-if="diagnostic.clientEmail.value && !diagnostic.validateEmail(diagnostic.clientEmail.value)" class="error-text">
+            Email inválido (ej: usuario@dominio.com)
+          </small>
         </div>
 
         <div class="form-group">
@@ -180,7 +189,12 @@
             type="tel"
             id="clientPhone"
             placeholder="+56912345678"
+            pattern="^\+?[0-9]{8,15}$"
+            title="Teléfono válido (8-15 dígitos, opcional +)"
           />
+          <small v-if="diagnostic.clientPhone.value && !diagnostic.validatePhone(diagnostic.clientPhone.value)" class="error-text">
+            Teléfono inválido (8-15 dígitos)
+          </small>
         </div>
 
         <button type="submit" class="btn btn-next">
@@ -217,23 +231,27 @@
           </ul>
         </div>
 
-        <div class="pricing-breakdown">
+        <div v-if="quoteData" class="pricing-breakdown">
           <div class="price-row">
             <span>Subtotal (diagnóstico):</span>
-            <span>${{ formatPrice(quoteData?.baseCost) }}</span>
+            <span>${{ formatPrice(quoteData.baseCost) }}</span>
           </div>
           <div class="price-row">
             <span>Factor complejidad ({{ currentBrand?.tier }}):</span>
-            <span>× {{ quoteData?.complexityFactor.toFixed(2) }}</span>
+            <span>× {{ quoteData.complexityFactor?.toFixed(2) ?? 'N/A' }}</span>
           </div>
           <div class="price-row">
             <span>Factor valor equipo:</span>
-            <span>× {{ quoteData?.valueFactor.toFixed(2) }}</span>
+            <span>× {{ quoteData.valueFactor?.toFixed(2) ?? 'N/A' }}</span>
           </div>
           <div class="price-row total">
             <span>Cotización Total:</span>
-            <span class="total-price">${{ formatPrice(quoteData?.finalCost) }}</span>
+            <span class="total-price">${{ formatPrice(quoteData.finalCost) }}</span>
           </div>
+        </div>
+        <div v-else class="quote-error">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>No se pudo calcular la cotización. Por favor, selecciona un modelo y al menos un problema.</p>
         </div>
 
         <div class="client-info-display">
@@ -340,6 +358,22 @@ const toggleFault = (faultId) => {
 }
 
 const nextStep = () => {
+  // Validar datos en paso 4 antes de ir a 5
+  if (currentStep.value === 4) {
+    if (!diagnostic.validateName(diagnostic.clientName.value)) {
+      alert('Por favor, ingresa un nombre válido (solo letras, mínimo 2 caracteres)')
+      return
+    }
+    if (!diagnostic.validateEmail(diagnostic.clientEmail.value)) {
+      alert('Por favor, ingresa un email válido')
+      return
+    }
+    if (!diagnostic.validatePhone(diagnostic.clientPhone.value)) {
+      alert('Por favor, ingresa un teléfono válido (opcional, pero si lo colocas debe ser válido)')
+      return
+    }
+  }
+
   if (currentStep.value < 5) {
     currentStep.value++
   }
@@ -358,14 +392,68 @@ const startOver = () => {
 
 const submitQuote = () => {
   const data = diagnostic.getQuoteData()
-  // TODO: Enviar a backend
+  
+  if (!data || !data.client) {
+    alert('Error: No hay datos de cotización válidos')
+    return
+  }
+
+  // Simulate API call
+  alert(`✓ Cotización enviada a ${data.client.email}\n\nNos pondremos en contacto pronto.`)
   console.log('Quote submitted:', data)
-  // TODO: Show success message
+  
+  // Optional: Reset form or show success message
+  // diagnostic.reset()
+  // currentStep.value = 1
 }
 
 const downloadQuote = () => {
-  // TODO: Generate and download PDF
-  console.log('Download PDF')
+  const data = diagnostic.getQuoteData()
+  
+  if (!data || !data.client) {
+    alert('Error: No hay datos de cotización para descargar')
+    return
+  }
+
+  // Generate simple CSV for now (TODO: Generate PDF)
+  const csv = `
+COTIZACIÓN - CIRUJANO DE SINTETIZADORES
+========================================
+
+CLIENTE:
+Nombre: ${data.client.clientName}
+Email: ${data.client.clientEmail}
+Teléfono: ${data.client.clientPhone || 'No proporcionado'}
+
+EQUIPO:
+Marca: ${data.quote.brand.name}
+Modelo: ${data.quote.instrument.model}
+
+PROBLEMAS DETECTADOS:
+${data.quote.faults.map(f => `- ${f.name}: $${f.basePrice}`).join('\n')}
+
+COTIZACIÓN:
+Subtotal: $${data.quote.baseCost}
+Factor complejidad (${data.quote.brand.tier}): ${data.quote.complexityFactor}x
+Factor valor equipo: ${data.quote.valueFactor}x
+TOTAL: $${data.quote.finalCost}
+
+Válida por: 30 días
+Fecha: ${new Date().toLocaleDateString('es-CL')}
+  `.trim()
+
+  // Download as text file
+  const blob = new Blob([csv], { type: 'text/plain' })
+  const url = window.URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `cotizacion-${data.client.clientName.replace(/\\s+/g, '-')}.txt`
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  window.URL.revokeObjectURL(url)
+
+  console.log('Quote downloaded:', data)
 }
 </script>
 
@@ -727,6 +815,18 @@ const downloadQuote = () => {
       &::placeholder {
         color: #999;
       }
+
+      &:invalid:not(:placeholder-shown) {
+        border-color: #dc3545;
+      }
+    }
+
+    .error-text {
+      display: block;
+      margin-top: 0.25rem;
+      color: #dc3545;
+      font-size: 0.85rem;
+      font-style: italic;
     }
   }
 
@@ -815,6 +915,28 @@ const downloadQuote = () => {
             font-size: 1.3rem;
           }
         }
+      }
+    }
+
+    .quote-error {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      i {
+        font-size: 1.5rem;
+        color: #ff9800;
+      }
+
+      p {
+        margin: 0;
+        color: #333;
+        font-size: 0.95rem;
       }
     }
 
