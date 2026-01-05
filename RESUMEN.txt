@@ -1,0 +1,1616 @@
+
+Perfecto Cristóbal, aquí tienes la lista completa:
+
+---
+
+## ARCHIVOS A **MODIFICAR** (ya existen)
+
+| Ruta | Motivo |
+|------|--------|
+| `src/composables/useDiagnostic.js` | Reemplazar con la versión "Pro" del documento |
+| `src/vue/components/articles/DiagnosticWizard.vue` | Actualizar template, script y estilos completos |
+| `src/scss/_variables.scss` | Verificar que existan `$color-primary`, `$color-secondary`, `$font-heading` |
+
+---
+
+## ARCHIVOS A **CREAR** (no existen según el tree)
+
+| Ruta | Contenido |
+|------|-----------|
+| `src/api/index.js` | Cliente API con método `postDiagnostic()` para conectar al backend |
+
+---
+
+## ARCHIVOS A **VERIFICAR/COMPLETAR** (existen pero necesitan datos reales)
+
+| Ruta | Verificación |
+|------|--------------|
+| `src/assets/data/brands.json` | Debe incluir campos: `id`, `name`, `tier`, `multiplier` |
+| `src/assets/data/instruments.json` | Debe incluir: `id`, `brandId`, `name`, `type`, `value_range.min`, `value_range.max` |
+| `src/assets/data/faults.json` | Debe incluir: `id`, `name`, `icon`, `base_price`, `isPrecedence` |
+
+---
+
+## BACKEND (ya existe estructura)
+
+| Ruta | Estado |
+|------|--------|
+| `backend/routers/diagnostic.py` | Verificar endpoint `POST /api/diagnostic/submit` |
+| `backend/schemas.py` | Verificar schema coincida con payload del frontend |
+| `backend/main.py` | Verificar router incluido y CORS configurado |
+
+---
+
+## RESUMEN RÁPIDO
+
+| Acción | Cantidad |
+|--------|----------|
+| Modificar | 3 |
+| Crear | 1 |
+| Verificar/completar | 6 |
+| **Total** | **10 archivos** |
+
+
+
+SISTEMA DE DIAGNÓSTICO INTELIGENTE
+
+Cirujano de Sintetizadores
+
+Especificación Técnica Completa
+
+Enero 2026 - Versión 1.0
+
+Preparado para: Cristóbal - Cirujano de Sintetizadores
+
+Valparaíso, Chile
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+ÍNDICE
+
+1. Respuestas a Decisiones Clave
+
+2. Arquitectura del Sistema
+
+3. Gestión de Imágenes
+
+4. Base de Datos MySQL
+
+5. Sistema de Diagnóstico con IA
+
+6. Taxonomía de Componentes
+
+7. API Backend (PHP)
+
+8. Flujo del Usuario
+
+9. Plan de Implementación
+
+10. Estructura de Archivos
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+1. RESPUESTAS A DECISIONES CLAVE
+
+1.1 Fuente de Imágenes
+
+DECISIÓN: Tú subirás las fotos manualmente a tu servidor.
+
+Razones:
+
+Control total de calidad - evitas fotos malas o erróneas de APIs
+
+Sin dependencia de servicios externos que pueden fallar
+
+Sin costos adicionales de APIs de imágenes
+
+Las fotos se guardan en carpetas organizadas por marca
+
+1.2 API de Inteligencia Artificial
+
+DECISIÓN: Usar API de Anthropic (Claude) para análisis de texto del usuario.
+
+Cómo funciona:
+
+Usuario escribe: "Mi Juno-106 tiene 3 botones malos y el volumen hace ruido"
+
+Claude analiza el texto y extrae: componentes afectados, tipo de falla, cantidad
+
+Sistema genera formulario interactivo ADAPTADO al problema descrito
+
+Costo estimado: ~$0.01-0.03 USD por diagnóstico (muy bajo)
+
+1.3 Base de Datos de Taxonomía
+
+DECISIÓN: Empezar con ~100 modelos más comunes, expandir manualmente.
+
+Estrategia:
+
+Fase 1: 50 modelos más reparados (basado en tu experiencia)
+
+Fase 2: Agregar modelos según demanda real de clientes
+
+Panel admin para agregar nuevos modelos fácilmente
+
+Si modelo no existe → formulario genérico + campo libre
+
+1.4 Complejidad del Diagnóstico
+
+DECISIÓN: Nivel MEDIO - IA sugiere + usuario confirma/ajusta.
+
+Flujo:
+
+Usuario describe problema en texto libre
+
+IA genera formulario pre-llenado con lo que detectó
+
+Usuario puede ajustar, agregar o quitar opciones
+
+Sistema calcula cotización basada en selección final
+
+1.5 Resultado del Diagnóstico
+
+DECISIÓN: Todo lo anterior - múltiples salidas.
+
+Cotización en pantalla (inmediato)
+
+PDF descargable con detalle
+
+Email automático al cliente (copia)
+
+Guardado en BD para seguimiento (código CDS-XXX)
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+2. ARQUITECTURA DEL SISTEMA
+
+2.1 Visión General
+
+El sistema se despliega en tu hosting cPanel existente (minimalmarimba.cl) como un subdominio o dominio adicional.
+
+Stack Tecnológico
+
+CAPA
+
+TECNOLOGÍA
+
+JUSTIFICACIÓN
+
+Frontend
+
+Vue 3 + Vite (compilado)
+
+Ya lo tienes desarrollado
+
+Backend
+
+PHP 8.x
+
+Nativo en cPanel, sin config extra
+
+Base de Datos
+
+MySQL 8.x
+
+Incluido en tu hosting
+
+IA
+
+API Anthropic (Claude)
+
+Análisis de texto del usuario
+
+Imágenes
+
+Archivos WebP en servidor
+
+Óptimo rendimiento
+
+2.2 Opciones de Dominio
+
+OPCIÓN
+
+EJEMPLO
+
+COSTO
+
+Subdominio (recomendado)
+
+cirujano.minimalmarimba.cl
+
+$0 - Gratis
+
+Dominio .cl nuevo
+
+cirujanodesintetizadores.cl
+
+~$10.000 CLP/año
+
+Dominio .com nuevo
+
+synthsurgeon.com
+
+~$12 USD/año
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+3. GESTIÓN DE IMÁGENES
+
+3.1 NO Usar BLOB - Usar Archivos
+
+IMPORTANTE: NO guardes imágenes como BLOB en la base de datos.
+
+Problemas de BLOB:
+
+MySQL se vuelve muy lento con muchos BLOBs
+
+Los backups se hacen enormes (GB en vez de MB)
+
+No puedes usar CDN para cachear imágenes
+
+Consume mucho espacio de tu plan de hosting
+
+Solución correcta:
+
+Guardar archivos en carpetas organizadas
+
+En la BD solo guardar la RUTA del archivo
+
+3.2 Especificaciones de Imagen
+
+PARÁMETRO
+
+VALOR RECOMENDADO
+
+Formato
+
+WebP (97% soporte en browsers, 70% más liviano que JPG)
+
+Dimensiones
+
+600 x 400 píxeles (ratio 3:2)
+
+Calidad
+
+75-80% (balance óptimo calidad/peso)
+
+Peso objetivo
+
+30-50 KB por imagen
+
+Fallback
+
+JPG para browsers antiguos (opcional)
+
+3.3 Estructura de Carpetas
+
+/public_html/cirujano/
+
+├── assets/
+
+│   └── instruments/
+
+│       ├── roland/
+
+│       │   ├── juno-106.webp
+
+│       │   ├── jupiter-8.webp
+
+│       │   └── tr-808.webp
+
+│       ├── korg/
+
+│       │   ├── ms-20.webp
+
+│       │   └── polysix.webp
+
+│       └── yamaha/
+
+│           └── dx7.webp
+
+3.4 Herramientas para Convertir Imágenes
+
+Opción 1 - Online (recomendado para pocas imágenes):
+
+Squoosh.app - Gratis, en el browser, excelente calidad
+
+Convertir a WebP, ajustar a 600x400, calidad 75%
+
+Opción 2 - Batch (muchas imágenes):
+
+# En terminal Linux/Mac:
+
+for img in *.jpg; do
+
+  cwebp -q 75 -resize 600 400 "$img" -o "${img%.jpg}.webp"
+
+done
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+4. BASE DE DATOS MySQL
+
+4.1 Crear Base de Datos en cPanel
+
+Ir a cPanel → Bases de datos → MySQL Databases
+
+Crear base de datos: cirujano_db
+
+Crear usuario: cirujano_admin
+
+Asignar todos los privilegios al usuario
+
+Ir a phpMyAdmin para ejecutar el SQL
+
+4.2 Esquema de Tablas
+
+Tabla: marcas
+
+CREATE TABLE marcas (
+
+  id VARCHAR(50) PRIMARY KEY,
+
+  nombre VARCHAR(100) NOT NULL,
+
+  tier ENUM('legendary','professional','standard','boutique','historic') DEFAULT 'standard',
+
+  pais VARCHAR(50),
+
+  descripcion TEXT,
+
+  activo BOOLEAN DEFAULT TRUE,
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+Tabla: instrumentos
+
+CREATE TABLE instrumentos (
+
+  id INT AUTO_INCREMENT PRIMARY KEY,
+
+  marca_id VARCHAR(50) NOT NULL,
+
+  modelo VARCHAR(100) NOT NULL,
+
+  tipo ENUM('sintetizador','piano_electrico','organo','controlador','modular','sampler','groovebox') NOT NULL,
+
+  año_inicio INT,
+
+  año_fin INT,
+
+  imagen_url VARCHAR(255),
+
+  componentes JSON NOT NULL,  -- Aquí va la taxonomía
+
+  valor_estimado_min INT,
+
+  valor_estimado_max INT,
+
+  factor_complejidad DECIMAL(3,2) DEFAULT 1.00,
+
+  notas_tecnicas TEXT,
+
+  activo BOOLEAN DEFAULT TRUE,
+
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (marca_id) REFERENCES marcas(id),
+
+  UNIQUE KEY unique_modelo (marca_id, modelo)
+
+);
+
+Tabla: diagnosticos
+
+CREATE TABLE diagnosticos (
+
+  id INT AUTO_INCREMENT PRIMARY KEY,
+
+  codigo VARCHAR(20) UNIQUE NOT NULL,  -- CDS-001, CDS-002...
+
+  instrumento_id INT,
+
+  marca_texto VARCHAR(100),  -- Por si no existe en BD
+
+  modelo_texto VARCHAR(100), -- Por si no existe en BD
+
+  cliente_nombre VARCHAR(200) NOT NULL,
+
+  cliente_email VARCHAR(200) NOT NULL,
+
+  cliente_telefono VARCHAR(50),
+
+  descripcion_usuario TEXT NOT NULL,  -- Lo que escribió el usuario
+
+  analisis_ia JSON,  -- Respuesta de Claude
+
+  problemas_confirmados JSON,  -- Lo que confirmó el usuario
+
+  cotizacion_min INT,
+
+  cotizacion_max INT,
+
+  estado ENUM('pendiente','cotizado','aprobado','en_taller','finalizado','entregado','cancelado') DEFAULT 'pendiente',
+
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  notas_internas TEXT,
+
+  FOREIGN KEY (instrumento_id) REFERENCES instrumentos(id)
+
+);
+
+Tabla: precios_componentes
+
+CREATE TABLE precios_componentes (
+
+  id INT AUTO_INCREMENT PRIMARY KEY,
+
+  componente VARCHAR(50) NOT NULL,  -- 'boton', 'slider', 'tecla', etc.
+
+  tipo_falla VARCHAR(50) NOT NULL,  -- 'no_funciona', 'intermitente', 'ruido'
+
+  precio_base INT NOT NULL,  -- En CLP
+
+  precio_por_unidad INT DEFAULT 0,  -- Precio adicional por cada unidad
+
+  descripcion TEXT,
+
+  UNIQUE KEY unique_comp_falla (componente, tipo_falla)
+
+);
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+5. SISTEMA DE DIAGNÓSTICO CON IA
+
+5.1 Flujo del Análisis
+
+USUARIO ESCRIBE:
+
+"Mi Juno-106 tiene 3 botones que no responden bien,
+
+a veces funcionan a veces no, y el slider de volumen
+
+hace ruido cuando lo muevo"
+
+
+         ↓ API de Claude ↓
+
+
+RESPUESTA JSON:
+
+{
+
+  "problemas_detectados": [
+
+    {
+
+      "componente": "botones",
+
+      "tipo_falla": "intermitente",
+
+      "cantidad": 3,
+
+      "severidad": "media"
+
+    },
+
+    {
+
+      "componente": "slider",
+
+      "tipo_falla": "ruido",
+
+      "cantidad": 1,
+
+      "identificado": "volumen"
+
+    }
+
+  ],
+
+  "preguntas_adicionales": [
+
+    "¿El problema ocurre más en frío o en caliente?",
+
+    "¿El ruido afecta ambos canales L/R?"
+
+  ]
+
+}
+
+5.2 Prompt del Sistema para Claude
+
+Este es el prompt que se envía a la API de Claude para analizar el texto del usuario:
+
+Eres un técnico experto en reparación de sintetizadores y teclados electrónicos.
+
+Analiza la descripción del problema del cliente y extrae información estructurada.
+
+
+INSTRUMENTO: {marca} {modelo}
+
+COMPONENTES DISPONIBLES: {lista_componentes_del_instrumento}
+
+
+DESCRIPCIÓN DEL CLIENTE:
+
+{texto_del_usuario}
+
+
+Responde SOLO con JSON válido...
+
+5.3 Costo Estimado de la API
+
+CONCEPTO
+
+VALOR
+
+Tokens de entrada (prompt)
+
+~500 tokens
+
+Tokens de salida (respuesta)
+
+~300 tokens
+
+Costo por diagnóstico
+
+~$0.01 - $0.03 USD
+
+100 diagnósticos/mes
+
+~$1 - $3 USD/mes
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+6. TAXONOMÍA DE COMPONENTES
+
+6.1 Estructura JSON de Componentes
+
+Cada instrumento en la BD tiene un campo JSON 'componentes' con esta estructura:
+
+{
+
+  "teclado": {
+
+    "tiene": true,
+
+    "teclas": 61,
+
+    "tipo": "sintetizador",  // piano, organo, sintetizador
+
+    "velocidad": true,
+
+    "aftertouch": false
+
+  },
+
+  "botones": {
+
+    "tiene": true,
+
+    "cantidad": 32,
+
+    "tipo": "tactil"  // tactil, mecanico, membrana
+
+  },
+
+  "sliders": {
+
+    "tiene": true,
+
+    "cantidad": 6,
+
+    "motorizados": false
+
+  },
+
+  "knobs": {
+
+    "tiene": true,
+
+    "cantidad": 18,
+
+    "tipo": "potenciometro"  // potenciometro, encoder
+
+  },
+
+  "pantalla": {
+
+    "tiene": true,
+
+    "tipo": "LCD",  // LCD, LED, OLED, VFD, null
+
+    "retroiluminacion": true
+
+  },
+
+  "conectividad": {
+
+    "midi_din": true,
+
+    "midi_usb": false,
+
+    "audio_salidas": 2,
+
+    "audio_entradas": 0,
+
+    "pedal_sustain": true,
+
+    "pedal_expresion": false
+
+  },
+
+  "fuente": {
+
+    "tipo": "interna",  // interna, externa
+
+    "voltaje": "120/240V"
+
+  }
+
+}
+
+6.2 Ejemplo: Juno-106 vs Casio PX-S1100
+
+Comparación de dos instrumentos muy diferentes:
+
+COMPONENTE
+
+JUNO-106
+
+CASIO PX-S1100
+
+Teclado
+
+61 teclas, sin velocidad
+
+88 teclas, martillo
+
+Botones
+
+32 botones táctiles
+
+12 botones touch
+
+Sliders
+
+6 sliders
+
+NO TIENE
+
+Knobs
+
+18 potenciómetros
+
+NO TIENE
+
+Pantalla
+
+NO TIENE
+
+NO TIENE
+
+Fuente
+
+Interna 120/240V
+
+Externa 12V DC
+
+RESULTADO: El formulario de diagnóstico del Juno-106 mostrará opciones de sliders y knobs, mientras que el del Casio PX-S1100 NO las mostrará porque no aplican.
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+7. API BACKEND (PHP)
+
+7.1 Endpoints Principales
+
+MÉTODO
+
+ENDPOINT
+
+DESCRIPCIÓN
+
+GET
+
+/api/brands
+
+Lista todas las marcas activas
+
+GET
+
+/api/brands/{id}/models
+
+Lista modelos de una marca
+
+GET
+
+/api/instruments/{id}
+
+Detalle de instrumento + componentes
+
+POST
+
+/api/diagnostic/analyze
+
+Envía texto a Claude, retorna análisis
+
+POST
+
+/api/diagnostic/submit
+
+Guarda diagnóstico confirmado
+
+GET
+
+/api/tracking/{codigo}
+
+Consulta estado por código CDS-XXX
+
+7.2 Estructura de Archivos API
+
+/public_html/cirujano/api/
+
+├── index.php           # Router principal
+
+├── config.php          # Credenciales BD y API keys
+
+├── .htaccess           # Rewrite rules para URLs limpias
+
+├── endpoints/
+
+│   ├── brands.php      # GET /api/brands
+
+│   ├── instruments.php # GET /api/instruments
+
+│   ├── diagnostic.php  # POST /api/diagnostic/*
+
+│   └── tracking.php    # GET /api/tracking
+
+└── lib/
+
+    ├── database.php    # Conexión PDO
+
+    ├── claude.php      # Cliente API Anthropic
+
+    └── helpers.php     # Funciones auxiliares
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+8. FLUJO COMPLETO DEL USUARIO
+
+8.1 Diagrama de Flujo
+
+┌─────────────────────────────────────────────────────────────────┐
+
+│ PASO 1: SELECCIÓN                                               │
+
+│ [Dropdown: Seleccionar Marca] → Roland                          │
+
+│ [Dropdown: Seleccionar Modelo] → Juno-106                        │
+
+│ [Se muestra imagen del equipo desde /assets/instruments/]        │
+
+└─────────────────────────────────────────────────────────────────┘
+
+                              ↓
+
+┌─────────────────────────────────────────────────────────────────┐
+
+│ PASO 2: DESCRIPCIÓN LIBRE                                       │
+
+│ [Textarea: Describe el problema de tu equipo...]                │
+
+│ "Tengo 3 botones que fallan y el volumen hace ruido"            │
+
+│ [Botón: ANALIZAR]                                               │
+
+└─────────────────────────────────────────────────────────────────┘
+
+                              ↓
+
+┌─────────────────────────────────────────────────────────────────┐
+
+│ PASO 3: IA PROCESA (Claude API)                                 │
+
+│ [Loading: Analizando tu descripción...]                         │
+
+│ → Detecta: botones (3), slider volumen (ruido)                  │
+
+│ → Genera preguntas adicionales si es necesario                  │
+
+└─────────────────────────────────────────────────────────────────┘
+
+                              ↓
+
+┌─────────────────────────────────────────────────────────────────┐
+
+│ PASO 4: FORMULARIO ADAPTATIVO                                   │
+
+│ [✓] Botones - Falla intermitente - Cantidad: [3]                │
+
+│ [✓] Slider - Ruido al mover - Identificado: Volumen             │
+
+│ [ ] Agregar otro problema...                                    │
+
+│ [Botón: CONFIRMAR Y COTIZAR]                                    │
+
+└─────────────────────────────────────────────────────────────────┘
+
+                              ↓
+
+┌─────────────────────────────────────────────────────────────────┐
+
+│ PASO 5: COTIZACIÓN                                              │
+
+│ ┌─────────────────────────────────────────────────────────────┐ │
+
+│ │ DIAGNÓSTICO PRELIMINAR                                      │ │
+
+│ │ Código: CDS-0042                                            │ │
+
+│ │ Equipo: Roland Juno-106                                     │ │
+
+│ │ ─────────────────────────────────────────                   │ │
+
+│ │ Reparación botones (3 uds): $25.000 - $35.000               │ │
+
+│ │ Limpieza slider volumen:    $15.000 - $20.000               │ │
+
+│ │ ─────────────────────────────────────────                   │ │
+
+│ │ TOTAL ESTIMADO: $40.000 - $55.000 CLP                       │ │
+
+│ └─────────────────────────────────────────────────────────────┘ │
+
+│ [Descargar PDF] [Enviar por Email] [Agendar Cita]               │
+
+└─────────────────────────────────────────────────────────────────┘
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+9. PLAN DE IMPLEMENTACIÓN
+
+FASE 1: Base de Datos y API (1-2 semanas)
+
+Crear base de datos MySQL en cPanel
+
+Ejecutar scripts SQL de creación de tablas
+
+Poblar tabla de marcas (42 marcas iniciales)
+
+Crear API PHP básica (endpoints GET)
+
+Probar conexión desde frontend
+
+FASE 2: Catálogo de Instrumentos (2-3 semanas)
+
+Preparar 50 imágenes de instrumentos (WebP)
+
+Crear JSON de componentes para cada uno
+
+Insertar instrumentos en BD con taxonomía
+
+Crear componente Vue de búsqueda (dropdowns)
+
+Mostrar imagen y datos del instrumento seleccionado
+
+FASE 3: Integración IA (1-2 semanas)
+
+Configurar API key de Anthropic
+
+Crear cliente PHP para llamar a Claude
+
+Implementar análisis de texto del usuario
+
+Generar formulario dinámico basado en respuesta IA
+
+Calcular cotización automática
+
+FASE 4: Sistema de Seguimiento (1 semana)
+
+Generar códigos CDS-XXX únicos
+
+Crear página de consulta de estado
+
+Implementar envío de emails automáticos
+
+Generación de PDF con cotización
+
+
+Página  de 
+
+CIRUJANO DE SINTETIZADORES - Documento Técnico
+
+10. ESTRUCTURA COMPLETA DE ARCHIVOS
+
+/public_html/cirujano/                    # Raíz del proyecto
+
+│
+
+├── index.html                            # Vue app compilada
+
+├── .htaccess                             # Configuración Apache
+
+│
+
+├── assets/                               # Archivos estáticos
+
+│   ├── css/
+
+│   │   └── app.css                       # Estilos compilados
+
+│   ├── js/
+
+│   │   └── app.js                        # Vue compilado
+
+│   ├── images/
+
+│   │   ├── logo.svg
+
+│   │   └── hero-bg.webp
+
+│   └── instruments/                      # FOTOS DE EQUIPOS
+
+│       ├── roland/
+
+│       │   ├── juno-106.webp
+
+│       │   ├── jupiter-8.webp
+
+│       │   └── ...
+
+│       ├── korg/
+
+│       ├── yamaha/
+
+│       └── ...
+
+│
+
+└── api/                                  # BACKEND PHP
+
+    ├── index.php                         # Router
+
+    ├── config.php                        # Credenciales
+
+    ├── .htaccess                         # Rewrite rules
+
+    ├── endpoints/
+
+    │   ├── brands.php
+
+    │   ├── instruments.php
+
+    │   ├── diagnostic.php
+
+    │   └── tracking.php
+
+    └── lib/
+
+        ├── database.php
+
+        ├── claude.php
+
+        └── helpers.php
+
+
+
+La propuesta anterior es **sólida estructuralmente** (la base técnica y arquitectónica es correcta), pero para que el proyecto sea **excepcional y realmente funcional** (no solo una maqueta bonita), necesitamos inyectarle "inteligencia" y "suavidad".
+
+Actualmente, el Wizard es "estático". Vamos a mejorarlo para que sea **reactivo, conectado a la API real y con una experiencia de usuario (UX) de primer nivel**.
+
+Aquí tienes la **Mejora Nivel Pro** dividida en 3 capas:
+
+1.  **Capa de Lógica (El Cerebro):** Conectar los datos JSON reales y la API.
+2.  **Capa Visual (El Estilo):** Transiciones suaves y barra de progreso.
+3.  **Capa de Datos (El Backend):** Asegurar que todo hable el mismo idioma.
+
+---
+
+## 🚀 MEJORA 1: EL COMPOSABLE "REAL" (`useDiagnostic.js`)
+
+En lugar de tener la lógica dentro del componente Vue, vamos a centralizarla. Esto hace que el código sea limpio, testable y mucho más potente.
+
+Crea o actualiza este archivo: `src/composables/useDiagnostic.js`
+
+```javascript
+import { ref, reactive, computed } from 'vue';
+import api from '@/api/index'; // Asegúrate de tener este archivo api configurado
+
+// Importar la base de datos local (JSON)
+import brandsData from '@/assets/data/brands.json';
+import instrumentsData from '@/assets/data/instruments.json';
+import faultsData from '@/assets/data/faults.json';
+
+export function useDiagnostic() {
+  // --- ESTADO REACTIVO ---
+  const state = reactive({
+    currentStep: 1,
+    totalSteps: 4, // Brand -> Model -> Faults -> Quote
+    loading: false,
+    successMessage: null,
+    error: null
+  });
+
+  const selection = reactive({
+    brand: null,
+    model: null,
+    faults: [], // Array de IDs
+    client: {
+      name: '',
+      email: '',
+      phone: ''
+    }
+  });
+
+  const quoteResult = reactive({
+    breakdown: [],
+    subtotal: 0,
+    complexityFactor: 1,
+    valueFactor: 1,
+    finalTotal: 0,
+    repairId: null // Este viene del backend
+  });
+
+  // --- GETTERS COMPUTADOS ---
+  const brands = computed(() => brandsData.brands);
+  const faults = computed(() => faultsData.faults);
+
+  // Filtra modelos dinámicamente
+  const availableModels = computed(() => {
+    if (!selection.brand) return [];
+    return instrumentsData.instruments.filter(i => i.brandId === selection.brand.id);
+  });
+
+  // Calcula el progreso en porcentaje (para la barra de progreso)
+  const progressPercentage = computed(() => {
+    return Math.round((state.currentStep / state.totalSteps) * 100);
+  });
+
+  // --- ACCIONES ---
+
+  const setStep = (step) => {
+    if (step >= 1 && step <= state.totalSteps) {
+      state.currentStep = step;
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll suave al cambiar paso
+    }
+  };
+
+  const selectBrand = (brand) => {
+    selection.brand = brand;
+    selection.model = null;
+    selection.faults = [];
+    setStep(2);
+  };
+
+  const selectModel = (model) => {
+    selection.model = model;
+    selection.faults = [];
+    setStep(3);
+  };
+
+  // Lógica de Precedencia y Selección
+  const toggleFault = (faultId) => {
+    const fault = faults.value.find(f => f.id === faultId);
+    const index = selection.faults.indexOf(faultId);
+
+    if (index > -1) {
+      // Ya está seleccionado, lo quitamos
+      selection.faults.splice(index, 1);
+    } else {
+      // Caso A: Es una falla de Precedencia (ej: No prende)
+      if (fault.isPrecedence) {
+        selection.faults = [faultId]; // Borra todo lo demás
+      } 
+      // Caso B: Es una falla normal, pero ya hay una de Precedencia
+      else if (selection.faults.some(fId => faults.value.find(f => f.id === fId).isPrecedence)) {
+        // Borramos la falla de precedencia para permitir la selección múltiple
+        const precedenceIndex = selection.faults.findIndex(fId => faults.value.find(f => f.id === fId).isPrecedence);
+        if (precedenceIndex > -1) selection.faults.splice(precedenceIndex, 1);
+        selection.faults.push(faultId);
+      } 
+      // Caso C: Selección normal
+      else {
+        selection.faults.push(faultId);
+      }
+    }
+  };
+
+  // FÓRMULA DE COTIZACIÓN (Lógica de Negocio Central)
+  const calculateQuote = () => {
+    let subtotal = 0;
+    const breakdown = [];
+
+    selection.faults.forEach(fId => {
+      const fault = faults.value.find(f => f.id === fId);
+      subtotal += fault.base_price;
+      breakdown.push({ name: fault.name, price: fault.base_price });
+    });
+
+    // Factor Complejidad (Tier de Marca)
+    const complexityMult = selection.brand.multiplier || 1.0;
+    
+    // Factor Valor (Promedio de valor del equipo)
+    const avgValue = (selection.model.value_range.min + selection.model.value_range.max) / 2;
+    let valueMult = 1.0;
+    if (avgValue > 5000000) valueMult = 2.0;
+    else if (avgValue > 2000000) valueMult = 1.6;
+    else if (avgValue > 500000) valueMult = 1.3;
+
+    const intermediate = subtotal * complexityMult;
+    const final = intermediate * valueMult;
+
+    // Guardar resultado
+    quoteResult.breakdown = breakdown;
+    quoteResult.subtotal = subtotal;
+    quoteResult.complexityFactor = complexityMult;
+    quoteResult.valueFactor = valueMult;
+    quoteResult.finalTotal = Math.round(final);
+
+    setStep(4);
+  };
+
+  // --- INTEGRACIÓN API (BACKEND) ---
+  const submitQuote = async () => {
+    state.loading = true;
+    state.error = null;
+    state.successMessage = null;
+
+    try {
+      const payload = {
+        cliente_nombre: selection.client.name,
+        cliente_email: selection.client.email,
+        cliente_telefono: selection.client.phone,
+        marca: selection.brand.id,
+        modelo: selection.model.id,
+        descripcion_fallas: selection.faults,
+        costo_cotizado: quoteResult.finalTotal
+      };
+
+      const response = await api.postDiagnostic(payload);
+      
+      // Éxito
+      quoteResult.repairId = response.data.id;
+      state.successMessage = `¡Cotización #${response.data.id} recibida con éxito! Revisa tu correo.`;
+      
+      // Ir a paso final de éxito (Opcional, si queremos una pantalla extra)
+      // Por ahora nos quedamos en el resumen con el mensaje verde
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (error) {
+      console.error("Error enviando cotización:", error);
+      state.error = error.response?.data?.detail || "No se pudo conectar con el servidor. Intenta nuevamente.";
+    } finally {
+      state.loading = false;
+    }
+  };
+
+  const reset = () => {
+    selection.brand = null;
+    selection.model = null;
+    selection.faults = [];
+    selection.client = { name: '', email: '', phone: '' };
+    state.currentStep = 1;
+    state.successMessage = null;
+    state.error = null;
+    quoteResult.repairId = null;
+  };
+
+  return {
+    state,
+    selection,
+    quoteResult,
+    brands,
+    availableModels,
+    faults,
+    progressPercentage,
+    selectBrand,
+    selectModel,
+    toggleFault,
+    calculateQuote,
+    submitQuote,
+    setStep,
+    reset
+  };
+}
+```
+
+---
+
+## 🎨 MEJORA 2: WIZARD VISUAL AVANZADO (`DiagnosticWizard.vue`)
+
+Ahora actualizamos el componente para usar este composable, agregamos **Transiciones Vue** y una **Barra de Progreso**.
+
+Reemplaza `src/vue/components/articles/DiagnosticWizard.vue`:
+
+```vue
+<template>
+  <div class="wizard-card">
+    <!-- Barra de Progreso -->
+    <div class="progress-container">
+      <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+    </div>
+
+    <!-- Mensajes de Estado -->
+    <div v-if="state.successMessage" class="alert success">
+      <i class="fa-solid fa-check-circle"></i> {{ state.successMessage }}
+    </div>
+    <div v-if="state.error" class="alert error">
+      <i class="fa-solid fa-triangle-exclamation"></i> {{ state.error }}
+    </div>
+
+    <!-- TRANSICIÓN DE PASOS -->
+    <Transition name="slide-fade" mode="out-in">
+      
+      <!-- PASO 1: MARCAS -->
+      <div v-if="state.currentStep === 1" key="step1" class="step-content">
+        <h3>1. Selecciona la Marca</h3>
+        <div class="grid-brands">
+          <button 
+            v-for="brand in brands" 
+            :key="brand.id" 
+            @click="selectBrand(brand)"
+            :class="['brand-item', { active: selection.brand?.id === brand.id }]"
+            :data-tier="brand.tier"
+          >
+            <span class="brand-name">{{ brand.name }}</span>
+            <span class="tier-badge">{{ brand.tier }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PASO 2: MODELOS -->
+      <div v-else-if="state.currentStep === 2" key="step2" class="step-content">
+        <button @click="setStep(1)" class="nav-btn back">← Volver</button>
+        <h3>2. Modelo: {{ selection.brand?.name }}</h3>
+        
+        <div v-if="availableModels.length > 0" class="list-models">
+          <div 
+            v-for="model in availableModels" 
+            :key="model.id"
+            @click="selectModel(model)"
+            :class="['model-item', { active: selection.model?.id === model.id }]"
+          >
+            <div class="model-header">
+              <strong>{{ model.name }}</strong>
+              <span class="model-type">{{ model.type }}</span>
+            </div>
+            <small class="model-value">
+              Valor Ref: ${{ model.value_range.min.toLocaleString() }} - ${{ model.value_range.max.toLocaleString() }}
+            </small>
+          </div>
+        </div>
+        <div v-else class="empty-state">
+          No hay modelos registrados para esta marca aún.
+        </div>
+      </div>
+
+      <!-- PASO 3: FALLAS -->
+      <div v-else-if="state.currentStep === 3" key="step3" class="step-content">
+        <button @click="setStep(2)" class="nav-btn back">← Volver</button>
+        <h3>3. Diagnóstico de {{ selection.model?.name }}</h3>
+        <p>Selecciona los problemas que presenta tu equipo:</p>
+
+        <div class="grid-faults">
+          <label 
+            v-for="fault in faults" 
+            :key="fault.id" 
+            class="fault-item"
+            :class="{ active: selection.faults.includes(fault.id), precedence: fault.isPrecedence }"
+          >
+            <input type="checkbox" :value="fault.id" v-model="selection.faults" @change="toggleFault(fault.id)" hidden>
+            <div class="fault-content">
+              <div class="fault-icon"><i :class="`fa-solid ${fault.icon}`"></i></div>
+              <div class="fault-info">
+                <span class="fault-name">{{ fault.name }}</span>
+                <span class="fault-price">+${{ fault.base_price.toLocaleString() }}</span>
+              </div>
+            </div>
+            <div v-if="fault.isPrecedence && selection.faults.includes(fault.id)" class="precedence-warning">
+              Esta falla crítica anula el resto.
+            </div>
+          </label>
+        </div>
+
+        <button @click="calculateQuote" class="action-btn" :disabled="selection.faults.length === 0">
+          CALCULAR COTIZACIÓN <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- PASO 4: RESULTADO Y ENVÍO -->
+      <div v-else-if="state.currentStep === 4" key="step4" class="step-content result-view">
+        <button @click="setStep(3)" class="nav-btn back" :disabled="state.loading">← Ajustar Fallas</button>
+        <h3>Cotización Estimada</h3>
+
+        <div class="quote-card">
+          <div class="quote-header">
+            <span class="equipment-name">{{ selection.brand?.name }} {{ selection.model?.name }}</span>
+          </div>
+          
+          <div class="quote-details">
+            <div v-for="(item, index) in quoteResult.breakdown" :key="index" class="detail-row">
+              <span>{{ item.name }}</span>
+              <span>${{ item.price.toLocaleString() }}</span>
+            </div>
+            
+            <div class="detail-row subtotal">
+              <span>Subtotal (Mano de obra y piezas)</span>
+              <span>${{ quoteResult.subtotal.toLocaleString() }}</span>
+            </div>
+            
+            <div class="detail-row multipliers">
+              <span>Factor Complejidad (x{{ quoteResult.complexityFactor }})</span>
+              <span>x{{ quoteResult.valueFactor }} Valor Equipo</span>
+            </div>
+
+            <div class="detail-row total">
+              <strong>TOTAL ESTIMADO</strong>
+              <strong>${{ quoteResult.finalTotal.toLocaleString() }} CLP</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario Cliente -->
+        <div class="client-form" v-if="!state.successMessage">
+          <h4>Confirmar y Agendar</h4>
+          <div class="form-group">
+            <label>Tu Nombre</label>
+            <input type="text" v-model="selection.client.name" placeholder="Ej: Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" v-model="selection.client.email" placeholder="juan@email.com">
+          </div>
+          <div class="form-group">
+            <label>Teléfono (Opcional)</label>
+            <input type="tel" v-model="selection.client.phone" placeholder="+56 9...">
+          </div>
+
+          <button @click="submitQuote" class="submit-btn" :disabled="state.loading || !selection.client.email">
+            <span v-if="state.loading"><i class="fa-solid fa-spinner fa-spin"></i> Enviando...</span>
+            <span v-else>CONFIRMAR COTIZACIÓN</span>
+          </button>
+        </div>
+
+        <button v-if="state.successMessage" @click="reset" class="new-quote-btn">
+          Hacer Nueva Cotización
+        </button>
+      </div>
+
+    </Transition>
+  </div>
+</template>
+
+<script setup>
+import { useDiagnostic } from '@/composables/useDiagnostic';
+
+const {
+  state,
+  selection,
+  quoteResult,
+  brands,
+  availableModels,
+  faults,
+  progressPercentage,
+  selectBrand,
+  selectModel,
+  toggleFault,
+  calculateQuote,
+  submitQuote,
+  setStep,
+  reset
+} = useDiagnostic();
+</script>
+
+<style lang="scss" scoped>
+@import '@/scss/variables';
+
+.wizard-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Barra de Progreso
+.progress-container {
+  height: 6px;
+  background: #eee;
+  width: 100%;
+}
+.progress-bar {
+  height: 100%;
+  background: $color-primary;
+  transition: width 0.4s ease;
+}
+
+// Contenido General
+.step-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+h3 { font-family: $font-heading; color: $color-primary; margin-bottom: 1.5rem; text-transform: uppercase; }
+.nav-btn { background: none; border: none; color: #888; cursor: pointer; margin-bottom: 1rem; align-self: flex-start; padding-left: 0;}
+.nav-btn:hover { color: $color-primary; }
+
+// Grid Marcas
+.grid-brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+.brand-item {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: 0.3s;
+  background: #fafafa;
+}
+.brand-item:hover { border-color: $color-primary; transform: translateY(-3px); }
+.brand-item.active { border-color: $color-primary; background: rgba(236,107,0,0.05); }
+.brand-name { font-weight: 700; font-family: $font-heading; }
+.tier-badge { font-size: 0.7rem; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: #eee; color: #555; }
+[data-tier="legendary"] .tier-badge { background: gold; color: black; }
+[data-tier="professional"] .tier-badge { background: silver; color: black; }
+
+// Lista Modelos
+.list-models { display: flex; flex-direction: column; gap: 0.8rem; }
+.model-item {
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: 0.2s;
+}
+.model-item:hover { border-left-color: $color-primary; background: #fdfdfd; }
+.model-item.active { border-left-color: $color-primary; background: #fff5eb; border-color: $color-primary; }
+.model-header { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+.model-type { font-size: 0.8rem; color: #777; background: #eee; padding: 2px 6px; border-radius: 4px; }
+
+// Grid Fallas
+.grid-faults { display: grid; gap: 0.8rem; }
+.fault-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s;
+}
+.fault-item:hover { background: #f9f9f9; }
+.fault-item.active { border-color: $color-primary; background: #fff5eb; }
+.fault-item.precedence.active { border-color: #d32f2f; background: #ffebee; }
+
+.fault-content { display: flex; align-items: center; gap: 1rem; }
+.fault-icon { font-size: 1.5rem; color: $color-secondary; width: 30px; text-align: center; }
+.fault-info { display: flex; flex-direction: column; }
+.fault-name { font-weight: 600; }
+.fault-price { font-size: 0.9rem; color: #666; }
+
+.precedence-warning { font-size: 0.8rem; color: #d32f2f; font-weight: bold; margin-top: 0.5rem; }
+
+.action-btn {
+  margin-top: 2rem;
+  width: 100%;
+  background: $color-secondary;
+  color: white;
+  padding: 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+// Resultado
+.quote-card { border: 1px solid #ddd; border-radius: 8px; margin-bottom: 2rem; }
+.quote-header { background: $color-secondary; color: white; padding: 1rem; border-radius: 8px 8px 0 0; font-family: $font-heading; }
+.quote-details { padding: 1.5rem; }
+.detail-row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; border-bottom: 1px dashed #eee; padding-bottom: 0.4rem; }
+.detail-row.total { border-bottom: none; border-top: 2px solid $color-secondary; padding-top: 1rem; font-size: 1.4rem; color: $color-primary; }
+.detail-row.subtotal { font-weight: bold; font-size: 1.1rem; }
+.detail-row.multipliers { font-size: 0.85rem; color: #777; font-style: italic; }
+
+.client-form { margin-top: 2rem; background: #f9f9f9; padding: 1.5rem; border-radius: 8px; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+.form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+.submit-btn {
+  width: 100%; padding: 1rem; background: $color-primary; color: white; border: none;
+  border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem;
+}
+.new-quote-btn { margin-top: 1rem; width: 100%; padding: 1rem; background: transparent; border: 2px solid $color-secondary; color: $color-secondary; border-radius: 6px; cursor: pointer; font-weight: bold; }
+
+// Animaciones Vue
+.slide-fade-enter-active, .slide-fade-leave-active { transition: all 0.3s ease-out; }
+.slide-fade-enter-from, .slide-fade-leave-to { opacity: 0; transform: translateX(20px); }
+
+.alert { padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+.alert.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.alert.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+</style>
+```
+
+---
+
+## ⚡ MEJORA 3: Verificación Final (Checklist)
+
+Ahora que tienes el código avanzado, haz esto:
+
+1.  **Backend:** Asegúrate de que el backend FastAPI esté corriendo en una terminal:
+    ```bash
+    cd backend
+    source .venv/bin/activate
+    uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+    ```
+2.  **Frontend:** Reinicia el servidor para que tome los nuevos estilos y scripts.
+3.  **Prueba de Flujo:**
+    *   Ve al wizard.
+    *   Selecciona Marca (Verás la barra de progreso avanzar).
+    *   Selecciona Modelo.
+    *   Selecciona una falla crítica (ej: "No enciende"). Verás la advertencia roja de precedencia.
+    *   Calcula.
+    *   En el paso 4, llena el email y da click en "CONFIRMAR".
+    *   **Verifica en tu Backend (consola):** Deberías ver un log `INFO: "POST /api/diagnostic/submit HTTP/1.1" 200 OK`.
+    *   **Verifica en DBeaver:** Busca en la tabla `reparaciones`. Debería aparecer un nuevo registro con los datos que acabas de enviar.
+
+**Con estas 3 mejoras, pasaste de una página estática a una Web App completa, con lógica de precios compleja, persistencia de datos y una interfaz visual muy pulida.**
