@@ -15,6 +15,22 @@ export default defineConfig({
         }
     },
     
+    // Proxy: Frontend → Backend
+    server: {
+        port: 5173,
+        strictPort: false,
+        
+        proxy: {
+            // Cualquier request a /api se reenvía al backend
+            '/api': {
+                target: 'http://127.0.0.1:8000',
+                changeOrigin: true,
+                secure: false,
+                rewrite: (path) => path.replace(/^\/api/, '/api')
+            }
+        }
+    },
+    
     css: {
         preprocessorOptions: {
             scss: {
