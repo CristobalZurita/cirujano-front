@@ -38,12 +38,12 @@
         </select>
 
         <div v-if="instrumentPreview" class="model-preview">
-          <img :src="instrumentPreview" :alt="currentInstrument?.model || 'Instrument image'" />
+          <img :src="instrumentPreview" :alt="modelDisplayData?.model || 'Instrument image'" />
           <div class="model-preview-info">
-            <h4>{{ currentInstrument?.model }}</h4>
-            <p>{{ currentInstrument?.type }} ({{ currentInstrument?.year }})</p>
-            <p v-if="currentInstrument?.description">{{ currentInstrument.description }}</p>
-            <p v-if="currentInstrument?.valor_estimado">Valor est.: ${{ formatPrice((currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2) }}</p>
+            <h4>{{ modelDisplayData?.model || 'Cargando...' }}</h4>
+            <p v-if="modelDisplayData?.type">{{ modelDisplayData.type }} ({{ modelDisplayData?.year }})</p>
+            <p v-if="modelDisplayData?.description">{{ modelDisplayData.description }}</p>
+            <p v-if="modelDisplayData?.valor_estimado">Valor est.: ${{ formatPrice((modelDisplayData.valor_estimado.min + modelDisplayData.valor_estimado.max) / 2) }}</p>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
 
       <div class="current-selection">
         <strong>{{ diagnostic.selectedBrand.value }}</strong> →
-        <strong>{{ currentInstrument?.model }}</strong>
+        <strong>{{ modelDisplayData?.model }}</strong>
       </div>
 
       <div v-if="availableFaults.length > 0" class="faults-container">
@@ -195,11 +195,11 @@
 
       <div class="quote-summary">
         <div class="equipment-info">
-          <h4>{{ currentBrand?.name }} {{ currentInstrument?.model }}</h4>
-          <p class="equipment-value" v-if="currentInstrument?.valor_estimado">
+          <h4>{{ currentBrand?.name }} {{ modelDisplayData?.model }}</h4>
+          <p class="equipment-value" v-if="modelDisplayData?.valor_estimado">
             Valor estimado: ${{
               formatPrice(
-                (currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2
+                (modelDisplayData.valor_estimado.min + modelDisplayData.valor_estimado.max) / 2
               )
             }}
           </p>
@@ -293,6 +293,7 @@ const modelsApi = ref([])
 const selectedBrandLocal = ref('')
 const selectedModelLocal = ref('')
 const instrumentPreview = ref(null)
+const currentInstrument = ref(null)  // Store instrument data from API
 
 const fetchBrands = async () => {
   try {
@@ -319,20 +320,21 @@ const fetchInstrumentDetails = async (instrumentId) => {
   try {
     const res = await fetch(`/api/v1/instruments/${instrumentId}`)
     if (!res.ok) {
-      instrumentPreview.value = null
+      instrumentPreview.value = '/images/placeholder.svg'
       currentInstrument.value = null
       return
     }
     const json = await res.json()
-    // update local diagnostic instrument if exists
+    // update local diagnostic instrument
     diagnostic.selectedModel.value = instrumentId
-    // set preview image (absolute or relative)
-    instrumentPreview.value = json.imagen_url || '/images/placeholder.png'
-    // also update currentInstrument reactive view by mutating source data (in-memory)
-    // if using local instruments data, replace or augment it
+    // set preview image (fallback to placeholder SVG)
+    instrumentPreview.value = json.imagen_url || '/images/placeholder.svg'
+    // store full instrument data for reactive display
+    currentInstrument.value = json
     return json
   } catch (e) {
-    instrumentPreview.value = null
+    instrumentPreview.value = '/images/placeholder.svg'
+    currentInstrument.value = null
   }
 }
 
@@ -344,7 +346,11 @@ const availableModels = computed(() => {
   return diagnostic.getModelsByBrand(diagnostic.selectedBrand.value)
 })
 
-const currentInstrument = computed(() => {
+// Use API-fetched data when available, fallback to local
+const modelDisplayData = computed(() => {
+  if (currentInstrument.value) {
+    return currentInstrument.value
+  }
   return diagnostic.getInstrument(diagnostic.selectedModel.value)
 })
 
@@ -395,8 +401,14 @@ const onBrandChange = () => {
 
 const onModelChange = async () => {
   const mid = selectedModelLocal.value
-  if (!mid) return
-  diagnostic.selectedModel.value = mid
+  if (!mid) {
+    instrumentPreview.value = null
+    currentInstrument.value = null
+    return
+  }
+  // Show placeholder immediately
+  instrumentPreview.value = '/images/placeholder.svg'
+  // Then fetch details
   await fetchInstrumentDetails(mid)
 }
 

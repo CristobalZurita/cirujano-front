@@ -2,25 +2,31 @@
 Configuration settings for Cirujano de Sintetizadores API
 """
 
-from pydantic_settings import BaseSettings
+from pydantic import BaseModel
 from functools import lru_cache
 from typing import Optional
+import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
 
 
-class Settings(BaseSettings):
+class Settings(BaseModel):
     """Application settings"""
 
     # API Configuration
     api_title: str = "Cirujano de Sintetizadores API"
     api_version: str = "1.0.0"
-    debug: bool = False
+    debug: bool = os.getenv("DEBUG", "false").lower() == "true"
+    environment: str = os.getenv("ENVIRONMENT", "development")
 
     # Database Configuration
-    database_url: str = "sqlite:///./cirujano.db"
+    database_url: str = os.getenv("DATABASE_URL", "sqlite:///./cirujano.db")
     database_echo: bool = False
 
     # JWT Configuration
-    secret_key: str = "your-secret-key-change-in-production"
+    secret_key: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
@@ -56,13 +62,14 @@ class Settings(BaseSettings):
         "high": 1.6,  # 2000000 - 5000000 CLP
         "premium": 2.0,  # > 5000000 CLP
     }
-
     class Config:
-        env_file = ".env"
         case_sensitive = False
 
 
-@lru_cache()
+# Instantiate settings with environment variables
+settings = Settings()
+
+
 def get_settings() -> Settings:
-    """Get cached settings instance"""
-    return Settings()
+    """Get settings instance"""
+    return settings

@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException
 from pathlib import Path
 import json
 
-router = APIRouter(prefix="/api/v1/instruments", tags=["instruments"]) 
+router = APIRouter(prefix="/instruments", tags=["instruments"]) 
 
-DATA_PATH = Path(__file__).resolve().parents[4] / "src" / "assets" / "data"
+DATA_PATH = Path(__file__).resolve().parents[5] / "src" / "assets" / "data"
 
 @router.get("/{instrument_id}")
 async def get_instrument(instrument_id: str):

@@ -35,7 +35,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-polar",
@@ -73,7 +77,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-snow",
@@ -110,7 +118,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-ti",
@@ -146,7 +158,11 @@
         "AUDIO_DISTORTED"
       ],
       "imagen_url": "/images/instruments/access-virus.jpg",
-      "manual_url": "https://access-music.com/manuals"
+      "manual_url": "https://access-music.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-ti-desktop",
@@ -183,7 +199,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-ti-keyboard",
@@ -221,7 +241,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-ti2-desktop",
@@ -258,7 +282,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "access-virus-ti2-keyboard",
@@ -296,7 +324,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-andromeda-a6",
@@ -334,7 +366,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-fusion-6hd",
@@ -372,7 +408,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-fusion-8hd",
@@ -410,7 +450,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-ion",
@@ -448,7 +492,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-micron",
@@ -486,7 +534,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-qs6",
@@ -524,7 +576,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-qs6-1",
@@ -562,7 +618,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-qs7",
@@ -600,7 +660,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-qs7-1",
@@ -638,7 +702,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-qs8",
@@ -676,7 +744,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-qs8-1",
@@ -714,7 +786,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "alesis-vortex-wireless-2",
@@ -752,7 +828,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "arturia-minibrute",
@@ -787,7 +867,11 @@
         "FILTER_DEAD"
       ],
       "imagen_url": "/images/instruments/arturia-minibrute.jpg",
-      "manual_url": "https://arturia.com/manuals"
+      "manual_url": "https://arturia.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ct-s1",
@@ -825,7 +909,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ct-s1000v",
@@ -863,7 +951,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ct-s400",
@@ -901,7 +993,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ct-s500",
@@ -939,7 +1035,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ct-x3000",
@@ -977,7 +1077,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ct-x5000",
@@ -1015,7 +1119,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ctk-5000",
@@ -1053,7 +1161,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ctk-6000",
@@ -1091,7 +1203,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ctk-7000",
@@ -1129,7 +1245,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-ctk-7200",
@@ -1167,7 +1287,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-cz-1000",
@@ -1205,7 +1329,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-cz-101",
@@ -1243,7 +1371,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-cz-3000",
@@ -1281,7 +1413,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-cz-5000",
@@ -1319,7 +1455,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-fz-1",
@@ -1357,7 +1497,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-fz-10m",
@@ -1394,7 +1538,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-fz-20m",
@@ -1431,7 +1579,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-px-160",
@@ -1468,7 +1620,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-px-350",
@@ -1505,7 +1661,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-px-560",
@@ -1542,7 +1702,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-px-5s",
@@ -1579,7 +1743,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-px-s1100",
@@ -1616,7 +1784,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-px-s3100",
@@ -1653,7 +1825,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-vz-1",
@@ -1691,7 +1867,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-1800",
@@ -1729,7 +1909,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-2000",
@@ -1767,7 +1951,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-3000",
@@ -1805,7 +1993,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-3100",
@@ -1843,7 +2035,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-3300",
@@ -1881,7 +2077,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-3500",
@@ -1919,7 +2119,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-3700",
@@ -1957,7 +2161,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-3800",
@@ -1995,7 +2203,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-5000",
@@ -2033,7 +2245,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-6600",
@@ -2071,7 +2287,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-7500",
@@ -2109,7 +2329,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-wk-7600",
@@ -2147,7 +2371,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-xw-g1",
@@ -2185,7 +2413,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "casio-xw-p1",
@@ -2223,7 +2455,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "elektron-analog4",
@@ -2258,7 +2494,11 @@
         "POWER"
       ],
       "imagen_url": "/images/instruments/elektron-analog4.jpg",
-      "manual_url": "https://elektron.se/manuals"
+      "manual_url": "https://elektron.se/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-ca49",
@@ -2295,7 +2535,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-ca59",
@@ -2332,7 +2576,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-ca79",
@@ -2369,7 +2617,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-ca99",
@@ -2406,7 +2658,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-cn29",
@@ -2443,7 +2699,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-cn39",
@@ -2480,7 +2740,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-es110",
@@ -2517,7 +2781,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-es520",
@@ -2554,7 +2822,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-es920",
@@ -2591,7 +2863,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k1",
@@ -2629,7 +2905,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k11",
@@ -2667,7 +2947,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k3",
@@ -2705,7 +2989,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k4",
@@ -2743,7 +3031,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k4r",
@@ -2780,7 +3072,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k5",
@@ -2818,7 +3114,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k5000r",
@@ -2855,7 +3155,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k5000s",
@@ -2893,7 +3197,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-k5000w",
@@ -2931,7 +3239,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-kdp120",
@@ -2968,7 +3280,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-kdp75",
@@ -3005,7 +3321,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-mp11se",
@@ -3042,7 +3362,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-mp7se",
@@ -3079,7 +3403,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kawai-vpc1",
@@ -3116,7 +3444,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-01-w",
@@ -3154,7 +3486,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-karma",
@@ -3192,7 +3528,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-krome",
@@ -3230,7 +3570,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-krome-ex",
@@ -3268,7 +3612,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-kronos",
@@ -3306,7 +3654,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-kross",
@@ -3344,7 +3696,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-kross-2",
@@ -3382,7 +3738,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-kingkorg",
@@ -3420,7 +3780,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-m1",
@@ -3458,7 +3822,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-m1r",
@@ -3495,7 +3863,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-m50",
@@ -3533,7 +3905,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-ms-20-full-size",
@@ -3571,7 +3947,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-ms-20-mini",
@@ -3609,7 +3989,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-ms2000",
@@ -3647,7 +4031,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-ms2000r",
@@ -3684,7 +4072,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-n364",
@@ -3722,7 +4114,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-nautilus",
@@ -3760,7 +4156,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-pa1000",
@@ -3798,7 +4198,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-pa600",
@@ -3836,7 +4240,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-pa700",
@@ -3874,7 +4282,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-pa900",
@@ -3912,7 +4324,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-radias-r",
@@ -3949,7 +4365,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-sv-1",
@@ -3987,7 +4407,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-sv-2",
@@ -4025,7 +4449,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-tr-rack",
@@ -4062,7 +4490,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-tr61",
@@ -4100,7 +4532,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-tr76",
@@ -4138,7 +4574,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-triton-classic",
@@ -4176,7 +4616,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-triton-extreme",
@@ -4214,7 +4658,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-triton-le",
@@ -4252,7 +4700,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-triton-tr",
@@ -4290,7 +4742,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-volca-keys",
@@ -4325,7 +4781,11 @@
         "AUDIO_DISTORTED"
       ],
       "imagen_url": "/images/instruments/korg-volca.jpg",
-      "manual_url": "https://korg.com/manuals"
+      "manual_url": "https://korg.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-wavestation-a-d",
@@ -4362,7 +4822,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-wavestation-sr",
@@ -4399,7 +4863,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-microkorg",
@@ -4437,7 +4905,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-microkorg-s",
@@ -4475,7 +4947,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-microkorg-xl",
@@ -4513,7 +4989,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-minilogue",
@@ -4551,7 +5031,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-minilogue-xd",
@@ -4589,7 +5073,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-modwave",
@@ -4627,7 +5115,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-opsix",
@@ -4665,7 +5157,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-prologue",
@@ -4703,7 +5199,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "korg-wavestate",
@@ -4741,7 +5241,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-artis",
@@ -4778,7 +5282,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-artis-7",
@@ -4815,7 +5323,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-artis-se",
@@ -4852,7 +5364,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-forte",
@@ -4889,7 +5405,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-forte-7",
@@ -4926,7 +5446,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-k2000",
@@ -4964,7 +5488,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-k2000r",
@@ -5001,7 +5529,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-k2500",
@@ -5039,7 +5571,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-k2500r",
@@ -5076,7 +5612,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-k2600",
@@ -5114,7 +5654,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-k2661",
@@ -5152,7 +5696,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-pc3",
@@ -5190,7 +5738,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-pc3k",
@@ -5228,7 +5780,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-pc3le",
@@ -5266,7 +5822,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-pc4",
@@ -5304,7 +5864,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-pc4-7",
@@ -5342,7 +5906,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-sp4-7",
@@ -5379,7 +5947,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-sp6",
@@ -5416,7 +5988,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-sp7",
@@ -5453,7 +6029,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "kurzweil-sp88",
@@ -5490,7 +6070,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "moog-minimoog-d",
@@ -5526,7 +6110,11 @@
         "ENVELOPE_BROKEN"
       ],
       "imagen_url": "/images/instruments/moog-minimoog.jpg",
-      "manual_url": "https://moogmusic.com/manuals"
+      "manual_url": "https://moogmusic.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-electro-3",
@@ -5563,7 +6151,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-electro-4",
@@ -5600,7 +6192,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-electro-5",
@@ -5637,7 +6233,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-electro-6",
@@ -5674,7 +6274,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-grand",
@@ -5711,7 +6315,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-lead",
@@ -5746,7 +6354,11 @@
         "OSCILLATOR_UNSTABLE"
       ],
       "imagen_url": "/images/instruments/nord-lead.jpg",
-      "manual_url": "https://nordkeyboards.com/manuals"
+      "manual_url": "https://nordkeyboards.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-lead-2",
@@ -5784,7 +6396,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-lead-2x",
@@ -5822,7 +6438,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-lead-3",
@@ -5860,7 +6480,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-lead-4",
@@ -5898,7 +6522,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-lead-a1",
@@ -5936,7 +6564,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-piano-4",
@@ -5973,7 +6605,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-piano-5",
@@ -6010,7 +6646,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-stage-2",
@@ -6047,7 +6687,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-stage-2-ex",
@@ -6084,7 +6728,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-stage-3",
@@ -6121,7 +6769,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-stage-4",
@@ -6158,7 +6810,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "nord-nord-wave-2",
@@ -6196,7 +6852,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-bass-station-ii",
@@ -6234,7 +6894,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-impulse-49",
@@ -6272,7 +6936,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-impulse-61",
@@ -6310,7 +6978,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-launchkey-49",
@@ -6348,7 +7020,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-launchkey-61",
@@ -6386,7 +7062,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-mininova",
@@ -6424,7 +7104,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-peak",
@@ -6461,7 +7145,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-remote-sl-49",
@@ -6499,7 +7187,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-remote-sl-61",
@@ -6537,7 +7229,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-sl-mkiii-49",
@@ -6575,7 +7271,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-sl-mkiii-61",
@@ -6613,7 +7313,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-summit",
@@ -6651,7 +7355,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "novation-ultranova",
@@ -6689,7 +7397,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-d-110",
@@ -6726,7 +7438,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fa-06",
@@ -6764,7 +7480,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fa-07",
@@ -6802,7 +7522,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fa-08",
@@ -6840,7 +7564,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-06",
@@ -6878,7 +7606,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-07",
@@ -6916,7 +7648,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-08",
@@ -6954,7 +7690,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-g6",
@@ -6992,7 +7732,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-g7",
@@ -7030,7 +7774,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-g8",
@@ -7068,7 +7816,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-x6",
@@ -7106,7 +7858,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-x7",
@@ -7144,7 +7900,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-fantom-x8",
@@ -7182,7 +7942,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-gaia-sh-01",
@@ -7220,7 +7984,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-integra-7",
@@ -7257,7 +8025,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-juno-d",
@@ -7295,7 +8067,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-juno-ds61",
@@ -7333,7 +8109,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-juno-ds88",
@@ -7371,7 +8151,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-juno-di",
@@ -7409,7 +8193,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-juno-g",
@@ -7447,7 +8235,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-juno-x",
@@ -7485,7 +8277,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-jv-1010",
@@ -7522,7 +8318,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-jv-1080",
@@ -7559,7 +8359,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-jv-2080",
@@ -7596,7 +8400,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-jupiter8",
@@ -7632,7 +8440,11 @@
         "CAPACITOR_BLOWN"
       ],
       "imagen_url": "/images/instruments/roland-jupiter8.jpg",
-      "manual_url": "https://roland.com/manuals"
+      "manual_url": "https://roland.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-rd-2000",
@@ -7670,7 +8482,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-rd-88",
@@ -7708,7 +8524,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-sc-55",
@@ -7745,7 +8565,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-sc-88",
@@ -7782,7 +8606,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-sc-88pro",
@@ -7819,7 +8647,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-system-1",
@@ -7857,7 +8689,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-system-8",
@@ -7895,7 +8731,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-soniccell",
@@ -7932,7 +8772,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-tr808",
@@ -7968,7 +8812,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": "/images/instruments/roland-tr808.jpg",
-      "manual_url": "https://roland.com/manuals"
+      "manual_url": "https://roland.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-u-220",
@@ -8005,7 +8853,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-vr-09",
@@ -8043,7 +8895,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-vr-730",
@@ -8081,7 +8937,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xp-10",
@@ -8119,7 +8979,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xp-30",
@@ -8157,7 +9021,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xp-50",
@@ -8195,7 +9063,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xp-60",
@@ -8233,7 +9105,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xp-80",
@@ -8271,7 +9147,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xps-10",
@@ -8309,7 +9189,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xps-30",
@@ -8347,7 +9231,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xv-5050",
@@ -8384,7 +9272,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "roland-xv-5080",
@@ -8421,7 +9313,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-blofeld",
@@ -8457,7 +9353,11 @@
         "AUDIO_DISTORTED"
       ],
       "imagen_url": "/images/instruments/waldorf-blofeld.jpg",
-      "manual_url": "https://waldorf-music.com/manuals/blofeld"
+      "manual_url": "https://waldorf-music.com/manuals/blofeld",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-blofeld-keyboard",
@@ -8495,7 +9395,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-blofeld-module",
@@ -8532,7 +9436,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-iridium",
@@ -8569,7 +9477,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-iridium-keyboard",
@@ -8607,7 +9519,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-pulse-2",
@@ -8644,7 +9560,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-quantum",
@@ -8681,7 +9601,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-rocket",
@@ -8718,7 +9642,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "waldorf-streichfett",
@@ -8755,7 +9683,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-120",
@@ -8792,7 +9724,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-130",
@@ -8829,7 +9765,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-150",
@@ -8866,7 +9806,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-220",
@@ -8903,7 +9847,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-230",
@@ -8940,7 +9888,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-240",
@@ -8977,7 +9929,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-320",
@@ -9014,7 +9970,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-330",
@@ -9051,7 +10011,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-340",
@@ -9088,7 +10052,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-430",
@@ -9125,7 +10093,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-440",
@@ -9162,7 +10134,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-545",
@@ -9199,7 +10175,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-635",
@@ -9236,7 +10216,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-725",
@@ -9273,7 +10257,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-735",
@@ -9310,7 +10298,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-745",
@@ -9347,7 +10339,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-775",
@@ -9384,7 +10380,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-clp-785",
@@ -9421,7 +10421,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-cvp-705",
@@ -9458,7 +10462,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-cvp-709",
@@ -9495,7 +10503,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-clavinova-cvp-809",
@@ -9532,7 +10544,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-dx100",
@@ -9570,7 +10586,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-dx11",
@@ -9608,7 +10628,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-dx21",
@@ -9646,7 +10670,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-dx27",
@@ -9684,7 +10712,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-dx7",
@@ -9720,7 +10752,11 @@
         "AUDIO_DISTORTED"
       ],
       "imagen_url": "/images/instruments/yamaha-dx7.jpg",
-      "manual_url": "https://yamaha.com/manuals"
+      "manual_url": "https://yamaha.com/manuals",
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-dx7ii",
@@ -9758,7 +10794,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mo6",
@@ -9796,7 +10836,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mo8",
@@ -9834,7 +10878,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-modx6",
@@ -9872,7 +10920,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-modx7",
@@ -9910,7 +10962,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-modx8",
@@ -9948,7 +11004,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-moxf6",
@@ -9986,7 +11046,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-moxf8",
@@ -10024,7 +11088,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mu100",
@@ -10061,7 +11129,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mu128",
@@ -10098,7 +11170,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mu50",
@@ -10135,7 +11211,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mu80",
@@ -10172,7 +11252,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mx49",
@@ -10210,7 +11294,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mx61",
@@ -10248,7 +11336,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-mx88",
@@ -10286,7 +11378,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-montage-6",
@@ -10324,7 +11420,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-montage-7",
@@ -10362,7 +11462,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-montage-8",
@@ -10400,7 +11504,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-es6",
@@ -10438,7 +11546,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-es7",
@@ -10476,7 +11588,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-es8",
@@ -10514,7 +11630,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-rack-es",
@@ -10551,7 +11671,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-rack-xs",
@@ -10588,7 +11712,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-xf6",
@@ -10626,7 +11754,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-xf7",
@@ -10664,7 +11796,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-xf8",
@@ -10702,7 +11838,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-xs6",
@@ -10740,7 +11880,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-xs7",
@@ -10778,7 +11922,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-motif-xs8",
@@ -10816,7 +11964,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-e373",
@@ -10854,7 +12006,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-e463",
@@ -10892,7 +12048,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-e473",
@@ -10930,7 +12090,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-s670",
@@ -10968,7 +12132,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-s975",
@@ -11006,7 +12174,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-sx600",
@@ -11044,7 +12216,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-sx700",
@@ -11082,7 +12258,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-psr-sx900",
@@ -11120,7 +12300,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-reface-cp",
@@ -11158,7 +12342,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-reface-cs",
@@ -11196,7 +12384,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-reface-dx",
@@ -11234,7 +12426,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-reface-yc",
@@ -11272,7 +12468,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-sy77",
@@ -11310,7 +12510,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-sy99",
@@ -11348,7 +12552,11 @@
         "BUTTON_DEAD"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-tg77",
@@ -11385,7 +12593,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-tx7",
@@ -11422,7 +12634,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     },
     {
       "id": "yamaha-tx802",
@@ -11459,7 +12675,11 @@
         "AUDIO_NO_OUTPUT"
       ],
       "imagen_url": null,
-      "manual_url": null
+      "manual_url": null,
+      "image": {
+        "url": null,
+        "status": "pending"
+      }
     }
   ]
 }

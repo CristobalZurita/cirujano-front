@@ -17,8 +17,8 @@ Base = declarative_base()
 
 # Create engine with connection pooling
 engine = create_engine(
-    settings.DATABASE_URL,
-    echo=settings.DEBUG,
+    settings.database_url,
+    echo=settings.debug,
     pool_size=10,
     max_overflow=20,
     pool_pre_ping=True,  # Verify connections before using them
@@ -56,7 +56,7 @@ async def init_db():
     Call this on application startup
     """
     try:
-        # Create all tables from models
+        # Create all tables from models (sync operation)
         Base.metadata.create_all(bind=engine)
         logger.info("✓ Database tables created successfully")
     except Exception as e:
@@ -70,6 +70,7 @@ async def close_db():
     Call this on application shutdown
     """
     try:
+        # Dispose of engine connections
         engine.dispose()
         logger.info("✓ Database connection closed")
     except Exception as e:
