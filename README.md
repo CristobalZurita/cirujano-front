@@ -118,6 +118,35 @@ Estos archivos del VOLCADO05 ya están correctamente en español y NO necesitan 
 
 ---
 
+## 🧭 EJECUCIÓN LOCAL (BACKEND + FRONTEND)
+
+Para navegar y probar la app completa en tu máquina:
+
+1. Inicia el backend (usa SQLite por defecto):
+
+```bash
+# desde la raíz del proyecto
+uvicorn backend.app.main:app --reload --port 8000
+```
+
+2. Inicia el frontend (Vite):
+
+```bash
+npm install
+npm run dev
+```
+
+3. Abre la URL del frontend (por defecto http://localhost:5173) y asegúrate de que la API esté configurada en `http://localhost:8000/api/v1`.
+
+Notas operativas:
+
+- Para correr pruebas: `python -m pytest backend`
+- Para una ejecución tipo producción con Postgres:
+	- Exporta `DATABASE_URL` apuntando al Postgres y ejecuta `alembic upgrade head` antes de arrancar.
+	- Si existen transacciones duplicadas en `payments.transaction_id`, ejecuta primero `python scripts/dedupe_payments_transaction_ids.py --dry-run` y luego `--apply`.
+
+---
+
 ## ✅ RESULTADO FINAL
 
 Después de aplicar estos cambios, **TODA la página estará en español**:

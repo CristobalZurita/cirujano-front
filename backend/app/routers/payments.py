@@ -5,6 +5,7 @@ from backend.app.core.database import get_db
 from sqlalchemy.orm import Session
 from backend.app.models.payment import Payment, PaymentStatus
 from backend.app.services.logging_service import create_audit
+from sqlalchemy.exc import IntegrityError
 from backend.app.schemas import PaymentCreate, PaymentRead
 
 router = APIRouter(prefix="/payments", tags=["payments"])
@@ -18,7 +19,11 @@ def create_payment(payload: PaymentCreate, db: Session = Depends(get_db)):
     # Idempotency: if transaction_id provided and a payment already exists, return it
     tx = data.get("transaction_id")
     if tx:
-        existing = db.query(Payment).filter(Payment.transaction_id == tx).one_or_none()
+        # Be tolerant: there may be duplicates in older data or race conditions that created
+        # more than one row. Use first() ordered by id so we consistently return the
+        # earliest existing payment rather than raising MultipleResultsFound.
+        # Prefer the most recent payment for this transaction id (highest id)
+        existing = db.query(Payment).filter(Payment.transaction_id == tx).order_by(Payment.id.desc()).first()
         if existing:
             try:
                 create_audit(event_type="payment.duplicate", user_id=existing.user_id, details={"payment_id": existing.id, "transaction_id": tx}, message="Duplicate payment request detected")
@@ -36,8 +41,24 @@ def create_payment(payload: PaymentCreate, db: Session = Depends(get_db)):
         notes=data.get("notes"),
     )
     db.add(payment)
-    db.commit()
-    db.refresh(payment)
+    try:
+        db.commit()
+        db.refresh(payment)
+    except IntegrityError:
+        # Handle race: another request created the same transaction_id concurrently
+        # Roll back and return the existing payment.
+        db.rollback()
+        existing = None
+        if tx:
+            existing = db.query(Payment).filter(Payment.transaction_id == tx).order_by(Payment.id.desc()).first()
+        if existing:
+            try:
+                create_audit(event_type="payment.duplicate", user_id=existing.user_id, details={"payment_id": existing.id, "transaction_id": tx}, message="Duplicate payment request detected (race)")
+            except Exception:
+                pass
+            return existing
+        # If we couldn't find the existing row, re-raise so callers/tests notice
+        raise
 
     # audit with richer details
     try:

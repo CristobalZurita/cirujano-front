@@ -3,8 +3,8 @@ Pydantic schemas for request/response validation
 Define DTOs (Data Transfer Objects) for API endpoints
 """
 
-from pydantic import BaseModel, EmailStr, Field
-from typing import List, Optional, Dict
+from pydantic import BaseModel, EmailStr, Field, field_validator
+from typing import List, Optional, Dict, ClassVar
 from datetime import datetime
 
 
@@ -165,10 +165,13 @@ class PaymentCreate(BaseModel):
     status: Optional[str] = None
     notes: Optional[str] = None
 
-    def validate_payment_method(self):
-        allowed = {"card", "cash", "transfer", "paypal"}
-        if self.payment_method not in allowed:
-            raise ValueError(f"Unsupported payment method: {self.payment_method}")
+    ALLOWED_METHODS: ClassVar[set] = {"card", "cash", "transfer", "paypal"}
+
+    @field_validator("payment_method")
+    def check_method(cls, v: str):
+        if v not in cls.ALLOWED_METHODS:
+            raise ValueError(f"Unsupported payment method: {v}")
+        return v
 
 
 class PaymentRead(BaseModel):

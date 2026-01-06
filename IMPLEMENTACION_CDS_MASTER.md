@@ -4,6 +4,26 @@
 
 ---
 
+## Payments (Operational notes)
+
+- Payments are created via POST `/api/v1/payments/` and are idempotent when a `transaction_id` is provided: subsequent requests with the same `transaction_id` will return the existing payment instead of creating a duplicate.
+
+### Production migration / dedupe process
+
+1. Use the provided script `scripts/dedupe_payments_transaction_ids.py` to detect duplicates:
+
+	- Dry run: `python scripts/dedupe_payments_transaction_ids.py --dry-run`
+	- Apply: `python scripts/dedupe_payments_transaction_ids.py --apply`
+
+For a detailed step-by-step runbook and verification steps, see `docs/PRODUCTION_MIGRATIONS.md`.
+
+2. After deduplication, run `alembic upgrade head` in production to allow the Alembic migration to add the UNIQUE constraint.
+
+Notes:
+- The test environment uses SQLite and the migration is tolerant for SQLite; in production (Postgres) run the dedupe script first to avoid failure when adding uniqueness constraints.
+- The system enforces idempotency both at application level (check by transaction_id on create) and via the DB constraint when applied.
+
+
 ## 0. OBJETIVO DEL DOCUMENTO
 
 Este documento constituye la **guía técnica definitiva de implementación** del sistema

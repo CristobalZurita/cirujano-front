@@ -142,3 +142,72 @@ def test_invalid_payment_amount():
     r = client.post("/api/v1/payments/", json=payload)
     # Pydantic validation should reject amount <= 0 with 422
     assert r.status_code == 422
+
+
+def test_invalid_payment_method():
+    importlib.reload(_main)
+    client = TestClient(_main.app)
+
+    db = SessionLocal()
+    try:
+        from backend.app.models.user import User
+        db_user = db.query(User).filter(User.email == "audit@example.com").first()
+        if not db_user:
+            db_user = User(email="audit@example.com", username="audittest", full_name="Audit Test", hashed_password="hashed", role="client", is_active=True)
+            db.add(db_user)
+            db.commit()
+            db.refresh(db_user)
+        user_id = db_user.id
+    finally:
+        db.close()
+
+    res = client.post("/api/v1/repairs/", json={"client_id": user_id, "title": "Bad method repair", "description": "testing"})
+    assert res.status_code in (200, 201)
+    repair = res.json()
+    rid = repair["id"] if isinstance(repair, dict) and "id" in repair else repair[0]["id"]
+
+    payload = {"repair_id": rid, "amount": 1000, "payment_method": "cheque", "transaction_id": "tx_bad_method", "user_id": user_id, "status": "success"}
+    r = client.post("/api/v1/payments/", json=payload)
+    assert r.status_code == 422
+
+
+def test_duplicate_transaction_returns_existing():
+    importlib.reload(_main)
+    client = TestClient(_main.app)
+
+    db = SessionLocal()
+    try:
+        from backend.app.models.user import User
+        db_user = db.query(User).filter(User.email == "audit@example.com").first()
+        if not db_user:
+            db_user = User(email="audit@example.com", username="audittest", full_name="Audit Test", hashed_password="hashed", role="client", is_active=True)
+            db.add(db_user)
+            db.commit()
+            db.refresh(db_user)
+        user_id = db_user.id
+    finally:
+        db.close()
+
+    res = client.post("/api/v1/repairs/", json={"client_id": user_id, "title": "Dup repair", "description": "testing"})
+    assert res.status_code in (200, 201)
+    repair = res.json()
+    rid = repair["id"] if isinstance(repair, dict) and "id" in repair else repair[0]["id"]
+
+    tx = "tx_existing_db"
+    # Create payment directly in DB, simulating a pre-existing payment
+    db = SessionLocal()
+    try:
+        from backend.app.models.payment import Payment, PaymentStatus
+        pay = Payment(user_id=user_id, repair_id=rid, amount=999, payment_method="card", transaction_id=tx, status=PaymentStatus.SUCCESS)
+        db.add(pay)
+        db.commit()
+        db.refresh(pay)
+        existing_id = pay.id
+    finally:
+        db.close()
+
+    payload = {"repair_id": rid, "amount": 1500, "payment_method": "card", "transaction_id": tx, "user_id": user_id, "status": "success"}
+    r = client.post("/api/v1/payments/", json=payload)
+    assert r.status_code == 200
+    p = r.json()
+    assert p["id"] == existing_id
