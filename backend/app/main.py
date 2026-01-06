@@ -33,6 +33,12 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     # Startup logic
     logger.info("🚀 Application startup")
+    # Setup structured logging early
+    try:
+        from backend.app.core.logging_config import setup_logging
+        setup_logging()
+    except Exception as e:
+        logger.warning(f"Could not configure structured logging: {e}")
     try:
         await init_db()
         logger.info("✓ Database initialized")
@@ -91,6 +97,13 @@ if settings.environment and settings.environment.lower() in ("production", "prod
     # Attach rate limiter to the application state and register handler
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+    # Expose audit service for internal use
+    try:
+        from backend.app.services import logging_service  # noqa: F401
+    except Exception:
+        # Import failures are non-fatal; logging service may not be available in trimmed test envs
+        pass
 
 # Include API v1 routes
 app.include_router(api_router)

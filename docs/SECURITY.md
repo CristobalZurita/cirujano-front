@@ -32,6 +32,7 @@ DATABASE_URL=postgresql+asyncpg://user:pass@localhost/cirujano_db
 - Add rate limiting and file upload validation (next tasks).
  - Implemented a rate limiting plan: the app supports a Redis-backed rate limiter (via `slowapi`). Add `RATE_LIMIT_STORAGE_URI` to your `.env` to enable Redis storage (recommended). A basic uploads validator was added to validate image size and format; endpoints reject invalid files.
  - Files added: `backend/app/core/ratelimit.py`, `backend/app/routers/uploads.py`, `backend/app/utils/uploads.py`. Unit tests added under `backend/tests/test_ratelimit.py` and `backend/tests/test_uploads.py`.
+ - Implemented audit logging & structured JSON logs: the app now logs audit events to `audit_logs` table and emits structured JSON logs via `python-json-logger`. File: `backend/app/models/audit.py`, `backend/app/services/logging_service.py`, `backend/app/core/logging_config.py`. Unit test: `backend/tests/test_audit_logging.py`.
  - Use the helper script `scripts/check_env.py` to validate your environment before starting in production: `python scripts/check_env.py --env-file .env --strict`.
 
 If you want, I can prepare a GitHub Action job that fails if `SECRET_KEY` or `JWT_SECRET` are accidentally found in committed files.

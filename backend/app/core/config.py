@@ -8,8 +8,9 @@ from typing import Optional
 import os
 from dotenv import load_dotenv
 
-# Load .env file
-load_dotenv()
+# Load .env file only for non-production environments (tests and production should not rely on .env)
+if os.getenv("ENVIRONMENT", "development").lower() not in ("production", "prod"):
+    load_dotenv()
 
 
 class Settings(BaseModel):

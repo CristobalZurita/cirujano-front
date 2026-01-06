@@ -10,6 +10,7 @@ from backend.app.core.security import (
 )
 from backend.app.core.dependencies import get_current_user
 from backend.app.core.ratelimit import limiter
+from backend.app.services.logging_service import create_audit
 from backend.app.models.user import User
 from backend.app.schemas.auth import (
     LoginRequest, RegisterRequest, Token, PasswordResetRequest
@@ -62,6 +63,11 @@ async def register(
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
+    # Audit registration
+    try:
+        create_audit(event_type="auth.register", user_id=new_user.id, ip_address=None, metadata={"email": new_user.email, "username": new_user.username})
+    except Exception:
+        pass
     
     return new_user
 
@@ -92,6 +98,12 @@ async def login(
         # and let rate limiting still apply without raising an internal error.
         user = None
     if not user:
+        # Audit failed login attempt
+        try:
+            ip = getattr(request.client, "host", None)
+            create_audit(event_type="auth.login.failed", user_id=None, ip_address=ip, details={"email": payload.email})
+        except Exception:
+            pass
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Email o contraseña incorrectos"
@@ -99,6 +111,12 @@ async def login(
     
     # Verificar contraseña
     if not user or not verify_password(payload.password, user.hashed_password):
+        # Audit failed login attempt
+        try:
+            ip = getattr(request.client, "host", None)
+            create_audit(event_type="auth.login.failed", user_id=(user.id if user else None), ip_address=ip, details={"email": payload.email})
+        except Exception:
+            pass
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Email o contraseña incorrectos"
@@ -122,6 +140,12 @@ async def login(
     refresh_token = create_refresh_token(data={
         "sub": str(user.id)
     })
+    # Audit successful login
+    try:
+        ip = getattr(request.client, "host", None)
+        create_audit(event_type="auth.login.success", user_id=user.id, ip_address=ip, details={"username": user.username})
+    except Exception:
+        pass
     
     return {
         "access_token": access_token,

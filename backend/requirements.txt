@@ -40,6 +40,8 @@ limits==2.12
 # File validation
 Pillow==10.1.0
 python-magic==0.4.27
+# Structured logging
+python-json-logger==2.0.6
 
 # Optional: For Celery async tasks
 celery==5.3.4
