@@ -25,6 +25,21 @@ This file summarizes the assets and recommended steps after extracting content f
 - Conversion was done locally with `fontforge` + `woff2_compress`. Files present now include `*.woff2`, `*.woff`, `*.ttf` and the original `*.otf`.
 **Reminder:** double-check the license for each font family; hosting webfonts may require a webfont license even if the font is embedded in the PDF.
 
+## Scripts & reproducibility
+
+I added a helper script `scripts/generate_webfonts.sh` which automates converting `.otf` files under `public/fonts/` into `ttf`, `woff` and `woff2` using `fontforge` and `woff2_compress`.
+
+Example (run locally):
+
+```bash
+# Install required system packages (Debian/Ubuntu example):
+sudo apt-get install -y fontforge woff2
+# Run the helper script
+./scripts/generate_webfonts.sh
+```
+
+The script is idempotent and will skip existing generated files. Keep in mind this installs system utilities and should be run on a trusted machine.
+
 ## Palette (suggested mapping)
 - Primary: #ec6b00 (orange)
 - Secondary: #ac612a (warm brown)
