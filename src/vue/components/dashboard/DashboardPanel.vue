@@ -13,5 +13,8 @@
 </script>
 <style scoped>
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.card { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+.card { padding: 12px; border-radius: 6px; }
+.card:first-child { background: $brand-primary; color: white; }
+.card:nth-child(2) { background: $brand-accent; color: white; }
+.card:nth-child(3) { background: $brand-paper; color: $brand-text; }
 </style>
