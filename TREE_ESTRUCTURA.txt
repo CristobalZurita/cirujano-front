@@ -5,6 +5,13 @@
 │       └── deploy.yml
 ├── .gitignore
 ├── BASE_DATOS.txt
+├── DE_PYTHON_NUEVO
+│   ├── capacitors_ceramic.json
+│   ├── cirujano_database.sql
+│   ├── cirujano_db_generator.py
+│   ├── integrated_circuits.json
+│   ├── resistors.json
+│   └── transistors.json
 ├── DOCUMJENTOS_EXTRAS
 │   ├── 00_COMIENZA_AQUI.txt
 │   ├── 00_EMPIEZA_AQUI.md
@@ -34,17 +41,236 @@
 │   ├── VOLCADO07.txt
 │   ├── VOLCADO08.txt
 │   ├── VOLCADO09.txt
-│   └── VOLCADO10.txt
+│   ├── VOLCADO10.txt
+│   ├── VOLCADO_CODE_FRONT_BACK.txt
+│   ├── VOLCADO_CODE_FRONT_BACK01.txt
+│   ├── VOLCADO_CODE_FRONT_BACK02.txt
+│   ├── VOLCADO_CODE_FRONT_BACK03.txt
+│   ├── VOLCADO_CODE_FRONT_BACK04.txt
+│   └── VOLCADO_PRO00.txt
+├── EJEMPLO_VUE
+│   ├── README.md
+│   ├── discount-code.html
+│   ├── docs.html
+│   ├── hire-us.html
+│   ├── landingpage
+│   │   ├── assets
+│   │   │   ├── .DS_Store
+│   │   │   ├── images
+│   │   │   │   ├── blue-circle.jpg
+│   │   │   │   ├── dark-circle.jpg
+│   │   │   │   ├── favicon.png
+│   │   │   │   ├── light-circle.jpg
+│   │   │   │   └── logo-text.svg
+│   │   │   └── plugins
+│   │   │       ├── bootstrap
+│   │   │       ├── jquery
+│   │   │       ├── owl.carousel
+│   │   │       └── popper.js
+│   │   └── index.html
+│   └── package
+│       ├── .env
+│       ├── .eslintrc.cjs
+│       ├── .gitignore
+│       ├── .npmrc
+│       ├── .prettierrc
+│       ├── README.md
+│       ├── env.d.ts
+│       ├── index.html
+│       ├── netlify.toml
+│       ├── package.json
+│       ├── public
+│       │   ├── _redirects
+│       │   ├── assets
+│       │   │   └── images
+│       │   │       ├── icon
+│       │   │       │   ├── danger.svg
+│       │   │       │   ├── success.svg
+│       │   │       │   └── warning.svg
+│       │   │       ├── products
+│       │   │       │   ├── 1.jpg
+│       │   │       │   ├── 2.jpg
+│       │   │       │   ├── 3.jpg
+│       │   │       │   └── 4.jpg
+│       │   │       └── users
+│       │   │           ├── 1.jpg
+│       │   │           ├── 2.jpg
+│       │   │           ├── 3.jpg
+│       │   │           ├── 4.jpg
+│       │   │           ├── 5.jpg
+│       │   │           ├── 6.jpg
+│       │   │           ├── 7.jpg
+│       │   │           ├── 8.jpg
+│       │   │           ├── user.jpg
+│       │   │           └── user2.jpg
+│       │   └── favicon.png
+│       ├── src
+│       │   ├── App.vue
+│       │   ├── assets
+│       │   │   └── images
+│       │   │       ├── backgrounds
+│       │   │       │   ├── errorimg.svg
+│       │   │       │   ├── materialm-free-tailwind-nextjs-v2.zip
+│       │   │       │   └── sidebar-buynow-bg.svg
+│       │   │       ├── blog
+│       │   │       │   ├── blog-img1.jpg
+│       │   │       │   └── blog-img4.jpg
+│       │   │       ├── logos
+│       │   │       │   ├── logo-dark-rtl.svg
+│       │   │       │   ├── logo-dark.svg
+│       │   │       │   ├── logo-light-rtl.svg
+│       │   │       │   ├── logo-light.svg
+│       │   │       │   └── logo-wrappixel.svg
+│       │   │       ├── products
+│       │   │       │   ├── s11.jpg
+│       │   │       │   ├── s4.jpg
+│       │   │       │   ├── s5.jpg
+│       │   │       │   └── s7.jpg
+│       │   │       ├── profile
+│       │   │       │   ├── user-1.jpg
+│       │   │       │   ├── user-10.jpg
+│       │   │       │   ├── user-2.jpg
+│       │   │       │   ├── user-3.jpg
+│       │   │       │   ├── user-4.jpg
+│       │   │       │   ├── user-5.jpg
+│       │   │       │   ├── user-6.jpg
+│       │   │       │   ├── user-7.jpg
+│       │   │       │   ├── user-8.jpg
+│       │   │       │   ├── user-9.jpg
+│       │   │       │   ├── user1.jpg
+│       │   │       │   ├── user2.jpg
+│       │   │       │   ├── user3.jpg
+│       │   │       │   ├── user4.jpg
+│       │   │       │   ├── user5.jpg
+│       │   │       │   └── user6.jpg
+│       │   │       └── technology
+│       │   │           ├── angular-cat-icon.svg
+│       │   │           ├── bt-cat-icon.svg
+│       │   │           ├── next-cat-icon.svg
+│       │   │           ├── nuxt-cat-icon.svg
+│       │   │           ├── react-cat-icon.svg
+│       │   │           ├── tailwind-icon.svg
+│       │   │           └── vue-cat-icon.svg
+│       │   ├── components
+│       │   │   ├── auth
+│       │   │   │   ├── LoginForm.vue
+│       │   │   │   └── RegisterForm.vue
+│       │   │   ├── dashboards
+│       │   │   │   ├── ProductCards.vue
+│       │   │   │   ├── ProductSales.vue
+│       │   │   │   ├── ProfitExpense.vue
+│       │   │   │   ├── TopPayingClients.vue
+│       │   │   │   ├── TrafficDistribution.vue
+│       │   │   │   └── UpcommingSchedule.vue
+│       │   │   ├── shared
+│       │   │   │   ├── BaseCard.vue
+│       │   │   │   ├── CardHeaderFooter.vue
+│       │   │   │   ├── UiChildCard.vue
+│       │   │   │   ├── UiParentCard.vue
+│       │   │   │   └── UiParentCardLogo.vue
+│       │   │   └── ui-components
+│       │   │       ├── alert
+│       │   │       │   ├── Basic.vue
+│       │   │       │   ├── Closable.vue
+│       │   │       │   └── Filled.vue
+│       │   │       ├── button
+│       │   │       │   ├── BaseButtons.vue
+│       │   │       │   ├── ColorsButtons.vue
+│       │   │       │   ├── IconColorSizes.vue
+│       │   │       │   ├── OutlinedButtons.vue
+│       │   │       │   ├── SizeButtons.vue
+│       │   │       │   └── TextButtons.vue
+│       │   │       └── cards
+│       │   │           ├── CardsContentWrap.vue
+│       │   │           ├── CardsMedia.vue
+│       │   │           ├── CardsProps.vue
+│       │   │           ├── CardsSlots.vue
+│       │   │           ├── CardsTwitter.vue
+│       │   │           └── CardsWeather.vue
+│       │   ├── data
+│       │   │   └── dashboard
+│       │   │       └── dashboardData.ts
+│       │   ├── layouts
+│       │   │   ├── blank
+│       │   │   │   └── BlankLayout.vue
+│       │   │   └── full
+│       │   │       ├── FullLayout.vue
+│       │   │       ├── Main.vue
+│       │   │       ├── Topbar.vue
+│       │   │       ├── logo
+│       │   │       │   ├── Logo.vue
+│       │   │       │   └── LogoDark.vue
+│       │   │       ├── vertical-header
+│       │   │       │   ├── NotificationDD.vue
+│       │   │       │   └── ProfileDD.vue
+│       │   │       └── vertical-sidebar
+│       │   │           ├── DropDown
+│       │   │           │   └── index.vue
+│       │   │           ├── Icon.vue
+│       │   │           ├── NavCollapse
+│       │   │           │   └── NavCollapse.vue
+│       │   │           ├── NavGroup
+│       │   │           │   └── index.vue
+│       │   │           ├── NavItem
+│       │   │           │   └── index.vue
+│       │   │           └── sidebarItem.ts
+│       │   ├── main.ts
+│       │   ├── plugins
+│       │   │   └── vuetify.ts
+│       │   ├── router
+│       │   │   ├── AuthRoutes.ts
+│       │   │   ├── MainRoutes.ts
+│       │   │   └── index.ts
+│       │   ├── scss
+│       │   │   ├── _override.scss
+│       │   │   ├── _variables.scss
+│       │   │   ├── components
+│       │   │   │   ├── _VButtons.scss
+│       │   │   │   ├── _VCard.scss
+│       │   │   │   ├── _VInput.scss
+│       │   │   │   ├── _VNavigationDrawer.scss
+│       │   │   │   ├── _VShadow.scss
+│       │   │   │   └── _VTextField.scss
+│       │   │   ├── layout
+│       │   │   │   ├── _container.scss
+│       │   │   │   ├── _sidebar.scss
+│       │   │   │   └── _topbar.scss
+│       │   │   ├── pages
+│       │   │   │   ├── _authentication.scss
+│       │   │   │   └── _dashboards.scss
+│       │   │   └── style.scss
+│       │   ├── theme
+│       │   │   └── LightTheme.ts
+│       │   ├── types
+│       │   │   ├── dashboard
+│       │   │   │   └── index.ts
+│       │   │   └── themeTypes
+│       │   │       └── ThemeType.ts
+│       │   └── views
+│       │       ├── authentication
+│       │       │   ├── BoxedLogin.vue
+│       │       │   ├── BoxedRegister.vue
+│       │       │   └── Error.vue
+│       │       ├── dashboard
+│       │       │   └── index.vue
+│       │       ├── icons
+│       │       │   └── TablerIcons.vue
+│       │       ├── pages
+│       │       │   ├── Icons.vue
+│       │       │   └── SamplePage.vue
+│       │       └── ui-components
+│       │           ├── Alerts.vue
+│       │           ├── Buttons.vue
+│       │           ├── Cards.vue
+│       │           └── Tables.vue
+│       ├── tsconfig.json
+│       ├── tsconfig.vite-config.json
+│       └── vite.config.ts
 ├── Inventario_Cirujanosintetizadores.xlsx
 ├── README.md
 ├── TREE_ESTRUCTURA.txt
-├── VOLCADO_CODE_FRONT_BACK.txt
-├── VOLCADO_CODE_FRONT_BACK01.txt
-├── VOLCADO_CODE_FRONT_BACK02.txt
-├── VOLCADO_CODE_FRONT_BACK03.txt
-├── VOLCADO_CODE_FRONT_BACK04.txt
-├── VOLCADO_PRO00.txt
 ├── VOLCADO_PRO01.txt
+├── VOLCADO_PRO06.txt
 ├── backend
 │   ├── .env.example
 │   ├── app
@@ -91,7 +317,13 @@
 │   │   │   └── user.py
 │   │   ├── routers
 │   │   │   ├── __init__.py
-│   │   │   └── diagnostic.py
+│   │   │   ├── category.py
+│   │   │   ├── contact.py
+│   │   │   ├── diagnostic.py
+│   │   │   ├── instrument.py
+│   │   │   ├── repair.py
+│   │   │   ├── stock_movement.py
+│   │   │   └── user.py
 │   │   ├── schemas
 │   │   │   ├── __init__.py
 │   │   │   ├── auth.py
@@ -107,9 +339,11 @@
 │   │       ├── image_analysis.py
 │   │       ├── pdf_generator.py
 │   │       └── quote_calculator.py
+│   ├── cirujano.db
 │   └── requirements.txt
 ├── cirujano.db
 ├── database
+│   ├── cirujano_database.sql
 │   ├── migrations
 │   │   └── .gitkeep
 │   └── seeds
@@ -118,6 +352,8 @@
 │       ├── 003_instruments.sql
 │       ├── 004_faults.sql
 │       └── 005_admin_user.sql
+├── docs
+│   └── ARCHITECTURE.md
 ├── exit
 ├── image
 │   ├── ARQUITECTURA_RAG_BUSCADOR_IA_2026-01-05copy
@@ -231,7 +467,37 @@
 │       │   ├── KORG_VOLCA_SAMPLE_1.jpg
 │       │   ├── KORG_X50.jpg
 │       │   ├── KORG_X5D.jpg
-│       │   └── KORH_01WFD.png
+│       │   ├── KORH_01WFD.png
+│       │   ├── LOGO_ACCESS.jpg
+│       │   ├── LOGO_AKAI.png
+│       │   ├── LOGO_ALESIS.jpg
+│       │   ├── LOGO_ALESIS.png
+│       │   ├── LOGO_ARP.jpg
+│       │   ├── LOGO_ARP.png
+│       │   ├── LOGO_ARTURIA.jpg
+│       │   ├── LOGO_ARTURIA.png
+│       │   ├── LOGO_BEHERINGER.png
+│       │   ├── LOGO_BOSS.jpg
+│       │   ├── LOGO_CASIO.png
+│       │   ├── LOGO_DAVESMITH.png
+│       │   ├── LOGO_DOEPFER.jpeg
+│       │   ├── LOGO_ELECTRO_HARMONIX.png
+│       │   ├── LOGO_ENSONIQ.png
+│       │   ├── LOGO_KAWAI.png
+│       │   ├── LOGO_KORG.png
+│       │   ├── LOGO_KURZWEIL.jpg
+│       │   ├── LOGO_MOOG.png
+│       │   ├── LOGO_MXR.png
+│       │   ├── LOGO_M_AUDIO.jpg
+│       │   ├── LOGO_NORD.jpg
+│       │   ├── LOGO_NOVATION.png
+│       │   ├── LOGO_OBERHEIM.png
+│       │   ├── LOGO_PEAVEY.svg
+│       │   ├── LOGO_ROLAND.png
+│       │   ├── LOGO_SEQUENTIAL.png
+│       │   ├── LOGO_SIEL.png
+│       │   ├── LOGO_WALDORF.png
+│       │   └── LOGO_YAMAHA.png
 │       ├── logo
 │       │   ├── Logo Nuevo.jpg
 │       │   ├── NUEVO_cirujano.png
@@ -254,7 +520,8 @@
 │   └── agency-logo.png
 ├── scripts
 │   ├── add_image_block.py
-│   └── complete_instruments_data.py
+│   ├── complete_instruments_data.py
+│   └── generate_db_from_excel.py
 ├── src
 │   ├── assets
 │   │   ├── data
@@ -274,10 +541,15 @@
 │   │   ├── strings.js
 │   │   ├── useApi.js
 │   │   ├── useAuth.js
+│   │   ├── useCategories.js
 │   │   ├── useDiagnostic.js
+│   │   ├── useDiagnostics.js
+│   │   ├── useInstruments.js
 │   │   ├── useInstrumentsCatalog.js
 │   │   ├── useInventory.js
 │   │   ├── useRepairs.js
+│   │   ├── useStockMovements.js
+│   │   ├── useUsers.js
 │   │   └── utils.js
 │   ├── main.js
 │   ├── models
@@ -293,22 +565,36 @@
 │   │   └── style.scss
 │   ├── stores
 │   │   ├── auth.js
+│   │   ├── categories.js
+│   │   ├── diagnostics.js
+│   │   ├── instruments.js
 │   │   ├── inventory.js
 │   │   ├── repairs.js
+│   │   ├── stockMovements.js
 │   │   └── users.js
 │   └── vue
 │       ├── components
 │       │   ├── admin
+│       │   │   ├── CategoryForm.vue
+│       │   │   ├── CategoryList.vue
 │       │   │   ├── CategoryManager.vue
 │       │   │   ├── ClientDetail.vue
 │       │   │   ├── ClientList.vue
+│       │   │   ├── DiagnosticsList.vue
+│       │   │   ├── InstrumentForm.vue
+│       │   │   ├── InstrumentList.vue
 │       │   │   ├── InventoryAlerts.vue
 │       │   │   ├── InventoryForm.vue
 │       │   │   ├── InventoryTable.vue
+│       │   │   ├── RepairForm.vue
 │       │   │   ├── RepairManager.vue
 │       │   │   ├── RepairStatusEditor.vue
+│       │   │   ├── RepairsList.vue
 │       │   │   ├── StatsCards.vue
-│       │   │   └── StockMovements.vue
+│       │   │   ├── StockMovements.vue
+│       │   │   ├── StockMovementsList.vue
+│       │   │   ├── UserForm.vue
+│       │   │   └── UserList.vue
 │       │   ├── ai
 │       │   │   ├── AIAnalysisResult.vue
 │       │   │   ├── FaultDetector.vue
@@ -339,6 +625,7 @@
 │       │   │   ├── PasswordReset.vue
 │       │   │   └── RegisterForm.vue
 │       │   ├── dashboard
+│       │   │   ├── DashboardPanel.vue
 │       │   │   ├── QuickStats.vue
 │       │   │   ├── RepairCard.vue
 │       │   │   ├── RepairTimeline.vue
@@ -438,4 +725,4 @@
 │           └── StateProviderLayer.vue
 └── vite.config.js
 
-65 directories, 374 files
+128 directories, 598 files
