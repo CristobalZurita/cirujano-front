@@ -33,8 +33,8 @@ asyncpg==0.29.0
 # Optional: For Redis caching
 redis==5.0.1
 
-# Rate limiting
-slowapi==0.1.5
+# Rate limiting (compatible with slowapi <2.0)
+limits==1.6.0
 limits==2.12
 
 # File validation
