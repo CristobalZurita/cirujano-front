@@ -12,8 +12,9 @@
                 {{link.label}}
             </div>
 
-            <!-- Icon -->
-            <i :class="link.faIcon"/>
+            <!-- Icon: prefer local svg files, fallback to font-awesome -->
+            <img v-if="link.iconPath" :src="link.iconPath" alt="" style="width:1em; height:1em;" />
+            <i v-else :class="link.faIcon"/>
         </a>
     </div>
 </template>
@@ -21,6 +22,9 @@
 <script setup>
 
 import {computed} from "vue"
+import facebookIcon from "/src/assets/icons/facebook.svg"
+import instagramIcon from "/src/assets/icons/instagram.svg"
+import twitterIcon from "/src/assets/icons/twitter.svg"
 /**
  * @property {Array} items
  * @property {String} size
@@ -34,11 +38,18 @@ const props = defineProps({
 })
 
 const parsedLinks = computed(() => {
-    return props.items.map(item => ({
-        href: item.href || "/",
-        label: item.label || "",
-        faIcon: item.faIcon || "fa-solid fa-eye"
-    }))
+    return (props.items || []).map(item => {
+        const href = item.href || "/"
+        const label = item.label || ""
+        // Prefer local SVGs when available
+        let iconPath = null
+        const fa = (item.faIcon || '').toLowerCase()
+        if (fa.includes('instagram')) iconPath = instagramIcon
+        else if (fa.includes('facebook')) iconPath = facebookIcon
+        else if (fa.includes('twitter')) iconPath = twitterIcon
+
+        return { href, label, faIcon: item.faIcon || 'fa-solid fa-eye', iconPath }
+    })
 })
 
 const classList = computed(() => {

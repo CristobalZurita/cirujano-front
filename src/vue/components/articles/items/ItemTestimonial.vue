@@ -2,7 +2,7 @@
     <div class="foxy-testimonial-item card h-100">
         <!-- Header -->
         <div class="card-header">
-            <ImageView :src="props.image"
+            <ImageView :src="props.image || '/images/avatars/default.svg'"
                        :alt="props.title"
                        class="foxy-testimonial-thumbnail"/>
 

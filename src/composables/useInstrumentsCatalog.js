@@ -64,9 +64,9 @@ export function useInstrumentsCatalog() {
       return instrument.imagen_url
     }
 
-    // Priority 2: Generate from convention
+    // Priority 2: Generate from convention (use Spanish 'instrumentos' directory)
     if (instrument?.id) {
-      return `/images/instruments/${instrument.id}.jpg`
+      return `/images/instrumentos/${instrument.id}.jpg`
     }
 
     // Priority 3: Placeholder
@@ -83,11 +83,8 @@ export function useInstrumentsCatalog() {
     return {
       ...inst,
       imagePath: getInstrumentImage(inst),
-      estimatedPrice: inst.valor_estimado
-        ? Math.round(
-            (inst.valor_estimado.min + inst.valor_estimado.max) / 2
-          )
-        : 0,
+      // Do not include any price/valor fields for frontend rendering
+      // Prices are not rendered in the frontend by design
       displayName: `${inst.model} (${inst.year || '?'})`,
       brandLabel: getBrandById(inst.brand)?.name || inst.brand
     }

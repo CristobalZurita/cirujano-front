@@ -43,7 +43,7 @@
             <h4>{{ currentInstrument?.model || 'Cargando...' }}</h4>
             <p v-if="currentInstrument?.type">{{ currentInstrument.type }} ({{ currentInstrument?.year }})</p>
             <p v-if="currentInstrument?.description">{{ currentInstrument.description }}</p>
-            <p v-if="currentInstrument?.valor_estimado">Valor est.: ${{ formatPrice((currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2) }}</p>
+            <p><!-- Price display intentionally removed from UI --></p>
           </div>
         </div>
       </div>
@@ -107,9 +107,7 @@
               <strong>{{ fault.name }}</strong>
             </div>
             <p class="fault-description">{{ fault.description }}</p>
-            <span class="fault-price" v-if="fault.basePrice">
-              Desde ${{ formatPrice(fault.basePrice) }}
-            </span>
+              <p><!-- Price display removed for faults --></p>
           </div>
         </div>
       </div>
@@ -196,13 +194,7 @@
       <div class="quote-summary">
         <div class="equipment-info">
           <h4>{{ catalog.getBrandById(selectedBrandLocal)?.name }} {{ currentInstrument?.model }}</h4>
-          <p class="equipment-value" v-if="currentInstrument?.valor_estimado">
-            Valor estimado: ${{
-              formatPrice(
-                (currentInstrument.valor_estimado.min + currentInstrument.valor_estimado.max) / 2
-              )
-            }}
-          </p>
+            <p><!-- Price hidden by policy --></p>
         </div>
 
         <div class="faults-summary">
@@ -210,30 +202,13 @@
           <ul>
             <li v-for="faultId in diagnostic.getEffectiveFaults()" :key="faultId">
               {{ diagnostic.faults.value[faultId]?.name }}
-              <span class="fault-base-price">
-                +${{ formatPrice(diagnostic.faults.value[faultId]?.basePrice) }}
-              </span>
+                <p><!-- Price display removed for faults --></p>
             </li>
           </ul>
         </div>
 
         <div v-if="quoteData" class="pricing-breakdown">
-          <div class="price-row">
-            <span>Subtotal (diagnóstico):</span>
-            <span>${{ formatPrice(quoteData.baseCost) }}</span>
-          </div>
-          <div class="price-row">
-            <span>Factor complejidad ({{ currentBrand?.tier }}):</span>
-            <span>× {{ quoteData.complexityFactor?.toFixed(2) ?? 'N/A' }}</span>
-          </div>
-          <div class="price-row">
-            <span>Factor valor equipo:</span>
-            <span>× {{ quoteData.valueFactor?.toFixed(2) ?? 'N/A' }}</span>
-          </div>
-          <div class="price-row total">
-            <span>Cotización Total:</span>
-            <span class="total-price">${{ formatPrice(quoteData.finalCost) }}</span>
-          </div>
+            <p class="muted">Los detalles de coste no se muestran en esta interfaz. Consulta en taller para una cotización detallada.</p>
         </div>
         <div v-else class="quote-error">
           <i class="fas fa-exclamation-triangle"></i>

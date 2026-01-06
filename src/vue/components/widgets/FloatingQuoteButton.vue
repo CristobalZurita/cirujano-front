@@ -11,6 +11,11 @@
       <span class="btn-text">¡COTIZA YA!</span>
     </button>
 
+    <!-- Scroll to top small button -->
+    <button v-if="showScrollTop" @click="goTop" class="scroll-top" aria-label="Subir al inicio" title="Ir arriba">
+      ↑
+    </button>
+
     <!-- Tooltip -->
     <div class="tooltip-text" v-if="showTooltip">
       Cotiza ahora
@@ -26,6 +31,7 @@ const loaderActive = inject("loaderActive", ref(true))
 
 const isPulsing = ref(true)
 const showTooltip = ref(false)
+const showScrollTop = ref(false)
 let tooltipTimer = null
 
 const scrollToQuote = () => {
@@ -34,6 +40,8 @@ const scrollToQuote = () => {
     quoteSection.scrollIntoView({ behavior: 'smooth' })
   }
 }
+
+const goTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
 const handleMouseEnter = () => {
   showTooltip.value = true
@@ -52,10 +60,18 @@ onMounted(() => {
     btn.addEventListener('mouseenter', handleMouseEnter)
     btn.addEventListener('mouseleave', handleMouseLeave)
   }
+
+  const onScroll = () => {
+    showScrollTop.value = window.scrollY > 300
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
 })
 
 onUnmounted(() => {
   if (tooltipTimer) clearTimeout(tooltipTimer)
+  window.removeEventListener('scroll', () => {})
 })
 </script>
 
@@ -146,6 +162,23 @@ onUnmounted(() => {
       border-bottom: 4px solid transparent;
     }
   }
+
+  .scroll-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .scroll-top:hover { transform: translateY(-3px) }
 }
 
 // Animations

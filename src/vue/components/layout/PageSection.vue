@@ -9,7 +9,17 @@
 
         <!-- Container -->
         <div class="container-xxl">
-            <slot/>
+            <header v-if="$slots.header">
+                <slot name="header" />
+            </header>
+
+            <div class="section-content">
+                <slot />
+            </div>
+
+            <footer v-if="$slots.footer">
+                <slot name="footer" />
+            </footer>
         </div>
     </section>
 </template>
@@ -46,6 +56,12 @@ section.foxy-section {
 
     background-color: $background-color;
     position: relative;
+
+    .section-content {
+        max-width: 75ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     .foxy-promo-background {
         display: block;

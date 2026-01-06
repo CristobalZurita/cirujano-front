@@ -15,7 +15,7 @@
                    :class="descriptionTextClass"/>
 
                 <!-- Button -->
-                <Link :url="buttonUrl">
+                <Link v-if="buttonLabel && buttonUrl" :url="buttonUrl">
                     <XLButton :label="buttonLabel"
                               :icon="buttonFaIcon"
                               :class="`mt-4`"/>

@@ -63,3 +63,27 @@ a {
 p {
     color: $text-normal;
 }
+
+/* -- Global typography adjustments: base scale and desktop reading width -- */
+html {
+    /* responsive base font-size */
+    font-size: clamp(15px, 0.9vw + 14px, 18px);
+}
+
+body {
+    font-family: "CervoNeueCon-Regular", Arial, sans-serif;
+    line-height: 1.55;
+}
+
+/* Headings tuned for readable scales */
+h1 { font-size: clamp(1.6rem, 2.6vw + 0.6rem, 2.6rem); }
+h2 { font-size: clamp(1.4rem, 2.1vw + 0.4rem, 2rem); }
+h3 { font-size: clamp(1.2rem, 1.6vw + 0.2rem, 1.4rem); }
+p, li, span { font-size: 1rem; }
+
+/* Content reading width for large screens (desktop) */
+.readable {
+    max-width: 75ch;
+    margin-left: auto;
+    margin-right: auto;
+}

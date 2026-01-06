@@ -106,3 +106,28 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   height: auto !important;       /* mantiene proporción horizontal */
   object-fit: contain;
 }
+
+/* Prevent horizontal overflow and control overscroll behaviour globally (mobile fix) */
+html, body {
+        overflow-x: hidden;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure hero header doesn't clip content and stack correctly */
+header.foxy-header {
+    overflow: visible;
+}
+.foxy-hero-header-logo.image-view {
+    position: relative;
+    z-index: 3;
+}
+.foxy-promo-background { z-index: 1 }
+
+/* If two footers are present by mistake, hide the second to avoid visual duplication */
+.foxy-footer + .foxy-footer { display: none !important }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+}

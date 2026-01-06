@@ -2,9 +2,11 @@
     <div class="foxy-page-wrapper"
          :class="noPadding ? `foxy-page-wrapper-no-padding` : ``"
          :id="props.id">
-        <component v-for="sectionInfo in sections"
-                   :is="sectionInfo.component"
-                   :id="sectionInfo.id"/>
+        <div class="foxy-page-inner readable">
+            <component v-for="sectionInfo in sections"
+                       :is="sectionInfo.component"
+                       :id="sectionInfo.id"/>
+        </div>
     </div>
 </template>
 

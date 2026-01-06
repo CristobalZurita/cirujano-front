@@ -108,6 +108,8 @@ header.foxy-header {
         justify-content: center;
         flex-direction: column;
         padding-top:var(--content-margin-top);
+        position: relative;
+        z-index: 3;
     }
 
     div.foxy-hero-header-logo {

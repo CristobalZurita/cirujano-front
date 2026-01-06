@@ -15,27 +15,27 @@
                     <ContactForm/>
                 </div>
 
-                <!-- Mapa de ubicación (Google Maps embed) - Abajo del formulario -->
-                <div class="contact-map-section">
-                    <h3>Nuestra ubicación</h3>
-                    
-                    <div class="contact-map-container">
-                        <div class="map-wrapper">
-                            <iframe
-                                title="Mapa - Eusebio Lillo 362, Valparaíso"
-                                src="https://www.google.com/maps?q=Eusebio%20Lillo%20362,%20Valparaiso,%20Chile%2C%20CP%202350454&output=embed"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div>
+                <!-- Contact grid: box + map -->
+                <div class="contact-grid">
+                  <div class="contact-box">
+                    <strong>Dirección</strong>
+                    <p>Eusebio Lillo 362</p>
 
-                        <div class="address-info">
-                            <h4>Dirección</h4>
-                            <p>Eusebio Lillo 362</p>
-                            <p>Valparaíso, Chile</p>
-                            <p>CP: 2350454</p>
-                        </div>
-                    </div>
+                    <strong>Teléfono</strong>
+                    <p>+56 9 8295 7538</p>
+
+                    <strong>Email</strong>
+                    <p>contacto@cirujanodesintetizadores.com</p>
+                  </div>
+
+                  <div class="map-frame">
+                    <iframe
+                      title="Mapa - Eusebio Lillo 362, Valparaíso"
+                      src="https://www.google.com/maps?q=Eusebio%20Lillo%20362,%20Valparaiso,%20Chile%2C%20CP%202350454&output=embed"
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                  </div>
                 </div>
 
             </ArticleCustomContent>
@@ -79,10 +79,28 @@ const props = defineProps({
 }
 
 .contact-map-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: stretch;
+  display: block;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-box {
+  border: 1px solid #ddd;
+  padding: 24px;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+}
 }
 
 .map-wrapper {
@@ -98,6 +116,8 @@ const props = defineProps({
     border: none;
   }
 }
+
+.map-frame iframe { width: 100%; height: 100%; border: none; }
 
 /* Address info styling */
 .address-info {
