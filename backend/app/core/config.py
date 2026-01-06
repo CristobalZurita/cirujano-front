@@ -25,20 +25,26 @@ class Settings(BaseModel):
     database_url: str = os.getenv("DATABASE_URL", "sqlite:///./cirujano.db")
     database_echo: bool = False
 
-    # JWT Configuration
-    secret_key: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
-    jwt_secret: str = os.getenv("JWT_SECRET", "your-jwt-secret-change-in-production")
-    jwt_refresh_secret: str = os.getenv("JWT_REFRESH_SECRET", "your-jwt-refresh-secret-change-in-production")
+    # JWT Configuration - do NOT include production secrets in code
+    secret_key: Optional[str] = os.getenv("SECRET_KEY")
+    jwt_secret: Optional[str] = os.getenv("JWT_SECRET")
+    jwt_refresh_secret: Optional[str] = os.getenv("JWT_REFRESH_SECRET")
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
     # CORS Configuration
-    allowed_origins: list = [
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173",
-    ]
+    # ALLOWED_ORIGINS can be provided as a comma-separated env var
+    _allowed_origins_env: Optional[str] = os.getenv("ALLOWED_ORIGINS")
+    if _allowed_origins_env:
+        allowed_origins: list = [o.strip() for o in _allowed_origins_env.split(",") if o.strip()]
+    else:
+        # sensible defaults for development
+        allowed_origins: list = [
+            "http://localhost:3000",
+            "http://localhost:5173",
+            "http://127.0.0.1:3000",
+            "http://127.0.0.1:5173",
+        ]
 
     # Email Configuration
     smtp_server: Optional[str] = None
@@ -70,6 +76,16 @@ class Settings(BaseModel):
 
 # Instantiate settings with environment variables
 settings = Settings()
+
+# Validate critical secrets in production-like environments
+if settings.environment and settings.environment.lower() in ("production", "prod"):
+    missing = []
+    if not settings.secret_key:
+        missing.append("SECRET_KEY")
+    if not settings.jwt_secret:
+        missing.append("JWT_SECRET")
+    if missing:
+        raise ValueError(f"Missing required environment variables for production: {', '.join(missing)}")
 
 
 def get_settings() -> Settings:

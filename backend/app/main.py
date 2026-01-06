@@ -8,6 +8,7 @@ and comprehensive diagnostic/quotation system.
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 import logging
@@ -15,6 +16,9 @@ import logging
 from backend.app.core.config import settings
 from backend.app.core.database import init_db, close_db
 from backend.app.api.v1.router import api_router
+from backend.app.core.ratelimit import limiter
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import _rate_limit_exceeded_handler
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -63,6 +67,27 @@ app.add_middleware(
 )
 
 logger.info(f"CORS configured for origins: {settings.allowed_origins}")
+
+# Enforce HTTPS and add basic security headers when running in production
+if settings.environment and settings.environment.lower() in ("production", "prod"):
+    # Redirect HTTP to HTTPS
+    app.add_middleware(HTTPSRedirectMiddleware)
+
+    @app.middleware("http")
+    async def add_security_headers(request, call_next):
+        response = await call_next(request)
+        # HSTS: 2 years, include subdomains, preload
+        response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload"
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "no-referrer-when-downgrade"
+        response.headers["Permissions-Policy"] = "geolocation=(), microphone=()"
+        return response
+
+
+    # Attach rate limiter to the application state and register handler
+    app.state.limiter = limiter
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Include API v1 routes
 app.include_router(api_router)

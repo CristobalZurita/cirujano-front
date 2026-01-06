@@ -33,5 +33,13 @@ asyncpg==0.29.0
 # Optional: For Redis caching
 redis==5.0.1
 
+# Rate limiting
+slowapi==0.1.5
+limits==2.12
+
+# File validation
+Pillow==10.1.0
+python-magic==0.4.27
+
 # Optional: For Celery async tasks
 celery==5.3.4

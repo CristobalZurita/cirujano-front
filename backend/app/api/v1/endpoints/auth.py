@@ -9,6 +9,7 @@ from backend.app.core.security import (
     hash_password, verify_password, create_access_token, create_refresh_token
 )
 from backend.app.core.dependencies import get_current_user
+from backend.app.core.ratelimit import limiter
 from backend.app.models.user import User
 from backend.app.schemas.auth import (
     LoginRequest, RegisterRequest, Token, PasswordResetRequest
@@ -66,6 +67,7 @@ async def register(
 
 
 @router.post("/login", response_model=Token)
+@limiter.limit("5/minute")  # limit login attempts to mitigate brute-force
 async def login(
     request: LoginRequest,
     db: Session = Depends(get_db)
