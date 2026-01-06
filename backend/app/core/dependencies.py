@@ -3,14 +3,13 @@ Dependencias de FastAPI: get_current_user, etc.
 """
 from typing import Optional
 from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthCredentials
-from jose import JWTError
-from backend.app.core.security import verify_token
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from backend.app.core.security import verify_token, JWTError
 
 security = HTTPBearer()
 
 
-async def get_current_user(credentials: HTTPAuthCredentials = Depends(security)) -> dict:
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
     """
     Obtiene el usuario actual desde el JWT token
     
@@ -62,7 +61,7 @@ async def get_current_admin(user: dict = Depends(get_current_user)) -> dict:
     return user
 
 
-async def get_optional_user(credentials: Optional[HTTPAuthCredentials] = Depends(security)) -> Optional[dict]:
+async def get_optional_user(credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)) -> Optional[dict]:
     """
     Obtiene el usuario si está autenticado, sino retorna None
     Útil para endpoints que funcionan con o sin autenticación

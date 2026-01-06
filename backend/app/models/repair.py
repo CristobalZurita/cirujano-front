@@ -27,7 +27,7 @@ class Repair(Base):
     id = Column(Integer, primary_key=True, index=True)
     client_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
     instrument_id = Column(Integer, ForeignKey("instruments.id"), nullable=True)
-    diagnostic_id = Column(Integer, ForeignKey("diagnostics.id"), nullable=True)
+    # diagnostic_id removed to avoid circular FK ambiguity; Diagnostic.repair_id references Repair.id
     
     # Información general
     title = Column(String(255), nullable=False)
@@ -52,7 +52,7 @@ class Repair(Base):
     # Relaciones
     client = relationship("User", back_populates="repairs", foreign_keys=[client_id])
     instrument = relationship("Instrument", back_populates="repairs")
-    diagnostic = relationship("Diagnostic", back_populates="repair")
+    diagnostic = relationship("Diagnostic", back_populates="repair", uselist=False)
     
     def __repr__(self):
         return f"<Repair(id={self.id}, client_id={self.client_id}, status={self.status})>"

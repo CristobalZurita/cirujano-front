@@ -36,7 +36,7 @@ class Diagnostic(Base):
     notes = Column(Text, nullable=True)
     
     # Relaciones
-    repair = relationship("Repair", back_populates="diagnostic")
+    repair = relationship("Repair", back_populates="diagnostic", foreign_keys=[repair_id], uselist=False)
     
     def __repr__(self):
         return f"<Diagnostic(id={self.id}, ai_confidence={self.ai_confidence})>"

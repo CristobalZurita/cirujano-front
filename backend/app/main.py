@@ -18,7 +18,10 @@ from backend.app.core.database import init_db, close_db
 from backend.app.api.v1.router import api_router
 from backend.app.core.ratelimit import limiter
 from slowapi.errors import RateLimitExceeded
-from slowapi.util import _rate_limit_exceeded_handler
+
+
+async def _rate_limit_exceeded_handler(request, exc):
+    return JSONResponse(status_code=429, content={"detail": "Rate limit exceeded"})
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

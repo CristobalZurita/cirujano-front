@@ -6,8 +6,9 @@ client = TestClient(app)
 
 def test_login_rate_limit():
     url = "/api/v1/auth/login"
-    payload = {"email": "noone@example.com", "password": "wrong"}
-    headers = {"X-Real-Ip": "127.0.0.1"}
+    payload = {"email": "noone@example.com", "password": "wrongpw"}
+    # slowapi uses request.client; TestClient sets client host automatically. Keep headers minimal.
+    headers = {}
 
     # make several requests to trigger rate limit (limit is 5/minute)
     status_codes = []
