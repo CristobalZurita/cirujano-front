@@ -153,3 +153,35 @@ class QuoteEstimate(BaseModel):
     value_factor: float
     final_cost: float
     brand_tier: str
+
+
+# ============= PAYMENT =============
+class PaymentCreate(BaseModel):
+    repair_id: int
+    amount: int = Field(..., gt=0)
+    payment_method: str
+    transaction_id: Optional[str] = None
+    user_id: Optional[int] = None
+    status: Optional[str] = None
+    notes: Optional[str] = None
+
+    def validate_payment_method(self):
+        allowed = {"card", "cash", "transfer", "paypal"}
+        if self.payment_method not in allowed:
+            raise ValueError(f"Unsupported payment method: {self.payment_method}")
+
+
+class PaymentRead(BaseModel):
+    id: int
+    user_id: Optional[int]
+    repair_id: Optional[int]
+    amount: int
+    payment_method: str
+    transaction_id: Optional[str]
+    status: str
+    notes: Optional[str]
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True

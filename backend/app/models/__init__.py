@@ -9,6 +9,7 @@ from backend.app.models.inventory import Product
 from backend.app.models.brand import Brand
 from backend.app.models.instrument import Instrument
 from backend.app.models.stock_movement import StockMovement, MovementType
+from backend.app.models.payment import Payment, PaymentStatus
 
 __all__ = [
     "User", "UserRole",
@@ -19,4 +20,5 @@ __all__ = [
     "Brand",
     "Instrument",
     "StockMovement", "MovementType",
+    "Payment", "PaymentStatus",
 ]

@@ -10,6 +10,8 @@ try:
 	from backend.app.routers import category as category_router
 	from backend.app.routers import stock_movement as stock_movement_router
 	from backend.app.routers import contact as contact_router
+	from backend.app.routers import diagnostic as diagnostic_router
+	from backend.app.routers import payments as payments_router
 except Exception:
 	# Si los módulos no existen en este entorno, se ignoran
 	user_router = repair_router = instrument_router = category_router = stock_movement_router = contact_router = None
@@ -25,6 +27,22 @@ for name in ("repair", "user", "instrument", "category", "stock_movement", "cont
 			globals()[var_name] = mod
 		except Exception:
 			globals()[var_name] = None
+
+# Ensure payments router is also available on a second import pass
+if globals().get("payments_router") is None:
+	try:
+		mod = importlib.import_module("backend.app.routers.payments")
+		globals()["payments_router"] = mod
+	except Exception:
+		globals()["payments_router"] = None
+
+# Ensure diagnostic router is picked up on the second import pass as well
+if globals().get("diagnostic_router") is None:
+	try:
+		mod = importlib.import_module("backend.app.routers.diagnostic")
+		globals()["diagnostic_router"] = mod
+	except Exception:
+		globals()["diagnostic_router"] = None
 
 api_router = APIRouter(prefix="/api/v1")
 
@@ -46,3 +64,7 @@ if stock_movement_router:
 	api_router.include_router(stock_movement_router.router)
 if contact_router:
 	api_router.include_router(contact_router.router)
+if globals().get("diagnostic_router"):
+	api_router.include_router(globals()["diagnostic_router"].router)
+if globals().get("payments_router"):
+	api_router.include_router(globals()["payments_router"].router)

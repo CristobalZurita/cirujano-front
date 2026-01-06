@@ -1,0 +1,595 @@
+VOLCADO LEGIBLE (para revisión rápida)
+ROOT: /mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front
+GENERADO: 2026-01-06T08:20:31-03:00
+
+OBJETIVO: leer y entender el proyecto sin cargarlo de peso.
+INCLUYE: src/ + backend/ completos (código), configs raíz claves.
+RESUME: JSON grandes (estructura + head/tail).
+EXCLUYE: ejemplos, dist, plugins minificados, imágenes, node_modules.
+
+=== INDEX (ruta | bytes) ===
+./.env | 1002
+./.github/workflows/deploy.yml | 764
+./DE_PYTHON_NUEVO/capacitors_ceramic.json | 13477
+./DE_PYTHON_NUEVO/cirujano_db_generator.py | 44993
+./DE_PYTHON_NUEVO/integrated_circuits.json | 20959
+./DE_PYTHON_NUEVO/resistors.json | 29978
+./DE_PYTHON_NUEVO/transistors.json | 12441
+./DOCUMJENTOS_EXTRAS/00_EMPIEZA_AQUI.md | 5209
+./DOCUMJENTOS_EXTRAS/ANALISIS_ENTERPRISE_vs_REALIDAD.md | 9418
+./DOCUMJENTOS_EXTRAS/BOTONES_HERO.md | 3035
+./DOCUMJENTOS_EXTRAS/COMPARATIVA_VISUAL.md | 14910
+./DOCUMJENTOS_EXTRAS/ESTADO_FRONTEND.md | 5983
+./DOCUMJENTOS_EXTRAS/GUIA_RAPIDA.md | 7082
+./DOCUMJENTOS_EXTRAS/HOJA_DE_RUTA_CIRUJANO_2026.md | 23009
+./DOCUMJENTOS_EXTRAS/IMPLEMENTACION.md | 13332
+./DOCUMJENTOS_EXTRAS/IMPLEMENTACION_PRAGMATICA_45MIN.md | 9095
+./DOCUMJENTOS_EXTRAS/PLAN_IMPLEMENTACION_BACKEND.md | 9096
+./DOCUMJENTOS_EXTRAS/PROPUESTA_FINAL.md | 12438
+./DOCUMJENTOS_EXTRAS/RESUMEN_ARCHIVOS.md | 14846
+./DOCUMJENTOS_EXTRAS/RESUMEN_EJECUTIVO_OPINION.md | 5532
+./EJEMPLO_VUE/README.md | 15895
+./EJEMPLO_VUE/landingpage/assets/plugins/bootstrap/dist/css/bootstrap-grid.min.css | 28983
+./EJEMPLO_VUE/landingpage/assets/plugins/bootstrap/dist/css/bootstrap-reboot.min.css | 3944
+./EJEMPLO_VUE/landingpage/assets/plugins/bootstrap/dist/css/bootstrap.min.css | 140427
+./EJEMPLO_VUE/landingpage/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js | 70814
+./EJEMPLO_VUE/landingpage/assets/plugins/bootstrap/dist/js/bootstrap.min.js | 50682
+./EJEMPLO_VUE/landingpage/assets/plugins/jquery/dist/core.js | 9467
+./EJEMPLO_VUE/landingpage/assets/plugins/jquery/dist/jquery.min.js | 86929
+./EJEMPLO_VUE/landingpage/assets/plugins/jquery/dist/jquery.slim.min.js | 69919
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/assets/owl.carousel.css | 4930
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css | 3356
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/assets/owl.theme.default.css | 1430
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css | 1018
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/assets/owl.theme.green.css | 1428
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/assets/owl.theme.green.min.css | 1018
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/owl.carousel.js | 93440
+./EJEMPLO_VUE/landingpage/assets/plugins/owl.carousel/dist/owl.carousel.min.js | 44348
+./EJEMPLO_VUE/landingpage/assets/plugins/popper.js/dist/esm/popper-utils.min.js | 10329
+./EJEMPLO_VUE/landingpage/assets/plugins/popper.js/dist/esm/popper.min.js | 20319
+./EJEMPLO_VUE/landingpage/assets/plugins/popper.js/dist/popper-utils.min.js | 9874
+./EJEMPLO_VUE/landingpage/assets/plugins/popper.js/dist/popper.min.js | 19035
+./EJEMPLO_VUE/landingpage/assets/plugins/popper.js/dist/umd/popper-utils.min.js | 10492
+./EJEMPLO_VUE/landingpage/assets/plugins/popper.js/dist/umd/popper.min.js | 20342
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fa-brands.css | 699
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fa-brands.min.css | 636
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fa-regular.css | 719
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fa-regular.min.css | 654
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fa-solid.css | 713
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fa-solid.min.css | 646
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fontawesome-all.css | 48879
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fontawesome-all.min.css | 36993
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fontawesome.css | 47300
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/css/fontawesome.min.css | 35628
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_animated.scss | 320
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_bordered-pulled.scss | 448
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_core.scss | 308
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_fixed-width.scss | 126
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_icons.scss | 71096
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_larger.scss | 416
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_list.scss | 340
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_mixins.scss | 1350
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_rotated-flipped.scss | 794
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_screen-reader.scss | 135
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_stacked.scss | 523
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/_variables.scss | 24203
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/fa-brands.scss | 767
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/fa-regular.scss | 787
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/fa-solid.scss | 781
+./EJEMPLO_VUE/landingpage/dist/css/icons/font-awesome/scss/fontawesome.scss | 443
+./EJEMPLO_VUE/landingpage/dist/css/icons/material-design-iconic-font/css/material-design-iconic-font.css | 90505
+./EJEMPLO_VUE/landingpage/dist/css/icons/material-design-iconic-font/css/material-design-iconic-font.min.css | 70850
+./EJEMPLO_VUE/landingpage/dist/css/icons/material-design-iconic-font/css/materialdesignicons.min.css | 77567
+./EJEMPLO_VUE/landingpage/dist/css/style.css | 220601
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_alert.scss | 1201
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_badge.scss | 1029
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_breadcrumb.scss | 1319
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_button-group.scss | 3912
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_buttons.scss | 2884
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_card.scss | 6338
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_carousel.scss | 5489
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_close.scss | 908
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_code.scss | 1016
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_custom-forms.scss | 12382
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_dropdown.scss | 3919
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_forms.scss | 9154
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_functions.scss | 2746
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_grid.scss | 1068
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_images.scss | 1188
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_input-group.scss | 5067
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_jumbotron.scss | 394
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_list-group.scss | 3002
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_media.scss | 91
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_mixins.scss | 1025
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_modal.scss | 4813
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_nav.scss | 2140
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_navbar.scss | 6828
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_pagination.scss | 1952
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_popover.scss | 4719
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_print.scss | 3144
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_progress.scss | 898
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_reboot.scss | 11943
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_root.scss | 591
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_tables.scss | 3726
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_tooltip.scss | 2618
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_transitions.scss | 333
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_type.scss | 2240
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_utilities.scss | 451
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/_variables.scss | 39426
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/bootstrap-grid.scss | 681
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/bootstrap-reboot.scss | 423
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/bootstrap.scss | 924
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_alert.scss | 255
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_background-variant.scss | 495
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_badge.scss | 242
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_border-radius.scss | 757
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_box-shadow.scss | 92
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_breakpoints.scss | 4592
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_buttons.scss | 3291
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_caret.scss | 1544
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_clearfix.scss | 100
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_float.scss | 204
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_forms.scss | 3525
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_gradients.scss | 2095
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_grid-framework.scss | 1966
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_grid.scss | 1658
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_hover.scss | 786
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_image.scss | 1208
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_list-group.scss | 452
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_lists.scss | 175
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_nav-divider.scss | 271
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_pagination.scss | 475
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_reset-text.scss | 564
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_resize.scss | 208
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_screen-reader.scss | 766
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_size.scss | 104
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_table-row.scss | 677
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_text-emphasis.scss | 273
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_text-hide.scss | 411
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_text-truncate.scss | 176
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_transition.scss | 287
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/mixins/_visibility.scss | 141
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_align.scss | 428
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_background.scss | 416
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_borders.scss | 1610
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_clearfix.scss | 40
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_display.scss | 1447
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_embed.scss | 779
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_flex.scss | 2820
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_float.scss | 329
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_position.scss | 711
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_screenreaders.scss | 126
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_shadows.scss | 255
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_sizing.scss | 310
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_spacing.scss | 1457
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_text.scss | 1634
+./EJEMPLO_VUE/landingpage/dist/scss/bootstrap/utilities/_visibility.scss | 132
+./EJEMPLO_VUE/landingpage/dist/scss/custom.scss | 3405
+./EJEMPLO_VUE/landingpage/dist/scss/responsive.scss | 0
+./EJEMPLO_VUE/landingpage/dist/scss/style.scss | 346
+./EJEMPLO_VUE/landingpage/dist/scss/variable.scss | 6853
+./EJEMPLO_VUE/package/.env | 16
+./EJEMPLO_VUE/package/README.md | 593
+./EJEMPLO_VUE/package/env.d.ts | 39
+./EJEMPLO_VUE/package/netlify.toml | 56
+./EJEMPLO_VUE/package/package.json | 1386
+./EJEMPLO_VUE/package/src/App.vue | 133
+./EJEMPLO_VUE/package/src/components/auth/LoginForm.vue | 1864
+./EJEMPLO_VUE/package/src/components/auth/RegisterForm.vue | 977
+./EJEMPLO_VUE/package/src/components/dashboards/ProductCards.vue | 1725
+./EJEMPLO_VUE/package/src/components/dashboards/ProductSales.vue | 2812
+./EJEMPLO_VUE/package/src/components/dashboards/ProfitExpense.vue | 4538
+./EJEMPLO_VUE/package/src/components/dashboards/TopPayingClients.vue | 3053
+./EJEMPLO_VUE/package/src/components/dashboards/TrafficDistribution.vue | 3846
+./EJEMPLO_VUE/package/src/components/dashboards/UpcommingSchedule.vue | 1960
+./EJEMPLO_VUE/package/src/components/shared/BaseCard.vue | 416
+./EJEMPLO_VUE/package/src/components/shared/CardHeaderFooter.vue | 727
+./EJEMPLO_VUE/package/src/components/shared/UiChildCard.vue | 407
+./EJEMPLO_VUE/package/src/components/shared/UiParentCard.vue | 739
+./EJEMPLO_VUE/package/src/components/shared/UiParentCardLogo.vue | 787
+./EJEMPLO_VUE/package/src/components/ui-components/alert/Basic.vue | 452
+./EJEMPLO_VUE/package/src/components/ui-components/alert/Closable.vue | 710
+./EJEMPLO_VUE/package/src/components/ui-components/alert/Filled.vue | 417
+./EJEMPLO_VUE/package/src/components/ui-components/button/BaseButtons.vue | 500
+./EJEMPLO_VUE/package/src/components/ui-components/button/ColorsButtons.vue | 433
+./EJEMPLO_VUE/package/src/components/ui-components/button/IconColorSizes.vue | 615
+./EJEMPLO_VUE/package/src/components/ui-components/button/OutlinedButtons.vue | 440
+./EJEMPLO_VUE/package/src/components/ui-components/button/SizeButtons.vue | 589
+./EJEMPLO_VUE/package/src/components/ui-components/button/TextButtons.vue | 449
+./EJEMPLO_VUE/package/src/components/ui-components/cards/CardsContentWrap.vue | 2286
+./EJEMPLO_VUE/package/src/components/ui-components/cards/CardsMedia.vue | 891
+./EJEMPLO_VUE/package/src/components/ui-components/cards/CardsProps.vue | 392
+./EJEMPLO_VUE/package/src/components/ui-components/cards/CardsSlots.vue | 480
+./EJEMPLO_VUE/package/src/components/ui-components/cards/CardsTwitter.vue | 1752
+./EJEMPLO_VUE/package/src/components/ui-components/cards/CardsWeather.vue | 2855
+./EJEMPLO_VUE/package/src/data/dashboard/dashboardData.ts | 3601
+./EJEMPLO_VUE/package/src/layouts/blank/BlankLayout.vue | 235
+./EJEMPLO_VUE/package/src/layouts/full/FullLayout.vue | 605
+./EJEMPLO_VUE/package/src/layouts/full/Main.vue | 4133
+./EJEMPLO_VUE/package/src/layouts/full/Topbar.vue | 4915
+./EJEMPLO_VUE/package/src/layouts/full/logo/Logo.vue | 129
+./EJEMPLO_VUE/package/src/layouts/full/logo/LogoDark.vue | 293
+./EJEMPLO_VUE/package/src/layouts/full/vertical-header/NotificationDD.vue | 275
+./EJEMPLO_VUE/package/src/layouts/full/vertical-header/ProfileDD.vue | 2038
+./EJEMPLO_VUE/package/src/layouts/full/vertical-sidebar/DropDown/index.vue | 1530
+./EJEMPLO_VUE/package/src/layouts/full/vertical-sidebar/Icon.vue | 465
+./EJEMPLO_VUE/package/src/layouts/full/vertical-sidebar/NavCollapse/NavCollapse.vue | 2691
+./EJEMPLO_VUE/package/src/layouts/full/vertical-sidebar/NavGroup/index.vue | 456
+./EJEMPLO_VUE/package/src/layouts/full/vertical-sidebar/NavItem/index.vue | 1964
+./EJEMPLO_VUE/package/src/layouts/full/vertical-sidebar/sidebarItem.ts | 27966
+./EJEMPLO_VUE/package/src/main.ts | 480
+./EJEMPLO_VUE/package/src/plugins/vuetify.ts | 1041
+./EJEMPLO_VUE/package/src/router/AuthRoutes.ts | 551
+./EJEMPLO_VUE/package/src/router/MainRoutes.ts | 1324
+./EJEMPLO_VUE/package/src/router/index.ts | 443
+./EJEMPLO_VUE/package/src/scss/_override.scss | 1790
+./EJEMPLO_VUE/package/src/scss/_variables.scss | 4447
+./EJEMPLO_VUE/package/src/scss/components/_VButtons.scss | 363
+./EJEMPLO_VUE/package/src/scss/components/_VCard.scss | 992
+./EJEMPLO_VUE/package/src/scss/components/_VInput.scss | 611
+./EJEMPLO_VUE/package/src/scss/components/_VNavigationDrawer.scss | 171
+./EJEMPLO_VUE/package/src/scss/components/_VShadow.scss | 274
+./EJEMPLO_VUE/package/src/scss/components/_VTextField.scss | 212
+./EJEMPLO_VUE/package/src/scss/layout/_container.scss | 724
+./EJEMPLO_VUE/package/src/scss/layout/_sidebar.scss | 6877
+./EJEMPLO_VUE/package/src/scss/layout/_topbar.scss | 2289
+./EJEMPLO_VUE/package/src/scss/pages/_authentication.scss | 2147
+./EJEMPLO_VUE/package/src/scss/pages/_dashboards.scss | 2111
+./EJEMPLO_VUE/package/src/scss/style.scss | 512
+./EJEMPLO_VUE/package/src/theme/LightTheme.ts | 1093
+./EJEMPLO_VUE/package/src/types/dashboard/index.ts | 653
+./EJEMPLO_VUE/package/src/types/themeTypes/ThemeType.ts | 898
+./EJEMPLO_VUE/package/src/views/authentication/BoxedLogin.vue | 1594
+./EJEMPLO_VUE/package/src/views/authentication/BoxedRegister.vue | 1982
+./EJEMPLO_VUE/package/src/views/authentication/Error.vue | 470
+./EJEMPLO_VUE/package/src/views/dashboard/index.vue | 1403
+./EJEMPLO_VUE/package/src/views/icons/TablerIcons.vue | 446
+./EJEMPLO_VUE/package/src/views/pages/Icons.vue | 514
+./EJEMPLO_VUE/package/src/views/pages/SamplePage.vue | 401
+./EJEMPLO_VUE/package/src/views/ui-components/Alerts.vue | 1213
+./EJEMPLO_VUE/package/src/views/ui-components/Buttons.vue | 2683
+./EJEMPLO_VUE/package/src/views/ui-components/Cards.vue | 1608
+./EJEMPLO_VUE/package/src/views/ui-components/Tables.vue | 3069
+./EJEMPLO_VUE/package/tsconfig.json | 428
+./EJEMPLO_VUE/package/tsconfig.vite-config.json | 187
+./EJEMPLO_VUE/package/vite.config.ts | 806
+./README.md | 4706
+./backend/app/__init__.py | 0
+./backend/app/api/__init__.py | 0
+./backend/app/api/v1/__init__.py | 0
+./backend/app/api/v1/endpoints/ai.py | 0
+./backend/app/api/v1/endpoints/auth.py | 6882
+./backend/app/api/v1/endpoints/brands.py | 1565
+./backend/app/api/v1/endpoints/categories.py | 0
+./backend/app/api/v1/endpoints/diagnostics.py | 0
+./backend/app/api/v1/endpoints/instruments.py | 1283
+./backend/app/api/v1/endpoints/inventory.py | 0
+./backend/app/api/v1/endpoints/repairs.py | 0
+./backend/app/api/v1/endpoints/stats.py | 0
+./backend/app/api/v1/endpoints/users.py | 0
+./backend/app/api/v1/router.py | 2856
+./backend/app/core/__init__.py | 0
+./backend/app/core/config.py | 3025
+./backend/app/core/database.py | 1851
+./backend/app/core/dependencies.py | 2386
+./backend/app/core/security.py | 3261
+./backend/app/crud/__init__.py | 0
+./backend/app/crud/base.py | 2238
+./backend/app/crud/category.py | 0
+./backend/app/crud/inventory.py | 0
+./backend/app/crud/repair.py | 0
+./backend/app/crud/user.py | 0
+./backend/app/main.py | 5579
+./backend/app/models/__init__.py | 748
+./backend/app/models/brand.py | 1061
+./backend/app/models/category.py | 871
+./backend/app/models/diagnostic.py | 1600
+./backend/app/models/instrument.py | 1543
+./backend/app/models/inventory.py | 1496
+./backend/app/models/repair.py | 2326
+./backend/app/models/stock_movement.py | 1396
+./backend/app/models/user.py | 1382
+./backend/app/routers/__init__.py | 0
+./backend/app/routers/diagnostic.py | 8312
+./backend/app/schemas.py | 5416
+./backend/app/schemas/__init__.py | 3318
+./backend/app/schemas/auth.py | 1142
+./backend/app/schemas/category.py | 0
+./backend/app/schemas/diagnostic.py | 0
+./backend/app/schemas/inventory.py | 0
+./backend/app/schemas/repair.py | 0
+./backend/app/schemas/user.py | 915
+./backend/app/services/ai_detector.py | 0
+./backend/app/services/email_service.py | 0
+./backend/app/services/image_analysis.py | 943
+./backend/app/services/pdf_generator.py | 0
+./backend/app/services/quote_calculator.py | 0
+./package-lock.json | 93017
+./package.json | 729
+./scripts/add_image_block.py | 892
+./scripts/complete_instruments_data.py | 3988
+./scripts/generate_db_from_excel.py | 9217
+./src/assets/data/VIEJOS/brands.json | 7916
+./src/assets/data/VIEJOS/faults.json | 10222
+./src/assets/data/VIEJOS/instruments.json | 9403
+./src/assets/data/brands.json | 8127
+./src/assets/data/faults.json | 11005
+./src/assets/data/instruments.json | 300517
+./src/composables/emails.js | 1503
+./src/composables/layout.js | 1973
+./src/composables/scheduler.js | 1700
+./src/composables/settings.js | 564
+./src/composables/strings.js | 2043
+./src/composables/useApi.js | 3081
+./src/composables/useAuth.js | 4135
+./src/composables/useDiagnostic.js | 9353
+./src/composables/useInstrumentsCatalog.js | 3874
+./src/composables/useInventory.js | 0
+./src/composables/useRepairs.js | 364
+./src/composables/utils.js | 2967
+./src/main.js | 482
+./src/models/SectionInfo.js | 790
+./src/router/index.js | 4316
+./src/scss/_layout.scss | 2734
+./src/scss/_mixins.scss | 1034
+./src/scss/_theming.scss | 308
+./src/scss/_typography.scss | 1423
+./src/scss/_variables.scss | 3083
+./src/scss/style.scss | 643
+./src/stores/auth.js | 1298
+./src/stores/inventory.js | 0
+./src/stores/repairs.js | 751
+./src/stores/users.js | 727
+./src/vue/components/admin/CategoryManager.vue | 0
+./src/vue/components/admin/ClientDetail.vue | 0
+./src/vue/components/admin/ClientList.vue | 0
+./src/vue/components/admin/InventoryAlerts.vue | 0
+./src/vue/components/admin/InventoryForm.vue | 0
+./src/vue/components/admin/InventoryTable.vue | 0
+./src/vue/components/admin/RepairManager.vue | 0
+./src/vue/components/admin/RepairStatusEditor.vue | 0
+./src/vue/components/admin/StatsCards.vue | 0
+./src/vue/components/admin/StockMovements.vue | 0
+./src/vue/components/ai/AIAnalysisResult.vue | 0
+./src/vue/components/ai/FaultDetector.vue | 0
+./src/vue/components/ai/FaultMarker.vue | 0
+./src/vue/components/ai/ImageUploader.vue | 0
+./src/vue/components/ai/QuoteGenerator.vue | 0
+./src/vue/components/articles/ArticleCustomContent.vue | 542
+./src/vue/components/articles/ArticleFaq.vue | 872
+./src/vue/components/articles/ArticleFeatures.vue | 347
+./src/vue/components/articles/ArticleInfoBlock.vue | 1694
+./src/vue/components/articles/ArticleParagraph.vue | 1220
+./src/vue/components/articles/ArticleProjectGrid.vue | 2345
+./src/vue/components/articles/ArticleQuotes.vue | 1217
+./src/vue/components/articles/ArticleTestimonials.vue | 1203
+./src/vue/components/articles/ArticleTimeline.vue | 1842
+./src/vue/components/articles/DiagnosticWizard.vue | 26843
+./src/vue/components/articles/items/ItemFaqQuestion.vue | 1284
+./src/vue/components/articles/items/ItemFeature.vue | 1574
+./src/vue/components/articles/items/ItemProjectGrid.vue | 4849
+./src/vue/components/articles/items/ItemQuote.vue | 3101
+./src/vue/components/articles/items/ItemTestimonial.vue | 2422
+./src/vue/components/articles/items/ItemTimelineEntry.vue | 3417
+./src/vue/components/auth/AccountDelete.vue | 0
+./src/vue/components/auth/LoginForm.vue | 4217
+./src/vue/components/auth/PasswordReset.vue | 0
+./src/vue/components/auth/RegisterForm.vue | 0
+./src/vue/components/dashboard/QuickStats.vue | 0
+./src/vue/components/dashboard/RepairCard.vue | 0
+./src/vue/components/dashboard/RepairTimeline.vue | 0
+./src/vue/components/dashboard/RepairsList.vue | 0
+./src/vue/components/dashboard/StatusBadge.vue | 0
+./src/vue/components/dashboard/UserProfile.vue | 0
+./src/vue/components/footer/Footer.vue | 234
+./src/vue/components/footer/FooterBlock.vue | 833
+./src/vue/components/footer/FooterColumn.vue | 2427
+./src/vue/components/footer/FooterCopyright.vue | 666
+./src/vue/components/forms/contact/ContactForm.vue | 3011
+./src/vue/components/forms/contact/ContactFormFields.vue | 7257
+./src/vue/components/forms/contact/ContactFormSuccess.vue | 1551
+./src/vue/components/generic/ImageView.vue | 2474
+./src/vue/components/generic/Link.vue | 1502
+./src/vue/components/layout/BackgroundPromo.vue | 1484
+./src/vue/components/layout/PageHeader.vue | 5433
+./src/vue/components/layout/PageSection.vue | 1736
+./src/vue/components/layout/PageSectionContent.vue | 186
+./src/vue/components/layout/PageSectionFooter.vue | 1984
+./src/vue/components/layout/PageSectionHeader.vue | 1143
+./src/vue/components/layout/PageWrapper.vue | 1109
+./src/vue/components/loaders/ActivitySpinner.vue | 2480
+./src/vue/components/loaders/Loader.vue | 8144
+./src/vue/components/nav/Navigation.vue | 1208
+./src/vue/components/nav/navbar-wrappers/InPageNavbar.vue | 2727
+./src/vue/components/nav/navbar-wrappers/RouteNavbar.vue | 903
+./src/vue/components/nav/navbar/Navbar.vue | 3095
+./src/vue/components/nav/navbar/NavbarBrand.vue | 2288
+./src/vue/components/nav/navbar/NavbarLinks.vue | 3416
+./src/vue/components/nav/navbar/NavbarToggleButton.vue | 1426
+./src/vue/components/projects/ProjectInfo.vue | 2172
+./src/vue/components/projects/ProjectInfoContent.vue | 2171
+./src/vue/components/projects/ProjectInfoFeaturedContent.vue | 1273
+./src/vue/components/projects/ProjectModal.vue | 2803
+./src/vue/components/widgets/Alert.vue | 646
+./src/vue/components/widgets/Breadcrumbs.vue | 2087
+./src/vue/components/widgets/CircleIcon.vue | 694
+./src/vue/components/widgets/Divider.vue | 380
+./src/vue/components/widgets/FilterTabs.vue | 1703
+./src/vue/components/widgets/FloatingQuoteButton.vue | 3937
+./src/vue/components/widgets/InlineLinkList.vue | 2859
+./src/vue/components/widgets/ProgressBar.vue | 1156
+./src/vue/components/widgets/QuotedText.vue | 1138
+./src/vue/components/widgets/SocialLinks.vue | 4329
+./src/vue/components/widgets/Spinner.vue | 2004
+./src/vue/components/widgets/XLButton.vue | 2352
+./src/vue/content/Master.vue | 3578
+./src/vue/content/pages/CotizadorIAPage.vue | 0
+./src/vue/content/pages/DashboardPage.vue | 0
+./src/vue/content/pages/HomePage.vue | 1928
+./src/vue/content/pages/LicensePage.vue | 467
+./src/vue/content/pages/LoginPage.vue | 1148
+./src/vue/content/pages/PolicyPage.vue | 462
+./src/vue/content/pages/ProfilePage.vue | 0
+./src/vue/content/pages/RegisterPage.vue | 0
+./src/vue/content/pages/RepairsPage.vue | 0
+./src/vue/content/pages/admin/AdminDashboard.vue | 506
+./src/vue/content/pages/admin/CategoriesPage.vue | 198
+./src/vue/content/pages/admin/ClientsPage.vue | 0
+./src/vue/content/pages/admin/InventoryPage.vue | 203
+./src/vue/content/pages/admin/RepairsAdminPage.vue | 208
+./src/vue/content/pages/admin/StatsPage.vue | 160
+./src/vue/content/sections/AboutSection.vue | 1705
+./src/vue/content/sections/ContactSection.vue | 4126
+./src/vue/content/sections/FaqSection.vue | 4069
+./src/vue/content/sections/FeaturedProjectSection.vue | 2158
+./src/vue/content/sections/HeroSection.vue | 678
+./src/vue/content/sections/HistorySection.vue | 3587
+./src/vue/content/sections/LicenseSection.vue | 3661
+./src/vue/content/sections/PolicySection.vue | 4951
+./src/vue/content/sections/PortfolioSection.vue | 1362
+./src/vue/content/sections/ReviewsSection.vue | 3081
+./src/vue/content/sections/ServicesSection.vue | 3222
+./src/vue/content/sections/TeamSection.vue | 1519
+./src/vue/sections/DiagnosticSection.vue | 1495
+./src/vue/stack/App.vue | 832
+./src/vue/stack/ContentLayer.vue | 3346
+./src/vue/stack/FeedbacksLayer.vue | 2962
+./src/vue/stack/StateProviderLayer.vue | 1811
+./vite.config.js | 1062
+./backend/app/routers/category.py | 1237
+./backend/app/routers/contact.py | 441
+./backend/app/routers/instrument.py | 1286
+./backend/app/routers/repair.py | 2127
+./backend/app/routers/stock_movement.py | 580
+./backend/app/routers/user.py | 1361
+./src/composables/useCategories.js | 400
+./src/composables/useDiagnostics.js | 420
+./src/composables/useInstruments.js | 420
+./src/composables/useUsers.js | 336
+./src/stores/categories.js | 784
+./src/stores/diagnostics.js | 799
+./src/stores/instruments.js | 799
+./src/vue/components/admin/CategoryForm.vue | 559
+./src/vue/components/admin/CategoryList.vue | 836
+./src/vue/components/admin/DiagnosticsList.vue | 903
+./src/vue/components/admin/InstrumentForm.vue | 759
+./src/vue/components/admin/InstrumentList.vue | 932
+./src/vue/components/admin/RepairForm.vue | 1280
+./src/vue/components/admin/RepairsList.vue | 912
+./src/vue/components/admin/StockMovementsList.vue | 799
+./src/vue/components/admin/UserForm.vue | 1142
+./src/vue/components/admin/UserList.vue | 862
+./docs/ARCHITECTURE.md | 806
+./src/composables/useStockMovements.js | 328
+./src/stores/stockMovements.js | 594
+./src/vue/components/dashboard/DashboardPanel.vue | 668
+./backend/.env.example | 1171
+./backend/app/core/logging_config.py | 1243
+./backend/app/core/ratelimit.py | 369
+./backend/app/models/audit.py | 732
+./backend/app/models/payment.py | 1359
+./backend/app/routers/payments.py | 1420
+./backend/app/routers/uploads.py | 983
+./backend/app/services/logging_service.py | 2132
+./backend/app/utils/uploads.py | 2619
+./backend/cirujano.db | 40960
+./backend/requirements.txt | 744
+./backend/tests/__init__.py | 0
+./backend/tests/conftest.py | 619
+./backend/tests/test_audit_hooks.py | 4564
+./backend/tests/test_audit_logging.py | 697
+./backend/tests/test_config.py | 1402
+./backend/tests/test_ratelimit.py | 664
+./backend/tests/test_uploads.py | 729
+./src/assets/header-bg.jpeg | 130606
+./src/scss/_brand.scss | 7850
+
+
+=== CONTENIDO ===
+
+
+=============================
+FILE: ./.env
+BYTES: 1002
+=============================
+# ==========================================
+# CIRUJANO DE SINTETIZADORES - CONFIG
+# ==========================================
+
+# API Configuration
+DEBUG=true
+ENVIRONMENT=development
+
+# Database Configuration
+DATABASE_URL=sqlite:///./cirujano.db
+
+# Security - JWT Configuration
+SECRET_KEY=4ab14acc85f956b6016130d300355cc36b70d3a003cbe29f85f0f8e1eb79ae4b
+JWT_SECRET=20ce375777b2dd37e36973fc61a2ab98238190fdb994b92d24f4368d312ec00c
+JWT_REFRESH_SECRET=f9d3f09612bcb8800bc0acfde7069bb66c2325424e765453c7319d7767cb8fe0
+
+# CORS Configuration (Frontend URL)
+CORS_ORIGINS=http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,http://0.0.0.0:5173
+
+# Email Configuration (for notifications)
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+
+# Claude AI Configuration (for image analysis)
+CLAUDE_API_KEY=sk-ant-...your-anthropic-api-key
+
+# Storage Configuration
+UPLOAD_DIR=./uploads
+MAX_FILE_SIZE=10485760  # 10MB en bytes
+
+
+=============================
+FILE: ./.github/workflows/deploy.yml
+BYTES: 764
+=============================
+name: Deploy template to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build the project
+      - name: Build project
+        run: npm run ghdeploy
+
+      # Deploy to GitHub pages
+      - name: Deploy to GitHub pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
+
+
+=============================
+FILE: ./DE_PYTHON_NUEVO/capacitors_ceramic.json
+BYTES: 13477
+=============================
+JSON_PREVIEW: ./DE_PYTHON_NUEVO/capacitors_ceramic.json

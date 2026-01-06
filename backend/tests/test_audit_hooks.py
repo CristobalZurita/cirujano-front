@@ -79,3 +79,58 @@ def test_upload_image_creates_audit(tmp_path):
     rec = _latest_audit("upload.image")
     assert rec is not None
     assert rec.details and "filename" in rec.details or "path" in rec.details
+
+
+def test_diagnostic_calculate_creates_audit():
+    importlib.reload(_main)
+    client = TestClient(_main.app)
+
+    payload = {
+        "equipment": {"brand": "access", "model": "access-virus-c-desktop"},
+        "faults": ["CONNECTOR_LOOSE"],
+    }
+    res = client.post("/api/v1/diagnostic/calculate", json=payload)
+    assert res.status_code == 200
+    rec = _latest_audit("diagnostic.calculate")
+    assert rec is not None
+    assert rec.details and rec.details.get("model") == "access-virus-c-desktop"
+
+
+def test_payment_create_emits_audit():
+    importlib.reload(_main)
+    client = TestClient(_main.app)
+
+    # ensure user exists
+    db = SessionLocal()
+    try:
+        from backend.app.models.user import User
+        db_user = db.query(User).filter(User.email == "audit@example.com").first()
+        if not db_user:
+            db_user = User(email="audit@example.com", username="audittest", full_name="Audit Test", hashed_password="hashed", role="client", is_active=True)
+            db.add(db_user)
+            db.commit()
+            db.refresh(db_user)
+        user_id = db_user.id
+    finally:
+        db.close()
+
+    # create repair via API
+    payload = {"client_id": user_id, "title": "Payment test repair", "description": "Payment flow test"}
+    res = client.post("/api/v1/repairs/", json=payload)
+    assert res.status_code in (200, 201)
+    repair = res.json()
+    rid = repair["id"] if isinstance(repair, dict) and "id" in repair else repair[0]["id"]
+
+    import uuid
+    tx = f"tx_{uuid.uuid4().hex[:8]}"
+    pay = {"repair_id": rid, "amount": 5000, "payment_method": "card", "transaction_id": tx, "user_id": user_id, "status": "success"}
+    res = client.post("/api/v1/payments/", json=pay)
+    assert res.status_code in (200, 201)
+    p = res.json()
+    assert "id" in p
+
+    rec = _latest_audit("payment.create")
+    assert rec is not None
+    assert rec.details and rec.details.get("repair_id") == rid
+    # ensure audit includes transaction_id and status
+    assert "transaction_id" in rec.details and "status" in rec.details

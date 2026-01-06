@@ -5,27 +5,24 @@ API routes for diagnostic and quotation system
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 import json
+from pathlib import Path
 
-from schemas import (
-    DiagnosticInput,
-    DiagnosticResult,
-    QuoteCreate,
-    QuoteResponse,
-    ClientResponse,
-    ClientCreate,
-)
-from config import get_settings
+# Avoid importing application schemas directly to keep router import lightweight in tests
+from backend.app.core.config import get_settings, Settings
+from backend.app.services.logging_service import create_audit
 
-router = APIRouter(prefix="/api", tags=["diagnostic"])
+router = APIRouter(prefix="/diagnostic", tags=["diagnostic"])
 
-# Load static data
-with open("../src/assets/data/brands.json", "r") as f:
+# Load static data (resolve paths relative to project root)
+_root = Path(__file__).resolve().parents[3]
+data_dir = _root / "src" / "assets" / "data"
+with open(data_dir / "brands.json", "r") as f:
     brands_data = json.load(f)
 
-with open("../src/assets/data/instruments.json", "r") as f:
+with open(data_dir / "instruments.json", "r") as f:
     instruments_data = json.load(f)
 
-with open("../src/assets/data/faults.json", "r") as f:
+with open(data_dir / "faults.json", "r") as f:
     faults_data = json.load(f)
 
 
@@ -153,10 +150,8 @@ async def get_applicable_faults(instrument_id: str):
     return list(applicable_faults.values())
 
 
-@router.post("/diagnostic/calculate")
-async def calculate_diagnostic(
-    diagnostic: DiagnosticInput, settings: get_settings() = Depends()
-):
+@router.post("/calculate")
+async def calculate_diagnostic(diagnostic: dict, settings: Settings = Depends(get_settings)):
     """
     Calculate diagnostic quote based on instrument and faults
 
@@ -171,7 +166,7 @@ async def calculate_diagnostic(
     # Find the instrument
     instrument = None
     for inst in instruments_data["instruments"]:
-        if inst["id"] == diagnostic.equipment.get("model"):
+        if inst["id"] == diagnostic.get("equipment", {}).get("model"):
             instrument = inst
             break
 
@@ -181,7 +176,7 @@ async def calculate_diagnostic(
     # Find the brand
     brand = None
     for b in brands_data["brands"]:
-        if b["id"] == diagnostic.equipment.get("brand"):
+        if b["id"] == diagnostic.get("equipment", {}).get("brand"):
             brand = b
             break
 
@@ -189,8 +184,8 @@ async def calculate_diagnostic(
         raise HTTPException(status_code=404, detail="Brand not found")
 
     # Check for precedence faults (POWER)
-    effective_faults = diagnostic.faults
-    if "POWER" in diagnostic.faults:
+    effective_faults = diagnostic.get("faults", [])
+    if "POWER" in effective_faults:
         effective_faults = ["POWER"]
 
     # Calculate base cost
@@ -217,22 +212,34 @@ async def calculate_diagnostic(
     # Calculate final cost
     final_cost = int(base_cost * complexity_factor * value_factor)
 
-    return DiagnosticResult(
-        equipment_info={
-            "brand": brand["name"],
-            "model": instrument["model"],
-            "value": equipment_value,
-        },
-        faults=effective_faults,
-        base_cost=base_cost,
-        complexity_factor=complexity_factor,
-        value_factor=value_factor,
-        final_cost=final_cost,
-    )
+    # Audit the diagnostic calculation (non-fatal)
+    try:
+        create_audit(
+            event_type="diagnostic.calculate",
+            user_id=None,
+            details={
+                "brand": brand.get("id"),
+                "model": instrument.get("id"),
+                "faults": effective_faults,
+                "final_cost": final_cost,
+            },
+            message="Diagnostic calculated",
+        )
+    except Exception:
+        pass
+
+    return {
+        "equipment_info": {"brand": brand["name"], "model": instrument["model"], "value": equipment_value},
+        "faults": effective_faults,
+        "base_cost": base_cost,
+        "complexity_factor": complexity_factor,
+        "value_factor": value_factor,
+        "final_cost": final_cost,
+    }
 
 
-@router.post("/quotes", response_model=QuoteResponse)
-async def create_quote(quote: QuoteCreate):
+@router.post("/quotes")
+async def create_quote(quote: dict):
     """
     Create a new quote from diagnostic data
 
@@ -243,7 +250,7 @@ async def create_quote(quote: QuoteCreate):
     raise HTTPException(status_code=501, detail="Quote creation not yet implemented")
 
 
-@router.get("/quotes/{quote_id}", response_model=QuoteResponse)
+@router.get("/quotes/{quote_id}")
 async def get_quote(quote_id: int):
     """Get a specific quote by ID"""
     # TODO: Fetch from database

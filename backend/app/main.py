@@ -44,6 +44,26 @@ async def lifespan(app: FastAPI):
         logger.info("✓ Database initialized")
     except Exception as e:
         logger.error(f"✗ Database initialization failed: {e}")
+
+    # Attempt to import and register any routers that may have failed to import at module load
+    try:
+        import importlib
+        from backend.app.api.v1 import router as v1router
+        for mod_name in ("backend.app.routers.diagnostic", "backend.app.routers.payments"):
+            try:
+                mod = importlib.import_module(mod_name)
+                if hasattr(mod, "router"):
+                    # Avoid double-registration by checking for an existing path
+                    prefix = getattr(mod.router, "prefix", "")
+                    exists = any(r.path.startswith(f"{v1router.api_router.prefix}{prefix}") for r in app.routes)
+                    if not exists:
+                        v1router.api_router.include_router(mod.router)
+                        logger.info(f"Included router from {mod_name}")
+            except Exception:
+                # Non-fatal: continue if router import fails in trimmed test envs
+                logger.debug(f"Router {mod_name} not available at startup")
+    except Exception:
+        logger.debug("Dynamic router registration skipped")
     
     yield
     
