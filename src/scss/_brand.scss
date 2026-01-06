@@ -3,63 +3,155 @@
 // Use system-friendly stacks; include webfonts separately if available/licensed.
 
 /* ------------------ Webfont declarations ------------------ */
-/* The project includes extracted OTF files under /public/fonts/. If you add
-   woff/woff2 files, prefer those and add them above the OTF src for better
-   web performance and compression. Remember to verify licensing before
+/* The project includes extracted OTF files under /public/fonts/. We converted
+   and added WOFF2 and WOFF versions for better web performance. Prefer WOFF2
+   first, then WOFF, then TTF/OTF as fallbacks. Verify licensing before
    deploying fonts to production. */
 
+/* Cervo Neue - weights & italics */
 @font-face {
   font-family: 'Cervo Neue';
-  src: url('/fonts/CERVO/CervoNeueCon-Thin.otf') format('opentype');
+  src: url('/fonts/CERVO/CervoNeueCon-Thin.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-Thin.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-Thin.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-ThinItalic.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-ThinItalic.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-ThinItalic.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Cervo Neue';
-  src: url('/fonts/CERVO/CervoNeueCon-Regular.otf') format('opentype');
+  src: url('/fonts/CERVO/CervoNeueCon-XtrLight.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-XtrLight.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-XtrLight.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-XtrLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-Regular.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-Regular.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-Regular.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-RegularItalic.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-RegularItalic.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-RegularItalic.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Cervo Neue';
-  src: url('/fonts/CERVO/CervoNeueCon-Medium.otf') format('opentype');
+  src: url('/fonts/CERVO/CervoNeueCon-Medium.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-Medium.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-Medium.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-MediumItalic.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-MediumItalic.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-MediumItalic.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Cervo Neue';
-  src: url('/fonts/CERVO/CervoNeueCon-SemiBold.otf') format('opentype');
+  src: url('/fonts/CERVO/CervoNeueCon-SemiBold.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-SemiBold.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-SemiBold.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Cervo Neue';
-  src: url('/fonts/CERVO/CervoNeueCon-XtrBold.otf') format('opentype');
-  font-weight: 800;
-  font-style: normal;
+  src: url('/fonts/CERVO/CervoNeueCon-SemiBoldItalic.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-SemiBoldItalic.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-SemiBoldItalic.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Cervo Neue';
-  src: url('/fonts/CERVO/CervoNeueCon-Black.otf') format('opentype');
+  src: url('/fonts/CERVO/CervoNeueCon-XtrBold.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-XtrBold.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-XtrBold.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-XtrBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-XtrBoldItalic.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-XtrBoldItalic.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-XtrBoldItalic.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-XtrBoldItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-Black.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-Black.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-Black.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-Black.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cervo Neue';
+  src: url('/fonts/CERVO/CervoNeueCon-BlackItalic.woff2') format('woff2'),
+       url('/fonts/CERVO/CervoNeueCon-BlackItalic.woff') format('woff'),
+       url('/fonts/CERVO/CervoNeueCon-BlackItalic.ttf') format('truetype'),
+       url('/fonts/CERVO/CervoNeueCon-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
   font-display: swap;
 }
 
 /* Steelfish - decorative display for headings / logo-like elements */
 @font-face {
   font-family: 'Steelfish';
-  src: url('/fonts/steelfish rg.otf') format('opentype');
+  src: url('/fonts/steelfish rg.woff2') format('woff2'),
+       url('/fonts/steelfish rg.woff') format('woff'),
+       url('/fonts/steelfish rg.ttf') format('truetype'),
+       url('/fonts/steelfish rg.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

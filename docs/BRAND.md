@@ -21,6 +21,9 @@ This file summarizes the assets and recommended steps after extracting content f
 ## Fonts added to the project
 - The Cervo family and Steelfish were copied to `public/fonts/` (see `public/fonts/CERVO/` and `public/fonts/steelfish rg.otf`).
 - The project now includes `@font-face` declarations in `src/scss/_brand.scss`. Please verify license terms before deploying to production.
+- I generated web-optimized font formats: `woff2` and `woff` (and `ttf` fallbacks) for all the OTFs and placed them alongside the originals under `public/fonts/`.
+- Conversion was done locally with `fontforge` + `woff2_compress`. Files present now include `*.woff2`, `*.woff`, `*.ttf` and the original `*.otf`.
+**Reminder:** double-check the license for each font family; hosting webfonts may require a webfont license even if the font is embedded in the PDF.
 
 ## Palette (suggested mapping)
 - Primary: #ec6b00 (orange)
