@@ -1,67 +1,22 @@
 import "./scss/style.scss"
-import {createApp} from "vue"
-import {createRouter, createWebHistory} from "vue-router"
+import { createApp } from "vue"
+import { createPinia } from "pinia"
 import App from "/src/vue/stack/App.vue"
-import HomePage from "/src/vue/content/pages/HomePage.vue"
-import LicensePage from "/src/vue/content/pages/LicensePage.vue"
-import PolicyPage from "/src/vue/content/pages/PolicyPage.vue"
+import router from "@/router"
+import { useAuthStore } from "@/stores/auth"
 
-const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: "/",
-            name: "home",
-            component: HomePage,
-            props: {
-                label: "Home",
-                faIcon: "pi pi-home",
-                inPageNavbar: true,
-                shouldAlwaysPreload: true,
-                breadcrumbs: []
-            }
-        },
+const app = createApp(App)
 
-        {
-            path: "/privacy-policy",
-            name: "policy",
-            component: PolicyPage,
-            props: {
-                label: "Privacy Policy",
-                faIcon: "pi pi-hammer",
-                inPageNavbar: false,
-                shouldAlwaysPreload: false,
-                breadcrumbs: [
-                    "/"
-                ]
-            }
-        },
+// Install Pinia for state management
+const pinia = createPinia()
+app.use(pinia)
 
-        {
-            path: "/license",
-            name: "license",
-            component: LicensePage,
-            props: {
-                label: "License",
-                faIcon: "pi pi-briefcase",
-                inPageNavbar: false,
-                shouldAlwaysPreload: false,
-                breadcrumbs: [
-                    "/"
-                ]
-            }
-        },
+// Install Vue Router
+app.use(router)
 
-        {
-            path: "/:pathMatch(.*)*",
-            redirect: "/"
-        }
-    ]
-})
+// Initialize auth on app startup
+const authStore = useAuthStore()
+authStore.checkAuth()
 
-// Reset hash on initial load to start at Hero section
-if (window.location.hash && window.location.pathname === '/') {
-    window.location.hash = ''
-}
-
-createApp(App).use(router).mount("#app")
+// Mount app
+app.mount("#app")

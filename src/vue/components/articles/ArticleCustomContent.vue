@@ -22,5 +22,7 @@ article.foxy-custom-content-article {
     ));
 
     display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 </style>

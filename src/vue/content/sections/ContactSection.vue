@@ -59,10 +59,12 @@ const props = defineProps({
 @import "@/scss/_theming.scss";
 
 .contact-form-wrapper {
+  width: 100%;
   margin-bottom: 3rem;
 }
 
 .contact-map-section {
+  width: 100%;
   margin-top: 4rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -97,6 +99,7 @@ const props = defineProps({
   }
 }
 
+/* Address info styling */
 .address-info {
   background: rgba(255, 255, 255, 0.05);
   padding: 2rem;

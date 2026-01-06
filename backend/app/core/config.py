@@ -27,6 +27,8 @@ class Settings(BaseModel):
 
     # JWT Configuration
     secret_key: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
+    jwt_secret: str = os.getenv("JWT_SECRET", "your-jwt-secret-change-in-production")
+    jwt_refresh_secret: str = os.getenv("JWT_REFRESH_SECRET", "your-jwt-refresh-secret-change-in-production")
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
