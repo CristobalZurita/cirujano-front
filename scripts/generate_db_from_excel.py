@@ -217,185 +217,52 @@ def normalize_capacitor(value):
         return None, None
 
 def read_excel():
-    """Lee el Excel y extrae componentes"""
+    """Lee el Excel y extrae todas las columnas como categorías dinámicas"""
     print("📖 Leyendo Excel...")
     df = pd.read_excel(EXCEL_PATH, sheet_name=0)
-    
-    components = {
-        'resistors': [],
-        'capacitors_ceramic': [],
-        'capacitors_electrolytic': [],
-        'integrated_circuits': [],
-        'transistors': [],
-        'diodes': []
-    }
-    
-    # Resistencias
-    if 'Resistencias' in df.columns:
-        for val in df['Resistencias'].dropna():
-            ohms, display = normalize_resistance(val)
-            if ohms:
-                components['resistors'].append({
-                    'value_ohms': ohms,
-                    'display_value': display,
-                    'tolerance_percent': 5.0,
-                    'power_watts': 0.25,
-                    'technology': 'METAL_FILM',
-                    'package': 'TH_AXIAL'
-                })
-    
-    # Capacitores Cerámicos
-    if 'Capacitores Ceramicos' in df.columns:
-        for val in df['Capacitores Ceramicos'].dropna():
-            farads, display = normalize_capacitor(val)
-            if farads:
-                components['capacitors_ceramic'].append({
-                    'value_farads': farads,
-                    'display_value': display,
-                    'dielectric': 'CERAMIC',
-                    'voltage_volts': 50.0,
-                    'package': 'TH_RADIAL'
-                })
-    
-    # Capacitores Electrolíticos
-    if 'Capacitores Electrolíticos' in df.columns:
-        for val in df['Capacitores Electrolíticos'].dropna():
-            farads, display = normalize_capacitor(val)
-            if farads:
-                components['capacitors_electrolytic'].append({
-                    'value_farads': farads,
-                    'display_value': display,
-                    'dielectric': 'ELECTROLYTIC_AL',
-                    'voltage_volts': 25.0,
-                    'polarized': True,
-                    'package': 'TH_RADIAL'
-                })
-    
-    # ICs
-    if "Ic's" in df.columns:
-        for val in df["Ic's"].dropna():
-            pn = str(val).strip().upper()
-            if pn:
-                components['integrated_circuits'].append({
-                    'part_number': pn,
-                    'package': 'DIP',
-                    'voltage_volts': 5.0
-                })
-    
-    # Transistores
-    if 'Transistores' in df.columns:
-        for val in df['Transistores'].dropna():
-            pn = str(val).strip().upper()
-            if pn:
-                components['transistors'].append({
-                    'part_number': pn,
-                    'type': 'BJT' if pn.startswith('2N') or pn.startswith('BC') else 'MOSFET',
-                    'package': 'TO92'
-                })
-    
-    # Diodos
-    if 'Diodos' in df.columns:
-        for val in df['Diodos'].dropna():
-            pn = str(val).strip().upper()
-            if pn:
-                components['diodes'].append({
-                    'part_number': pn,
-                    'type': 'RECTIFIER',
-                    'package': 'DO41'
-                })
-    
+    components = {}
+    for col in df.columns:
+        # Cada columna es una categoría
+        values = [str(val).strip() for val in df[col].dropna() if str(val).strip()]
+        components[col] = values
     return components
 
 def generate_sql(components):
-    """Genera SQL INSERT statements"""
+    """Genera SQL INSERT statements para todas las categorías detectadas"""
     print("✍️  Generando SQL...")
-    
     sql_lines = []
-    sql_lines.append("-- CIRUJANO DB - Componentes desde Excel")
+    sql_lines.append("-- CIRUJANO DB - Componentes desde Excel (dinámico)")
     sql_lines.append(f"-- Generado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     sql_lines.append("")
-    
-    # Resistencias
-    for comp in components['resistors']:
-        sql_lines.append(
-            f"INSERT INTO comp_resistors (value_ohms, display_value, tolerance_percent, power_watts, technology, package) "
-            f"VALUES ({comp['value_ohms']}, '{comp['display_value']}', {comp['tolerance_percent']}, {comp['power_watts']}, "
-            f"'{comp['technology']}', '{comp['package']}');"
-        )
-    
-    # Capacitores Cerámicos
-    for comp in components['capacitors_ceramic']:
-        sql_lines.append(
-            f"INSERT INTO comp_capacitors (value_farads, display_value, dielectric, voltage_volts, package) "
-            f"VALUES ({comp['value_farads']}, '{comp['display_value']}', '{comp['dielectric']}', {comp['voltage_volts']}, "
-            f"'{comp['package']}');"
-        )
-    
-    # Capacitores Electrolíticos (misma tabla, distinto dielectric)
-    for comp in components['capacitors_electrolytic']:
-        sql_lines.append(
-            f"INSERT INTO comp_capacitors (value_farads, display_value, dielectric, voltage_volts, polarized, package) "
-            f"VALUES ({comp['value_farads']}, '{comp['display_value']}', '{comp['dielectric']}', {comp['voltage_volts']}, "
-            f"1, '{comp['package']}');"
-        )
-    
-    # ICs
-    for comp in components['integrated_circuits']:
-        sql_lines.append(
-            f"INSERT INTO comp_integrated_circuits (part_number, package, voltage_volts) "
-            f"VALUES ('{comp['part_number']}', '{comp['package']}', {comp['voltage_volts']});"
-        )
-    
-    # Transistores
-    for comp in components['transistors']:
-        sql_lines.append(
-            f"INSERT INTO comp_transistors (part_number, type, package) "
-            f"VALUES ('{comp['part_number']}', '{comp['type']}', '{comp['package']}');"
-        )
-    
-    # Diodos
-    for comp in components['diodes']:
-        sql_lines.append(
-            f"INSERT INTO comp_diodes (part_number, type, package) "
-            f"VALUES ('{comp['part_number']}', '{comp['type']}', '{comp['package']}');"
-        )
-    
+    for category, values in components.items():
+        table_name = f"comp_{category.strip().lower().replace(' ', '_').replace('á','a').replace('é','e').replace('í','i').replace('ó','o').replace('ú','u').replace('ñ','n').replace("'","")}"  # nombre de tabla profesional
+        for val in values:
+            sql_lines.append(f"INSERT INTO {table_name} (value) VALUES ('{val.replace("'", "''")}');")
     return "\n".join(sql_lines)
 
 def main():
     print("\n" + "="*60)
-    print("GENERADOR DE DB - CIRUJANO SINTETIZADORES")
+    print("GENERADOR DE DB - CIRUJANO SINTETIZADORES (PROFESIONAL Y DINÁMICO)")
     print("="*60 + "\n")
-    
     if not EXCEL_PATH.exists():
         print(f"❌ Excel no encontrado: {EXCEL_PATH}")
         return
-    
     # Leer Excel
     components = read_excel()
-    
-    # Resumen
-    print(f"\n📊 Componentes encontrados:")
-    print(f"   • Resistencias: {len(components['resistors'])}")
-    print(f"   • Capacitores Cerámicos: {len(components['capacitors_ceramic'])}")
-    print(f"   • Capacitores Electrolíticos: {len(components['capacitors_electrolytic'])}")
-    print(f"   • ICs: {len(components['integrated_circuits'])}")
-    print(f"   • Transistores: {len(components['transistors'])}")
-    print(f"   • Diodos: {len(components['diodes'])}")
-    
-    total = sum(len(v) for v in components.values())
+    # Resumen dinámico
+    print(f"\n📊 Categorías detectadas:")
+    total = 0
+    for category, values in components.items():
+        print(f"   • {category}: {len(values)}")
+        total += len(values)
     print(f"\n   ✅ TOTAL: {total} componentes\n")
-    
     # Generar SQL
     sql = generate_sql(components)
-    
     # Guardar SQL
     SQL_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with open(SQL_OUTPUT, 'w') as f:
         f.write(sql)
-    
     print(f"✅ SQL guardado en: {SQL_OUTPUT}\n")
-    
     # Mostrar primeras líneas
     print("Primeras inserciones:")
     print("-" * 60)
