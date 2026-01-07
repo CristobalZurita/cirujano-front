@@ -39,6 +39,15 @@ async def lifespan(app: FastAPI):
         setup_logging()
     except Exception as e:
         logger.warning(f"Could not configure structured logging: {e}")
+    
+    # Initialize event system
+    try:
+        from backend.app.services.event_handlers import setup_event_handlers
+        setup_event_handlers()
+        logger.info("✓ Event system initialized")
+    except Exception as e:
+        logger.error(f"✗ Event system initialization failed: {e}")
+    
     try:
         await init_db()
         logger.info("✓ Database initialized")
