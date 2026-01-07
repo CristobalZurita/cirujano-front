@@ -118,16 +118,18 @@ header.foxy-header {
 
     div.foxy-hero-header-logo {
         /* allow rectangular logos on desktop while keeping a sensible max height */
-        width: clamp(720px, 85vw, 1400px); /* make the banner start wider on large screens */
+        width: clamp(720px, 95vw, 1600px); /* make the banner start wider on large screens */
         max-width: 98%;
-        height: auto;
+        /* Fix hero to a landscape presentation on desktop by using a fixed display height
+           and covering the area. This crops tall uploads to appear apaisado as requested. */
+        height: min(42vh, 360px);
         max-height: var(--max-logo-height);
         margin: 0 auto;
 
         img.image {
             width: 100%;
-            height: auto;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
     }
@@ -157,6 +159,8 @@ header.foxy-header {
         align-items: center;
         gap: 2rem;
         margin-top: 1rem;
+        position: relative;
+        z-index: 6; /* Ensure CTAs sit above decorative background */
 
         @include media-breakpoint-down(md) {
             gap: 1rem;

@@ -1,22 +1,21 @@
 ###############################################
 # VOLCADO_UNIFICADO_01.txt
-# Fecha: Tue Jan  6 17:57:27 -03 2026
+# Wed Jan  7 01:26:41 -03 2026
 # Proyecto: cirujano-front
 ###############################################
 
-===============================================
-== TREE ESTRUCTURAL (SRC / BACKEND / PUBLIC) ==
-===============================================
+================ TREE ESTRUCTURAL ================
 src
 â”œâ”€â”€ assets
-â”‚Â Â  â””â”€â”€ data
-â”‚Â Â      â”œâ”€â”€ VIEJOS
-â”‚Â Â      â”‚Â Â  â”œâ”€â”€ brands.json
-â”‚Â Â      â”‚Â Â  â”œâ”€â”€ faults.json
-â”‚Â Â      â”‚Â Â  â””â”€â”€ instruments.json
-â”‚Â Â      â”œâ”€â”€ brands.json
-â”‚Â Â      â”œâ”€â”€ faults.json
-â”‚Â Â      â””â”€â”€ instruments.json
+â”‚Â Â  â”œâ”€â”€ data
+â”‚Â Â  â”‚Â Â  â”œâ”€â”€ VIEJOS
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ brands.json
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ faults.json
+â”‚Â Â  â”‚Â Â  â”‚Â Â  â””â”€â”€ instruments.json
+â”‚Â Â  â”‚Â Â  â”œâ”€â”€ brands.json
+â”‚Â Â  â”‚Â Â  â”œâ”€â”€ faults.json
+â”‚Â Â  â”‚Â Â  â””â”€â”€ instruments.json
+â”‚Â Â  â””â”€â”€ icons
 â”œâ”€â”€ composables
 â”‚Â Â  â”œâ”€â”€ emails.js
 â”‚Â Â  â”œâ”€â”€ layout.js
@@ -262,6 +261,7 @@ backend
 â”‚Â Â  â”‚Â Â  â”œâ”€â”€ diagnostic.py
 â”‚Â Â  â”‚Â Â  â”œâ”€â”€ instrument.py
 â”‚Â Â  â”‚Â Â  â”œâ”€â”€ payments.py
+â”‚Â Â  â”‚Â Â  â”œâ”€â”€ quotation.py
 â”‚Â Â  â”‚Â Â  â”œâ”€â”€ repair.py
 â”‚Â Â  â”‚Â Â  â”œâ”€â”€ stock_movement.py
 â”‚Â Â  â”‚Â Â  â”œâ”€â”€ uploads.py
@@ -366,11 +366,9 @@ public
     â”œâ”€â”€ logo
     â””â”€â”€ portfolio
 
-57 directories, 301 files
+58 directories, 302 files
 
-===============================================
-== FRONTEND - CORE FUNCIONAL ==
-===============================================
+================ FRONTEND CORE ==================
 
 ----- FILE: src/composables/useApi.js -----
 /**
@@ -1025,9 +1023,47 @@ export function useInstrumentsCatalog() {
       return instrument.imagen_url
     }
 
-    // Priority 2: Generate from convention
+    // Priority 2: Generate from convention (use Spanish 'instrumentos' directory)
     if (instrument?.id) {
-      return `/images/instruments/${instrument.id}.jpg`
+      // Try common filename variations so we match existing images in /public/images/instrumentos
+      const id = instrument.id
+      const model = (instrument.model || '').replace(/\s+/g, '_')
+      const brand = (instrument.brand || '').toUpperCase()
+      const brandModel = `${brand}_${model.toUpperCase()}`
+      // Prefer common extensions and case patterns so the most likely existing file is used
+      const candidates = [
+        // Brand logo fallbacks (many repos include LOGO_BRAND.png)
+        `/images/instrumentos/LOGO_${brand}.png`,
+        `/images/instrumentos/LOGO_${brand}.jpg`,
+
+        // BRAND_MODEL uppercase with common extensions
+        `/images/instrumentos/${brandModel}.jpg`,
+        `/images/instrumentos/${brandModel}.png`,
+        `/images/instrumentos/${brandModel}.webp`,
+        `/images/instrumentos/${brandModel}.avif`,
+
+        // ID derived variants (uppercase underscore), try common extensions
+        `/images/instrumentos/${id.replace(/-/g, '_').toUpperCase()}.jpg`,
+        `/images/instrumentos/${id.replace(/-/g, '_').toUpperCase()}.png`,
+        `/images/instrumentos/${id.replace(/-/g, '_').toUpperCase()}.webp`,
+
+        // ID uppercase
+        `/images/instrumentos/${id.toUpperCase()}.jpg`,
+        `/images/instrumentos/${id.toUpperCase()}.png`,
+
+        // Original id (lowercase) fallbacks
+        `/images/instrumentos/${id}.jpg`,
+        `/images/instrumentos/${id}.png`,
+
+        // Model-based fallbacks
+        `/images/instrumentos/${model}.jpg`,
+        `/images/instrumentos/${model}.png`
+      ]
+
+      // Return the most likely candidate (first in list). If a given file doesn't exist,
+      // the browser will 404 and the UI will show the placeholder. This ordering improves
+      // hit-rate for images that are present in the repo (many are .jpg and uppercase).
+      return candidates[0]
     }
 
     // Priority 3: Placeholder
@@ -1044,11 +1080,8 @@ export function useInstrumentsCatalog() {
     return {
       ...inst,
       imagePath: getInstrumentImage(inst),
-      estimatedPrice: inst.valor_estimado
-        ? Math.round(
-            (inst.valor_estimado.min + inst.valor_estimado.max) / 2
-          )
-        : 0,
+      // Do not include any price/valor fields for frontend rendering
+      // Prices are not rendered in the frontend by design
       displayName: `${inst.model} (${inst.year || '?'})`,
       brandLabel: getBrandById(inst.brand)?.name || inst.brand
     }
@@ -1643,9 +1676,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 </style>
-===============================================
-== FRONTEND - ÃNDICE COMPLETO DE COMPONENTES ==
-===============================================
+========== FRONTEND COMPONENTES (ÃNDICE) =========
 src/vue/components/admin/CategoryForm.vue
 src/vue/components/admin/CategoryList.vue
 src/vue/components/admin/CategoryManager.vue
@@ -1773,33 +1804,58 @@ src/vue/stack/ContentLayer.vue
 src/vue/stack/FeedbacksLayer.vue
 src/vue/stack/StateProviderLayer.vue
 
-===============================================
-== BACKEND - API / ROUTERS / SCHEMAS ==
-===============================================
+=============== BACKEND API ======================
 
 ----- FILE: backend/app/api/__init__.py -----
 
+----- FILE: backend/app/api/__pycache__/__init__.cpython-311.pyc -----
+§
+    ì[i    ã                   ó   — d S )N© r   ó    úV/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/__init__.pyú<module>r      s   ğğ ğ r   
 ----- FILE: backend/app/api/__pycache__/__init__.cpython-313.pyc -----
 ó
     ì[i    ã                   ó   • g )N© r   ó    ÚV/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/__init__.pyÚ<module>r      s   ñr   
 ----- FILE: backend/app/api/v1/__init__.py -----
 
+----- FILE: backend/app/api/v1/__pycache__/__init__.cpython-311.pyc -----
+§
+    ì[i    ã                   ó   — d S )N© r   ó    úY/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/__init__.pyú<module>r      s   ğğ ğ r   
 ----- FILE: backend/app/api/v1/__pycache__/__init__.cpython-313.pyc -----
 ó
     ì[i    ã                   ó   • g )N© r   ó    ÚY/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/__init__.pyÚ<module>r      s   ñr   
+----- FILE: backend/app/api/v1/__pycache__/router.cpython-311.pyc -----
+§
+    ä¤]iÎ  ã                   óÄ  — d dl mZ ddlmZmZmZ d dlmZ 	 d dlm	Z
+ d dlmZ d dlmZ d dlmZ d d	lmZ d d
+lmZ d dlmZ d dlmZ d dlmZ n# e$ r dxZ
+xZxZxZxZZY nw xY wd dlZdD ]^Ze› dZ e¦   «                               e¦  «        €:	  ej!        de› ¦  «        Z"e" e¦   «         e<   ŒF# e$ r d e¦   «         e<   Y ŒZw xY wŒ_ e¦   «                               d¦  «        €7	  ej!        d¦  «        Z"e" e¦   «         d<   n# e$ r d e¦   «         d<   Y nw xY w e¦   «                               d¦  «        €7	  ej!        d¦  «        Z"e" e¦   «         d<   n# e$ r d e¦   «         d<   Y nw xY w ed¬¦  «        Z#e# $                    ej%        ¦  «         e# $                    ej%        ¦  «         e# $                    ej%        ¦  «         e# $                    ej%        ¦  «         e
+re# $                    e
+j%        ¦  «         ere# $                    ej%        ¦  «         ere# $                    ej%        ¦  «         ere# $                    ej%        ¦  «         ere# $                    ej%        ¦  «         ere# $                    ej%        ¦  «          e¦   «                               d¦  «        r(e# $                     e¦   «         d         j%        ¦  «          e¦   «                               d¦  «        r(e# $                     e¦   «         d         j%        ¦  «          e¦   «                               d¦  «        r*e# $                     e¦   «         d         j%        ¦  «         dS dS )é    )Ú	APIRouteré   )ÚbrandsÚinstrumentsÚauth)Úuploads)Úuser)Úrepair)Ú
+instrument)Úcategory)Ústock_movement)Úcontact)Ú
+diagnostic)Ú	quotation)ÚpaymentsN)r
+   r	   r   r   r   r   Ú_routerzbackend.app.routers.Úpayments_routerzbackend.app.routers.paymentsÚdiagnostic_routerzbackend.app.routers.diagnosticz/api/v1)ÚprefixÚquotation_router)&Úfastapir   Ú	endpointsr   r   r   Úbackend.app.routersr   Úuploads_routerr	   Úuser_routerr
+   Úrepair_routerr   Úinstrument_routerr   Úcategory_routerr   Ústock_movement_routerr   Úcontact_routerr   r   r   r   r   r   Ú	ExceptionÚ	importlibÚnameÚvar_nameÚglobalsÚgetÚimport_moduleÚmodÚ
+api_routerÚinclude_routerÚrouter© ó    úW/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/router.pyú<module>r/      sÑ  ğØ Ğ Ğ Ğ Ğ Ğ Ø 0Ğ 0Ğ 0Ğ 0Ğ 0Ğ 0Ğ 0Ğ 0Ğ 0Ğ 0Ø 9Ğ 9Ğ 9Ğ 9Ğ 9Ğ 9ğsØ4Ğ4Ğ4Ğ4Ğ4Ğ4Ø8Ğ8Ğ8Ğ8Ğ8Ğ8Ø@Ğ@Ğ@Ğ@Ğ@Ğ@Ø<Ğ<Ğ<Ğ<Ğ<Ğ<ØHĞHĞHĞHĞHĞHØ:Ğ:Ğ:Ğ:Ğ:Ğ:Ø@Ğ@Ğ@Ğ@Ğ@Ğ@Ø>Ğ>Ğ>Ğ>Ğ>Ğ>Ø<Ğ<Ğ<Ğ<Ğ<Ğ<Ğ<øØğ sğ sğ sànrĞr€Ğrˆ}ĞrĞ0Ğr°?ĞrĞEZĞ]kĞ]kĞ]kğsøøøğ Ğ Ğ Ğ ØUğ ğ €DØĞĞĞ€Ø€GI„I‡M‚M(ÑÔĞ#ğØ	 ˆÔ	 Ğ!>¸Ğ!>Ğ!>Ñ	?Ô	?€3Ø€7€79„9ˆXÑĞøØ	ğ ğ ğ Ø€7€79„9ˆXÑĞĞğøøøğ	 $ğ €79„9‡=‚=Ğ"Ñ#Ô#Ğ+ğ&Øˆ	ÔĞ >Ñ?Ô?€#Ø!$€'€')„)ĞÑĞøØğ &ğ &ğ &Ø!%€'€')„)ĞÑĞĞğ&øøøğ €79„9‡=‚=Ğ$Ñ%Ô%Ğ-ğ(Øˆ	ÔĞ @ÑAÔA€#Ø#&€'€')„)ĞÑ Ğ øØğ (ğ (ğ (Ø#'€'€')„)ĞÑ Ğ Ğ ğ(øøøğ ˆY˜iĞ(Ñ(Ô(€
+à 
+× Ò ˜&œ-Ñ (Ô (Ğ (Ø 
+× Ò ˜+Ô,Ñ -Ô -Ğ -Ø 
+× Ò ˜$œ+Ñ &Ô &Ğ &Ø 
+× Ò ˜.Ô/Ñ 0Ô 0Ğ 0ğ ğ /Ø×Ò˜;Ô-Ñ.Ô.Ğ.Øğ 1Ø×Ò˜=Ô/Ñ0Ô0Ğ0Øğ 5Ø×ÒĞ,Ô3Ñ4Ô4Ğ4Øğ 3Ø×Ò˜?Ô1Ñ2Ô2Ğ2Øğ 9Ø×ÒĞ0Ô7Ñ8Ô8Ğ8Øğ 2Ø×Ò˜>Ô0Ñ1Ô1Ğ1Ø
+€79„9‡=‚=Ğ$Ñ%Ô%ğ BØ×Ò˜7˜7™9œ9Ğ%8Ô9Ô@ÑAÔAĞAØ
+€79„9‡=‚=Ğ#Ñ$Ô$ğ AØ×Ò˜7˜7™9œ9Ğ%7Ô8Ô?Ñ@Ô@Ğ@Ø
+€79„9‡=‚=Ğ"Ñ#Ô#ğ @Ø×Ò˜7˜7™9œ9Ğ%6Ô7Ô>Ñ?Ô?Ğ?Ğ?Ğ?ğ@ğ @sG   ˜6A ÁA#Á"A#Â B2Â2CÃCÃ)D ÄDÄDÄ=E ÅE0Å/E0
 ----- FILE: backend/app/api/v1/__pycache__/router.cpython-313.pyc -----
 ó
-    ë\i(  ã                   ó,  • S SK Jr  SSKJrJrJr  S SKJr   S SKJ	r
+    Æ¦]iÛ  ã                   ó´  • S SK Jr  SSKJrJrJr  S SKJr   S SKJ	r
   S SKJr  S SKJr  S SKJr  S S	KJr  S S
-KJr  S SKJr  S SKJr  S SKrS HA  r\ S3r\" 5       R=                  \5      b  M!   \R>                  " S\ 35      r \ \" 5       \'   MC     \" 5       R=                  S5      c   \R>                  " S5      r \ \" 5       S'   \" 5       R=                  S5      c   \R>                  " S5      r \ \" 5       S'   \" SS9r!\!RE                  \RF                  5        \!RE                  \RF                  5        \!RE                  \RF                  5        \!RE                  \RF                  5        \
-(       a  \!RE                  \
-RF                  5        \(       a  \!RE                  \RF                  5        \(       a  \!RE                  \RF                  5        \(       a  \!RE                  \RF                  5        \(       a  \!RE                  \RF                  5        \(       a  \!RE                  \RF                  5        \" 5       R=                  S5      (       a#  \!RE                  \" 5       S   RF                  5        \" 5       R=                  S5      (       a$  \!RE                  \" 5       S   RF                  5        gg! \ a    S=r
-=r=r=r=rr GN„f = f! \ a    S\" 5       \'    GM–  f = f! \ a    S\" 5       S'    GN4f = f! \ a    S\" 5       S'    GNf = f)é    )Ú	APIRouteré   )ÚbrandsÚinstrumentsÚauth)Úuploads)Úuser)Úrepair)Ú
+KJr  S SKJr  S SKJr  S SKJr  S SKrS HA  r\ S3r\" 5       RA                  \5      b  M!   \RB                  " S\ 35      r"\"\" 5       \'   MC     \" 5       RA                  S5      c   \RB                  " S5      r"\"\" 5       S'   \" 5       RA                  S5      c   \RB                  " S5      r"\"\" 5       S'   \" SS9r#\#RI                  \RJ                  5        \#RI                  \RJ                  5        \#RI                  \RJ                  5        \#RI                  \RJ                  5        \
+(       a  \#RI                  \
+RJ                  5        \(       a  \#RI                  \RJ                  5        \(       a  \#RI                  \RJ                  5        \(       a  \#RI                  \RJ                  5        \(       a  \#RI                  \RJ                  5        \(       a  \#RI                  \RJ                  5        \" 5       RA                  S5      (       a#  \#RI                  \" 5       S   RJ                  5        \" 5       RA                  S5      (       a#  \#RI                  \" 5       S   RJ                  5        \" 5       RA                  S5      (       a$  \#RI                  \" 5       S   RJ                  5        gg! \ a    S=r
+=r=r=r=rr GNÂf = f! \ a    S\" 5       \'    GMÔ  f = f! \ a    S\" 5       S'    GNrf = f! \ a    S\" 5       S'    GNUf = f)é    )Ú	APIRouteré   )ÚbrandsÚinstrumentsÚauth)Úuploads)Úuser)Úrepair)Ú
 instrument)Úcategory)Ústock_movement)Úcontact)Ú
-diagnostic)ÚpaymentsN)r
-   r	   r   r   r   r   Ú_routerzbackend.app.routers.Úpayments_routerzbackend.app.routers.paymentsÚdiagnostic_routerzbackend.app.routers.diagnosticz/api/v1)Úprefix)$Úfastapir   Ú	endpointsr   r   r   Úbackend.app.routersr   Úuploads_routerr	   Úuser_routerr
-   Úrepair_routerr   Úinstrument_routerr   Úcategory_routerr   Ústock_movement_routerr   Úcontact_routerr   r   r   r   Ú	ExceptionÚ	importlibÚnameÚvar_nameÚglobalsÚgetÚimport_moduleÚmodÚ
-api_routerÚinclude_routerÚrouter© ó    ÚW/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/router.pyÚ<module>r-      sÅ  ğİ ß 0Ñ 0İ 9ğsİ4İ8İ@İ<İHİ:İ@İ<ó ÛU€DØˆfGĞ€ÙƒI‡MM(ÓÓ#ğØ	×	 Ò	 Ğ#7¸°vĞ!>Ó	?€3Ø7ƒ9ˆXÓñ Vñ ƒ9‡==Ğ"Ó#Ñ+ğ&Ø×ÒĞ >Ó?€#Ø!$'ƒ)ĞÑñ
+diagnostic)Ú	quotation)ÚpaymentsN)r
+   r	   r   r   r   r   r   Ú_routerzbackend.app.routers.Úpayments_routerzbackend.app.routers.paymentsÚdiagnostic_routerzbackend.app.routers.diagnosticz/api/v1)ÚprefixÚquotation_router)&Úfastapir   Ú	endpointsr   r   r   Úbackend.app.routersr   Úuploads_routerr	   Úuser_routerr
+   Úrepair_routerr   Úinstrument_routerr   Úcategory_routerr   Ústock_movement_routerr   Úcontact_routerr   r   r   r   r   r   Ú	ExceptionÚ	importlibÚnameÚvar_nameÚglobalsÚgetÚimport_moduleÚmodÚ
+api_routerÚinclude_routerÚrouter© ó    ÚW/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/router.pyÚ<module>r/      sö  ğİ ß 0Ñ 0İ 9ğsİ4İ8İ@İ<İHİ:İ@İ>İ<ó Ûb€DØˆfGĞ€ÙƒI‡MM(ÓÓ#ğØ	×	 Ò	 Ğ#7¸°vĞ!>Ó	?€3Ø7ƒ9ˆXÓñ cñ ƒ9‡==Ğ"Ó#Ñ+ğ&Ø×ÒĞ >Ó?€#Ø!$'ƒ)ĞÑñ
  ƒ9‡==Ğ$Ó%Ñ-ğ(Ø×ÒĞ @ÓA€#Ø#&'ƒ)ĞÑ ñ ˜iÑ(€
 à 
 × Ñ ˜&Ÿ-™-Ô (Ø 
@@ -1807,11 +1863,121 @@ api_routerÚinclude_routerÚrouter© ó    ÚW/mnt/CZ_BODEGA/010_VSCODE/007_PROYECT
 × Ñ ˜$Ÿ+™+Ô &Ø 
 × Ñ ˜.×/Ñ/Ô 0ö Ø×Ñ˜;×-Ñ-Ô.ŞØ×Ñ˜=×/Ñ/Ô0ŞØ×ÑĞ,×3Ñ3Ô4ŞØ×Ñ˜?×1Ñ1Ô2ŞØ×ÑĞ0×7Ñ7Ô8ŞØ×Ñ˜>×0Ñ0Ô1Ù
 ƒ9‡==Ğ$×%Ñ%Ø×Ñ™7›9Ğ%8Ñ9×@Ñ@ÔAÙ
-ƒ9‡==Ğ"×#Ñ#Ø×Ñ™7›9Ğ%6Ñ7×>Ñ>Õ?ğ $øğm ó sànrĞr€Ğrˆ}ĞrĞ0Ğr°?ĞrĞEZÓ]kğsûğ 
-ó Ø7ƒ9ˆXÕğûğ 	ó &Ø!%'ƒ)ĞÔğ&ûğ 	ó (Ø#''ƒ)ĞÔ ğ(úsG   ˜0J7 Á0KÂ+K( ÃK? Ê7KËKËK%Ë$K%Ë(K<Ë;K<Ë?LÌL
+ƒ9‡==Ğ#×$Ñ$Ø×Ñ™7›9Ğ%7Ñ8×?Ñ?Ô@Ù
+ƒ9‡==Ğ"×#Ñ#Ø×Ñ™7›9Ğ%6Ñ7×>Ñ>Õ?ğ $øğq ó sànrĞr€Ğrˆ}ĞrĞ0Ğr°?ĞrĞEZÓ]kğsûğ 
+ó Ø7ƒ9ˆXÕğûğ 	ó &Ø!%'ƒ)ĞÔğ&ûğ 	ó (Ø#''ƒ)ĞÔ ğ(úsG   ˜6K; Á6LÂ1L, Ã%M Ë;LÌLÌL)Ì(L)Ì,M Ì?M ÍMÍM
+----- FILE: backend/app/api/v1/endpoints/__pycache__/auth.cpython-311.pyc -----
+§
+    Óq]iâ  ã            	       óØ  — d Z ddlmZmZmZmZ ddlmZ ddlm	Z	 ddl
+mZ ddlmZmZmZmZ ddlmZ ddlmZ dd	lmZ dd
+lmZ ddlmZmZmZmZ ddlmZ  eddg¬¦  «        Z e  !                    deej"        ¬¦  «         e	e¦  «        fdedefd„¦   «         Z#e  !                    de¬¦  «         ej$        d¦  «         e	e¦  «        fdededefd„¦   «         ¦   «         Z%e  !                    d¦  «         e	e¦  «        fde&fd„¦   «         Z'e  (                    de¬¦  «         e	e¦  «         e	e¦  «        fde&defd„¦   «         Z)e  !                    d¦  «        d e*fd!„¦   «         Z+d"S )#u6   
+Endpoints de autenticaciÃ³n: login, register, logout
+é    )Ú	APIRouterÚHTTPExceptionÚstatusÚRequest)ÚSession)ÚDepends)Úget_db)Úhash_passwordÚverify_passwordÚcreate_access_tokenÚcreate_refresh_token)Úget_current_user)Úlimiter)Úcreate_audit)ÚUser)ÚLoginRequestÚRegisterRequestÚTokenÚPasswordResetRequest)ÚUserResponsez/authÚauth)ÚprefixÚtagsz	/register)Úresponse_modelÚstatus_codeÚrequestÚdbc              ƒ   ó$  K  — |                      t          ¦  «                             t          j        | j        k    ¦  «                             ¦   «         }|rt          t          j        d¬¦  «        ‚|                      t          ¦  «                             t          j        | j        k    ¦  «                             ¦   «         }|rt          t          j        d¬¦  «        ‚t          | j        | j        | j	        t          | j        ¦  «        | j        ¬¦  «        }|                     |¦  «         |                     ¦   «          |                     |¦  «         	 t!          d|j        d|j        |j        dœ¬¦  «         n# t$          $ r Y nw xY w|S )	u  
+    Registrar un nuevo usuario
+    
+    - **email**: Email Ãºnico del usuario
+    - **username**: Username Ãºnico (3-100 caracteres)
+    - **full_name**: Nombre completo (3+ caracteres)
+    - **password**: ContraseÃ±a (8+ caracteres)
+    - **phone**: TelÃ©fono (opcional)
+    zEmail ya registrado©r   ÚdetailzUsername ya existe)ÚemailÚusernameÚ	full_nameÚhashed_passwordÚphonezauth.registerN)r!   r"   )Ú
+event_typeÚuser_idÚ
+ip_addressÚmetadata)Úqueryr   Úfilterr!   Úfirstr   r   ÚHTTP_400_BAD_REQUESTr"   r#   r
+   Úpasswordr%   ÚaddÚcommitÚrefreshr   ÚidÚ	Exception)r   r   Úexisting_emailÚexisting_usernameÚnew_users        ú_/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/endpoints/auth.pyÚregisterr8      s¥  è è € ğ  —X’Xd‘^”^×*Ò*­4¬:¸¼Ò+FÑGÔG×MÒMÑOÔO€NØğ 
+İİÔ3Ø(ğ
+ñ 
+ô 
+ğ 	
+ğ Ÿš¥™œ×-Ò-­d¬m¸wÔ?OÒ.OÑPÔP×VÒVÑXÔXĞØğ 
+İİÔ3Ø'ğ
+ñ 
+ô 
+ğ 	
+õ ØŒmØÔ!ØÔ#İ% gÔ&6Ñ7Ô7ØŒmğñ ô €Hğ ‡F‚Fˆ8ÑÔĞØ‡I‚IK„K€KØ‡J‚JˆxÑÔĞğİ ¸¼ĞQUĞjrÔjxğ  GOô  GXğ  aYğ  aYğ  	Zñ  	Zô  	Zğ  	Zğ  	Zøİğ ğ ğ Øˆğøøøğ €Os   Å%F  Æ 
+FÆFz/login)r   z5/minuteÚpayloadc              ƒ   ó>  K  — 	 |                      t          ¦  «                             t          j        |j        k    ¦  «                             ¦   «         }n# t
+          $ r}d}Y d}~nd}~ww xY w|s]	 t          | j        dd¦  «        }t          dd|d|j        i¬¦  «         n# t
+          $ r Y nw xY wt          t          j        d¬¦  «        ‚|rt          |j        |j        ¦  «        sf	 t          | j        dd¦  «        }t          d|r|j        nd|d|j        i¬¦  «         n# t
+          $ r Y nw xY wt          t          j        d¬¦  «        ‚|j        st          t          j        d¬¦  «        ‚t%          t'          |j        ¦  «        |j        |j        |j        j        d	œ¬
+¦  «        }t/          dt'          |j        ¦  «        i¬
+¦  «        }	 t          | j        dd¦  «        }t          d|j        |d|j        i¬¦  «         n# t
+          $ r Y nw xY w||ddœS )u  
+    Login: obtener token de acceso
+    
+    - **email**: Email del usuario
+    - **password**: ContraseÃ±a
+    
+    Retorna:
+    - **access_token**: JWT token para usar en endpoints protegidos
+    - **refresh_token**: Token para obtener nuevo access_token
+    NÚhostzauth.login.failedr!   )r&   r'   r(   Údetailsu   Email o contraseÃ±a incorrectosr   zUsuario inactivo)Úsubr"   r!   Úrole©Údatar=   zauth.login.successr"   Úbearer©Úaccess_tokenÚrefresh_tokenÚ
+token_type)r*   r   r+   r!   r,   r3   ÚgetattrÚclientr   r   r   ÚHTTP_401_UNAUTHORIZEDr   r.   r$   r2   Ú	is_activeÚHTTP_403_FORBIDDENr   Ústrr"   r>   Úvaluer   )r   r9   r   ÚuserÚeÚiprC   rD   s           r7   ÚloginrP   K   sÇ  è è € ğ&ØxŠx‰~Œ~×$Ò$¥T¤Z°7´=Ò%@ÑAÔA×GÒGÑIÔIˆˆøİğ ğ ğ ğ ˆˆˆˆˆˆøøøøğøøøğ ğ 
+
+ğ	İ˜œ¨°Ñ6Ô6ˆBİĞ$7ÀĞRTĞ_fĞhoÔhuĞ^vĞwÑwÔwĞwĞwøİğ 	ğ 	ğ 	ØˆDğ	øøøåİÔ4Ø4ğ
+ñ 
+ô 
+ğ 	
+ğ ğ 
+
+• wÔ'7¸Ô9MÑNÔNğ 
+
+ğ	İ˜œ¨°Ñ6Ô6ˆBİĞ$7ÈTĞB[À$Ä'À'ĞW[ĞikĞv}ğ  @Gô  @Mğ  vNğ  Oñ  Oô  Oğ  Oğ  Oøİğ 	ğ 	ğ 	ØˆDğ	øøøåİÔ4Ø4ğ
+ñ 
+ô 
+ğ 	
+ğ Œ>ğ 
+İİÔ1Ø%ğ
+ñ 
+ô 
+ğ 	
+õ 'İ4”7‰|Œ|Ø”MØ”Ø”	”ğ	-ğ -ğ ñ ô €Lõ )Øs4”7‰|Œ|ğ/ğ ñ ô €MğİW”^ V¨TÑ2Ô2ˆİĞ 4¸d¼gĞRTĞ_iĞkoÔkxĞ^yĞzÑzÔzĞzĞzøİğ ğ ğ Øˆğøøøğ %Ø&Øğğ ğ sN   „AA Á
+A-Á!A(Á(A-Á30B$ Â$
+B1Â0B1Ã,9D& Ä&
+D3Ä2D3Ç5H	 È	
+HÈHz/logoutrM   c              ƒ   ó   K  — ddiS )uã   
+    Logout: invalida el token actual (cliente)
+    
+    En la prÃ¡ctica, el logout se maneja desde el frontend
+    eliminando el token del localStorage.
+    Este endpoint es opcional para implementar blacklist en backend.
+    ÚmessagezLogout exitoso© )rM   s    r7   ÚlogoutrT      s   è è € ğ Ğ'Ğ(Ğ(ó    z/mec              ƒ   óğ   K  — |                      t          ¦  «                             t          j        t	          | d         ¦  «        k    ¦  «                             ¦   «         }|st          dd¬¦  «        ‚|S )uw   
+    Obtener informaciÃ³n del usuario actual (autenticado)
+    
+    Requiere: Header Authorization: Bearer {token}
+    r'   i”  zUsuario no encontrador   )r*   r   r+   r2   Úintr,   r   )rM   r   Úuser_objs      r7   Úget_current_user_inforY   ©   sf   è è € ğ xŠx‰~Œ~×$Ò$¥T¤Wµ°D¸´OÑ0DÔ0DÒ%DÑEÔE×KÒKÑMÔM€HØğ Mİ¨Ğ4KĞLÑLÔLĞLà€OrU   z/refreshrD   c              ƒ   ó  K  — ddl m} 	  || ¦  «        }|                     d¦  «        }t          d|i¬¦  «        }t	          d|i¬¦  «        }||ddœS # t
+          $ r }t          t          j        d¬¦  «        ‚d	}~ww xY w)
+z«
+    Refrescar access token usando refresh token
+    
+    - **refresh_token**: Token de refresco obtenido en login
+    
+    Retorna nuevo access_token y refresh_token
+    r   )Úverify_refresh_tokenr=   r?   rA   rB   u   Refresh token invÃ¡lidor   N)	Úbackend.app.core.securityr[   Úgetr   r   r3   r   r   rH   )rD   r[   r9   r'   Únew_access_tokenÚnew_refresh_tokenrN   s          r7   Úrefresh_access_tokenr`   º   sÇ   è è € ğ ?Ğ>Ğ>Ğ>Ğ>Ğ>ğ
+Ø&Ğ& }Ñ5Ô5ˆØ—+’+˜eÑ$Ô$ˆå.°U¸GĞ4DĞEÑEÔEĞİ0°u¸gĞ6FĞGÑGÔGĞğ -Ø.Ø"ğ
+ğ 
+ğ 	
+øõ
+ ğ 
+ğ 
+ğ 
+İİÔ4Ø,ğ
+ñ 
+ô 
+ğ 	
+øøøøğ
+øøøs   ŠA	A Á
+A>ÁA9Á9A>N),Ú__doc__Úfastapir   r   r   r   Úsqlalchemy.ormr   Úfastapi.paramsr   Úbackend.app.core.databaser	   r\   r
+   r   r   r   Úbackend.app.core.dependenciesr   Úbackend.app.core.ratelimitr   Ú$backend.app.services.logging_servicer   Úbackend.app.models.userr   Úbackend.app.schemas.authr   r   r   r   Úbackend.app.schemas.userr   ÚrouterÚpostÚHTTP_201_CREATEDr8   ÚlimitrP   ÚdictrT   r]   rY   rK   r`   rS   rU   r7   ú<module>rq      s  ğğğ ğ >Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,ğğ ğ ğ ğ ğ ğ ğ ğ ğ ğ ğ ğ ;Ğ :Ğ :Ğ :Ğ :Ğ :Ø .Ğ .Ğ .Ğ .Ğ .Ğ .Ø =Ğ =Ğ =Ğ =Ğ =Ğ =Ø (Ğ (Ğ (Ğ (Ğ (Ğ (ğğ ğ ğ ğ ğ ğ ğ ğ ğ ğ ğ ğ 2Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1à	ˆ˜'¨¨Ğ	1Ñ	1Ô	1€ğ ‡‚ˆ[¨À6ÔCZ€Ñ[Ô[ğ '˜&‘/”/ğ0ğ 0Øğ0àğ0ğ 0ğ 0ñ \Ô[ğ0ğf ‡‚ˆX e€Ñ,Ô,Ø€„ˆzÑÔğ '˜&‘/”/ğMğ MØğMàğMğ 	ğMğ Mğ Mñ Ôñ -Ô,ğMğ` ‡‚ˆYÑÔØ%˜gĞ&6Ñ7Ô7ğ )ğ )tğ )ğ )ğ )ñ Ôğ)ğ ‡‚ˆE ,€Ñ/Ô/àĞ)Ñ*Ô*Ø'˜&‘/”/ğğ Ø
+ğàğğ ğ ñ 0Ô/ğğ  ‡‚ˆZÑÔğ
+¨cğ 
+ğ 
+ğ 
+ñ Ôğ
+ğ 
+ğ 
+rU   
 ----- FILE: backend/app/api/v1/endpoints/__pycache__/auth.cpython-313.pyc -----
 ó
-    ‚°\iâ  ã            	       ón  • S r SSKJrJrJrJr  SSKJr  SSKJ	r	  SSK
+    Óq]iâ  ã            	       ón  • S r SSKJrJrJrJr  SSKJr  SSKJ	r	  SSK
 Jr  SSKJrJrJrJr  SSKJr  SSKJr  SS	KJr  SS
 KJr  SSKJrJrJrJr  SSKJr  \" SS/S9r \ RC                  S\\RD                  S9\	" \5      4S\S\4S jj5       r#\ RC                  S\S9\RH                  " S5      \	" \5      4S\S\S\4S jj5       5       r%\ RC                  S5      \	" \5      4S\&4S jj5       r'\ RQ                  S\S9\	" \5      \	" \5      4S\&S\4S jj5       r)\ RC                  S5      S \*4S! j5       r+g")#u6   
 Endpoints de autenticaciÃ³n: login, register, logout
@@ -1893,6 +2059,22 @@ A&Á	A!Á!A&Á&A)N),Ú__doc__Úfastapir   r   r   r   Úsqlalchemy.ormr
 ¨có 
 ó ñ
 rp   
+----- FILE: backend/app/api/v1/endpoints/__pycache__/brands.cpython-311.pyc -----
+§
+    X\i  ã                   óN  — d dl mZ d dlmZ d dlZd dlmZ  eddg¬¦  «        Z ee¦  «         	                    ¦   «         j
+        d         d	z  d
+z  dz  Ze                     dee         ¬¦  «        d„ ¦   «         Ze                     dee         ¬¦  «        defd„¦   «         ZdS )é    )Ú	APIRouter)ÚListN)ÚPathz/brandsÚbrands)ÚprefixÚtagsé   ÚsrcÚassetsÚdataú/)Úresponse_modelc               ƒ   óú   K  — t          t          dz  dd¬¦  «        5 } t          j        | ¦  «        }ddd¦  «         n# 1 swxY w Y   |                     dg ¦  «        }t          |d„ ¬¦  «        }d	„ |D ¦   «         S )
+z(Return list of brands sorted A-Z by namezbrands.jsonÚrúutf-8©ÚencodingNr   c                 óR   — |                       dd¦  «                             ¦   «         S )NÚnameÚ ©ÚgetÚlower)Úbs    úa/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/endpoints/brands.pyú<lambda>zlist_brands.<locals>.<lambda>   s    € °·²°v¸rÑ1BÔ1B×1HÒ1HÑ1JÔ1J€ ó    ©Úkeyc                 óX   — g | ]'}|d          |d         |                      d¦  «        dœ‘Œ(S )Úidr   Útier)r!   r   r"   ©r   )Ú.0r   s     r   ú
+<listcomp>zlist_brands.<locals>.<listcomp>   s4   € Ğ]Ğ]Ğ]È!1T”7 A f¤I°q·u²u¸V±}´}ĞEĞEĞ]Ğ]Ğ]r   ©ÚopenÚ	DATA_PATHÚjsonÚloadr   Úsorted)Úfr   r   Úsorted_brandss       r   Úlist_brandsr.   
+   s¾   è è € õ 
+i˜-Ñ'¨°wĞ	?Ñ	?Ô	?ğ À1İŒy˜‰|Œ|ˆğğ ğ ñ ô ğ ğ ğ ğ ğ ğ øøøğ ğ ğ ğ àXŠXh Ñ#Ô#€Fİ˜6Ğ'JĞ'JĞKÑKÔK€Mà]Ğ]È}Ğ]Ñ]Ô]Ğ]s   >¾AÁAz/{brand_id}/modelsÚbrand_idc              ƒ   ó  ‡ K  — t          t          dz  dd¬¦  «        5 }t          j        |¦  «        }ddd¦  «         n# 1 swxY w Y   ˆ fd„|                     dg ¦  «        D ¦   «         }t          |d„ ¬	¦  «        }d
+„ |D ¦   «         S )z8Return instruments for a given brand with image metadatazinstruments.jsonr   r   r   Nc                 óF   •— g | ]}|                      d ¦  «        ‰k    ¯|‘ŒS )Úbrandr#   )r$   Úir/   s     €r   r%   z(list_models_by_brand.<locals>.<listcomp>   s-   ø€ ĞXĞXĞX˜¸Q¿UºUÀ7¹^¼^ÈxÒ=WĞ=W1Ğ=WĞ=WĞ=Wr   Úinstrumentsc                 óR   — |                       dd¦  «                             ¦   «         S )NÚmodelr   r   )r3   s    r   r   z&list_models_by_brand.<locals>.<lambda>   s    € ¸1¿5º5ÀÈ"Ñ;MÔ;M×;SÒ;SÑ;UÔ;U€ r   r   c                 ó   — g | ]{}|d          |d         |                      d¦  «        |                      d¦  «        |                      d¦  «        |                      ddddœ¦  «        |                      d	¦  «        d
+œ‘Œ|S )r!   r6   ÚyearÚdescriptionÚ
+imagen_urlÚimageNÚpending)ÚurlÚstatusÚvalor_estimado)r!   r6   r8   r9   r:   r;   r?   r#   )r$   r3   s     r   r%   z(list_models_by_brand.<locals>.<listcomp>   s“   € ğ ğ ğ ğ ğ D”'Øw”ZØ—E’E˜&‘M”MØŸ5š5 Ñ/Ô/ØŸ%š% Ñ-Ô-Ø—U’U˜7¨D¸IĞ$FĞ$FÑGÔGØŸešeĞ$4Ñ5Ô5ğ	
+ğ 	
+ğğ ğ r   r&   )r/   r,   r   r4   Úsorted_instrumentss   `    r   Úlist_models_by_brandrA      sä   øè è € õ 
+iĞ,Ñ,¨c¸GĞ	DÑ	DÔ	Dğ ÈİŒy˜‰|Œ|ˆğğ ğ ñ ô ğ ğ ğ ğ ğ ğ øøøğ ğ ğ ğ àXĞXĞXĞX˜dŸhšh }°bÑ9Ô9ĞXÑXÔX€Kİ Ğ1UĞ1UĞVÑVÔVĞğğ ğ $ğñ ô ğ s   ?¿AÁA)Úfastapir   Útypingr   r)   Úpathlibr   ÚrouterÚ__file__ÚresolveÚparentsr(   r   Údictr.   ÚstrrA   © r   r   ú<module>rL      s  ğØ Ğ Ğ Ğ Ğ Ğ Ø Ğ Ğ Ğ Ğ Ğ Ø €€€Ø Ğ Ğ Ğ Ğ Ğ à	ˆ˜)¨8¨*Ğ	5Ñ	5Ô	5€àˆD‰NŒN×"Ò"Ñ$Ô$Ô,¨QÔ/°%Ñ7¸(ÑBÀVÑK€	à‡‚ˆC  T¤
+€Ñ+Ô+ğ^ğ ^ñ ,Ô+ğ^ğ ‡‚Ğ °°d´€Ñ<Ô<ğ¨ğ ğ ğ ñ =Ô<ğğ ğ r   
 ----- FILE: backend/app/api/v1/endpoints/__pycache__/brands.cpython-313.pyc -----
 ó
     X\i  ã                   ó  • S SK Jr  S SKJr  S SKrS SKJr  \" SS/S9r\" \5      R                  5       R                  S   S	-  S
@@ -1913,6 +2095,19 @@ Eà"Ÿh™h }°bÔ9ÓXÒ9˜¿U¹UÀ7»^ÈxÑ=W—1Ñ9€KĞXÜ Ñ1UÑVĞñ $óò $ˆAğ
 EÕ	DüâXùòùs:   ‚D•C'¬DÁC8Á$C8Á*DÁ;A)C=Ã$DÃ'
 C5Ã1D)Úfastapir   Útypingr   r&   Úpathlibr   ÚrouterÚ__file__ÚresolveÚparentsr%   r   Údictr+   Ústrr=   © r   r   Ú<module>rH      s   ğİ İ Û İ á	˜)¨8¨*Ñ	5€á‹N×"Ñ"Ó$×,Ñ,¨QÑ/°%Ñ7¸(ÑBÀVÑK€	à‡ˆC  T¡
 €Ğ+ñ^ó ,ğ^ğ ‡Ğ °°d±€Ğ<ğ¨ó ó =ñr   
+----- FILE: backend/app/api/v1/endpoints/__pycache__/instruments.cpython-311.pyc -----
+§
+    X\i  ã                   ó,  — d dl mZmZ d dlmZ d dlZ eddg¬¦  «        Z ee¦  «                             ¦   «         j	        d         dz  d	z  d
+z  Z
+e                     d¦  «        defd„¦   «         Ze                     d¦  «        defd„¦   «         ZdS )é    )Ú	APIRouterÚHTTPException)ÚPathNz/instrumentsÚinstruments)ÚprefixÚtagsé   ÚsrcÚassetsÚdataz/{instrument_id}Úinstrument_idc              ƒ   ó"  ‡ K  — t          t          dz  dd¬¦  «        5 }t          j        |¦  «        }d d d ¦  «         n# 1 swxY w Y   |                     dg ¦  «        }t          ˆ fd„|D ¦   «         d ¦  «        }|st          dd¬	¦  «        ‚|S )
+Núinstruments.jsonÚrúutf-8©Úencodingr   c              3   óN   •K  — | ]}|                      d ¦  «        ‰k    ¯|V — Œ dS ©ÚidN©Úget©Ú.0Úir   s     €úf/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/api/v1/endpoints/instruments.pyú	<genexpr>z!get_instrument.<locals>.<genexpr>   ó7   øè è € ĞHĞHq¨1¯5ª5°©;¬;¸-Ò+GĞ+GĞ+GĞ+GĞ+GĞ+GĞHĞHó    é”  úInstrument not found©Ústatus_codeÚdetail©ÚopenÚ	DATA_PATHÚjsonÚloadr   Únextr   )r   Úfr   r   Úinsts   `    r   Úget_instrumentr-   	   sÚ   øè è € å	iĞ,Ñ,¨c¸GĞ	DÑ	DÔ	Dğ ÈİŒy˜‰|Œ|ˆğğ ğ ñ ô ğ ğ ğ ğ ğ ğ øøøğ ğ ğ ğ à—(’(˜=¨"Ñ-Ô-€KİĞHĞHĞHĞH˜KĞHÑHÔHÈ$ÑOÔO€DØğ Lİ¨Ğ4JĞKÑKÔKĞKØ€Kó   ?¿AÁAz/{instrument_id}/imagec              ƒ   óv  ‡ K  — t          t          dz  dd¬¦  «        5 }t          j        |¦  «        }d d d ¦  «         n# 1 swxY w Y   |                     dg ¦  «        }t          ˆ fd„|D ¦   «         d ¦  «        }|st          dd¬	¦  «        ‚|                     d
+¦  «        }|st          dd¬	¦  «        ‚d
+|iS )Nr   r   r   r   r   c              3   óN   •K  — | ]}|                      d ¦  «        ‰k    ¯|V — Œ dS r   r   r   s     €r   r   z'get_instrument_image.<locals>.<genexpr>   r   r   r    r!   r"   Ú
+imagen_urlzNo image for instrumentr%   )r   r+   r   r   r,   Úimgs   `     r   Úget_instrument_imager3      s  øè è € õ 
+iĞ,Ñ,¨c¸GĞ	DÑ	DÔ	Dğ ÈİŒy˜‰|Œ|ˆğğ ğ ñ ô ğ ğ ğ ğ ğ ğ øøøğ ğ ğ ğ à—(’(˜=¨"Ñ-Ô-€KİĞHĞHĞHĞH˜KĞHÑHÔHÈ$ÑOÔO€DØğ Lİ¨Ğ4JĞKÑKÔKĞKØ
+(Š(<Ñ
+ Ô
+ €CØğ Oİ¨Ğ4MĞNÑNÔNĞNØ˜#ĞĞr.   )Úfastapir   r   Úpathlibr   r(   ÚrouterÚ__file__ÚresolveÚparentsr'   r   Ústrr-   r3   © r   r   ú<module>r<      sğ   ğØ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ø Ğ Ğ Ğ Ğ Ğ Ø €€€à	ˆ˜.°¨Ğ	?Ñ	?Ô	?€àˆD‰NŒN×"Ò"Ñ$Ô$Ô,¨QÔ/°%Ñ7¸(ÑBÀVÑK€	à‡‚ĞÑÔğ¨ğ ğ ğ ñ  Ôğğ ‡‚Ğ$Ñ%Ô%ğ¨cğ ğ ğ ñ &Ô%ğğ ğ r   
 ----- FILE: backend/app/api/v1/endpoints/__pycache__/instruments.cpython-313.pyc -----
 ó
     X\i  ã                   óü   • S SK JrJr  S SKJr  S SKr\" SS/S9r\" \5      R                  5       R                  S   S-  S	-  S
@@ -2238,6 +2433,7 @@ try:
 	from backend.app.routers import stock_movement as stock_movement_router
 	from backend.app.routers import contact as contact_router
 	from backend.app.routers import diagnostic as diagnostic_router
+	from backend.app.routers import quotation as quotation_router
 	from backend.app.routers import payments as payments_router
 except Exception:
 	# Si los mÃ³dulos no existen en este entorno, se ignoran
@@ -2246,7 +2442,7 @@ except Exception:
 # If any router failed to import previously (e.g., due to transient import errors),
 # attempt a second import pass so that fixes applied at runtime are picked up.
 import importlib
-for name in ("repair", "user", "instrument", "category", "stock_movement", "contact"):
+for name in ("repair", "user", "instrument", "category", "stock_movement", "contact", "quotation"):
 	var_name = f"{name}_router"
 	if globals().get(var_name) is None:
 		try:
@@ -2293,17 +2489,32 @@ if contact_router:
 	api_router.include_router(contact_router.router)
 if globals().get("diagnostic_router"):
 	api_router.include_router(globals()["diagnostic_router"].router)
+if globals().get("quotation_router"):
+	api_router.include_router(globals()["quotation_router"].router)
 if globals().get("payments_router"):
 	api_router.include_router(globals()["payments_router"].router)
 
 ----- FILE: backend/app/routers/__init__.py -----
 
+----- FILE: backend/app/routers/__pycache__/__init__.cpython-311.pyc -----
+§
+    Éâ[i    ã                   ó   — d S )N© r   ó    úZ/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/__init__.pyú<module>r      s   ğğ ğ r   
 ----- FILE: backend/app/routers/__pycache__/__init__.cpython-313.pyc -----
 ó
     Éâ[i    ã                   ó   • g )N© r   ó    ÚZ/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/__init__.pyÚ<module>r      s   ñr   
+----- FILE: backend/app/routers/__pycache__/category.cpython-311.pyc -----
+§
+    Óq]iÕ  ã                   óÊ  — d dl mZmZmZ d dlmZ d dlmZ d dlm	Z	  eddg¬¦  «        Z
+e
+                     d¦  «         ee	¦  «        fd	efd
+„¦   «         Ze
+                     d¦  «         ee	¦  «        fded	efd„¦   «         Ze
+                     d¦  «         ee	¦  «        fdeded	efd„¦   «         Ze
+                     d¦  «         ee	¦  «        fded	efd„¦   «         ZdS )é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)ÚCategory)Úget_dbz/api/categoriesÚ
+Categories)ÚprefixÚtagsú/Údbc                 óZ   — |                       t          ¦  «                             ¦   «         S )N)Úqueryr   Úall)r   s    úZ/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/category.pyÚlist_categoriesr      s    € à8Š8•HÑÔ×!Ò!Ñ#Ô#Ğ#ó    Úpayloadc                 óš   — t          di | ¤}|                     |¦  «         |                     ¦   «          |                     |¦  «         |S )N© )r   ÚaddÚcommitÚrefresh)r   r   Údb_cats      r   Úcreate_categoryr      sH   € åĞ Ğ ˜Ğ Ğ €FØ‡F‚Fˆ6N„N€NØ‡I‚IK„K€KØ‡J‚JˆvÑÔĞØ€Mr   z/{category_id}Úcategory_idc                 ó.  — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     ¦   «         D ]\  }}t          |||¦  «         Œ|                     ¦   «          |                     |¦  «         |S )Né”  úCategory not found©Ústatus_codeÚdetail)r   r   Úgetr   ÚitemsÚsetattrr   r   )r   r   r   r   ÚkÚvs         r   Úupdate_categoryr(      s’   € àXŠX•hÑÔ×#Ò# KÑ0Ô0€FØğ Jİ¨Ğ4HĞIÑIÔIĞIØ—’‘”ğ ğ ‰ˆˆ1İ˜˜1ÑÔĞĞØ‡I‚IK„K€KØ‡J‚JˆvÑÔĞØ€Mr   c                 óÜ   — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     |¦  «         |                     ¦   «          ddiS )Nr   r   r    ÚokT)r   r   r#   r   Údeleter   )r   r   r   s      r   Údelete_categoryr,      sg   € àXŠX•hÑÔ×#Ò# KÑ0Ô0€FØğ Jİ¨Ğ4HĞIÑIÔIĞIØ‡I‚IˆfÑÔĞØ‡I‚IK„K€KØ$ˆ<Ğr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.categoryr   Úbackend.app.core.databaser   Úrouterr#   r   ÚpostÚdictr   ÚputÚintr(   r+   r,   r   r   r   ú<module>r6      s£  ğØ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø 0Ğ 0Ğ 0Ğ 0Ğ 0Ğ 0Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,à	ˆĞ+°<°.Ğ	AÑ	AÔ	A€à‡‚ˆC„Ø") '¨&¡/¤/ğ $ğ $˜ğ $ğ $ğ $ñ „ğ$ğ ‡‚ˆSÑÔØ18°¸±´ğ ğ ˜Tğ  wğ ğ ğ ñ Ôğğ ‡‚ĞÑÔØCJÀ7È6Á?Ä?ğ ğ  ğ ¨tğ ¸ğ ğ ğ ñ Ôğğ ‡‚ĞÑ Ô Ø4;°G¸F±O´Oğ ğ  ğ ¨'ğ ğ ğ ñ !Ô ğğ ğ r   
 ----- FILE: backend/app/routers/__pycache__/category.cpython-313.pyc -----
 ó
-    }‰\iÕ  ã                   ó|  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  \" SS/S9r
+    Óq]iÕ  ã                   ó|  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  \" SS/S9r
 \
 R                  S5      \" \	5      4S	\4S
  jj5       r\
@@ -2313,13 +2524,93 @@ R'                  S5      \" \	5      4S\S	\4S jj5       rg)é 
 Categories)ÚprefixÚtagsÚ/Údbc                 óH   • U R                  [        5      R                  5       $ )N)Úqueryr   Úall)r   s    ÚZ/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/category.pyÚlist_categoriesr      s   € à8‰8”HÓ×!Ñ!Ó#Ğ#ó    Úpayloadc                 ó€   • [        S0 U D6nUR                  U5        UR                  5         UR                  U5        U$ )N© )r   ÚaddÚcommitÚrefresh)r   r   Údb_cats      r   Úcreate_categoryr      s4   € äÑ ˜Ñ €FØ‡FFˆ6„NØ‡II„KØ‡JJˆvÔØ€Mr   z/{category_id}Úcategory_idc                 óü   • UR                  [        5      R                  U 5      nU(       d
   [        SSS9eUR	                  5        H  u  pE[        X4U5        M     UR                  5         UR                  U5        U$ )Né”  úCategory not found©Ústatus_codeÚdetail)r   r   Úgetr   ÚitemsÚsetattrr   r   )r   r   r   r   ÚkÚvs         r   Úupdate_categoryr(      sb   € àX‰X”hÓ×#Ñ# KÓ0€FŞÜ¨Ğ4HÑIĞIØ—‘–‰ˆÜ˜1Öñ  à‡II„KØ‡JJˆvÔØ€Mr   c                 ó¶   • UR                  [        5      R                  U 5      nU(       d
   [        SSS9eUR	                  U5        UR                  5         SS0$ )Nr   r   r    ÚokT)r   r   r#   r   Údeleter   )r   r   r   s      r   Údelete_categoryr,      sK   € àX‰X”hÓ×#Ñ# KÓ0€FŞÜ¨Ğ4HÑIĞIØ‡IIˆfÔØ‡II„KØ$ˆ<Ğr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.categoryr   Úbackend.app.core.databaser   Úrouterr#   r   ÚpostÚdictr   ÚputÚintr(   r+   r,   r   r   r   Ú<module>r6      sê   ğß 5Ñ 5İ "İ 0İ ,á	Ğ+°<°.Ñ	A€à‡ˆCƒÙ")¨&£/ñ $˜ô $ó ğ$ğ ‡ˆSÓÙ18¸³ñ ˜Tğ  wô ó ğğ ‡ĞÓÙCJÈ6Ã?ñ  ğ ¨tğ ¸ô ó ğğ ‡ĞÓ Ù4;¸F³Oñ  ğ ¨'ô ó !ñr   
+----- FILE: backend/app/routers/__pycache__/contact.cpython-311.pyc -----
+§
+    Óq]i¹  ã                   ót   — d dl mZmZ  eddg¬¦  «        Ze                     d¦  «        defd„¦   «         ZdS )	é    )Ú	APIRouterÚHTTPExceptionz/api/contactÚContact)ÚprefixÚtagsú/Úpayloadc                 ó‚   — |                       d¦  «        r|                       d¦  «        st          dd¬¦  «        ‚d| dœS )NÚemailÚmessagei  zMissing email or message)Ústatus_codeÚdetailT)ÚokÚreceived)Úgetr   )r	   s    úY/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/contact.pyÚsend_contactr      sO   € ğ ;Š;wÑÔğ P w§{¢{°9Ñ'=Ô'=ğ Pİ¨Ğ4NĞOÑOÔOĞOØ GĞ,Ğ,Ğ,ó    N)Úfastapir   r   ÚrouterÚpostÚdictr   © r   r   ú<module>r      so   ğØ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,à	ˆ˜.°	¨{Ğ	;Ñ	;Ô	;€à‡‚ˆSÑÔğ-˜$ğ -ğ -ğ -ñ Ôğ-ğ -ğ -r   
 ----- FILE: backend/app/routers/__pycache__/contact.cpython-313.pyc -----
 ó
-    }‰\i¹  ã                   óZ   • S SK JrJr  \" SS/S9r\R	                  S5      S\4S j5       rg)	é    )Ú	APIRouterÚHTTPExceptionz/api/contactÚContact)ÚprefixÚtagsÚ/Úpayloadc                 óx   • U R                  S5      (       a  U R                  S5      (       d
+    Óq]i¹  ã                   óZ   • S SK JrJr  \" SS/S9r\R	                  S5      S\4S j5       rg)	é    )Ú	APIRouterÚHTTPExceptionz/api/contactÚContact)ÚprefixÚtagsÚ/Úpayloadc                 óx   • U R                  S5      (       a  U R                  S5      (       d
   [        SSS9eSU S.$ )NÚemailÚmessagei  zMissing email or message)Ústatus_codeÚdetailT)ÚokÚreceived)Úgetr   )r	   s    ÚY/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/contact.pyÚsend_contactr      s:   € ğ ;‰;w×Ñ w§{¡{°9×'=Ñ'=Ü¨Ğ4NÑOĞOØ GÑ,Ğ,ó    N)Úfastapir   r   ÚrouterÚpostÚdictr   © r   r   Ú<module>r      s8   ğß ,á	˜.°	¨{Ñ	;€à‡ˆSÓğ-˜$ó -ó ñ-r   
+----- FILE: backend/app/routers/__pycache__/diagnostic.cpython-311.pyc -----
+§
+    Óq]ix   ã                   óD  — d Z ddlmZmZmZ ddlmZ ddlZddlm	Z	 ddl
+mZmZ ddlmZ  edd	g¬
+¦  «        Z e	e¦  «                             ¦   «         j        d         Zedz  dz  dz  Z eedz  d¦  «        5 Z ej        e¦  «        Zddd¦  «         n# 1 swxY w Y    eedz  d¦  «        5 Z ej        e¦  «        Zddd¦  «         n# 1 swxY w Y    eedz  d¦  «        5 Z ej        e¦  «        Zddd¦  «         n# 1 swxY w Y   e                     d¦  «        d„ ¦   «         Ze                     d¦  «        defd„¦   «         Ze                     d¦  «        defd„¦   «         Ze                     d¦  «        d„ ¦   «         Z e                     d¦  «        defd„¦   «         Z!e "                    d¦  «         ee¦  «        fd	e#d efd!„¦   «         Z$e "                    d"¦  «        d#e#fd$„¦   «         Z%e                     d%¦  «        d&e&fd'„¦   «         Z'dS )(z0
+API routes for diagnostic and quotation system
+é    )Ú	APIRouterÚHTTPExceptionÚDepends)ÚListN)ÚPath)Úget_settingsÚSettings)Úcreate_auditz/diagnosticÚ
+diagnostic)ÚprefixÚtagsé   ÚsrcÚassetsÚdatazbrands.jsonÚrzinstruments.jsonzfaults.jsonz/instruments/brandsc               ƒ   ó    K  — t           d         S )z#Get all available instrument brandsÚbrands)Úbrands_data© ó    ú\/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/diagnostic.pyÚ
+get_brandsr      ó   è è € õ xÔ Ğ r   z/instruments/models/{brand_id}Úbrand_idc              ƒ   ó>   ‡ K  — ˆ fd„t           d         D ¦   «         }|S )z#Get all models for a specific brandc                 ó,   •— g | ]}|d          ‰k    ¯|‘ŒS )Úbrandr   )Ú.0Ú
+instrumentr   s     €r   ú
+<listcomp>z'get_models_by_brand.<locals>.<listcomp>&   s3   ø€ ğ ğ ğ àØgÔ (Ò*Ğ*ğ 	à*Ğ*Ğ*r   Úinstruments)Úinstruments_data)r   Úmodelss   ` r   Úget_models_by_brandr%   #   s;   øè è € ğğ ğ ğ å*¨=Ô9ğñ ô €Fğ
+ €Mr   z/instruments/{instrument_id}Úinstrument_idc              ƒ   óh   K  — t           d         D ]}|d         | k    r|c S Œt          dd¬¦  «        ‚)z4Get detailed information about a specific instrumentr"   Úidé”  úInstrument not found©Ústatus_codeÚdetail)r#   r   )r&   r    s     r   Úget_instrumentr.   .   sQ   è è € õ ' }Ô5ğ ğ ˆ
+ØdÔ˜}Ò,Ğ,ØĞĞĞğ -å
+ CĞ0FĞ
+GÑ
+GÔ
+GĞGr   z/faultsc               ƒ   ó    K  — t           d         S )zGet all available faultsÚfaults)Úfaults_datar   r   r   Úget_all_faultsr2   7   r   r   z"/faults/applicable/{instrument_id}c              ƒ   ó$  K  — d}t           d         D ]}|d         | k    r|} nŒ|st          dd¬¦  «        ‚i }g d¢}|D ]'}|t          d         v rt          d         |         ||<   Œ(|d	         }d
+|d                              ¦   «         v r.ddg}|D ]'}|t          d         v rt          d         |         ||<   Œ(|                     d¦  «        r.ddg}|D ]'}|t          d         v rt          d         |         ||<   Œ(|                     dd¦  «        dk    r%dt          d         v rt          d         d         |d<   |                     dd¦  «        dk    r%dt          d         v rt          d         d         |d<   |                     dd¦  «        dk    r.ddg}	|	D ]'}|t          d         v rt          d         |         ||<   Œ(|                     d¦  «        r%dt          d         v rt          d         d         |d<   |                     d¦  «        r%dt          d         v rt          d         d         |d<   |                     d¦  «        r%dt          d         v rt          d         d         |d<   t          |                     ¦   «         ¦  «        S )z.Get faults applicable to a specific instrumentNr"   r(   r)   r*   r+   )	ÚPOWERÚPOWER_UNSTABLEÚAUDIO_DISTORTEDÚAUDIO_NO_OUTPUTÚ
+AUDIO_WEAKÚCOSMETIC_DAMAGEÚWATER_DAMAGEÚCAPACITOR_BLOWNÚCONNECTOR_LOOSEr0   Ú
+componentsÚtecladoÚtypeÚKEYBOARD_DEAD_KEYÚKEYBOARD_STUCK_KEYÚlcdÚLCD_DEADÚLCD_LOW_CONTRASTÚencoders_rotativosr   ÚENCODER_INTERMITTENTÚfadersÚFADER_INTERMITTENTÚbotonesÚBUTTON_STUCKÚBUTTON_DEADÚusbÚUSB_NOT_RECOGNIZEDÚmidi_dinÚMIDI_NOT_RECOGNIZEDÚ
+aftertouchÚAFTERTOUCH_BROKEN)r#   r   r1   ÚlowerÚgetÚlistÚvalues)
+r&   r    ÚinstÚapplicable_faultsÚgeneral_fault_idsÚfault_idr=   Úkeyboard_faultsÚ
+lcd_faultsÚbutton_faultss
+             r   Úget_applicable_faultsr]   =   s5  è è € ğ €Jİ  Ô/ğ ğ ˆØŒ:˜Ò&Ğ&ØˆJØˆEğ 'ğ ğ Lİ¨Ğ4JĞKÑKÔKĞKğ Ğğ
+ğ 
+ğ 
+Ğğ &ğ Jğ JˆØ•{ 8Ô,Ğ,Ğ,İ*5°hÔ*?ÀÔ*IĞ˜hÑ'øğ ˜LÔ)€Jğ J˜vÔ&×,Ò,Ñ.Ô.Ğ.Ğ.Ø.Ğ0DĞEˆØ'ğ 	Nğ 	NˆHØ; xÔ0Ğ0Ğ0İ.9¸(Ô.CÀHÔ.MĞ! (Ñ+øğ ‡~‚~eÑÔğ NØ Ğ"4Ğ5ˆ
+Ø"ğ 	Nğ 	NˆHØ; xÔ0Ğ0Ğ0İ.9¸(Ô.CÀHÔ.MĞ! (Ñ+øğ ‡~‚~Ğ*¨AÑ.Ô.°Ò2Ğ2Ø!¥[°Ô%:Ğ:Ğ:İ8CÀHÔ8MØ&ô9ĞĞ4Ñ5ğ ‡~‚~h Ñ"Ô" QÒ&Ğ&Ø¥;¨xÔ#8Ğ8Ğ8İ6AÀ(Ô6KØ$ô7ĞĞ2Ñ3ğ ‡~‚~i Ñ#Ô# aÒ'Ğ'Ø'¨Ğ7ˆØ%ğ 	Nğ 	NˆHØ; xÔ0Ğ0Ğ0İ.9¸(Ô.CÀHÔ.MĞ! (Ñ+øğ ‡~‚~eÑÔğ Ø¥;¨xÔ#8Ğ8Ğ8İ6AÀ(Ô6KØ$ô7ĞĞ2Ñ3ğ ‡~‚~jÑ!Ô!ğ Ø ¥K°Ô$9Ğ9Ğ9İ7BÀ8Ô7LØ%ô8ĞĞ3Ñ4ğ
+ ‡~‚~lÑ#Ô#ğ Ø¥+¨hÔ"7Ğ7Ğ7İ5@ÀÔ5JØ#ô6ĞĞ1Ñ2õ Ğ!×(Ò(Ñ*Ô*Ñ+Ô+Ğ+r   z
+/calculateÚsettingsc           	   ƒ   óà  K  — d}t           d         D ]9}|d         |                      di ¦  «                             d¦  «        k    r|} nŒ:|st          dd¬¦  «        ‚d}t          d	         D ]9}|d         |                      di ¦  «                             d
+¦  «        k    r|} nŒ:|st          dd¬¦  «        ‚|                      dg ¦  «        }d|v rdg}d}|D ]=}|t          d         v r,t          d         |         }	||	                     dd¦  «        z  }Œ>|j                             |                     d¦  «        d¦  «        }
+|d         d         }d}|dk    rd}n|dk    rd}n|dk    rd}t          ||
+z  |z  ¦  «        }	 t          dd|                     d¦  «        |                     d¦  «        ||dœd¬¦  «         n# t          $ r Y nw xY w|d         |d         |dœ|||
+||d œS )!ap  
+    Calculate diagnostic quote based on instrument and faults
+
+    The quote calculation follows these rules:
+    1. If POWER fault is present, it takes precedence over all others
+    2. Base price is sum of all fault prices
+    3. Applied multipliers:
+       - Instrument tier (brand tier complexity factor)
+       - Equipment value (estimated value multiplier)
+    Nr"   r(   Ú	equipmentÚmodelr)   r*   r+   r   r   zBrand not foundr0   r4   r   Ú	basePriceÚtierg      ğ?Úvalor_estimadoÚmini@KL g       @i€„ gš™™™™™ù?i ¡ gÍÌÌÌÌÌô?zdiagnostic.calculate)r   ra   r0   Ú
+final_costzDiagnostic calculated)Ú
+event_typeÚuser_idÚdetailsÚmessageÚname)r   ra   Úvalue)Úequipment_infor0   Ú	base_costÚcomplexity_factorÚvalue_factorrf   )	r#   rS   r   r   r1   Úservice_multipliersÚintr
+   Ú	Exception)r   r^   r    rV   r   ÚbÚeffective_faultsrn   rY   Úfaultro   Úequipment_valuerp   rf   s                 r   Úcalculate_diagnosticrx   ™   s¥  è è € ğ €Jİ  Ô/ğ ğ ˆØŒ:˜Ÿš¨°RÑ8Ô8×<Ò<¸WÑEÔEÒEĞEØˆJØˆEğ Fğ ğ Lİ¨Ğ4JĞKÑKÔKĞKğ €Eİ˜Ô"ğ ğ ˆØˆTŒ7j—n’n [°"Ñ5Ô5×9Ò9¸'ÑBÔBÒBĞBØˆEØˆEğ Cğ ğ Gİ¨Ğ4EĞFÑFÔFĞFğ "—~’~ h°Ñ3Ô3ĞØĞ"Ğ"Ğ"Ø#˜9Ğğ €IØ$ğ 3ğ 3ˆØ•{ 8Ô,Ğ,Ğ,İ Ô)¨(Ô3ˆEØ˜Ÿš ;°Ñ2Ô2Ñ2ˆIøğ !Ô4×8Ò8¸¿ºÀ6Ñ9JÔ9JÈCÑPÔPĞğ !Ğ!1Ô2°5Ô9€OØ€Là˜Ò Ğ ØˆˆØ	˜7Ò	"Ğ	"ØˆˆØ	˜6Ò	!Ğ	!Øˆõ YĞ!2Ñ2°\ÑAÑBÔB€JğİØ-ØàŸš 4™œØ#Ÿš¨Ñ-Ô-Ø*Ø(ğ	ğ ğ ,ğ
+	
+ñ 
+	
+ô 
+	
+ğ 
+	
+ğ 
+	
+øõ ğ ğ ğ Øˆğøøøğ %*¨&¤M¸JÀwÔ<OĞZiĞjĞjØ"ØØ.Ø$Ø ğğ ğ s   Æ>G Ç
+GÇGz/quotesÚquotec              ƒ   ó(   K  — t          dd¬¦  «        ‚)zi
+    Create a new quote from diagnostic data
+
+    TODO: Implement database storage and email sending
+    éõ  z"Quote creation not yet implementedr+   ©r   )ry   s    r   Úcreate_quoter}   ñ   s   è è € õ  CĞ0TĞ
+UÑ
+UÔ
+UĞUr   z/quotes/{quote_id}Úquote_idc              ƒ   ó(   K  — t          dd¬¦  «        ‚)zGet a specific quote by IDr{   z#Quote retrieval not yet implementedr+   r|   )r~   s    r   Ú	get_quoter€   ı   s   è è € õ  CĞ0UĞ
+VÑ
+VÔ
+VĞVr   )(Ú__doc__Úfastapir   r   r   Útypingr   ÚjsonÚpathlibr   Úbackend.app.core.configr   r	   Ú$backend.app.services.logging_servicer
+   ÚrouterÚ__file__ÚresolveÚparentsÚ_rootÚdata_dirÚopenÚfÚloadr   r#   r1   rS   r   Ústrr%   r.   r2   r]   ÚpostÚdictrx   r}   rr   r€   r   r   r   ú<module>r”      s  ğğğ ğ 6Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø Ğ Ğ Ğ Ğ Ğ Ø €€€Ø Ğ Ğ Ğ Ğ Ğ ğ ;Ğ :Ğ :Ğ :Ğ :Ğ :Ğ :Ğ :Ø =Ğ =Ğ =Ğ =Ğ =Ğ =à	ˆ˜-¨|¨nĞ	=Ñ	=Ô	=€ğ 	ˆˆX‰Œ×ÒÑ Ô Ô(¨Ô+€Ø5‰=˜8Ñ# fÑ,€Ø	€Tˆ(]Ñ
+" CÑ(Ô(ğ ¨AØ$”)˜A‘,”,€Kğğ ğ ñ ô ğ ğ ğ ğ ğ ğ øøøğ ğ ğ ğ ğ 
+€Tˆ(Ğ'Ñ
+'¨Ñ-Ô-ğ $°Ø t”y ‘|”|Ğğ$ğ $ğ $ñ $ô $ğ $ğ $ğ $ğ $ğ $ğ $øøøğ $ğ $ğ $ğ $ğ 
+€Tˆ(]Ñ
+" CÑ(Ô(ğ ¨AØ$”)˜A‘,”,€Kğğ ğ ñ ô ğ ğ ğ ğ ğ ğ øøøğ ğ ğ ğ ğ ‡‚Ğ!Ñ"Ô"ğ!ğ !ñ #Ô"ğ!ğ
+ ‡‚Ğ,Ñ-Ô-ğ¨ğ ğ ğ ñ .Ô-ğğ ‡‚Ğ*Ñ+Ô+ğH¨ğ Hğ Hğ Hñ ,Ô+ğHğ ‡‚ˆIÑÔğ!ğ !ñ Ôğ!ğ
+ ‡‚Ğ0Ñ1Ô1ğX,¨sğ X,ğ X,ğ X,ñ 2Ô1ğX,ğv ‡‚ˆ\ÑÔØFMÀgÈlÑF[ÔF[ğ Tğ T¨4ğ T¸8ğ Tğ Tğ Tñ ÔğTğn ‡‚ˆYÑÔğV˜dğ Vğ Vğ Vñ ÔğVğ ‡‚Ğ Ñ!Ô!ğW˜cğ Wğ Wğ Wñ "Ô!ğWğ Wğ Ws6   Á;BÂBÂBÂ2CÃCÃCÃ)DÄD
+ÄD
+
 ----- FILE: backend/app/routers/__pycache__/diagnostic.cpython-313.pyc -----
 ó
-    ãï\ix   ã                   óĞ  • S r SSKJrJrJr  SSKJr  SSKrSSKJ	r	  SSK
+    Óq]ix   ã                   óĞ  • S r SSKJrJrJr  SSKJr  SSKrSSKJ	r	  SSK
 JrJr  SSKJr  \" SS	/S
 9r\	" \5      R#                  5       R$                  S   r\S-  S-  S-  r\" \S-  S5       r\R.                  " \5      rSSS5        \" \S-  S5       r\R.                  " \5      rSSS5        \" \S-  S5       r\R.                  " \5      rSSS5        \R7                  S5      S 5       r\R7                  S5      S\4S j5       r\R7                  S5      S\4S j5       r\R7                  S5      S 5       r \R7                  S5      S\4S j5       r!\RE                  S5      \" \5      4S	\#S \4S! jj5       r$\RE                  S"5      S#\#4S$ j5       r%\R7                  S%5      S&\&4S' j5       r'g! , (       d  f       GN9= f! , (       d  f       GN$= f! , (       d  f       GN= f)(z0
 API routes for diagnostic and quotation system
@@ -2390,9 +2681,19 @@ VĞVùr|   )(Ú__doc__Úfastapir   r   r   Útypingr   ÚjsonÚpathlibr   Ú
 GÇ
 GÇ
 G%
+----- FILE: backend/app/routers/__pycache__/instrument.cpython-311.pyc -----
+§
+    Óq]i  ã                   óÊ  — d dl mZmZmZ d dlmZ d dlmZ d dlm	Z	  eddg¬¦  «        Z
+e
+                     d¦  «         ee	¦  «        fd	efd
+„¦   «         Ze
+                     d¦  «         ee	¦  «        fded	efd„¦   «         Ze
+                     d¦  «         ee	¦  «        fdeded	efd„¦   «         Ze
+                     d¦  «         ee	¦  «        fded	efd„¦   «         ZdS )é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)Ú
+Instrument)Úget_dbz/api/instrumentsÚInstruments)ÚprefixÚtagsú/Údbc                 óZ   — |                       t          ¦  «                             ¦   «         S )N)Úqueryr   Úall)r   s    ú\/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/instrument.pyÚlist_instrumentsr      s    € à8Š8•JÑÔ×#Ò#Ñ%Ô%Ğ%ó    Úpayloadc                 óš   — t          di | ¤}|                     |¦  «         |                     ¦   «          |                     |¦  «         |S )N© )r   ÚaddÚcommitÚrefresh)r   r   Údb_insts      r   Úcreate_instrumentr      sH   € åĞ#Ğ#˜7Ğ#Ğ#€GØ‡F‚Fˆ7O„O€OØ‡I‚IK„K€KØ‡J‚JˆwÑÔĞØ€Nr   z/{instrument_id}Úinstrument_idc                 ó.  — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     ¦   «         D ]\  }}t          |||¦  «         Œ|                     ¦   «          |                     |¦  «         |S )Né”  úInstrument not found©Ústatus_codeÚdetail)r   r   Úgetr   ÚitemsÚsetattrr   r   )r   r   r   r   ÚkÚvs         r   Úupdate_instrumentr(      s’   € àhŠh•zÑ"Ô"×&Ò& }Ñ5Ô5€GØğ Lİ¨Ğ4JĞKÑKÔKĞKØ—’‘”ğ ğ ‰ˆˆ1İ˜˜AÑÔĞĞØ‡I‚IK„K€KØ‡J‚JˆwÑÔĞØ€Nr   c                 óÜ   — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     |¦  «         |                     ¦   «          ddiS )Nr   r   r    ÚokT)r   r   r#   r   Údeleter   )r   r   r   s      r   Údelete_instrumentr,      sg   € àhŠh•zÑ"Ô"×&Ò& }Ñ5Ô5€GØğ Lİ¨Ğ4JĞKÑKÔKĞKØ‡I‚IˆgÑÔĞØ‡I‚IK„K€KØ$ˆ<Ğr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.instrumentr   Úbackend.app.core.databaser   Úrouterr#   r   ÚpostÚdictr   ÚputÚintr(   r+   r,   r   r   r   ú<module>r6      s£  ğØ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø 4Ğ 4Ğ 4Ğ 4Ğ 4Ğ 4Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,à	ˆĞ,°M°?Ğ	CÑ	CÔ	C€à‡‚ˆC„Ø#* 7¨6¡?¤?ğ &ğ &˜ğ &ğ &ğ &ñ „ğ&ğ ‡‚ˆSÑÔØ3:°7¸6±?´?ğ ğ ˜tğ ¨ğ ğ ğ ñ Ôğğ ‡‚ĞÑÔØGNÀwÈvÁÄğ ğ  Sğ °4ğ ¸Wğ ğ ğ ñ  Ôğğ ‡‚Ğ!Ñ"Ô"Ø8?¸À¹¼ğ ğ  Sğ ¨gğ ğ ğ ñ #Ô"ğğ ğ r   
 ----- FILE: backend/app/routers/__pycache__/instrument.cpython-313.pyc -----
 ó
-    }‰\i  ã                   ó|  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  \" SS/S9r
+    Óq]i  ã                   ó|  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  \" SS/S9r
 \
 R                  S5      \" \	5      4S	\4S
  jj5       r\
@@ -2402,9 +2703,35 @@ R'                  S5      \" \	5      4S\S	\4S jj5       rg)é 
 Instrument)Úget_dbz/api/instrumentsÚInstruments)ÚprefixÚtagsÚ/Údbc                 óH   • U R                  [        5      R                  5       $ )N)Úqueryr   Úall)r   s    Ú\/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/instrument.pyÚlist_instrumentsr      s   € à8‰8”JÓ×#Ñ#Ó%Ğ%ó    Úpayloadc                 ó€   • [        S0 U D6nUR                  U5        UR                  5         UR                  U5        U$ )N© )r   ÚaddÚcommitÚrefresh)r   r   Údb_insts      r   Úcreate_instrumentr      s4   € äÑ#˜7Ñ#€GØ‡FFˆ7„OØ‡II„KØ‡JJˆwÔØ€Nr   z/{instrument_id}Úinstrument_idc                 óü   • UR                  [        5      R                  U 5      nU(       d
   [        SSS9eUR	                  5        H  u  pE[        X4U5        M     UR                  5         UR                  U5        U$ )Né”  úInstrument not found©Ústatus_codeÚdetail)r   r   Úgetr   ÚitemsÚsetattrr   r   )r   r   r   r   ÚkÚvs         r   Úupdate_instrumentr(      sb   € àh‰h”zÓ"×&Ñ& }Ó5€GŞÜ¨Ğ4JÑKĞKØ—‘–‰ˆÜ˜AÖñ  à‡II„KØ‡JJˆwÔØ€Nr   c                 ó¶   • UR                  [        5      R                  U 5      nU(       d
   [        SSS9eUR	                  U5        UR                  5         SS0$ )Nr   r   r    ÚokT)r   r   r#   r   Údeleter   )r   r   r   s      r   Údelete_instrumentr,      sK   € àh‰h”zÓ"×&Ñ& }Ó5€GŞÜ¨Ğ4JÑKĞKØ‡IIˆgÔØ‡II„KØ$ˆ<Ğr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.instrumentr   Úbackend.app.core.databaser   Úrouterr#   r   ÚpostÚdictr   ÚputÚintr(   r+   r,   r   r   r   Ú<module>r6      sê   ğß 5Ñ 5İ "İ 4İ ,á	Ğ,°M°?Ñ	C€à‡ˆCƒÙ#*¨6£?ñ &˜ô &ó ğ&ğ ‡ˆSÓÙ3:¸6³?ñ ˜tğ ¨ô ó ğğ ‡ĞÓÙGNÈvÃñ  Sğ °4ğ ¸Wô ó  ğğ ‡Ğ!Ó"Ù8?À»ñ  Sğ ¨gô ó #ñr   
+----- FILE: backend/app/routers/__pycache__/payments.cpython-311.pyc -----
+§
+    Óq]i]  ã                   óÖ  — d dl mZmZmZ d dlmZmZ d dlmZ d dl	m
+Z
+ d dlmZ d dlmZmZ d dlmZ d dlmZ d d	lmZmZ  ed
+dg¬¦  «        Ze                     de¬¦  «         ee
+¦  «        fdedefd„¦   «         Ze                     dee         ¬¦  «        dd ee
+¦  «        fdededefd„¦   «         Ze                     de¬¦  «         ee
+¦  «        fdedefd„¦   «         ZdS )é    )Ú	APIRouterÚDependsÚHTTPException)ÚDictÚList)ÚValidationError)Úget_db)ÚSession)ÚPaymentÚPaymentStatus)Úcreate_audit)ÚIntegrityError)ÚPaymentCreateÚPaymentReadz	/paymentsÚpayments)ÚprefixÚtagsú/)Úresponse_modelÚpayloadÚdbc                 ó*  — |                       ¦   «         }|                     d¦  «        }|r²|                     t          ¦  «                             t          j        |k    ¦  «                             t          j                             ¦   «         ¦  «         	                    ¦   «         }|r4	 t          d|j        |j        |dœd¬¦  «         n# t          $ r Y nw xY w|S t          |                     d¦  «        |                     d¦  «        |                     d¦  «        |                     d	¦  «        |                     d¦  «        |                     d
+¦  «        pd                     ¦   «         dk    rt          j        nt          j        |                     d¦  «        ¬¦  «        }|                     |¦  «         	 |                     ¦   «          |                     |¦  «         nÛ# t(          $ rÎ |                     ¦   «          d }|r||                     t          ¦  «                             t          j        |k    ¦  «                             t          j                             ¦   «         ¦  «         	                    ¦   «         }|r6	 t          d|j        |j        |dœd¬¦  «         n# t          $ r Y nw xY w|cY S ‚ w xY w	 t          d|j        |j        |j        |j        |j        |j        |j        dœd¬¦  «         n# t          $ r Y nw xY w|S )NÚtransaction_idzpayment.duplicate)Ú
+payment_idr   z"Duplicate payment request detected)Ú
+event_typeÚuser_idÚdetailsÚmessager   Ú	repair_idÚamountÚpayment_methodÚstatusÚ ÚsuccessÚnotes)r   r   r    r!   r   r"   r%   z)Duplicate payment request detected (race)zpayment.create)r   r   r    Úmethodr   r"   zPayment created)ÚdictÚgetÚqueryr   Úfilterr   Úorder_byÚidÚdescÚfirstr   r   Ú	ExceptionÚlowerr   ÚSUCCESSÚPENDINGÚaddÚcommitÚrefreshr   Úrollbackr   r    r!   r"   )r   r   ÚdataÚtxÚexistingÚpayments         úZ/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/payments.pyÚcreate_paymentr<      s  € ğ <Š<‰>Œ>€Dğ 
+ŠĞ"Ñ	#Ô	#€BØ	ğ ğ
+ —8’8GÑ$Ô$×+Ò+­GÔ,BÀbÒ,HÑIÔI×RÒRÕSZÔS]×SbÒSbÑSdÔSdÑeÔe×kÒkÑmÔmˆØğ 	ğİĞ(;ÀXÔEUĞnvÔnyğ  NPğ  `Qğ  `Qğ  [ğ  @ñ  @ô  @ğ  @ğ  @øİğ ğ ğ ØğøøøàˆOåØ—’˜Ñ#Ô#Ø—(’(˜;Ñ'Ô'ØxŠx˜Ñ!Ô!Ø—x’xĞ 0Ñ1Ô1Ø—x’xĞ 0Ñ1Ô1Ø)-¯ª°(Ñ);Ô);Ğ)A¸r×(HÒ(HÑ(JÔ(JÈiÒ(WĞ(W}Ô$Ğ$Õ]jÔ]rØhŠhwÑÔğñ ô €Gğ ‡F‚Fˆ7O„O€OğØ
+	Š	‰ŒˆØ
+
+Š
+7ÑÔĞĞøİğ ğ ğ ğ 	Š‰ŒˆØˆØğ 	rØ—x’x¥Ñ(Ô(×/Ò/µÔ0FÈ"Ò0LÑMÔM×VÒVÕW^ÔWa×WfÒWfÑWhÔWhÑiÔi×oÒoÑqÔqˆHØğ 	ğİĞ(;ÀXÔEUĞnvÔnyğ  NPğ  `Qğ  `Qğ  [Fğ  Gñ  Gô  Gğ  Gğ  Gøİğ ğ ğ ØğøøøàˆOˆOˆOàğøøøğ"İĞ 0¸'¼/ĞbiÔblğ  |Cô  |Mğ  Y`ô  Ygğ  szô  sIğ  ]dô  ]sğ  Fô  Mğ  TNğ  TNğ  Xiğ  	jñ  	jô  	jğ  	jğ  	jøİğ ğ ğ Øˆğøøøğ €Ns[   Â+ C Ã
+CÃCÆ?)G) Ç)B KÊ
+ J+Ê*KÊ+
+J8Ê5KÊ7J8Ê8KÊ?KË=L Ì
+LÌLNr   r   c                 óD  — |                      t          ¦  «        }| r#|                     t          j        | k    ¦  «        }|r#|                     t          j        |k    ¦  «        }|                     ¦   «         }	 t          d| |dœd¬¦  «         n# t          $ r Y nw xY w|S )Nzpayment.list)r   r   zPayments listed©r   r   r   )r)   r   r*   r   r   Úallr   r/   )r   r   r   ÚqÚresultss        r;   Úlist_paymentsrB   H   s¼   € à
+Š•ÑÔ€AØğ 5ØHŠH•WÔ&¨)Ò3Ñ4Ô4ˆØğ 1ØHŠH•W”_¨Ò/Ñ0Ô0ˆØeŠe‰gŒg€Gğİ ÀiĞ\cĞ8dĞ8dĞnğ  	Añ  	Aô  	Ağ  	Ağ  	Aøİğ ğ ğ Øˆğøøøà€Ns   Á:B Â
+BÂBz/{payment_id}r   c                 ó  — |                      t          ¦  «                             t          j        | k    ¦  «                             ¦   «         }|st          dd¬¦  «        ‚	 t          dd| id¬¦  «         n# t          $ r Y nw xY w|S )Ni”  zPayment not found)Ústatus_codeÚdetailzpayment.getr   zPayment fetchedr>   )r)   r   r*   r,   Úone_or_noner   r   r/   )r   r   r:   s      r;   Úget_paymentrG   W   s™   € àhŠh•wÑÔ×&Ò&¥w¤z°ZÒ'?Ñ@Ô@×LÒLÑNÔN€GØğ Iİ¨Ğ4GĞHÑHÔHĞHğİ ¸ÀjĞ7QĞ[lĞmÑmÔmĞmĞmøİğ ğ ğ Øˆğøøøà€Ns   Á"A7 Á7
+BÂB)Úfastapir   r   r   Útypingr   r   Úpydanticr   Úbackend.app.core.databaser	   Úsqlalchemy.ormr
+   Úbackend.app.models.paymentr   r   Ú$backend.app.services.logging_servicer   Úsqlalchemy.excr   Úbackend.app.schemasr   r   ÚrouterÚpostr<   r(   ÚintrB   rG   © ó    r;   ú<module>rV      sä  ğØ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø Ğ Ğ Ğ Ğ Ğ Ğ Ğ Ø $Ğ $Ğ $Ğ $Ğ $Ğ $Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ğ =Ø =Ğ =Ğ =Ğ =Ğ =Ğ =Ø )Ğ )Ğ )Ğ )Ğ )Ğ )Ø :Ğ :Ğ :Ğ :Ğ :Ğ :Ğ :Ğ :à	ˆ˜+¨Z¨LĞ	9Ñ	9Ô	9€ğ ‡‚ˆS €Ñ-Ô-Ø9@¸À¹¼ğ 6ğ 6˜Mğ 6¨wğ 6ğ 6ğ 6ñ .Ô-ğ6ğr ‡‚ˆC  [Ô 1€Ñ2Ô2Ø#'¸ÈGÈGĞTZÉOÌOğ ğ ˜Sğ °#ğ À'ğ ğ ğ ñ 3Ô2ğğ ‡‚ˆO¨K€Ñ8Ô8Ø/6¨w°v©¬ğ ğ ˜Cğ  Wğ ğ ğ ñ 9Ô8ğğ ğ rU   
 ----- FILE: backend/app/routers/__pycache__/payments.cpython-313.pyc -----
 ó
-    =ı\i]  ã                   ó€  • S SK JrJrJr  S SKJrJr  S SKJr  S SK	J
+    Óq]i]  ã                   ó€  • S SK JrJrJr  S SKJrJr  S SKJr  S SK	J
 r
   S SKJr  S SKJrJr  S SKJr  S SKJr  S S	KJrJr  \" S
 S/S9r\R1                  S\S9\" \
@@ -2431,9 +2758,63 @@ BÂBz/{payment_id}r   c                 óì   • UR                  [
   [        SSS9e [        SSU 0SS9  U$ ! [         a     U$ f = f)Ni”  zPayment not found)Ústatus_codeÚdetailzpayment.getr   zPayment fetchedr>   )r)   r   r*   r,   Úone_or_noner   r   r/   )r   r   r:   s      r;   Úget_paymentrG   W   su   € àh‰h”wÓ×&Ñ&¤w§z¡z°ZÑ'?Ó@×LÑLÓN€GŞÜ¨Ğ4GÑHĞHğÜ ¸ÀjĞ7QĞ[lÒmğ €Nøô ó ØØ€Nğús   ÁA% Á%
 A3Á2A3)Úfastapir   r   r   Útypingr   r   Úpydanticr   Úbackend.app.core.databaser	   Úsqlalchemy.ormr
    Úbackend.app.models.paymentr   r   Ú$backend.app.services.logging_servicer   Úsqlalchemy.excr   Úbackend.app.schemasr   r   ÚrouterÚpostr<   r(   ÚintrB   rG   © ó    r;   Ú<module>rV      så   ğß 5Ñ 5ß İ $İ ,İ "ß =İ =İ )ß :á	˜+¨Z¨LÑ	9€ğ ‡ˆS €Ğ-Ù9@À»ñ 6˜Mğ 6¨wô 6ó .ğ6ğr ‡ˆC  [Ñ 1€Ğ2Ø#'¸ÉGĞTZËOñ ˜Sğ °#ğ À'ô ó 3ğğ ‡ˆO¨K€Ğ8Ù/6°v«ñ ˜Cğ  Wô ó 9ñrU   
+----- FILE: backend/app/routers/__pycache__/quotation.cpython-313.pyc -----
+ó
+    “§]iå  ã                   óJ  • S SK JrJr  S SKJr  S SKJr  S SKrS SKJ	r	  \" SS/S9r
+\	" \5      R                  5       R                  S	   S
+-  S-  S-  rS\4S jr\" S5      R#                  S/ 5       V s0 s H  o S   U _M
+     sn r\" S5      R#                  S/ 5       Vs0 s H  oS   U_M
+     snr\" S5      R#                  S0 5      rSS0SS0SS0SS0SS0SS0S.r " S S\5      r " S  S!\5      r " S" S#\5      r\
+R3                  S$\S%9S&\4S' j5       rgs  sn f s  snf )(é    )Ú	APIRouterÚHTTPException)Ú	BaseModel)ÚListN)ÚPathz/quotationsÚ
+quotations)ÚprefixÚtagsé   ÚsrcÚassetsÚdataÚnamec                 ó®   •  [        [        U -  SSS9 n[        R                  " U5      sS S S 5        $ ! , (       d  f       g = f! [         a    0 s $ f = f)NÚrzutf-8)Úencoding)ÚopenÚ	DATA_PATHÚjsonÚloadÚ	Exception)r   Úfhs     Ú[/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/quotation.pyÚ
+_load_jsonr      sD   € ğÜ”)˜dÑ" C°'Ò:¸bÜ—9’9˜R“=÷ ;×:×:ûäó ØŠ	ğús*   ‚A ”4ª	A ´
+A¾A ÁA ÁAÁAzbrands.jsonÚbrandsÚidzinstruments.jsonÚinstrumentszfaults.jsonÚfaultsÚ
+multiplierg      ø?çÍÌÌÌÌÌô?gffffffö?g333333ó?gš™™™™™ñ?g      ğ?)Ú	legendaryÚprofessionalÚhistoricÚboutiqueÚspecializedÚstandardc                   ó0   • \ rS rSr% \\S'   \\   \S'   Srg)ÚQuotationRequesté$   Úinstrument_idr   © N)Ú__name__Ú
+__module__Ú__qualname__Ú__firstlineno__ÚstrÚ__annotations__r   Ú__static_attributes__r+   ó    r   r(   r(   $   s   ‡ ØÓØ‰IÖr3   r(   c                   ó4   • \ rS rSr% \\S'   \\S'   \\S'   Srg)ÚFaultBreakdowné)   Úfault_idr   Ú
+base_pricer+   N)r,   r-   r.   r/   r0   r1   Úintr2   r+   r3   r   r5   r5   )   s   ‡ ØƒMØ
+ƒIØ†Or3   r5   c                   ó   • \ rS rSr% \\S'   \\S'   \\S'   \\S'   \\S'   \\S'   \\S'   \\S	'   \\	   \S
+'   \\S'   \\S'   \
+\S'   \\S'   Srg)ÚQuotationResponseé/   r*   Úinstrument_nameÚ
+brand_nameÚtierÚ
+base_totalr   Ú	min_priceÚ	max_priceÚ	breakdownÚinstrument_value_avgÚmax_recommendedÚexceeds_recommendationÚ
+disclaimerr+   N)r,   r-   r.   r/   r0   r1   r9   Úfloatr   r5   Úboolr2   r+   r3   r   r;   r;   /   sO   ‡ ØÓØÓØƒOØ
+ƒIàƒOØÓØƒNØƒNàNÑ#Ó#àÓØÓØ Ó à†Or3   r;   z	/estimate)Úresponse_modelÚrequestc              ƒ   óÂ  #   • [         R                  U R                  5      nU(       d
+  [        SSS9e[        R                  UR                  S5      5      nU(       d
+  [        SSS9eUR                  SS5      n[
+        R                  U[
+        S   5      S   nU R                  nS	U R                  ;   a  S	/n/ nS
+nU Hi  n[        R                  U5      n	U	(       d  M!  [        U	R                  SS
+5      5      n
+Xz-  nUR                  [        X‰R                  SU5      U
+S95        Mk     [        Xt-  5      n[        US-  5      n[        US-  5      nUR                  S5      =(       d*    UR                  S0 5      R                  S5      =(       d    S
+nUR                  S5      =(       d*    UR                  S0 5      R                  S5      =(       d    S
+nU(       a  U(       a  Xï-   S-  OS
+nU(       a  [        US-  5      OSnUU:„  nSn[        U R                  UR                  S5       SUR                  S5       3UR                  S5      UUUUUUUUUUS9$ 7f)Ni”  zInstrumento no encontrado)Ústatus_codeÚdetailÚbrandzMarca no encontradar?   r&   r   ÚPOWERr   Ú	basePricer   )r7   r   r8   gš™™™™™é?r    Ú	valor_minÚvalor_estimadoÚminÚ	valor_maxÚmaxé   g      à?iÿÉš;uà   âš ï¸ IMPORTANTE: Esta cotizaciÃ³n es INDICATIVA y NO VINCULANTE. El precio final se confirma tras revisiÃ³n presencial del equipo. El diagnÃ³stico completo puede revelar fallas adicionales. Presupuesto formal: $20.000 CLP.Ú Úmodel)r*   r=   r>   r?   r@   r   rA   rB   rC   rD   rE   rF   rG   )ÚINSTRUMENTSÚgetr*   r   ÚBRANDSÚTIER_CONFIGr   ÚFAULTSr9   Úappendr5   r;   )rK   Ú
+instrumentrO   r?   r   Úeffective_faultsrC   r@   ÚfidÚfÚpriceÚadjusted_totalrA   rB   rR   rU   Ú	valor_avgrE   ÚexceedsÚdisclaimer_texts                       r   Úestimate_quotationri   C   s0  é € ä—‘ ×!6Ñ!6Ó7€JŞÜ¨Ğ4OÑPĞPäJ‰Jz—~‘~ gÓ.Ó/€EŞÜ¨Ğ4IÑJĞJà9‰9V˜ZÓ(€DÜ—‘ ¤{°:Ñ'>Ó?ÀÑM€Jğ —~‘~ĞØ'—.‘.Ó Ø#˜9Ğà€IØ€JÛˆÜJ‰Js‹OˆŞÙÜA—E‘E˜+ qÓ)Ó*ˆØÑˆ
+Ø×Ñœ°¿5¹5ÀÈÓ;MĞZ_Ñ`Öañ  ô ˜Ñ0Ó1€NÜN SÑ(Ó)€IÜN SÑ(Ó)€Ià—‘˜{Ó+×c¨z¯~©~Ğ>NĞPRÓ/S×/WÑ/WĞX]Ó/^×cĞbc€IØ—‘˜{Ó+×c¨z¯~©~Ğ>NĞPRÓ/S×/WÑ/WĞX]Ó/^×cĞbc€IŞ09¾iÑ&¨1Ò,ÈQ€IŞ.7”c˜) c™/Ô*¸Y€OØ˜/Ñ)€Gğ	fğ ô Ø×+Ñ+Ø Ÿ9™9 VÓ,Ğ-¨Q¨z¯~©~¸gÓ/FĞ.GĞHØ—9‘9˜VÓ$ØØØØØØØ&Ø'Ø&Ø"ñğ ùs   ‚II)Úfastapir   r   Úpydanticr   Útypingr   r   Úpathlibr   ÚrouterÚ__file__ÚresolveÚparentsr   r0   r   r[   r\   rZ   r^   r]   r(   r5   r;   Úpostri   )ÚbÚis   00r   Ú<module>ru      sd  ğß ,İ İ Û İ á	˜-¨|¨nÑ	=€ñ
+ ‹N×"Ñ"Ó$×,Ñ,¨QÑ/°%Ñ7¸(ÑBÀVÑK€	ğSô ñ )¨Ó7×;Ñ;¸HÀbÔIÓ	JÒI˜ˆD‰'1Š*ÑIÑ	J€Ù#-Ğ.@Ó#A×#EÑ#EÀmĞUWÔ#XÓYÒ#X˜a‰w˜ŠzÑ#XÑY€Ù	MÓ	"×	&Ñ	& x°Ó	4€ğ  Ğ$Ø! 3Ğ'Ø˜sĞ#Ø˜sĞ#Ø  #Ğ&Ø˜sĞ#ñ€ôyô ô
+Yô ô˜	ô ğ( ‡ˆ[Ğ):€Ğ;ğ9Ğ&6ó 9ó <ñ9ùò_ 
+KùÚYs   Á4DÂ D 
+----- FILE: backend/app/routers/__pycache__/repair.cpython-311.pyc -----
+§
+    Óq]iO  ã                   óâ  — d dl mZmZmZ d dlmZ d dlmZ d dlm	Z	 d dl
+mZ d dlmZ  eddg¬	¦  «        Ze                     d
+¦  «         ee¦  «        fdefd„¦   «         Ze                     d
+¦  «         ee¦  «        fde	defd„¦   «         Ze                     d¦  «         ee¦  «        fdede	defd„¦   «         Ze                     d¦  «         ee¦  «        fdedefd„¦   «         ZdS )é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)ÚRepair)ÚDict)Úget_db)Úcreate_auditz/repairsÚRepairs)ÚprefixÚtagsú/Údbc                 óZ   — |                       t          ¦  «                             ¦   «         S )N)Úqueryr   Úall)r   s    úX/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/repair.pyÚlist_repairsr   
+   s    € à8Š8•FÑÔ×ÒÑ!Ô!Ğ!ó    Úrepairc                 óò   — t          di | ¤}|                     |¦  «         |                     ¦   «          |                     |¦  «         	 t	          dd d|j        id¬¦  «         n# t          $ r Y nw xY w|S )Nzrepair.createÚ	repair_idzRepair created©Ú
+event_typeÚuser_idÚdetailsÚmessage© )r   ÚaddÚcommitÚrefreshr
+   ÚidÚ	Exception)r   r   Ú	db_repairs      r   Úcreate_repairr%      s™   € õ Ğ Ğ ˜Ğ Ğ €IØ‡F‚Fˆ9ÑÔĞØ‡I‚IK„K€KØ‡J‚JˆyÑÔĞğå ¸ÈĞU^ÔUaĞGbĞl|Ğ}Ñ}Ô}Ğ}Ğ}øİğ ğ ğ àˆğøøøğ Ğs   ÁA' Á'
+A4Á3A4z/{repair_id}r   c                 ó†  — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     ¦   «         D ]\  }}t          |||¦  «         Œ|                     ¦   «          |                     |¦  «         	 t          dd d|j	        id¬¦  «         n# t          $ r Y nw xY w|S )Né”  úRepair not found©Ústatus_codeÚdetailzrepair.updater   zRepair updatedr   )r   r   Úgetr   ÚitemsÚsetattrr    r!   r
+   r"   r#   )r   r   r   r$   ÚkeyÚvalues         r   Úupdate_repairr1      sÜ   € à—’Ñ Ô ×$Ò$ YÑ/Ô/€IØğ Hİ¨Ğ4FĞGÑGÔGĞGØ—l’l‘n”nğ 'ğ '‰
+ˆˆUİ	˜3 Ñ&Ô&Ğ&Ğ&Ø‡I‚IK„K€KØ‡J‚JˆyÑÔĞğİ ¸ÈĞU^ÔUaĞGbĞl|Ğ}Ñ}Ô}Ğ}Ğ}øİğ ğ ğ ØˆğøøøàĞs   ÂB1 Â1
+B>Â=B>c                 ó*  — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     |¦  «         |                     ¦   «          	 t          dd d| id¬¦  «         n# t          $ r Y nw xY wdd	iS )
+Nr'   r(   r)   zrepair.deleter   zRepair deletedr   ÚokT)r   r   r,   r   Údeleter    r
+   r#   )r   r   r$   s      r   Údelete_repairr5   .   s­   € à—’Ñ Ô ×$Ò$ YÑ/Ô/€IØğ Hİ¨Ğ4FĞGÑGÔGĞGØ‡I‚IˆiÑÔĞØ‡I‚IK„K€Kğİ ¸ÈĞU^ĞG_ĞiyĞzÑzÔzĞzĞzøİğ ğ ğ Øˆğøøøà$ˆ<Ğs   Á+B Â
+BÂBN)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.repairr   Útypingr   Úbackend.app.core.databaser	   Ú$backend.app.services.logging_servicer
+   Úrouterr,   r   Úpostr%   ÚputÚintr1   r4   r5   r   r   r   ú<module>r@      sÄ  ğØ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ø Ğ Ğ Ğ Ğ Ğ Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,Ø =Ğ =Ğ =Ğ =Ğ =Ğ =à	ˆ˜*¨I¨;Ğ	7Ñ	7Ô	7€à‡‚ˆC„Ø&˜w v™œğ "ğ "Wğ "ğ "ğ "ñ „ğ"ğ ‡‚ˆSÑÔØ.5¨g°f©o¬oğ ğ ˜$ğ  Gğ ğ ğ ñ Ôğğ ‡‚ˆNÑÔØ>E¸gÀf¹o¼oğ ğ ˜Sğ ¨$ğ °Gğ ğ ğ ñ Ôğğ ‡‚ˆ~ÑÔØ07°¸±´ğ ğ ˜Sğ  gğ ğ ğ ñ Ôğğ ğ r   
 ----- FILE: backend/app/routers/__pycache__/repair.cpython-313.pyc -----
 ó
-    Mé\iO  ã                   ó”  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  S SK
+    Óq]iO  ã                   ó”  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  S SK
 Jr  S SKJr  \" SS/S	9r\R                  S
 5      \" \5      4S\4S jj5       r\R#                  S
 5      \" \5      4S\	S\4S jj5       r\R'                  S5      \" \5      4S\S\	S\4S jj5       r\R-                  S5      \" \5      4S\S\4S jj5       rg)é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)ÚRepair)ÚDict)Úget_db)Úcreate_auditz/repairsÚRepairs)ÚprefixÚtagsÚ/Údbc                 óH   • U R                  [        5      R                  5       $ )N)Úqueryr   Úall)r   s    ÚX/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/repair.pyÚlist_repairsr   
@@ -2451,16 +2832,36 @@ Nr'   r(   r)   zrepair.deleter   zRepair deletedr   ÚokT)r   r   r,   r
    r#   )r   r   r$   s      r   Údelete_repairr5   .   s…   € à—‘œÓ ×$Ñ$ YÓ/€IŞÜ¨Ğ4FÑGĞGØ‡IIˆiÔØ‡II„KğÜ ¸ÈĞU^ĞG_ĞiyÒzğ $ˆ<Ğøô ó ØØ$ˆ<Ğğús   ÁA* Á*
 A:Á9A:N)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.repairr   Útypingr   Úbackend.app.core.databaser	   Ú$backend.app.services.logging_servicer
    Úrouterr,   r   Úpostr%   ÚputÚintr1   r4   r5   r   r   r   Ú<module>r@      sí   ğß 5Ñ 5İ "İ ,İ İ ,İ =á	˜*¨I¨;Ñ	7€à‡ˆCƒÙ& v›ñ "Wô "ó ğ"ğ ‡ˆSÓÙ.5°f«oñ ˜$ğ  Gô ó ğğ ‡ˆNÓÙ>EÀf»oñ ˜Sğ ¨$ğ °Gô ó ğğ ‡ˆ~ÓÙ07¸³ñ ˜Sğ  gô ó ñr   
+----- FILE: backend/app/routers/__pycache__/stock_movement.cpython-311.pyc -----
+§
+    Óq]iD  ã                   ó  — d dl mZmZmZ d dlmZ d dlmZ d dlm	Z	  eddg¬¦  «        Z
+e
+                     d¦  «         ee	¦  «        fd	efd
+„¦   «         Ze
+                     d¦  «         ee	¦  «        fded	efd„¦   «         ZdS )é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)ÚStockMovement)Úget_dbz/api/stock-movementsÚStockMovements)ÚprefixÚtagsú/Údbc                 óZ   — |                       t          ¦  «                             ¦   «         S )N)Úqueryr   Úall)r   s    ú`/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/stock_movement.pyÚlist_movementsr      s    € à8Š8•MÑ"Ô"×&Ò&Ñ(Ô(Ğ(ó    Úpayloadc                 óš   — t          di | ¤}|                     |¦  «         |                     ¦   «          |                     |¦  «         |S )N© )r   ÚaddÚcommitÚrefresh)r   r   Údb_objs      r   Úcreate_movementr      sH   € åĞ%Ğ%˜WĞ%Ğ%€FØ‡F‚Fˆ6N„N€NØ‡I‚IK„K€KØ‡J‚JˆvÑÔĞØ€Mr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Ú!backend.app.models.stock_movementr   Úbackend.app.core.databaser   ÚrouterÚgetr   ÚpostÚdictr   r   r   r   ú<module>r$      s  ğØ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø ;Ğ ;Ğ ;Ğ ;Ğ ;Ğ ;Ø ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,à	ˆĞ0Ğ8HĞ7IĞ	JÑ	JÔ	J€à‡‚ˆC„Ø!( ¨¡¤ğ )ğ )wğ )ğ )ğ )ñ „ğ)ğ ‡‚ˆSÑÔØ18°¸±´ğ ğ ˜Tğ  wğ ğ ğ ñ Ôğğ ğ r   
 ----- FILE: backend/app/routers/__pycache__/stock_movement.cpython-313.pyc -----
 ó
-    }‰\iD  ã                   óà   • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  \" SS/S9r
+    Óq]iD  ã                   óà   • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	  \" SS/S9r
 \
 R                  S5      \" \	5      4S	\4S
  jj5       r\
 R                  S5      \" \	5      4S\S	\4S jj5       rg)é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)ÚStockMovement)Úget_dbz/api/stock-movementsÚStockMovements)ÚprefixÚtagsÚ/Údbc                 óH   • U R                  [        5      R                  5       $ )N)Úqueryr   Úall)r   s    Ú`/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/stock_movement.pyÚlist_movementsr      s   € à8‰8”MÓ"×&Ñ&Ó(Ğ(ó    Úpayloadc                 ó€   • [        S0 U D6nUR                  U5        UR                  5         UR                  U5        U$ )N© )r   ÚaddÚcommitÚrefresh)r   r   Údb_objs      r   Úcreate_movementr      s4   € äÑ%˜WÑ%€FØ‡FFˆ6„NØ‡II„KØ‡JJˆvÔØ€Mr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Ú!backend.app.models.stock_movementr   Úbackend.app.core.databaser   ÚrouterÚgetr   ÚpostÚdictr   r   r   r   Ú<module>r$      s   ğß 5Ñ 5İ "İ ;İ ,á	Ğ0Ğ8HĞ7IÑ	J€à‡ˆCƒÙ!(¨£ñ )wô )ó ğ)ğ ‡ˆSÓÙ18¸³ñ ˜Tğ  wô ó ñr   
+----- FILE: backend/app/routers/__pycache__/uploads.cpython-311.pyc -----
+§
+    Óq]i×  ã                   ó   — d dl mZmZmZmZmZmZ d dlmZm	Z	 d dl
+mZ d dlmZ  eddg¬¦  «        Ze                     dej        ¬	¦  «         ej        d
+¦  «         ed¦  «        fdedefd„¦   «         ¦   «         ZdS )é    )Ú	APIRouterÚ
+UploadFileÚFileÚDependsÚstatusÚRequest)Úvalidate_imageÚsave_upload)Úlimiter)Úcreate_auditz/uploadsÚuploads)ÚprefixÚtagsz/images)Ústatus_codez	20/minute.ÚrequestÚfilec              ƒ   óô   K  — t          |¦  «        ƒ d{V —† t          |¦  «        ƒ d{V —†}	 d}| j        r| j        j        }t	          dd|||j        dœd¬¦  «         n# t          $ r Y nw xY w||j        dœS )z-Upload an image with validation (size, type).Nzupload.image)ÚpathÚfilenamezImage uploaded)Ú
+event_typeÚuser_idÚ
+ip_addressÚdetailsÚmessage)r	   r
+   ÚclientÚhostr   r   Ú	Exception)r   r   r   Úips       úY/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/uploads.pyÚupload_imager    	   sÒ   è è € õ ˜Ñ
+Ô
+ĞĞĞĞĞĞĞİ˜TÑ"Ô"Ğ"Ğ"Ğ"Ğ"Ğ"Ğ"€DğØˆØŒ>ğ 	%Ø”Ô$ˆBİ ¸ÈĞ^bĞptÔp}ĞU~ĞU~ğ  IYğ  	Zñ  	Zô  	Zğ  	Zğ  	Zøİğ ğ ğ Øˆğøøøà d¤mĞ4Ğ4Ğ4s   ®1A  Á 
+A-Á,A-N)Úfastapir   r   r   r   r   r   Úbackend.app.utils.uploadsr	   r
+   Úbackend.app.core.ratelimitr   Ú$backend.app.services.logging_servicer   ÚrouterÚpostÚHTTP_201_CREATEDÚlimitr    © ó    r   ú<module>r+      sú   ğØ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IĞ IØ AĞ AĞ AĞ AĞ AĞ AĞ AĞ AØ .Ğ .Ğ .Ğ .Ğ .Ğ .Ø =Ğ =Ğ =Ğ =Ğ =Ğ =à	ˆ˜*¨I¨;Ğ	7Ñ	7Ô	7€ğ ‡‚ˆY FÔ$;€Ñ<Ô<Ø€„ˆ{ÑÔØ<@¸DÀ¹I¼Iğ 5ğ 5 ğ 5¨zğ 5ğ 5ğ 5ñ Ôñ =Ô<ğ5ğ 5ğ 5r*   
 ----- FILE: backend/app/routers/__pycache__/uploads.cpython-313.pyc -----
 ó
-    ŞŞ\i×  ã                   óä   • S SK JrJrJrJrJrJr  S SKJrJ	r	  S SK
+    Óq]i×  ã                   óä   • S SK JrJrJrJrJrJr  S SKJrJ	r	  S SK
 Jr  S SKJr  \" SS/S9r\R                  S\R                   S	9\R"                  " S
 5      \" S5      4S\S\4S jj5       5       rg)é    )Ú	APIRouterÚ
 UploadFileÚFileÚDependsÚstatusÚRequest)Úvalidate_imageÚsave_upload)Úlimiter)Úcreate_auditz/uploadsÚuploads)ÚprefixÚtagsz/images)Ústatus_codez	20/minute.ÚrequestÚfilec              ƒ   ó   #   • [        U5      I Sh  v•N   [        U5      I Sh  v•N n SnU R                  (       a  U R                  R                  n[	        SSX2UR
@@ -2473,9 +2874,27 @@ ip_addressÚdetailsÚmessage)r	   r
 BÂBÂ
 BÂBN)Úfastapir   r   r   r   r   r   Úbackend.app.utils.uploadsr	   r
    Úbackend.app.core.ratelimitr   Ú$backend.app.services.logging_servicer   ÚrouterÚpostÚHTTP_201_CREATEDÚlimitr    © ó    r   Ú<module>r+      so   ğß I× Iß Aİ .İ =á	˜*¨I¨;Ñ	7€ğ ‡ˆY F×$;Ñ$;€Ğ<Ø‡‚ˆ{ÓÙ<@À»Iñ 5 ğ 5¨zô 5ó ó =ñ5r*   
+----- FILE: backend/app/routers/__pycache__/user.cpython-311.pyc -----
+§
+    Óq]iQ  ã                   óö  — d dl mZmZmZ d dlmZ d dlmZ d dlm	Z	m
+Z
+mZ d dlmZ  eddg¬¦  «        Ze                     d	ee
+         ¬
+¦  «         ee¦  «        fdefd„¦   «         Ze                     d	e
+¬
+¦  «         ee¦  «        fde	defd„¦   «         Ze                     de
+¬
+¦  «         ee¦  «        fdededefd„¦   «         Ze                     d¦  «         ee¦  «        fdedefd„¦   «         ZdS )é    )Ú	APIRouterÚDependsÚHTTPException)ÚSession)ÚUser)Ú
+UserCreateÚUserReadÚ
+UserUpdate)Úget_dbz
+/api/usersÚUsers)ÚprefixÚtagsú/)Úresponse_modelÚdbc                 óZ   — |                       t          ¦  «                             ¦   «         S )N)Úqueryr   Úall)r   s    úV/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/routers/user.pyÚ
+list_usersr   	   s   € à8Š8•D‰>Œ>×ÒÑÔĞó    Úuserc                 ó¾   — t          di |                      ¦   «         ¤}|                     |¦  «         |                     ¦   «          |                     |¦  «         |S )N© )r   ÚdictÚaddÚcommitÚrefresh)r   r   Údb_users      r   Úcreate_userr       sP   € åĞ!Ğ!T—Y’Y‘[”[Ğ!Ğ!€GØ‡F‚Fˆ7O„O€OØ‡I‚IK„K€KØ‡J‚JˆwÑÔĞØ€Nr   z
+/{user_id}Úuser_idc                 óV  — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     d¬¦  «                             ¦   «         D ]\  }}t          |||¦  «         Œ|                     ¦   «          |                     |¦  «         |S )Né”  úUser not found©Ústatus_codeÚdetailT)Úexclude_unset)	r   r   Úgetr   r   ÚitemsÚsetattrr   r   )r!   r   r   r   ÚkeyÚvalues         r   Úupdate_userr.      s¢   € àhŠh•t‰nŒn× Ò  Ñ)Ô)€GØğ Fİ¨Ğ4DĞEÑEÔEĞEØ—i’i¨diÑ3Ô3×9Ò9Ñ;Ô;ğ %ğ %‰
+ˆˆUİ˜˜eÑ$Ô$Ğ$Ğ$Ø‡I‚IK„K€KØ‡J‚JˆwÑÔĞØ€Nr   c                 óÜ   — |                      t          ¦  «                             | ¦  «        }|st          dd¬¦  «        ‚|                     |¦  «         |                     ¦   «          ddiS )Nr#   r$   r%   ÚokT)r   r   r)   r   Údeleter   )r!   r   r   s      r   Údelete_userr2       se   € àhŠh•t‰nŒn× Ò  Ñ)Ô)€GØğ Fİ¨Ğ4DĞEÑEÔEĞEØ‡I‚IˆgÑÔĞØ‡I‚IK„K€KØ$ˆ<Ğr   N)Úfastapir   r   r   Úsqlalchemy.ormr   Úbackend.app.models.userr   Úbackend.app.schemas.userr   r	   r
+   Úbackend.app.core.databaser   Úrouterr)   Úlistr   Úpostr    ÚputÚintr.   r1   r2   r   r   r   ú<module>r=      sÑ  ğØ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ğ 5Ø "Ğ "Ğ "Ğ "Ğ "Ğ "Ø (Ğ (Ğ (Ğ (Ğ (Ğ (Ø EĞ EĞ EĞ EĞ EĞ EĞ EĞ EĞ EĞ EØ ,Ğ ,Ğ ,Ğ ,Ğ ,Ğ ,à	ˆ˜,¨g¨YĞ	7Ñ	7Ô	7€à‡‚ˆC  X¤€Ñ/Ô/Ø$˜W V™_œ_ğ  ğ  7ğ  ğ  ğ  ñ 0Ô/ğ ğ ‡‚ˆS €Ñ*Ô*Ø07°¸±´ğ ğ jğ  gğ ğ ğ ñ +Ô*ğğ ‡‚ˆL¨€Ñ2Ô2Ø>E¸gÀf¹o¼oğ ğ ˜ğ  Jğ °Gğ ğ ğ ñ 3Ô2ğğ ‡‚ˆ|ÑÔØ,3¨G°F©O¬Oğ ğ ˜ğ  'ğ ğ ğ ñ Ôğğ ğ r   
 ----- FILE: backend/app/routers/__pycache__/user.cpython-313.pyc -----
 ó
-    x‡\iQ  ã                   ó  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	J
+    Óq]iQ  ã                   ó  • S SK JrJrJr  S SKJr  S SKJr  S SKJ	r	J
 r
 Jr  S SKJr  \" SS/S9r\R                  S	\\
    S
@@ -2886,6 +3305,133 @@ def get_payment(payment_id: int, db: Session = Depends(get_db)):
         pass
     return payment
 
+----- FILE: backend/app/routers/quotation.py -----
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+from typing import List
+import json
+from pathlib import Path
+
+router = APIRouter(prefix="/quotations", tags=["quotations"])
+
+# Load data from frontend data assets so quotation logic uses same dataset
+# DATA_PATH should point to the frontend data folder within the project
+# The module sits at backend/app/routers, so parents[3] resolves to the project root
+DATA_PATH = Path(__file__).resolve().parents[3] / "src" / "assets" / "data"
+
+def _load_json(name: str):
+    try:
+        with open(DATA_PATH / name, 'r', encoding='utf-8') as fh:
+            return json.load(fh)
+    except Exception:
+        return {}
+
+BRANDS = {b['id']: b for b in _load_json('brands.json').get('brands', [])}
+INSTRUMENTS = {i['id']: i for i in _load_json('instruments.json').get('instruments', [])}
+FAULTS = _load_json('faults.json').get('faults', {})
+
+# Simple tier configuration (can be tuned later)
+TIER_CONFIG = {
+    'legendary': {'multiplier': 1.5},
+    'professional': {'multiplier': 1.3},
+    'historic': {'multiplier': 1.4},
+    'boutique': {'multiplier': 1.2},
+    'specialized': {'multiplier': 1.1},
+    'standard': {'multiplier': 1.0},
+}
+
+
+class QuotationRequest(BaseModel):
+    instrument_id: str
+    faults: List[str]
+
+
+class FaultBreakdown(BaseModel):
+    fault_id: str
+    name: str
+    base_price: int
+
+
+class QuotationResponse(BaseModel):
+    instrument_id: str
+    instrument_name: str
+    brand_name: str
+    tier: str
+
+    base_total: int
+    multiplier: float
+    min_price: int
+    max_price: int
+
+    breakdown: List[FaultBreakdown]
+
+    instrument_value_avg: int
+    max_recommended: int
+    exceeds_recommendation: bool
+
+    disclaimer: str
+
+
+@router.post("/estimate", response_model=QuotationResponse)
+async def estimate_quotation(request: QuotationRequest):
+    instrument = INSTRUMENTS.get(request.instrument_id)
+    if not instrument:
+        raise HTTPException(status_code=404, detail="Instrumento no encontrado")
+
+    brand = BRANDS.get(instrument.get('brand'))
+    if not brand:
+        raise HTTPException(status_code=404, detail="Marca no encontrada")
+
+    tier = brand.get('tier', 'standard')
+    multiplier = TIER_CONFIG.get(tier, TIER_CONFIG['standard'])['multiplier']
+
+    # Precedence: if POWER present, only consider POWER
+    effective_faults = request.faults
+    if 'POWER' in request.faults:
+        effective_faults = ['POWER']
+
+    breakdown = []
+    base_total = 0
+    for fid in effective_faults:
+        f = FAULTS.get(fid)
+        if not f:
+            continue
+        price = int(f.get('basePrice', 0))
+        base_total += price
+        breakdown.append(FaultBreakdown(fault_id=fid, name=f.get('name', fid), base_price=price))
+
+    adjusted_total = int(base_total * multiplier)
+    min_price = int(adjusted_total * 0.8)
+    max_price = int(adjusted_total * 1.3)
+
+    valor_min = instrument.get('valor_min') or instrument.get('valor_estimado', {}).get('min') or 0
+    valor_max = instrument.get('valor_max') or instrument.get('valor_estimado', {}).get('max') or 0
+    valor_avg = (valor_min + valor_max) // 2 if valor_min and valor_max else 0
+    max_recommended = int(valor_avg * 0.5) if valor_avg else 999999999
+    exceeds = max_price > max_recommended
+
+    disclaimer_text = (
+        "âš ï¸ IMPORTANTE: Esta cotizaciÃ³n es INDICATIVA y NO VINCULANTE. "
+        "El precio final se confirma tras revisiÃ³n presencial del equipo. "
+        "El diagnÃ³stico completo puede revelar fallas adicionales. Presupuesto formal: $20.000 CLP."
+    )
+
+    return QuotationResponse(
+        instrument_id=request.instrument_id,
+        instrument_name=f"{brand.get('name')} {instrument.get('model')}",
+        brand_name=brand.get('name'),
+        tier=tier,
+        base_total=base_total,
+        multiplier=multiplier,
+        min_price=min_price,
+        max_price=max_price,
+        breakdown=breakdown,
+        instrument_value_avg=valor_avg,
+        max_recommended=max_recommended,
+        exceeds_recommendation=exceeds,
+        disclaimer=disclaimer_text,
+    )
+
 ----- FILE: backend/app/routers/repair.py -----
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -3224,9 +3770,57 @@ class PaymentRead(BaseModel):
     class Config:
         from_attributes = True
 
+----- FILE: backend/app/schemas/__pycache__/__init__.cpython-311.pyc -----
+§
+    Óq]i  ã                   óê  — d Z ddlmZmZmZmZ ddlmZmZm	Z	m
+Z
+ ddlmZ  G d„ de¦  «        Z G d„ de¦  «        Z G d	„ d
+e¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        Z G d„ d e¦  «        Z G d!„ d"e¦  «        Zd#S )$zh
+Pydantic schemas for request/response validation
+Define DTOs (Data Transfer Objects) for API endpoints
+é    )Ú	BaseModelÚEmailStrÚFieldÚfield_validator)ÚListÚOptionalÚDictÚClassVar)Údatetimec                   óL   — e Zd ZU eed<   eed<   eed<   eed<   eed<   eed<   dS )Ú	BrandBaseÚidÚnameÚtierÚfoundedÚcountryÚdescriptionN)Ú__name__Ú
+__module__Ú__qualname__ÚstrÚ__annotations__Úint© ó    úZ/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/schemas/__init__.pyr   r      sK   € € € € € € Ø€G€GGØ
+€I€IIØ
+€I€IIØ€L€LLØ€L€LLØĞĞÑĞĞr   r   c                   ó*   — e Zd Z	  G d„ d¦  «        ZdS )Ú	BrandReadc                   ó   — e Zd ZdZdS )úBrandRead.ConfigTN©r   r   r   Úfrom_attributesr   r   r   ÚConfigr       ó   € € € € € Øˆˆˆr   r#   N)r   r   r   r#   r   r   r   r   r      s?   € € € € € Øğğ ğ ğ ğ ñ ô ğ ğ ğ r   r   c                   óô   — e Zd ZU eed<   eed<   eed<   eed<   eed<   eed<   dZee         ed<   dZ	ee
+         ed	<   dZee
+         ed
+<   dZeee                  ed<   dZee         ed<   dZee         ed<   dS )ÚInstrumentBaser   Úbrand_idÚmodelÚtypeÚyearr   NÚ
+componentsÚ	valor_minÚ	valor_maxÚfallas_comunesÚ
+imagen_urlÚ
+manual_url)r   r   r   r   r   r   r+   r   r	   r,   Úfloatr-   r.   r   r/   r0   r   r   r   r&   r&      sÈ   € € € € € € Ø€G€GGØ€M€MMØ€J€JJØ
+€I€IIØ
+€I€IIØĞĞÑØ!%€J˜”Ğ%Ğ%Ñ%Ø!%€Iˆx˜ŒĞ%Ğ%Ñ%Ø!%€Iˆx˜ŒĞ%Ğ%Ñ%Ø*.€NH˜T #œYÔ'Ğ.Ğ.Ñ.Ø $€J˜”Ğ$Ğ$Ñ$Ø $€J˜”Ğ$Ğ$Ñ$Ğ$Ğ$r   r&   c                   ó4   — e Zd ZU eed<    G d„ d¦  «        ZdS )ÚInstrumentReadÚ
+created_atc                   ó   — e Zd ZdZdS )úInstrumentRead.ConfigTNr!   r   r   r   r#   r6   /   r$   r   r#   N©r   r   r   r   r   r#   r   r   r   r3   r3   ,   óJ   € € € € € € ØĞĞÑğğ ğ ğ ğ ñ ô ğ ğ ğ r   r3   c                   óF   — e Zd ZU eed<   eed<   eed<   eed<   dZeed<   dS )Ú	FaultBaser   r   r   Ú
+base_priceFÚis_precedenceN)r   r   r   r   r   r1   r<   Úboolr   r   r   r:   r:   4   sL   € € € € € € Ø€G€GGØ
+€I€IIØĞĞÑØĞĞÑØ€M4ĞĞÑĞĞr   r:   c                   ó4   — e Zd ZU eed<    G d„ d¦  «        ZdS )Ú	FaultReadr4   c                   ó   — e Zd ZdZdS )úFaultRead.ConfigTNr!   r   r   r   r#   rA   ?   r$   r   r#   Nr7   r   r   r   r?   r?   <   r8   r   r?   c                   ó¬   — e Zd ZU  eddd¬¦  «        Zeed<   eed<   dZe	e         ed<   eed	<   eed
+<   e
+eef         ed<   eed<   dZe	e         ed<   dS )ÚDiagnosticCreate.é   éd   )Ú
+min_lengthÚ
+max_lengthÚclient_nameÚclient_emailNÚclient_phoner'   Úinstrument_idÚfaults_jsonÚestimated_costÚnotes)r   r   r   r   rH   r   r   r   rJ   r   r	   r=   r1   rN   r   r   r   rC   rC   D   sœ   € € € € € € Øu˜S¨Q¸3Ğ?Ñ?Ô?€KĞ?Ğ?Ñ?ØĞĞÑØ"&€L(˜3”-Ğ&Ğ&Ñ&Ø€M€MMØĞĞÑØc˜4i”Ğ Ğ Ñ ØĞĞÑØ€Eˆ8CŒ=ĞĞÑĞĞr   rC   c                   óº   — e Zd ZU eed<   eed<   eed<   ee         ed<   eed<   eed<   eed<   eed<   eed	<   ee         ed
+<   e	ed<   e	ed<    G d„ d¦  «        Z
+dS )ÚDiagnosticReadr   rH   rI   rJ   r'   rK   rL   rM   ÚstatusrN   r4   Ú
+updated_atc                   ó   — e Zd ZdZdS )úDiagnosticRead.ConfigTNr!   r   r   r   r#   rT   ]   r$   r   r#   N)r   r   r   r   r   r   r   r	   r1   r   r#   r   r   r   rP   rP   O   sÍ   € € € € € € Ø€G€GGØĞĞÑØĞĞÑØ˜3”-ĞĞÑØ€M€MMØĞĞÑØĞĞÑØĞĞÑØ€K€KKØCŒ=ĞĞÑØĞĞÑØĞĞÑğğ ğ ğ ğ ñ ô ğ ğ ğ r   rP   c                   ó~   — e Zd ZU eed<   eed<   eed<   ee         ed<   ee         ed<   eed<    G d„ d¦  «        Z	d	S )
+ÚRepairDetailReadr   Ú	repair_idÚfault_idr   Ú
+parts_usedr4   c                   ó   — e Zd ZdZdS )úRepairDetailRead.ConfigTNr!   r   r   r   r#   r[   j   r$   r   r#   N)
+r   r   r   r   r   r   r   r	   r   r#   r   r   r   rV   rV   b   s…   € € € € € € Ø€G€GGØ€N€NNØ€M€MMØ˜#”ĞĞÑØ˜”ĞĞÑØĞĞÑğğ ğ ğ ğ ñ ô ğ ğ ğ r   rV   c                   óª   — e Zd ZU dZee         ed<   eed<   eed<   eed<   eed<   eed<   dZ	ee         ed<   dZ
+ee         ed	<   dZee         ed
+<   dS )ÚRepairCreateNÚdiagnostic_idrK   r'   rH   rI   Úactual_costÚhours_workedrN   Úcompleted_at)r   r   r   r^   r   r   r   r   r1   r`   rN   ra   r   r   r   r   r]   r]   n   sœ   € € € € € € Ø#'€M8˜C”=Ğ'Ğ'Ñ'ØĞĞÑØ€M€MMØĞĞÑØĞĞÑØĞĞÑØ$(€L(˜5”/Ğ(Ğ(Ñ(Ø€Eˆ8CŒ=ĞĞÑØ'+€L(˜8Ô$Ğ+Ğ+Ñ+Ğ+Ğ+r   r]   c                   óâ   — e Zd ZU eed<   ee         ed<   eed<   eed<   eed<   eed<   eed<   ee         ed<   ee         ed	<   ee         ed
+<   eed<   g Z	e
+e         ed<    G d„ d¦  «        ZdS )Ú
+RepairReadr   r^   rK   r'   rH   rI   r_   r`   rN   ra   r4   Údetailsc                   ó   — e Zd ZdZdS )úRepairRead.ConfigTNr!   r   r   r   r#   rf   ˆ   r$   r   r#   N)r   r   r   r   r   r   r   r1   r   rd   r   rV   r#   r   r   r   rc   rc   z   sã   € € € € € € Ø€G€GGØ˜C”=Ğ Ğ Ñ ØĞĞÑØ€M€MMØĞĞÑØĞĞÑØĞĞÑØ˜5”/Ğ!Ğ!Ñ!ØCŒ=ĞĞÑØ˜8Ô$Ğ$Ğ$Ñ$ØĞĞÑØ&(€GˆTĞ"Ô#Ğ(Ğ(Ñ(ğğ ğ ğ ğ ñ ô ğ ğ ğ r   rc   c                   óh   — e Zd ZU dZeed<   eed<   dZee	         ed<   dZ
+eee                  ed<   dS )ÚAPIResponsezStandard API response wrapperÚsuccessÚmessageNÚdataÚerrors)r   r   r   Ú__doc__r=   r   r   rk   r   r	   rl   r   r   r   r   rh   rh      sW   € € € € € € Ø'Ğ'Ø€M€MMØ€L€LLØ€Dˆ(4Œ.ĞĞÑØ"&€FˆHT˜#”YÔĞ&Ğ&Ñ&Ğ&Ğ&r   rh   c                   óF   — e Zd ZU dZeed<   eed<   eed<   eed<   eed<   dS )ÚQuoteEstimateu   CotizaciÃ³n estimadaÚ	base_costÚcomplexity_factorÚvalue_factorÚ
+final_costÚ
+brand_tierN)r   r   r   rm   r1   r   r   r   r   r   ro   ro   •   sO   € € € € € € ØĞØĞĞÑØĞĞÑØĞĞÑØĞĞÑØ€O€OO€O€Or   ro   c                   óü   — e Zd ZU eed<    edd¬¦  «        Zeed<   eed<   dZe	e         ed<   dZ
+e	e         ed	<   dZe	e         ed
+<   dZe	e         ed<   h d£Zee         ed<    ed¦  «        defd„¦   «         ZdS )ÚPaymentCreaterW   .r   )ÚgtÚamountÚpayment_methodNÚtransaction_idÚuser_idrQ   rN   >   ÚcardÚcashÚpaypalÚtransferÚALLOWED_METHODSÚvc                 ó<   — || j         vrt          d|› ¦  «        ‚|S )NzUnsupported payment method: )r€   Ú
+ValueError)Úclsr   s     r   Úcheck_methodzPaymentCreate.check_methodª   s,   € àCÔ'Ğ'Ğ'İĞ?¸AĞ?Ğ?Ñ@Ô@Ğ@Øˆr   )r   r   r   r   r   r   rx   r   rz   r   r{   rQ   rN   r€   r
+   Úsetr   r…   r   r   r   rv   rv   Ÿ   så   € € € € € € Ø€N€NNØ%˜ Ğ"Ñ"Ô"€FˆCĞ"Ğ"Ñ"ØĞĞÑØ$(€NH˜S”MĞ(Ğ(Ñ(Ø!€GˆXcŒ]Ğ!Ğ!Ñ!Ø €FˆHSŒMĞ Ğ Ñ Ø€Eˆ8CŒ=ĞĞÑà%KĞ%KĞ%K€OX˜c”]ĞKĞKÑKà€_Ğ%Ñ&Ô&ğ˜Sğ ğ ğ ñ 'Ô&ğğ ğ r   rv   c                   ó¾   — e Zd ZU eed<   ee         ed<   ee         ed<   eed<   eed<   ee         ed<   eed<   ee         ed<   eed	<   eed
+<    G d„ d¦  «        ZdS )ÚPaymentReadr   r{   rW   rx   ry   rz   rQ   rN   r4   rR   c                   ó   — e Zd ZdZdS )úPaymentRead.ConfigTNr!   r   r   r   r#   rŠ   ½   r$   r   r#   N)	r   r   r   r   r   r   r   r   r#   r   r   r   rˆ   rˆ   ±   s½   € € € € € € Ø€G€GGØcŒ]ĞĞÑØ˜Œ}ĞĞÑØ€K€KKØĞĞÑØ˜S”MĞ!Ğ!Ñ!Ø€K€KKØCŒ=ĞĞÑØĞĞÑØĞĞÑğğ ğ ğ ğ ñ ô ğ ğ ğ r   rˆ   N)rm   Úpydanticr   r   r   r   Útypingr   r   r	   r
+   r   r   r   r&   r3   r:   r?   rC   rP   rV   r]   rc   rh   ro   rv   rˆ   r   r   r   ú<module>r      sì  ğğğ ğ
+ AĞ @Ğ @Ğ @Ğ @Ğ @Ğ @Ğ @Ğ @Ğ @Ğ @Ğ @Ø 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ğ 1Ø Ğ Ğ Ğ Ğ Ğ ğğ ğ ğ ğ 	ñ ô ğ ğğ ğ ğ ğ 	ñ ô ğ ğ%ğ %ğ %ğ %ğ %Yñ %ô %ğ %ğğ ğ ğ ğ ^ñ ô ğ ğ ğ  ğ  ğ  ğ  	ñ  ô  ğ  ğğ ğ ğ ğ 	ñ ô ğ ğ ğ  ğ  ğ  ğ  yñ  ô  ğ  ğğ ğ ğ ğ Yñ ô ğ ğ&	ğ 	ğ 	ğ 	ğ 	yñ 	ô 	ğ 	ğ	,ğ 	,ğ 	,ğ 	,ğ 	,9ñ 	,ô 	,ğ 	,ğğ ğ ğ ğ ñ ô ğ ğ&'ğ 'ğ 'ğ 'ğ ')ñ 'ô 'ğ 'ğğ ğ ğ ğ Iñ ô ğ ğğ ğ ğ ğ Iñ ô ğ ğ$ğ ğ ğ ğ )ñ ô ğ ğ ğ r   
 ----- FILE: backend/app/schemas/__pycache__/__init__.cpython-313.pyc -----
 ó
-    Rü\i  ã                   ó  • S r SSKJrJrJrJr  SSKJrJrJ	r	J
+    Óq]i  ã                   ó  • S r SSKJrJrJrJr  SSKJrJrJ	r	J
 r
   SSKJr   " S S\5      r " S S\5      r " S	 S
 \5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S\5      r " S S \5      r " S! S"\5      rg#)$zh
@@ -3281,6 +3875,22 @@ ValueError)Úclsr—   s     r   Úcheck_methodÚPaymentCreate.check_methodª   
 g)ÚPaymentReadé±   r   r‘   rf   r   r   r   r^   rZ   r;   r_   c                   ó   • \ rS rSrSrSrg)ÚPaymentRead.Configé½   Tr   Nr&   r   r   r   r(   r¢   ½   r)   r   r(   r   N)r   r   r   r   r   r   r   r   r   r(   r   r   r   r   rŸ   rŸ   ±   sU   ‡ ØƒGØc‰]ÓØ˜‰}ÓØƒKØÓØ˜S‘MÓ!ØƒKØC‰=ÓØÓØÓ÷ô r   rŸ   N)r   Úpydanticr   r   r   r   Útypingr   r   r	   r
    r   r   r!   r+   r9   rB   rH   rN   r\   rd   rm   rt   r{   rƒ   r‹   rŸ   r   r   r   Ú<module>r¦      sĞ   ğñ÷
  AÓ @ß 1Ó 1İ ô	ô ô	ô ô%Yô %ô^ô ô 	ô  ô	ô ô yô  ôYô ô&	yô 	ô	,9ô 	,ôô ô&')ô 'ôIô ôIô ô$)õ r   
+----- FILE: backend/app/schemas/__pycache__/auth.cpython-311.pyc -----
+§
+    Ö4\iv  ã                   óî   — d Z ddlmZmZmZ ddlmZ  G d„ de¦  «        Z G d„ de¦  «        Z G d„ d	e¦  «        Z	 G d
+„ de¦  «        Z
+ G d„ de¦  «        Z G d„ de¦  «        Z G d„ de¦  «        ZdS )u&   
+Pydantic schemas para autenticaciÃ³n
+é    )Ú	BaseModelÚEmailStrÚField)ÚOptionalc                   ó6   — e Zd ZU dZeed<   eed<   dZeed<   dS )ÚTokenzRespuesta de tokenÚaccess_tokenÚrefresh_tokenÚbearerÚ
+token_typeN)Ú__name__Ú
+__module__Ú__qualname__Ú__doc__ÚstrÚ__annotations__r   © ó    úV/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/schemas/auth.pyr   r      s@   € € € € € € ØĞØĞĞÑØĞĞÑØ€JĞĞÑĞĞr   r   c                   ó<   — e Zd ZU dZeed<   eed<   eed<   eed<   dS )Ú	TokenDatazDatos decodificados del tokenÚuser_idÚusernameÚemailÚroleN)r   r   r   r   Úintr   r   r   r   r   r   r      s:   € € € € € € Ø'Ğ'Ø€L€LLØ€M€MMØ€J€JJØ
+€I€II€I€Ir   r   c                   óB   — e Zd ZU dZeed<    edd¬¦  «        Zeed<   dS )ÚLoginRequestzRequest de loginr   .é   ©Ú
+min_lengthÚpasswordN)	r   r   r   r   r   r   r   r"   r   r   r   r   r   r      s@   € € € € € € ØĞØ€O€OOØE˜#¨!Ğ,Ñ,Ô,€HˆcĞ,Ğ,Ñ,Ğ,Ğ,r   r   c                   ó¦   — e Zd ZU dZeed<    eddd¬¦  «        Zeed<    edd¬¦  «        Z	eed	<    edd
+¬¦  «        Z
+eed<   dZee         ed<   dS )ÚRegisterRequestzRequest de registror   .é   éd   )r!   Ú
+max_lengthr   r    Ú	full_nameé   r"   NÚphone)r   r   r   r   r   r   r   r   r   r(   r"   r*   r   r   r   r   r$   r$      s”   € € € € € € ØĞØ€O€OOØE˜#¨!¸Ğ<Ñ<Ô<€HˆcĞ<Ğ<Ñ<ØU˜3¨1Ğ-Ñ-Ô-€IˆsĞ-Ğ-Ñ-ØE˜#¨!Ğ,Ñ,Ô,€HˆcĞ,Ğ,Ñ,Ø€Eˆ8CŒ=ĞĞÑĞĞr   r$   c                   ó   — e Zd ZU dZeed<   dS )ÚPasswordResetRequestu"   Request para recuperar contraseÃ±ar   N)r   r   r   r   r   r   r   r   r   r,   r,   &   s   € € € € € € Ø,Ğ,Ø€O€OO€O€Or   r,   c                   óB   — e Zd ZU dZeed<    edd¬¦  «        Zeed<   dS )ÚPasswordResetConfirmu%   ConfirmaciÃ³n de reset de contraseÃ±aÚtoken.r)   r    Únew_passwordN)r   r   r   r   r   r   r   r0   r   r   r   r.   r.   +   s@   € € € € € € Ø/Ğ/Ø€J€JJØ˜˜c¨aĞ0Ñ0Ô0€L#Ğ0Ğ0Ñ0Ğ0Ğ0r   r.   c                   ó   — e Zd ZU dZeed<   dS )ÚRefreshTokenRequestzRequest para refrescar tokenr
+   N)r   r   r   r   r   r   r   r   r   r2   r2   1   s$   € € € € € € Ø&Ğ&ØĞĞÑĞĞr   r2   N)r   Úpydanticr   r   r   Útypingr   r   r   r   r$   r,   r.   r2   r   r   r   ú<module>r5      sq  ğğğ ğ 0Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ø Ğ Ğ Ğ Ğ Ğ ğğ ğ ğ ğ ˆIñ ô ğ ğğ ğ ğ ğ 	ñ ô ğ ğ-ğ -ğ -ğ -ğ -9ñ -ô -ğ -ğ ğ  ğ  ğ  ğ  iñ  ô  ğ  ğğ ğ ğ ğ ˜9ñ ô ğ ğ
+1ğ 1ğ 1ğ 1ğ 1˜9ñ 1ô 1ğ 1ğğ ğ ğ ğ ˜)ñ ô ğ ğ ğ r   
 ----- FILE: backend/app/schemas/__pycache__/auth.cpython-313.pyc -----
 ó
     Ö4\iv  ã                   óÂ   • S r SSKJrJrJr  SSKJr   " S S\5      r " S S\5      r " S S	\5      r	 " S
@@ -3304,6 +3914,27 @@ r   r   r   r   r   r   r   r   r7   r   r   r   r   r4   r4   +   s
 ----- FILE: backend/app/schemas/__pycache__/repair.cpython-313.pyc -----
 ó
     ë3\i    ã                   ó   • g )N© r   ó    ÚX/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/schemas/repair.pyÚ<module>r      s   ñr   
+----- FILE: backend/app/schemas/__pycache__/user.cpython-311.pyc -----
+§
+    Ö4\i“  ã                   ó¦   — d Z ddlmZmZmZ ddlmZ ddlmZ  G d„ de¦  «        Z G d„ de¦  «        Z	 G d	„ d
+e¦  «        Z
+ G d„ de
+¦  «        ZdS )z 
+Pydantic schemas para usuarios
+é    )Ú	BaseModelÚEmailStrÚField)ÚOptional)Údatetimec                   óŠ   — e Zd ZU dZeed<    edd¬¦  «        Zeed<   eed<    edd¬¦  «        Z	eed	<   d
+Z
+ee         ed<   d
+S )Ú
+UserCreatezSchema para crear usuarioÚemail.é   )Ú
+min_lengthÚusernameÚ	full_nameé   ÚpasswordNÚphone)Ú__name__Ú
+__module__Ú__qualname__Ú__doc__r   Ú__annotations__r   r   Ústrr   r   r   © ó    úV/mnt/CZ_BODEGA/010_VSCODE/007_PROYECTOS_WEB/cirujano-front/backend/app/schemas/user.pyr	   r	   	   s|   € € € € € € Ø#Ğ#Ø€O€OOØE˜#¨!Ğ,Ñ,Ô,€HˆcĞ,Ğ,Ñ,Ø€N€NNØE˜#¨!Ğ,Ñ,Ô,€HˆcĞ,Ğ,Ñ,Ø€Eˆ8CŒ=ĞĞÑĞĞr   r	   c                   óH   — e Zd ZU dZdZee         ed<   dZee         ed<   dS )Ú
+UserUpdatezSchema para actualizar usuarioNr   r   )	r   r   r   r   r   r   r   r   r   r   r   r   r   r      s@   € € € € € € Ø(Ğ(Ø#€Iˆx˜Œ}Ğ#Ğ#Ñ#Ø€Eˆ8CŒ=ĞĞÑĞĞr   r   c                   óŠ   — e Zd ZU dZeed<   eed<   eed<   eed<   ee         ed<   eed<   eed<   e	ed	<    G d
+„ d¦  «        Z
+dS )ÚUserResponseu2   Schema para respuesta de usuario (sin contraseÃ±a)Úidr
+   r   r   r   ÚroleÚ	is_activeÚ
+created_atc                   ó   — e Zd ZdZdS )úUserResponse.ConfigTN)r   r   r   Úfrom_attributesr   r   r   ÚConfigr$   #   s   € € € € € Øˆˆˆr   r&   N)r   r   r   r   Úintr   r   r   Úboolr   r&   r   r   r   r   r      s–   € € € € € € Ø<Ğ<Ø€G€GGØ€J€JJØ€M€MMØ€N€NNØCŒ=ĞĞÑØ
+€I€IIØ€O€OOØĞĞÑğğ ğ ğ ğ ñ ô ğ ğ ğ r   r   c                   ó   — e Zd ZU dZeed<   dS )ÚUserDetailResponsezDetalle completo del usuarioÚ
+updated_atN)r   r   r   r   r   r   r   r   r   r*   r*   '   s$   € € € € € € Ø&Ğ&ØĞĞÑĞĞr   r*   N)r   Úpydanticr   r   r   Útypingr   r   r	   r   r   r*   r   r   r   ú<module>r.      s  ğğğ ğ 0Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ğ /Ø Ğ Ğ Ğ Ğ Ğ Ø Ğ Ğ Ğ Ğ Ğ ğ ğ  ğ  ğ  ğ  ñ  ô  ğ  ğ ğ  ğ  ğ  ğ  ñ  ô  ğ  ğğ ğ ğ ğ 9ñ ô ğ ğğ ğ ğ ğ ˜ñ ô ğ ğ ğ r   
 ----- FILE: backend/app/schemas/__pycache__/user.cpython-313.pyc -----
 ó
     Ö4\i“  ã                   óŒ   • S r SSKJrJrJr  SSKJr  SSKJr   " S S\5      r " S S\5      r	 " S	 S
@@ -3428,9 +4059,7 @@ class UserDetailResponse(UserResponse):
     """Detalle completo del usuario"""
     updated_at: datetime
 
-===============================================
-== BACKEND - SERVICIOS / CRUD / MODELOS (ÃNDICE) ==
-===============================================
+======== BACKEND LÃ“GICA (ÃNDICE) =================
 backend/app/crud/__init__.py
 backend/app/crud/base.py
 backend/app/crud/category.py
@@ -3455,9 +4084,7 @@ backend/app/services/logging_service.py
 backend/app/services/pdf_generator.py
 backend/app/services/quote_calculator.py
 
-===============================================
-== BACKEND - TESTS ==
-===============================================
+================ BACKEND TESTS ===================
 backend/tests/__init__.py
 backend/tests/conftest.py
 backend/tests/test_audit_hooks.py

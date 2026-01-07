@@ -38,7 +38,10 @@
         </select>
 
         <div v-if="instrumentPreview" class="model-preview">
-          <img :src="instrumentPreview" :alt="currentInstrument?.model || 'Instrument image'" />
+          <ImageView :src="instrumentPreview"
+                     :alt="currentInstrument?.model || 'Instrument image'"
+                     class="model-preview-image"
+                     :spinner-enabled="true" />
           <div class="model-preview-info">
             <h4>{{ currentInstrument?.model || 'Cargando...' }}</h4>
             <p v-if="currentInstrument?.type">{{ currentInstrument.type }} ({{ currentInstrument?.year }})</p>
@@ -241,6 +244,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import ImageView from "@/vue/components/generic/ImageView.vue"
 import { useDiagnostic } from '@/composables/useDiagnostic'
 import { useInstrumentsCatalog } from '@/composables/useInstrumentsCatalog'
 

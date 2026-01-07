@@ -103,10 +103,23 @@ async def estimate_quotation(request: QuotationRequest):
     exceeds = max_price > max_recommended
 
     disclaimer_text = (
-        "⚠️ IMPORTANTE: Esta cotización es INDICATIVA y NO VINCULANTE. "
-        "El precio final se confirma tras revisión presencial del equipo. "
-        "El diagnóstico completo puede revelar fallas adicionales. Presupuesto formal: $20.000 CLP."
+        "⚠️ IMPORTANTE - INFORMACIÓN DE COTIZACIÓN\n\n"
+        "Esta cotización es INDICATIVA y NO VINCULANTE.\n\n"
+        "• El precio final se confirma tras revisión presencial del equipo en nuestro taller.\n"
+        "• El diagnóstico completo requiere abrir el instrumento, lo que puede revelar fallas "
+        "adicionales no detectables externamente.\n"
+        "• El presupuesto formal tiene un costo de $20.000 CLP, que es:\n"
+        "  - ABONABLE: Se descuenta del total si decide proceder con la reparación\n"
+        "  - NO REEMBOLSABLE: Queda como pago por diagnóstico si rechaza la reparación\n\n"
+        "• Reparación de síntesis: Nuestro compromiso es que nunca cobramos más del 50% "
+        "del valor de mercado actual del instrumento."
     )
+    
+    if exceeds:
+        disclaimer_text += (
+            f"\n\n⚠️ ATENCIÓN: El costo estimado (${max_price:,}) sobrepasa el 50% del valor "
+            f"del instrumento (${max_recommended:,}). Considere si es rentable reparar versus comprar otro."
+        )
 
     return QuotationResponse(
         instrument_id=request.instrument_id,

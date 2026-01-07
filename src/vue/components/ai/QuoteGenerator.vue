@@ -26,6 +26,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import axios from 'axios'
 import { useInstrumentsCatalog } from '@/composables/useInstrumentsCatalog'
 
 const brand = ref('')
@@ -44,9 +45,19 @@ function onChange() {
 }
 
 function generate() {
-  // Simple client-side mock: return a short string using selected model/brand
   const m = models.value.find(x => x.id === model.value)
-  result.value = `Estimación de ejemplo para ${m?.displayName || model.value}: diagnóstico y presupuesto en taller.`
+  if (!m) return
+
+  // Call backend estimate endpoint
+  result.value = null
+  axios.post('http://127.0.0.1:8000/api/v1/quotations/estimate', {
+    instrument_id: m.id,
+    faults: []
+  }).then(res => {
+    result.value = JSON.stringify(res.data, null, 2)
+  }).catch(err => {
+    result.value = 'Error al generar estimación: ' + (err.response?.data?.detail || err.message)
+  })
 }
 </script>
 

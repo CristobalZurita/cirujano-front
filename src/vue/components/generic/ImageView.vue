@@ -62,6 +62,19 @@ const _onImageLoadSuccess = () => {
 }
 
 const _onImageLoadError = () => {
+    // Try a gentle fallback for missing instrument photos: replace with brand/agency logo
+    try {
+        const currentSrc = img.value?.getAttribute('src') || props.src
+        if (currentSrc && currentSrc.includes('/images/instrumentos/') && !currentSrc.includes('-fallback')) {
+            // Attempt a single fallback to an agency logo
+            const fallback = '/images/logo/agency-logo.png'
+            if (img.value) img.value.setAttribute('src', fallback)
+            loadStatus.value = LoadStatus.LOADING
+            return
+        }
+    } catch (e) {
+        // ignore and continue to error state
+    }
     loadStatus.value = LoadStatus.ERROR
     if(img.value) {
         img.value.setAttribute('load-status', LoadStatus.ERROR)
