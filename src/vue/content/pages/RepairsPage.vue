@@ -195,7 +195,7 @@ const viewRepair = (repair) => {
   margin: 0 auto;
 }
 
-/* Header -->
+/* Header */
 .repairs-header {
   display: flex;
   justify-content: space-between;
@@ -244,7 +244,7 @@ const viewRepair = (repair) => {
   box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
 }
 
-/* Filters -->
+/* Filters */
 .filters {
   background: white;
   padding: 1.5rem;
@@ -284,7 +284,7 @@ const viewRepair = (repair) => {
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* Repairs List -->
+/* Repairs List */
 .repairs-list {
   display: flex;
   flex-direction: column;
@@ -354,7 +354,7 @@ const viewRepair = (repair) => {
   color: #742a2a;
 }
 
-/* Repair Details -->
+/* Repair Details */
 .repair-details {
   margin-bottom: 1rem;
   display: grid;
@@ -380,7 +380,7 @@ const viewRepair = (repair) => {
   font-size: 0.95rem;
 }
 
-/* Progress -->
+/* Progress */
 .repair-progress {
   margin-bottom: 1rem;
 }
@@ -404,7 +404,7 @@ const viewRepair = (repair) => {
   color: #718096;
 }
 
-/* Actions -->
+/* Actions */
 .repair-actions {
   text-align: right;
 }
@@ -424,7 +424,7 @@ const viewRepair = (repair) => {
   color: #764ba2;
 }
 
-/* Empty State -->
+/* Empty State */
 .empty-state {
   background: white;
   border-radius: 12px;
@@ -444,7 +444,7 @@ const viewRepair = (repair) => {
   font-size: 1.1rem;
 }
 
-/* Responsive -->
+/* Responsive */
 @media (max-width: 768px) {
   .repairs-page {
     padding: 1rem;

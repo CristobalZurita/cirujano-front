@@ -271,7 +271,7 @@ const deleteAccount = () => {
   margin: 0 auto;
 }
 
-/* Header -->
+/* Header */
 .profile-header {
   display: flex;
   justify-content: space-between;
@@ -330,7 +330,7 @@ const deleteAccount = () => {
   border-color: #a0aec0;
 }
 
-/* Content -->
+/* Content */
 .profile-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -360,7 +360,7 @@ const deleteAccount = () => {
   border-left: 4px solid #f56565;
 }
 
-/* Form -->
+/* Form */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -496,7 +496,7 @@ const deleteAccount = () => {
   margin-top: 1rem;
 }
 
-/* Modal -->
+/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -540,8 +540,8 @@ const deleteAccount = () => {
   flex: 1;
 }
 
-/* Responsive -->
-@media (max-width: 1024px) {
+/* Responsive */
+@media (max-width: 768px) {
   .profile-content {
     grid-template-columns: 1fr;
   }

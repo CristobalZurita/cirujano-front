@@ -278,7 +278,7 @@
   line-height: 1.6;
 }
 
-/* Actions -->
+/* Actions */
 .actions {
   display: flex;
   gap: 1rem;

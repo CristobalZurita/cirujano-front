@@ -295,7 +295,7 @@ const goToPrivacy = () => {
   line-height: 1.6;
 }
 
-/* Acceptance -->
+/* Acceptance */
 .acceptance-box {
   padding: 1.5rem;
   background: #f7fafc;
@@ -319,7 +319,7 @@ const goToPrivacy = () => {
   accent-color: #2f855a;
 }
 
-/* Actions -->
+/* Actions */
 .actions {
   display: flex;
   gap: 1rem;
