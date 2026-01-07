@@ -79,7 +79,7 @@ export function useDiagnostic() {
     }
 
     // Keyboard
-    if ('teclado' in instrument.type.toLowerCase()) {
+    if (instrument.type.toLowerCase().includes('teclado')) {
       applicableComponents.push({
         type: 'keyboard',
         faultIds: ['KEYBOARD_DEAD_KEY', 'KEYBOARD_STUCK_KEY', 'AFTERTOUCH_BROKEN']

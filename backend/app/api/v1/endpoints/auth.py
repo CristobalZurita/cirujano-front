@@ -65,7 +65,7 @@ async def register(
     db.refresh(new_user)
     # Audit registration
     try:
-        create_audit(event_type="auth.register", user_id=new_user.id, ip_address=None, metadata={"email": new_user.email, "username": new_user.username})
+        create_audit(event_type="auth.register", user_id=new_user.id, ip_address=None, details={"email": new_user.email, "username": new_user.username})
     except Exception:
         pass
     
@@ -184,15 +184,22 @@ async def get_current_user_info(
 
 
 @router.post("/refresh")
-async def refresh_access_token(refresh_token: str):
+async def refresh_access_token(request_body: dict):
     """
     Refrescar access token usando refresh token
     
-    - **refresh_token**: Token de refresco obtenido en login
+    - **refresh_token**: Token de refresco obtenido en login (enviar en JSON body)
     
     Retorna nuevo access_token y refresh_token
     """
     from backend.app.core.security import verify_refresh_token
+    
+    refresh_token = request_body.get("refresh_token")
+    if not refresh_token:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="refresh_token requerido en body"
+        )
     
     try:
         payload = verify_refresh_token(refresh_token)

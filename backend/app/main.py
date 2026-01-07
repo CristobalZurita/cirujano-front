@@ -141,7 +141,7 @@ async def root():
     return {
         "service": "Cirujano de Sintetizadores",
         "version": "1.0.0",
-        "environment": settings.ENVIRONMENT,
+        "environment": settings.environment,
         "docs": "/docs",
         "openapi": "/openapi.json"
     }

@@ -9,12 +9,13 @@
         <!-- Content -->
         <PageSectionContent>
             <!-- About Workshop -->
-            <ArticleInfoBlock image="/images/logo/Logo Nuevo.jpg"
-                              :paragraphs="[
-                                  `**Cirujano de Sintetizadores** es un taller dedicado a la reparación, mantenimiento y personalización de sintetizadores, drum machines, teclados y otros equipos de audio.`,
-                                  `Cada instrumento se revisa en detalle: limpieza interna, revisión de fuente de poder, reemplazo de componentes cuando es necesario y calibraciones finas para recuperar estabilidad y buen sonido.`,
-                                  `El objetivo es devolver a tus equipos su confiabilidad y carácter sonoro, respetando su diseño original o integrando modificaciones creativas cuando el proyecto lo requiere.`
-                              ]"/>
+            <ArticleInfoBlock 
+                image="/images/logo/Logo Nuevo.jpg"
+                :paragraphs="[
+                    `<strong>Cirujano de Sintetizadores</strong> es un taller dedicado a la reparación, mantenimiento y personalización de sintetizadores, drum machines, teclados y otros equipos de audio.`,
+                    `Cada instrumento se revisa en detalle: limpieza interna, revisión de fuente de poder, reemplazo de componentes cuando es necesario y calibraciones finas para recuperar estabilidad y buen sonido.`,
+                    `El objetivo es devolver a tus equipos su confiabilidad y carácter sonoro, respetando su diseño original o integrando modificaciones creativas cuando el proyecto lo requiere.`
+                ]"/>
 
         </PageSectionContent>
     </PageSection>
