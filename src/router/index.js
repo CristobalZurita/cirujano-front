@@ -19,6 +19,9 @@ import ProfilePage from '@/vue/content/pages/ProfilePage.vue'
 import CotizadorIAPage from '@/vue/content/pages/CotizadorIAPage.vue'
 import LicensePage from '@/vue/content/pages/LicensePage.vue'
 import PolicyPage from '@/vue/content/pages/PolicyPage.vue'
+import TermsPage from '@/vue/content/pages/TermsPage.vue'
+import PrivacyPage from '@/vue/content/pages/PrivacyPage.vue'
+import SchedulePage from '@/vue/content/pages/SchedulePage.vue'
 
 // Admin Pages
 import AdminDashboard from '@/vue/content/pages/admin/AdminDashboard.vue'
@@ -48,6 +51,22 @@ const routes = [
         path: 'policy',
         name: 'policy',
         component: PolicyPage
+      },
+      {
+        path: 'terminos',
+        name: 'terminos',
+        component: TermsPage
+      },
+      {
+        path: 'privacidad',
+        name: 'privacidad',
+        component: PrivacyPage
+      },
+      {
+        path: 'agendar',
+        name: 'agendar',
+        component: SchedulePage,
+        meta: { requiresAuth: true }
       }
     ]
   },

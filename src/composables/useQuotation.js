@@ -7,9 +7,11 @@
 
 import { ref, computed } from 'vue'
 import { useApi } from './useApi'
+import { useQuotationStore } from '@/stores/quotation'
 
 export function useQuotation() {
   const { api } = useApi()
+  const quotationStore = useQuotationStore()
   
   // State
   const loading = ref(false)
@@ -47,6 +49,7 @@ export function useQuotation() {
       })
       
       quotation.value = response.data
+      quotationStore.setQuotation(response.data)
       return response.data
       
     } catch (err) {
@@ -70,6 +73,7 @@ export function useQuotation() {
     error.value = null
     loading.value = false
     lastRequestTime.value = null
+    quotationStore.reset()
   }
   
   /**
