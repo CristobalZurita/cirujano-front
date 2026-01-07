@@ -26,6 +26,7 @@ import SchedulePage from '@/vue/content/pages/SchedulePage.vue'
 // Admin Pages
 import AdminDashboard from '@/vue/content/pages/admin/AdminDashboard.vue'
 import InventoryPage from '@/vue/content/pages/admin/InventoryPage.vue'
+import InventoryUnified from '@/views/InventoryUnified.vue'
 import ClientsPage from '@/vue/content/pages/admin/ClientsPage.vue'
 import RepairsAdminPage from '@/vue/content/pages/admin/RepairsAdminPage.vue'
 import StatsPage from '@/vue/content/pages/admin/StatsPage.vue'
@@ -126,6 +127,11 @@ const routes = [
         path: 'inventory',
         name: 'admin-inventory',
         component: InventoryPage
+      },
+      {
+        path: 'inventory/unified',
+        name: 'admin-inventory-unified',
+        component: InventoryUnified
       },
       {
         path: 'clients',
