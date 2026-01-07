@@ -7,6 +7,7 @@
 					<th>Nombre</th>
 					<th>Categoría</th>
 					<th>Cantidad</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -15,6 +16,10 @@
 					<td>{{ item.name || item.nombre || '-' }}</td>
 					<td>{{ item.category || '-' }}</td>
 					<td>{{ item.quantity ?? item.cantidad ?? 0 }}</td>
+					<td>
+						<button class="btn btn-sm btn-outline-primary me-2" @click="$emit('edit', item)">Editar</button>
+						<button class="btn btn-sm btn-outline-danger" @click="$emit('delete', item)">Eliminar</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
