@@ -20,14 +20,16 @@
 
                 <!-- CTA Buttons -->
                 <div v-if="showCtaButtons" class="hero-cta-buttons">
-                    <button class="btn-hero" @click="$emit('scroll-to-top')">
+                    <button class="btn-hero" @click="scrollToDiagnostic">
                         <i class="fa-solid fa-search"></i>
                         <span>Descubre más</span>
                     </button>
-                    <a href="#diagnostic-section" class="btn-hero btn-hero-primary">
-                        <i class="fa-solid fa-file-circle-check"></i>
-                        <span>Cotiza tu instrumento</span>
-                    </a>
+                    <Link url="/cotizador-ia">
+                        <a class="btn-hero btn-hero-primary">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                            <span>Cotiza tu instrumento</span>
+                        </a>
+                    </Link>
                 </div>
 
                 <!-- Button -->
@@ -71,6 +73,13 @@ const parsedTitle = computed(() => {
 const parsedSubtitle = computed(() => {
     return utils.parseCustomText(props.subtitle)
 })
+
+const scrollToDiagnostic = () => {
+    const element = document.getElementById('diagnostic-section')
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+    }
+}
 </script>
 
 <style lang="scss" scoped>

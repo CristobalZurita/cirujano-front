@@ -67,6 +67,12 @@ const routes = [
         name: 'agendar',
         component: SchedulePage,
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'cotizador-ia',
+        name: 'cotizador-ia',
+        component: CotizadorIAPage,
+        meta: { requiresAuth: false }
       }
     ]
   },
@@ -102,12 +108,6 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: ProfilePage,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/cotizador-ia',
-    name: 'cotizador-ia',
-    component: CotizadorIAPage,
     meta: { requiresAuth: true }
   },
 
