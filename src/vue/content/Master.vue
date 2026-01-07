@@ -9,6 +9,9 @@
     <!-- Floating Quote Button - Visible in all pages -->
     <FloatingQuoteButton/>
 
+    <!-- Toast Notifications -->
+    <ToastNotification ref="toastComponent" />
+
     <!-- Footer -->
     <Footer>
         <FooterBlock :darken="false"
@@ -59,12 +62,24 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import Navigation from "/src/vue/components/nav/Navigation.vue"
 import Footer from "/src/vue/components/footer/Footer.vue"
 import FooterBlock from "/src/vue/components/footer/FooterBlock.vue"
 import FooterCopyright from "/src/vue/components/footer/FooterCopyright.vue"
 import FooterColumn from "/src/vue/components/footer/FooterColumn.vue"
 import FloatingQuoteButton from "/src/vue/components/widgets/FloatingQuoteButton.vue"
+import ToastNotification from "/src/vue/components/system/ToastNotification.vue"
+import { setToastComponent } from '/src/services/toastService.js'
+
+const toastComponent = ref(null)
+
+onMounted(() => {
+  // Initialize toast service with component reference
+  if (toastComponent.value) {
+    setToastComponent(toastComponent.value)
+  }
+})
 </script>
 
 <style lang="scss" scoped>

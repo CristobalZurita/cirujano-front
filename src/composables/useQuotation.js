@@ -8,6 +8,7 @@
 import { ref, computed } from 'vue'
 import { useApi } from './useApi'
 import { useQuotationStore } from '@/stores/quotation'
+import { showSuccess, showError } from '@/services/toastService'
 
 export function useQuotation() {
   const { api } = useApi()
@@ -50,6 +51,7 @@ export function useQuotation() {
       
       quotation.value = response.data
       quotationStore.setQuotation(response.data)
+      showSuccess('Cotización generada exitosamente')
       return response.data
       
     } catch (err) {
@@ -58,6 +60,7 @@ export function useQuotation() {
                           'Error al generar cotización'
       error.value = errorMessage
       quotation.value = null
+      showError(errorMessage)
       throw err
       
     } finally {
