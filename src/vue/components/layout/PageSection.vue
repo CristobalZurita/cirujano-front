@@ -58,9 +58,16 @@ section.foxy-section {
     position: relative;
 
     .section-content {
-        max-width: 75ch;
+        /* Allow full-width section content for grid/columns -- keep readable class for long-form text */
+        max-width: 1200px;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
+
+        /* Use .readable on text-only blocks to limit to optimal line length */
+        &.readable {
+            max-width: 75ch;
+        }
     }
 
     .foxy-promo-background {

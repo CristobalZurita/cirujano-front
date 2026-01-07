@@ -66,7 +66,45 @@ export function useInstrumentsCatalog() {
 
     // Priority 2: Generate from convention (use Spanish 'instrumentos' directory)
     if (instrument?.id) {
-      return `/images/instrumentos/${instrument.id}.jpg`
+      // Try common filename variations so we match existing images in /public/images/instrumentos
+      const id = instrument.id
+      const model = (instrument.model || '').replace(/\s+/g, '_')
+      const brand = (instrument.brand || '').toUpperCase()
+      const brandModel = `${brand}_${model.toUpperCase()}`
+      // Prefer common extensions and case patterns so the most likely existing file is used
+      const candidates = [
+        // Brand logo fallbacks (many repos include LOGO_BRAND.png)
+        `/images/instrumentos/LOGO_${brand}.png`,
+        `/images/instrumentos/LOGO_${brand}.jpg`,
+
+        // BRAND_MODEL uppercase with common extensions
+        `/images/instrumentos/${brandModel}.jpg`,
+        `/images/instrumentos/${brandModel}.png`,
+        `/images/instrumentos/${brandModel}.webp`,
+        `/images/instrumentos/${brandModel}.avif`,
+
+        // ID derived variants (uppercase underscore), try common extensions
+        `/images/instrumentos/${id.replace(/-/g, '_').toUpperCase()}.jpg`,
+        `/images/instrumentos/${id.replace(/-/g, '_').toUpperCase()}.png`,
+        `/images/instrumentos/${id.replace(/-/g, '_').toUpperCase()}.webp`,
+
+        // ID uppercase
+        `/images/instrumentos/${id.toUpperCase()}.jpg`,
+        `/images/instrumentos/${id.toUpperCase()}.png`,
+
+        // Original id (lowercase) fallbacks
+        `/images/instrumentos/${id}.jpg`,
+        `/images/instrumentos/${id}.png`,
+
+        // Model-based fallbacks
+        `/images/instrumentos/${model}.jpg`,
+        `/images/instrumentos/${model}.png`
+      ]
+
+      // Return the most likely candidate (first in list). If a given file doesn't exist,
+      // the browser will 404 and the UI will show the placeholder. This ordering improves
+      // hit-rate for images that are present in the repo (many are .jpg and uppercase).
+      return candidates[0]
     }
 
     // Priority 3: Placeholder

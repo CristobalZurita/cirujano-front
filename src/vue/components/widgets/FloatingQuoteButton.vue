@@ -163,22 +163,31 @@ onUnmounted(() => {
     }
   }
 
+  /* put the small scroll-top above the main CTA so it doesn't overlap the CTA label */
+  .quote-btn { position: relative }
+
   .scroll-top {
+    position: absolute;
+    right: -6px;
+    top: -52px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.65);
     color: white;
     font-weight: 700;
     border: 0;
     cursor: pointer;
-    transition: transform 0.15s ease;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    opacity: 0.95;
+    z-index: 60;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
   }
 
-  .scroll-top:hover { transform: translateY(-3px) }
+  .scroll-top:hover { transform: translateY(-3px); opacity: 1 }
 }
 
 // Animations

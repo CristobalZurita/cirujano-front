@@ -124,6 +124,8 @@ div.foxy-timeline-panel {
     text-align: left;
     width: var(--min-item-width);
     padding: var(--item-padding);
+    /* Ensure panel content sits above the circular image (avoids visual overlap) */
+    z-index: 10;
 
     &-inverted {
         float: var(--inverted-float);

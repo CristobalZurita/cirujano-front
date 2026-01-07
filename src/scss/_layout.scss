@@ -93,11 +93,18 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 }
 /* Ajuste especial solo para el logo del hero */
 .foxy-hero-header-logo.image-view {
-  width: 70vw !important;        /* más ancho: prueba 70–80vw */
-  max-width: 1100px !important;  /* tamaño máximo en pantallas grandes */
-  height: auto !important;
-  overflow: visible;
-  border-radius: 0;
+    width: 85vw !important;        /* increase hero width to better match desktop reference */
+    max-width: 1400px !important;  /* allow larger hero on wide screens */
+    height: auto !important;
+    overflow: visible;
+    border-radius: 0;
+}
+/* Additional styles for hero image */
+.foxy-hero-header-logo.image-view .image {
+    display: block;
+    width: 100% !important;        /* que el PNG use todo el contenedor */
+    height: auto !important;       /* mantiene proporción horizontal */
+    object-fit: contain;
 }
 
 .foxy-hero-header-logo.image-view .image {
@@ -126,6 +133,8 @@ header.foxy-header {
 
 /* If two footers are present by mistake, hide the second to avoid visual duplication */
 .foxy-footer + .foxy-footer { display: none !important }
+/* More robust: hide any extra footer instances beyond the first (avoids layout duplication) */
+.foxy-footer:not(:first-of-type) { display: none !important }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {

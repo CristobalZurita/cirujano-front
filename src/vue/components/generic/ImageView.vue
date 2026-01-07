@@ -88,7 +88,10 @@ div.image-view {
 
 img.image {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    max-height: 100%;
 }
 
 img.spinner {

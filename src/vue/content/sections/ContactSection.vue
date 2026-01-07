@@ -101,7 +101,7 @@ const props = defineProps({
   border-radius: 8px;
   background: rgba(255,255,255,0.02);
 }
-}
+
 
 .map-wrapper {
   width: 100%;

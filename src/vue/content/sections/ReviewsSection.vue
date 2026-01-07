@@ -10,19 +10,19 @@
         <PageSectionContent>
             <ArticleTestimonials>
                 <ItemTestimonial title="Instagram"
-                                 image="images/clients/client-instagram.svg"
+                                 image="/images/clients/client-instagram.svg"
                                  quote="Llevé mi <b>Juno-106</b> que llevaba años sin funcionar y lo dejaron como nuevo. <b>Excelente diagnóstico</b> y muy buena comunicación durante todo el proceso. 100% recomendado para cualquier sintetizador vintage."
                                  author="Músico Independiente"
                                  role="Valparaíso"/>
 
                 <ItemTestimonial title="Facebook"
-                                 image="images/clients/client-facebook.svg"
+                                 image="/images/clients/client-facebook.svg"
                                  quote="<b>Profesionalismo y pasión</b> por los sintetizadores. Me repararon un Korg M1 que otros técnicos no pudieron arreglar. El trabajo fue impecable y el precio muy justo."
                                  author="Productor Musical"
                                  role="Santiago"/>
 
                 <ItemTestimonial title="Instagram"
-                                 image="images/clients/client-instagram.svg"
+                                 image="/images/clients/client-instagram.svg"
                                  quote="Necesitaba una <b>modificación especial</b> para mi drum machine y no solo lo hicieron perfecto, sino que me explicaron todo el proceso. <b>Gran conocimiento técnico</b> y muy buen trato."
                                  author="DJ & Productor"
                                  role="Viña del Mar"/>

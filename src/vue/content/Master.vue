@@ -52,7 +52,7 @@
         <FooterBlock :darken="true"
                      :row="false">
             <FooterCopyright holder="Cirujano de Sintetizadores"
-                             url="https://www.cirujanodesintetizadores.com"
+                             url="https://www.cirujanodesintetizadores.cl"
                              license="Todos los derechos reservados"/>
         </FooterBlock>
     </Footer>
