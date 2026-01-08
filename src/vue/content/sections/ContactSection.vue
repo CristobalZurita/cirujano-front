@@ -19,7 +19,7 @@
                 <div class="contact-grid">
                   <div class="contact-box">
                     <strong>Dirección</strong>
-                    <p>Eusebio Lillo 362, Valparaíso </p>
+                    <p>Eusebio Lillo 362, Valparaíso</p>
 
                     <strong>Teléfono</strong>
                     <p>+56 9 8295 7538</p>
@@ -30,8 +30,7 @@
 
                   <div class="map-frame">
                     <iframe
-                      title="Mapa - Eusebio Lillo 362, Valparaíso"
-                      src="https://www.google.com/maps?q=Eusebio%20Lillo%20362,%20Valparaiso,%20Chile%2C%20CP%202350454&output=embed"
+                      src="https://www.google.com/maps?q=Eusebio%20Lillo%20362,%20Valparaiso,%20Chile%20CP%202350454&output=embed"
                       loading="lazy"
                       referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
@@ -63,29 +62,12 @@ const props = defineProps({
   margin-bottom: 2rem;
 }
 
-.contact-map-section {
-  width: 100%;
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--color-primary, #ff7a00);
-  }
-}
-
-.contact-map-container {
-  display: block;
-}
-
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 150fr;
+  grid-template-columns: minmax(280px, 420px) 1fr;
   gap: 32px;
+  padding: 2rem 0;
+  align-items: stretch;
 }
 
 @media (max-width: 768px) {
@@ -95,109 +77,40 @@ const props = defineProps({
 }
 
 .contact-box {
-  border: 1px solid #ddd;
-  padding: 20px;
-  font-size: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 30px;
   border-radius: 10px;
-  background: rgba(255,255,255,0.02);
-   margin-bottom: 1rem;
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
+.contact-box strong {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f5f5f5;
+}
 
-.map-wrapper {
+.contact-box p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #e8e8e8;
+  line-height: 1.6;
+}
+
+.map-frame {
   width: 100%;
-  height: 400px;
+  min-height: 420px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(47, 47, 51, 0.007);
-
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-.map-frame iframe { width: 100%; height: 100%; border: none; }
-
-/* Address info styling */
-.address-info {
-  background: rgba(255, 255, 255, 0.438);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(236, 122, 122, 0.1);
-
-  h4 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--color-primary, #ff7a00);
-  }
-
-  p {
-    font-size:1.05rem;
-    line-height: 1.8;
-    color: #ffffff;
-    margin: 0.5rem 0;
-  }
-}
-
-/* TABLET */
-@media (max-width: 1024px) {
-  .map-wrapper {
-    height: 350px;
-  }
-
-  .contact-map-section {
-    margin-top: 3rem;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .contact-form-wrapper {
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-map-section {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-  }
-
-  .contact-map-section h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .map-wrapper {
-    height: 280px;
-  }
-
-  .address-info {
-    padding: 1.5rem;
-  }
-
-  .address-info h4 {
-    font-size: 1.1rem;
-  }
-
-  .address-info p {
-    font-size: 1rem;
-  }
-}
-
-/* MOBILE PEQUEÑO */
-@media (max-width: 480px) {
-  .contact-map-container {
-    gap: 1.5rem;
-  }
-
-  .map-wrapper {
-    height: 240px;
-  }
-
-  .contact-map-section h3 {
-    font-size: 1.2rem;
-  }
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 </style>
