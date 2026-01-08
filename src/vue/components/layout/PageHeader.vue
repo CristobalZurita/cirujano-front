@@ -86,13 +86,13 @@ const scrollToDiagnostic = () => {
 @import "/src/scss/_theming.scss";
 
 header.foxy-header {
-    /* reduce default hero height to better match reference layouts */
-    --height: clamp(360px, 55vh, 700px);
+    /* expanded hero height to match reference - black box extends lower for buttons */
+    --height: clamp(480px, 75vh, 900px);
     --content-margin-top: 64px;
     --max-logo-proportion:45vw;
-    --max-logo-height:50vh; /* allow taller hero on large viewports to match reference */
-    @include media-breakpoint-down(xl) {--max-logo-height: 35vh;}
-    @include media-breakpoint-down(lg) {--max-logo-height: 30vh; }
+    --max-logo-height:60vh; /* allow much taller hero on large viewports */
+    @include media-breakpoint-down(xl) {--max-logo-height: 45vh;}
+    @include media-breakpoint-down(lg) {--max-logo-height: 38vh; }
     @include media-breakpoint-down(md) {--content-margin-top: 65px;}
 
     --content-height: calc(var(--height) - var(--content-margin-top));
@@ -127,11 +127,11 @@ header.foxy-header {
 
     div.foxy-hero-header-logo {
         /* allow rectangular logos on desktop while keeping a sensible max height */
-        width: clamp(720px, 95vw, 1600px); /* make the banner start wider on large screens */
+        width: clamp(750px, 96vw, 1700px); /* make the banner start wider on large screens */
         max-width: 98%;
         /* Fix hero to a landscape presentation on desktop by using a fixed display height
            and covering the area. This crops tall uploads to appear apaisado as requested. */
-        height: min(42vh, 360px);
+        height: min(50vh, 420px);
         max-height: var(--max-logo-height);
         margin: 0 auto;
 
@@ -144,12 +144,18 @@ header.foxy-header {
     }
 
     h1.heading {
-        color:$white;
+        color:$orange-pastel;
         text-transform: uppercase;
         text-align: center;
-        font-weight: 700;
-        font-size: clamp(28px, 4.4vw, 64px);
-        padding: 1.25rem 0 0.5rem;
+        font-weight: 900;
+        font-size: clamp(70px, 7vw, 60px);
+        padding: 1.5rem 0 0.75rem;
+        letter-spacing: 0.08em;
+        line-height: 1.15;
+        position: relative;
+        z-index: 5;
+        transform: scaleX(3);
+        margin: 0;
     }
 
     h4.subheading {
@@ -166,13 +172,13 @@ header.foxy-header {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
-        margin-top: 1rem;
+        gap: 2.5rem;
+        margin-top: 2.5rem;
         position: relative;
         z-index: 6; /* Ensure CTAs sit above decorative background */
 
         @include media-breakpoint-down(md) {
-            gap: 1rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
         }
     }
@@ -181,28 +187,28 @@ header.foxy-header {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 1.125rem 2.3rem;
+        padding: 1.25rem 2.8rem;
         border-radius: 4rem;
         border: 2px solid $orange-pastel;
         background-color: $orange-pastel;
         color: white;
         font-family: $headings-font-family;
-        font-weight: 400;
+        font-weight: 500;
         text-transform: uppercase;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         cursor: pointer;
         transition: all 0.3s ease;
         text-decoration: none;
 
         i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         &:hover {
             background-color: #ff7f1f;
             border-color: #ff7f1f;
             color: white;
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         &:active {
