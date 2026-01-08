@@ -138,6 +138,20 @@ if settings.environment and settings.environment.lower() in ("production", "prod
 app.include_router(api_router)
 
 
+# Middleware: block unexpected HTML/XML payloads for API endpoints to reduce attack surface
+@app.middleware("http")
+async def block_html_payloads(request, call_next):
+    try:
+        if request.method in ("POST", "PUT", "PATCH"):
+            ct = request.headers.get("content-type", "").lower()
+            if any(x in ct for x in ("text/html", "application/xhtml+xml", "application/xml")):
+                return JSONResponse(status_code=400, content={"detail": "Unexpected HTML/XML content type"})
+    except Exception:
+        # Best-effort: don't let middleware crash the app
+        pass
+    return await call_next(request)
+
+
 # Health check endpoint
 @app.get("/health")
 async def health_check():

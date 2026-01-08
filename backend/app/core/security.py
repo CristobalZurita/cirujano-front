@@ -26,7 +26,10 @@ except Exception:
 from backend.app.core.config import settings
 
 # Contexto para hashing de contraseñas
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Support both bcrypt and pbkdf2_sha256 so that environments lacking a
+# working bcrypt backend can still create and verify passwords. Bcrypt
+# is preferred, but we fall back to pbkdf2_sha256 on errors.
+pwd_context = CryptContext(schemes=["bcrypt", "pbkdf2_sha256"], deprecated="auto")
 
 # Configuración JWT
 ALGORITHM = "HS256"
@@ -36,7 +39,30 @@ REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 def hash_password(password: str) -> str:
     """Hash una contraseña usando bcrypt"""
-    return pwd_context.hash(password)
+    # Bcrypt has a 72-byte input limit. Truncate the UTF-8 encoded
+    # password to avoid ValueError being raised by the backend hashing
+    # implementation when a too-long password is supplied.
+    try:
+        pw_bytes = password.encode("utf-8")
+    except Exception:
+        # Fallback: coerce to str then encode
+        pw_bytes = str(password).encode("utf-8")
+
+    if len(pw_bytes) > 72:
+        pw_bytes = pw_bytes[:72]
+
+    # Pass the (possibly truncated) bytes back as string to passlib
+    safe_password = pw_bytes.decode("utf-8", errors="ignore")
+
+    try:
+        return pwd_context.hash(safe_password)
+    except ValueError:
+        # bcrypt backend may raise ValueError for unusually long inputs or
+        # if the native bcrypt implementation is problematic in this
+        # environment. Fall back to pbkdf2_sha256 to avoid crashing the
+        # registration flow (acceptable for development/test environments).
+        fallback_ctx = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
+        return fallback_ctx.hash(safe_password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
