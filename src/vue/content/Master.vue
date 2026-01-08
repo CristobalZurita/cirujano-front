@@ -3,8 +3,10 @@
     <Navigation logo="images/logo/logo_square_002.png"
                 label="*Cirujano* de Sintetizadores"/>
 
-    <!-- Content Display -->
-    <router-view/>
+        <!-- Content Display -->
+        <main class="site-body">
+            <router-view/>
+        </main>
 
     <!-- Floating Quote Button - Visible in all pages -->
     <FloatingQuoteButton/>
@@ -84,4 +86,9 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @import "/src/scss/_theming.scss";
+
+.site-body {
+    /* ensure content (hero/logo etc) starts below the fixed navbar */
+    padding-top: $navbar-height;
+}
 </style>

@@ -42,6 +42,11 @@ const linkList = computed(() => {
         base.push({ path: '/profile', label: 'Perfil', faIcon: 'fa-solid fa-user', isActive: route.path === '/profile' })
     }
 
+    // Link to backend (docs) for quick access during local dev
+    if (!base.find(b => String(b.path).includes('127.0.0.1:8000')) ) {
+        base.push({ path: 'http://127.0.0.1:8000/docs', label: 'BACK', faIcon: 'fa-solid fa-server', isActive: false })
+    }
+
     return base
 })
 </script>

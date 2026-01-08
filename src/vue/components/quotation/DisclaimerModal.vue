@@ -278,10 +278,6 @@ const accepted = ref(false)
   background: white;
   border: 2px solid #cbd5e0;
   color: #4a5568;
-  hover: {
-    background: #edf2f7;
-    border-color: #a0aec0;
-  }
 }
 
 .btn-cancel:hover {

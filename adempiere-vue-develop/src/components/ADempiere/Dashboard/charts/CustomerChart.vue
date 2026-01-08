@@ -140,8 +140,19 @@ export default {
     },
     loadChartMetrics(metrics) {
       if (!isEmptyValue(this.metadata.transformation_script)) {
-        const chartOption = new Function('data', this.metadata.transformation_script)
-        const script = chartOption(metrics)
+        // SECURITY: executing arbitrary JS from metadata is dangerous. Apply quick runtime checks
+        // to prevent obvious malicious scripts (accessing window/document, eval, imports, network, etc.)
+        const unsafePatterns = /\b(window|document|eval|Function|fetch|XMLHttpRequest|require|import|process|global)\b/
+        const scriptCandidate = this.metadata.transformation_script || ''
+        if (unsafePatterns.test(scriptCandidate) || scriptCandidate.length > 1000) {
+          console.warn('Unsafe transformation_script detected; skipping execution for security reasons')
+          this.chart.hideLoading()
+          return
+        }
+
+        try {
+          const chartOption = new Function('data', scriptCandidate)
+          const script = chartOption(metrics)
         const {
           xAxis,
           toolbox,
@@ -161,6 +172,11 @@ export default {
             legend,
             series
           })
+          this.chart.hideLoading()
+          return
+        }
+        } catch (err) {
+          console.warn('Error executing transformation_script; skipping:', err)
           this.chart.hideLoading()
           return
         }

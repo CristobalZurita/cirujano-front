@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest --environment jsdom",
     "build": "vite build",
     "preview": "vite preview",
     "ghdeploy": "vite build && cd dist && cp index.html 404.html"
@@ -25,7 +26,11 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^27.4.0",
     "sass": "^1.62.1",
-    "vite": "^6.2.5"
+    "typescript": "^5.2.2",
+    "vite": "^6.2.5",
+    "vitest": "^1.0.0"
   }
 }

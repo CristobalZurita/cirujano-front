@@ -116,7 +116,7 @@ defineExpose({
   opacity: 0;
 }
 
-/* Toast Types -->
+/* Toast Types */
 .toast-success {
   background: #c6f6d5;
   border-left: 4px solid #48bb78;

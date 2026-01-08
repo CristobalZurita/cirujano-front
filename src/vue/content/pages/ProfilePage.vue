@@ -408,7 +408,7 @@ const deleteAccount = () => {
   cursor: pointer;
 }
 
-/* Stats -->
+/* Stats */
 .stats-card {
   background: white;
   border-radius: 12px;
@@ -446,7 +446,7 @@ const deleteAccount = () => {
   color: #718096;
 }
 
-/* Buttons -->
+/* Buttons */
 .btn-save,
 .btn-secondary,
 .btn-primary,

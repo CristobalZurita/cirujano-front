@@ -308,7 +308,7 @@ onMounted(() => {
   margin: 0 auto;
 }
 
-/* Header -->
+/* Header */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -422,7 +422,7 @@ onMounted(() => {
   color: #718096;
 }
 
-/* Dashboard Content -->
+/* Dashboard Content */
 .dashboard-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -436,7 +436,7 @@ onMounted(() => {
   font-size: 1.3rem;
 }
 
-/* Repairs List -->
+/* Repairs List */
 .repairs-list {
   display: flex;
   flex-direction: column;
@@ -553,7 +553,7 @@ onMounted(() => {
   color: #764ba2;
 }
 
-/* Quick Actions -->
+/* Quick Actions */
 .quick-actions {
   display: grid;
   grid-template-columns: 1fr;
@@ -600,7 +600,7 @@ onMounted(() => {
   font-size: 0.85rem;
 }
 
-/* Notifications -->
+/* Notifications */
 .notifications-list {
   display: flex;
   flex-direction: column;
@@ -680,7 +680,7 @@ onMounted(() => {
   color: #4a5568;
 }
 
-/* Empty State -->
+/* Empty State */
 .empty-state {
   background: white;
   border-radius: 12px;
@@ -713,7 +713,7 @@ onMounted(() => {
   border-color: #a0aec0;
 }
 
-/* Responsive -->
+/* Responsive */
 @media (max-width: 1024px) {
   .dashboard-content {
     grid-template-columns: 1fr;

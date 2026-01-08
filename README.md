@@ -147,6 +147,20 @@ Notas operativas:
 
 ---
 
+## 🔒 Seguridad local rápida
+
+- **No pipes**: **no** hagas `curl ... | sh` ni `curl ... | bash`. Inspecciona las respuestas antes de ejecutar.
+- Para parsear JSON sin `jq` usa Python seguro:
+
+```bash
+# obtener respuesta y verla de forma legible
+curl -sS http://127.0.0.1:8000/api/v1/auth/login -d '{"email":"...","password":"..."}' -H 'Content-Type: application/json' | python -m json.tool
+```
+
+- Corremos `tools/scan_unsafe.sh` para detectar patrones peligrosos (eval, new Function, innerHTML) antes de commits.
+
+---
+
 ## ✅ RESULTADO FINAL
 
 Después de aplicar estos cambios, **TODA la página estará en español**:

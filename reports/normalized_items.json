@@ -17,7 +17,7 @@
       "herramientas taller": "isoladora de lus UV",
       "insumos taller": "alambre"
     },
-    "normalized_at": "2026-01-07T16:34:20.404628Z"
+    "normalized_at": "2026-01-07T18:20:08.401823Z"
   },
   {
     "source_row": 2,
@@ -37,7 +37,7 @@
       "herramientas taller": "juego destornilladores",
       "insumos taller": "alambre cobre"
     },
-    "normalized_at": "2026-01-07T16:34:20.404956Z"
+    "normalized_at": "2026-01-07T18:20:08.402290Z"
   },
   {
     "source_row": 3,
@@ -57,7 +57,7 @@
       "herramientas taller": "osciloscopio digital HANMATEK dso1104",
       "insumos taller": "alcohol isopropílico"
     },
-    "normalized_at": "2026-01-07T16:34:20.405200Z"
+    "normalized_at": "2026-01-07T18:20:08.402713Z"
   },
   {
     "source_row": 4,
@@ -77,7 +77,7 @@
       "herramientas taller": "brocas cnc",
       "insumos taller": "barras silicona delgada"
     },
-    "normalized_at": "2026-01-07T16:34:20.405421Z"
+    "normalized_at": "2026-01-07T18:20:08.403151Z"
   },
   {
     "source_row": 5,
@@ -97,7 +97,7 @@
       "herramientas taller": "bisturi",
       "insumos taller": "barras silicona gruesa"
     },
-    "normalized_at": "2026-01-07T16:34:20.405634Z"
+    "normalized_at": "2026-01-07T18:20:08.403593Z"
   },
   {
     "source_row": 6,
@@ -117,7 +117,7 @@
       "herramientas taller": "microscopio usb",
       "insumos taller": "cable cobre"
     },
-    "normalized_at": "2026-01-07T16:34:20.405878Z"
+    "normalized_at": "2026-01-07T18:20:08.404024Z"
   },
   {
     "source_row": 7,
@@ -137,7 +137,7 @@
       "herramientas taller": "tester UNIT-T ut504",
       "insumos taller": "cepillo anti estática metal"
     },
-    "normalized_at": "2026-01-07T16:34:20.406083Z"
+    "normalized_at": "2026-01-07T18:20:08.404481Z"
   },
   {
     "source_row": 8,
@@ -157,7 +157,7 @@
       "herramientas taller": "tester  diital TC1",
       "insumos taller": "cepillo anti estática plástico"
     },
-    "normalized_at": "2026-01-07T16:34:20.406281Z"
+    "normalized_at": "2026-01-07T18:20:08.404933Z"
   },
   {
     "source_row": 9,
@@ -177,7 +177,7 @@
       "herramientas taller": "chicharra",
       "insumos taller": "cinta aislante"
     },
-    "normalized_at": "2026-01-07T16:34:20.406601Z"
+    "normalized_at": "2026-01-07T18:20:08.405297Z"
   },
   {
     "source_row": 10,
@@ -197,7 +197,7 @@
       "herramientas taller": "muiltimetro y cámara termica ZOYII zt-r01",
       "insumos taller": "cinta doble contacto"
     },
-    "normalized_at": "2026-01-07T16:34:20.406838Z"
+    "normalized_at": "2026-01-07T18:20:08.405666Z"
   },
   {
     "source_row": 11,
@@ -217,7 +217,7 @@
       "herramientas taller": "tester UNIT-t ut33c",
       "insumos taller": "cinta gaffer"
     },
-    "normalized_at": "2026-01-07T16:34:20.407038Z"
+    "normalized_at": "2026-01-07T18:20:08.406051Z"
   },
   {
     "source_row": 12,
@@ -237,7 +237,7 @@
       "herramientas taller": "tester UNIT-t ut203",
       "insumos taller": "cinta papel"
     },
-    "normalized_at": "2026-01-07T16:34:20.407221Z"
+    "normalized_at": "2026-01-07T18:20:08.406429Z"
   },
   {
     "source_row": 13,
@@ -257,7 +257,7 @@
       "herramientas taller": "juego llaves tuerca",
       "insumos taller": "diluyente"
     },
-    "normalized_at": "2026-01-07T16:34:20.407398Z"
+    "normalized_at": "2026-01-07T18:20:08.406817Z"
   },
   {
     "source_row": 14,
@@ -277,7 +277,7 @@
       "herramientas taller": "sierra madera",
       "insumos taller": "esponja limpieza anti estática"
     },
-    "normalized_at": "2026-01-07T16:34:20.407582Z"
+    "normalized_at": "2026-01-07T18:20:08.407188Z"
   },
   {
     "source_row": 15,
@@ -297,7 +297,7 @@
       "herramientas taller": "generador de funciones victor vc2002",
       "insumos taller": "extractor soldadura"
     },
-    "normalized_at": "2026-01-07T16:34:20.407749Z"
+    "normalized_at": "2026-01-07T18:20:08.407604Z"
   },
   {
     "source_row": 16,
@@ -317,7 +317,7 @@
       "herramientas taller": "caiman",
       "insumos taller": "grafito en polvo"
     },
-    "normalized_at": "2026-01-07T16:34:20.407926Z"
+    "normalized_at": "2026-01-07T18:20:08.408001Z"
   },
   {
     "source_row": 17,
@@ -337,7 +337,7 @@
       "herramientas taller": "llaves allen",
       "insumos taller": "grasa de silicona"
     },
-    "normalized_at": "2026-01-07T16:34:20.408090Z"
+    "normalized_at": "2026-01-07T18:20:08.408434Z"
   },
   {
     "source_row": 18,
@@ -357,7 +357,7 @@
       "herramientas taller": "set pinzas",
       "insumos taller": "hojas A4 apuntes"
     },
-    "normalized_at": "2026-01-07T16:34:20.408252Z"
+    "normalized_at": "2026-01-07T18:20:08.408847Z"
   },
   {
     "source_row": 19,
@@ -377,7 +377,7 @@
       "herramientas taller": "osciloscopio digital dso138",
       "insumos taller": "isopo limpieza anti estático"
     },
-    "normalized_at": "2026-01-07T16:34:20.408415Z"
+    "normalized_at": "2026-01-07T18:20:08.409258Z"
   },
   {
     "source_row": 20,
@@ -397,7 +397,7 @@
       "herramientas taller": "huincha medir chica",
       "insumos taller": "lapiz mina"
     },
-    "normalized_at": "2026-01-07T16:34:20.408572Z"
+    "normalized_at": "2026-01-07T18:20:08.409651Z"
   },
   {
     "source_row": 21,
@@ -417,7 +417,7 @@
       "herramientas taller": "osciloscopio analogo HAMEG HM303-6",
       "insumos taller": "malla extractora"
     },
-    "normalized_at": "2026-01-07T16:34:20.408731Z"
+    "normalized_at": "2026-01-07T18:20:08.410083Z"
   },
   {
     "source_row": 22,
@@ -437,7 +437,7 @@
       "herramientas taller": "huincha medir grande",
       "insumos taller": "marcador fino"
     },
-    "normalized_at": "2026-01-07T16:34:20.408885Z"
+    "normalized_at": "2026-01-07T18:20:08.410476Z"
   },
   {
     "source_row": 23,
@@ -457,7 +457,7 @@
       "herramientas taller": "cortante",
       "insumos taller": "marcador grueso"
     },
-    "normalized_at": "2026-01-07T16:34:20.409210Z"
+    "normalized_at": "2026-01-07T18:20:08.410856Z"
   },
   {
     "source_row": 24,
@@ -477,7 +477,7 @@
       "herramientas taller": "juego  destornillador punta especial",
       "insumos taller": "marcador medio"
     },
-    "normalized_at": "2026-01-07T16:34:20.409394Z"
+    "normalized_at": "2026-01-07T18:20:08.411251Z"
   },
   {
     "source_row": 25,
@@ -497,7 +497,7 @@
       "herramientas taller": "regla metal L",
       "insumos taller": "máscara anti soldante uv"
     },
-    "normalized_at": "2026-01-07T16:34:20.409552Z"
+    "normalized_at": "2026-01-07T18:20:08.411622Z"
   },
   {
     "source_row": 26,
@@ -517,7 +517,7 @@
       "herramientas taller": "estación de aire caliente  SAIKE 852D++",
       "insumos taller": "pasta soldar"
     },
-    "normalized_at": "2026-01-07T16:34:20.409722Z"
+    "normalized_at": "2026-01-07T18:20:08.411966Z"
   },
   {
     "source_row": 27,
@@ -537,7 +537,7 @@
       "herramientas taller": "fresas cnc",
       "insumos taller": "pasta térmica"
     },
-    "normalized_at": "2026-01-07T16:34:20.409876Z"
+    "normalized_at": "2026-01-07T18:20:08.412270Z"
   },
   {
     "source_row": 28,
@@ -557,7 +557,7 @@
       "herramientas taller": "generador de funciones XR2206",
       "insumos taller": "pegamento secado rápido"
     },
-    "normalized_at": "2026-01-07T16:34:20.410046Z"
+    "normalized_at": "2026-01-07T18:20:08.412588Z"
   },
   {
     "source_row": 29,
@@ -577,7 +577,7 @@
       "herramientas taller": "regla metal recta",
       "insumos taller": "placa cobre pcb virgen"
     },
-    "normalized_at": "2026-01-07T16:34:20.410323Z"
+    "normalized_at": "2026-01-07T18:20:08.412900Z"
   },
   {
     "source_row": 30,
@@ -597,7 +597,7 @@
       "herramientas taller": "perforadora",
       "insumos taller": "plumon acrilico"
     },
-    "normalized_at": "2026-01-07T16:34:20.410485Z"
+    "normalized_at": "2026-01-07T18:20:08.413200Z"
   },
   {
     "source_row": 31,
@@ -617,7 +617,7 @@
       "herramientas taller": "sierra metal",
       "insumos taller": "plumon pizarra"
     },
-    "normalized_at": "2026-01-07T16:34:20.410638Z"
+    "normalized_at": "2026-01-07T18:20:08.413502Z"
   },
   {
     "source_row": 32,
@@ -637,7 +637,7 @@
       "herramientas taller": "fuente doble de laboratorio 30v 10a NICE-POWER",
       "insumos taller": "punta cautín"
     },
-    "normalized_at": "2026-01-07T16:34:20.410827Z"
+    "normalized_at": "2026-01-07T18:20:08.413828Z"
   },
   {
     "source_row": 33,
@@ -657,7 +657,7 @@
       "herramientas taller": "cnc 3018 woodpeacker 3.2",
       "insumos taller": "silicona caliente"
     },
-    "normalized_at": "2026-01-07T16:34:20.410986Z"
+    "normalized_at": "2026-01-07T18:20:08.414140Z"
   },
   {
     "source_row": 34,
@@ -677,7 +677,7 @@
       "herramientas taller": "cautín digital 30-500° MECHANIC T12 PRO",
       "insumos taller": "soldadura"
     },
-    "normalized_at": "2026-01-07T16:34:20.411147Z"
+    "normalized_at": "2026-01-07T18:20:08.414511Z"
   },
   {
     "source_row": 35,
@@ -697,7 +697,7 @@
       "herramientas taller": "extractor ic",
       "insumos taller": "termocontraible"
     },
-    "normalized_at": "2026-01-07T16:34:20.411294Z"
+    "normalized_at": "2026-01-07T18:20:08.414881Z"
   },
   {
     "source_row": 36,
@@ -717,7 +717,7 @@
       "herramientas taller": "dados chicharra",
       "insumos taller": "vaselina sólida"
     },
-    "normalized_at": "2026-01-07T16:34:20.411445Z"
+    "normalized_at": "2026-01-07T18:20:08.415252Z"
   },
   {
     "source_row": 37,
@@ -737,7 +737,7 @@
       "herramientas taller": "cable usb tipo c",
       "insumos taller": "virutilla fina pcb"
     },
-    "normalized_at": "2026-01-07T16:34:20.411587Z"
+    "normalized_at": "2026-01-07T18:20:08.415628Z"
   },
   {
     "source_row": 38,
@@ -757,7 +757,7 @@
       "herramientas taller": "brocha",
       "insumos taller": "papel de lija"
     },
-    "normalized_at": "2026-01-07T16:34:20.411845Z"
+    "normalized_at": "2026-01-07T18:20:08.416018Z"
   },
   {
     "source_row": 39,
@@ -777,7 +777,7 @@
       "herramientas taller": "cable audio",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.412030Z"
+    "normalized_at": "2026-01-07T18:20:08.416402Z"
   },
   {
     "source_row": 40,
@@ -797,7 +797,7 @@
       "herramientas taller": "cable midi",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.412252Z"
+    "normalized_at": "2026-01-07T18:20:08.416783Z"
   },
   {
     "source_row": 41,
@@ -817,7 +817,7 @@
       "herramientas taller": "cable usb tipo b",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.412483Z"
+    "normalized_at": "2026-01-07T18:20:08.417185Z"
   },
   {
     "source_row": 42,
@@ -837,7 +837,7 @@
       "herramientas taller": "calble poder 220v",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.412650Z"
+    "normalized_at": "2026-01-07T18:20:08.417587Z"
   },
   {
     "source_row": 43,
@@ -857,7 +857,7 @@
       "herramientas taller": "cartonero cortante",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.412796Z"
+    "normalized_at": "2026-01-07T18:20:08.417967Z"
   },
   {
     "source_row": 44,
@@ -877,7 +877,7 @@
       "herramientas taller": "computador toshiba s75t-b",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.412952Z"
+    "normalized_at": "2026-01-07T18:20:08.418322Z"
   },
   {
     "source_row": 45,
@@ -897,7 +897,7 @@
       "herramientas taller": "escuadra plástico chica",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413091Z"
+    "normalized_at": "2026-01-07T18:20:08.418679Z"
   },
   {
     "source_row": 46,
@@ -917,7 +917,7 @@
       "herramientas taller": "escuadra plástico grande",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413230Z"
+    "normalized_at": "2026-01-07T18:20:08.419048Z"
   },
   {
     "source_row": 47,
@@ -937,7 +937,7 @@
       "herramientas taller": "espátula",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413370Z"
+    "normalized_at": "2026-01-07T18:20:08.419434Z"
   },
   {
     "source_row": 48,
@@ -957,7 +957,7 @@
       "herramientas taller": "extractor aire",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413509Z"
+    "normalized_at": "2026-01-07T18:20:08.419807Z"
   },
   {
     "source_row": 49,
@@ -977,7 +977,7 @@
       "herramientas taller": "frascos para guardar piezas por teclado",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413656Z"
+    "normalized_at": "2026-01-07T18:20:08.420158Z"
   },
   {
     "source_row": 50,
@@ -997,7 +997,7 @@
       "herramientas taller": "fuente cnc",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413800Z"
+    "normalized_at": "2026-01-07T18:20:08.420554Z"
   },
   {
     "source_row": 51,
@@ -1017,7 +1017,7 @@
       "herramientas taller": "guillotina papel",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.413944Z"
+    "normalized_at": "2026-01-07T18:20:08.420948Z"
   },
   {
     "source_row": 52,
@@ -1037,7 +1037,7 @@
       "herramientas taller": "hub usb 4 camales",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.414088Z"
+    "normalized_at": "2026-01-07T18:20:08.421302Z"
   },
   {
     "source_row": 53,
@@ -1057,7 +1057,7 @@
       "herramientas taller": "hub usb 8 canales",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.414234Z"
+    "normalized_at": "2026-01-07T18:20:08.421657Z"
   },
   {
     "source_row": 54,
@@ -1077,7 +1077,7 @@
       "herramientas taller": "juego lupa celular",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.414572Z"
+    "normalized_at": "2026-01-07T18:20:08.421999Z"
   },
   {
     "source_row": 55,
@@ -1097,7 +1097,7 @@
       "herramientas taller": "lámpara brazo",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.414767Z"
+    "normalized_at": "2026-01-07T18:20:08.422352Z"
   },
   {
     "source_row": 56,
@@ -1117,7 +1117,7 @@
       "herramientas taller": "lámpara proteccion en serie",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.414910Z"
+    "normalized_at": "2026-01-07T18:20:08.422746Z"
   },
   {
     "source_row": 57,
@@ -1137,7 +1137,7 @@
       "herramientas taller": "lámpara redonda",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415047Z"
+    "normalized_at": "2026-01-07T18:20:08.423148Z"
   },
   {
     "source_row": 58,
@@ -1157,7 +1157,7 @@
       "herramientas taller": "lentes protección",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415183Z"
+    "normalized_at": "2026-01-07T18:20:08.423520Z"
   },
   {
     "source_row": 59,
@@ -1177,7 +1177,7 @@
       "herramientas taller": "lentes protección para laser",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415319Z"
+    "normalized_at": "2026-01-07T18:20:08.423863Z"
   },
   {
     "source_row": 60,
@@ -1197,7 +1197,7 @@
       "herramientas taller": "lupa manual",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415451Z"
+    "normalized_at": "2026-01-07T18:20:08.424209Z"
   },
   {
     "source_row": 61,
@@ -1217,7 +1217,7 @@
       "herramientas taller": "mouse inhalambrico",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415598Z"
+    "normalized_at": "2026-01-07T18:20:08.424568Z"
   },
   {
     "source_row": 62,
@@ -1237,7 +1237,7 @@
       "herramientas taller": "pantalla samsung 19 pulgadas",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415735Z"
+    "normalized_at": "2026-01-07T18:20:08.424920Z"
   },
   {
     "source_row": 63,
@@ -1257,7 +1257,7 @@
       "herramientas taller": "pantalla sony 17 pulgadas",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.415883Z"
+    "normalized_at": "2026-01-07T18:20:08.425285Z"
   },
   {
     "source_row": 64,
@@ -1277,7 +1277,7 @@
       "herramientas taller": "parlante audio",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416021Z"
+    "normalized_at": "2026-01-07T18:20:08.425634Z"
   },
   {
     "source_row": 65,
@@ -1297,7 +1297,7 @@
       "herramientas taller": "pie de metro analogo",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416165Z"
+    "normalized_at": "2026-01-07T18:20:08.425971Z"
   },
   {
     "source_row": 66,
@@ -1317,7 +1317,7 @@
       "herramientas taller": "pie de metro digital",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416317Z"
+    "normalized_at": "2026-01-07T18:20:08.426343Z"
   },
   {
     "source_row": 67,
@@ -1337,7 +1337,7 @@
       "herramientas taller": "pistola silicona delgada",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416463Z"
+    "normalized_at": "2026-01-07T18:20:08.426764Z"
   },
   {
     "source_row": 68,
@@ -1357,7 +1357,7 @@
       "herramientas taller": "pistola silicona gruesa",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416609Z"
+    "normalized_at": "2026-01-07T18:20:08.427130Z"
   },
   {
     "source_row": 69,
@@ -1377,7 +1377,7 @@
       "herramientas taller": "pizarra blanca",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416755Z"
+    "normalized_at": "2026-01-07T18:20:08.427468Z"
   },
   {
     "source_row": 70,
@@ -1397,7 +1397,7 @@
       "herramientas taller": "protoboard",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.416903Z"
+    "normalized_at": "2026-01-07T18:20:08.427819Z"
   },
   {
     "source_row": 71,
@@ -1417,7 +1417,7 @@
       "herramientas taller": "pulsera antiestática",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.417069Z"
+    "normalized_at": "2026-01-07T18:20:08.428174Z"
   },
   {
     "source_row": 72,
@@ -1437,7 +1437,7 @@
       "herramientas taller": "puntas osciloscopio",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.417260Z"
+    "normalized_at": "2026-01-07T18:20:08.428546Z"
   },
   {
     "source_row": 73,
@@ -1457,7 +1457,7 @@
       "herramientas taller": "puntas tester",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.417431Z"
+    "normalized_at": "2026-01-07T18:20:08.428906Z"
   },
   {
     "source_row": 74,
@@ -1477,7 +1477,7 @@
       "herramientas taller": "regla metal chica",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.417603Z"
+    "normalized_at": "2026-01-07T18:20:08.429199Z"
   },
   {
     "source_row": 75,
@@ -1497,7 +1497,7 @@
       "herramientas taller": "taladro de banco",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.417748Z"
+    "normalized_at": "2026-01-07T18:20:08.429463Z"
   },
   {
     "source_row": 76,
@@ -1517,7 +1517,7 @@
       "herramientas taller": "taladro manual grande",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.417891Z"
+    "normalized_at": "2026-01-07T18:20:08.429771Z"
   },
   {
     "source_row": 77,
@@ -1537,7 +1537,7 @@
       "herramientas taller": "taladro manual pequeño",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418031Z"
+    "normalized_at": "2026-01-07T18:20:08.430094Z"
   },
   {
     "source_row": 78,
@@ -1557,7 +1557,7 @@
       "herramientas taller": "teclado inhalambrico",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418200Z"
+    "normalized_at": "2026-01-07T18:20:08.430451Z"
   },
   {
     "source_row": 79,
@@ -1577,7 +1577,7 @@
       "herramientas taller": "tercera mano",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418341Z"
+    "normalized_at": "2026-01-07T18:20:08.430814Z"
   },
   {
     "source_row": 80,
@@ -1597,7 +1597,7 @@
       "herramientas taller": "tijeras",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418484Z"
+    "normalized_at": "2026-01-07T18:20:08.431157Z"
   },
   {
     "source_row": 81,
@@ -1617,7 +1617,7 @@
       "herramientas taller": "transformador 11vAC",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418626Z"
+    "normalized_at": "2026-01-07T18:20:08.431525Z"
   },
   {
     "source_row": 82,
@@ -1637,7 +1637,7 @@
       "herramientas taller": "transformador 12v DC",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418833Z"
+    "normalized_at": "2026-01-07T18:20:08.431850Z"
   },
   {
     "source_row": 83,
@@ -1657,7 +1657,7 @@
       "herramientas taller": "transportador plástico chico",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.418988Z"
+    "normalized_at": "2026-01-07T18:20:08.432171Z"
   },
   {
     "source_row": 84,
@@ -1677,7 +1677,7 @@
       "herramientas taller": "zapatillas de almentacion 220v",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.419135Z"
+    "normalized_at": "2026-01-07T18:20:08.432528Z"
   },
   {
     "source_row": 85,
@@ -1697,7 +1697,7 @@
       "herramientas taller": "soporte placas pcb",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.419276Z"
+    "normalized_at": "2026-01-07T18:20:08.432865Z"
   },
   {
     "source_row": 86,
@@ -1717,7 +1717,7 @@
       "herramientas taller": "jerigas",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.419414Z"
+    "normalized_at": "2026-01-07T18:20:08.433197Z"
   },
   {
     "source_row": 87,
@@ -1737,7 +1737,7 @@
       "herramientas taller": "mat anti estática",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.419617Z"
+    "normalized_at": "2026-01-07T18:20:08.433531Z"
   },
   {
     "source_row": 88,
@@ -1757,7 +1757,7 @@
       "herramientas taller": "mat de corte",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.419847Z"
+    "normalized_at": "2026-01-07T18:20:08.433890Z"
   },
   {
     "source_row": 89,
@@ -1777,7 +1777,7 @@
       "herramientas taller": "control usb cnc",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420000Z"
+    "normalized_at": "2026-01-07T18:20:08.434268Z"
   },
   {
     "source_row": 90,
@@ -1797,7 +1797,7 @@
       "herramientas taller": "set llave allen",
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420144Z"
+    "normalized_at": "2026-01-07T18:20:08.434601Z"
   },
   {
     "source_row": 91,
@@ -1817,7 +1817,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420286Z"
+    "normalized_at": "2026-01-07T18:20:08.434971Z"
   },
   {
     "source_row": 92,
@@ -1837,7 +1837,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420432Z"
+    "normalized_at": "2026-01-07T18:20:08.435325Z"
   },
   {
     "source_row": 93,
@@ -1857,7 +1857,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420577Z"
+    "normalized_at": "2026-01-07T18:20:08.435650Z"
   },
   {
     "source_row": 94,
@@ -1877,7 +1877,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420719Z"
+    "normalized_at": "2026-01-07T18:20:08.435990Z"
   },
   {
     "source_row": 95,
@@ -1897,7 +1897,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.420880Z"
+    "normalized_at": "2026-01-07T18:20:08.436319Z"
   },
   {
     "source_row": 96,
@@ -1917,7 +1917,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421019Z"
+    "normalized_at": "2026-01-07T18:20:08.436669Z"
   },
   {
     "source_row": 97,
@@ -1937,7 +1937,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421200Z"
+    "normalized_at": "2026-01-07T18:20:08.436992Z"
   },
   {
     "source_row": 98,
@@ -1957,7 +1957,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421345Z"
+    "normalized_at": "2026-01-07T18:20:08.437326Z"
   },
   {
     "source_row": 99,
@@ -1977,7 +1977,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421490Z"
+    "normalized_at": "2026-01-07T18:20:08.437680Z"
   },
   {
     "source_row": 100,
@@ -1997,7 +1997,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421630Z"
+    "normalized_at": "2026-01-07T18:20:08.438019Z"
   },
   {
     "source_row": 101,
@@ -2017,7 +2017,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421773Z"
+    "normalized_at": "2026-01-07T18:20:08.438345Z"
   },
   {
     "source_row": 102,
@@ -2037,7 +2037,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.421913Z"
+    "normalized_at": "2026-01-07T18:20:08.438689Z"
   },
   {
     "source_row": 103,
@@ -2057,7 +2057,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422047Z"
+    "normalized_at": "2026-01-07T18:20:08.439029Z"
   },
   {
     "source_row": 104,
@@ -2077,7 +2077,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422179Z"
+    "normalized_at": "2026-01-07T18:20:08.439388Z"
   },
   {
     "source_row": 105,
@@ -2097,7 +2097,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422309Z"
+    "normalized_at": "2026-01-07T18:20:08.439719Z"
   },
   {
     "source_row": 106,
@@ -2117,7 +2117,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422507Z"
+    "normalized_at": "2026-01-07T18:20:08.440050Z"
   },
   {
     "source_row": 107,
@@ -2137,7 +2137,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422647Z"
+    "normalized_at": "2026-01-07T18:20:08.440406Z"
   },
   {
     "source_row": 108,
@@ -2157,7 +2157,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422802Z"
+    "normalized_at": "2026-01-07T18:20:08.440741Z"
   },
   {
     "source_row": 109,
@@ -2177,7 +2177,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.422936Z"
+    "normalized_at": "2026-01-07T18:20:08.441076Z"
   },
   {
     "source_row": 110,
@@ -2197,7 +2197,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.423069Z"
+    "normalized_at": "2026-01-07T18:20:08.441415Z"
   },
   {
     "source_row": 111,
@@ -2217,7 +2217,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.423201Z"
+    "normalized_at": "2026-01-07T18:20:08.441748Z"
   },
   {
     "source_row": 112,
@@ -2237,7 +2237,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.423335Z"
+    "normalized_at": "2026-01-07T18:20:08.442108Z"
   },
   {
     "source_row": 113,
@@ -2257,7 +2257,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.423481Z"
+    "normalized_at": "2026-01-07T18:20:08.442439Z"
   },
   {
     "source_row": 114,
@@ -2277,7 +2277,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.423694Z"
+    "normalized_at": "2026-01-07T18:20:08.442828Z"
   },
   {
     "source_row": 115,
@@ -2297,7 +2297,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.423896Z"
+    "normalized_at": "2026-01-07T18:20:08.443185Z"
   },
   {
     "source_row": 116,
@@ -2317,7 +2317,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424044Z"
+    "normalized_at": "2026-01-07T18:20:08.443517Z"
   },
   {
     "source_row": 117,
@@ -2337,7 +2337,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424179Z"
+    "normalized_at": "2026-01-07T18:20:08.443855Z"
   },
   {
     "source_row": 118,
@@ -2357,7 +2357,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424311Z"
+    "normalized_at": "2026-01-07T18:20:08.444192Z"
   },
   {
     "source_row": 119,
@@ -2377,7 +2377,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424444Z"
+    "normalized_at": "2026-01-07T18:20:08.444525Z"
   },
   {
     "source_row": 120,
@@ -2397,7 +2397,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424578Z"
+    "normalized_at": "2026-01-07T18:20:08.444864Z"
   },
   {
     "source_row": 121,
@@ -2417,7 +2417,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424804Z"
+    "normalized_at": "2026-01-07T18:20:08.445169Z"
   },
   {
     "source_row": 122,
@@ -2437,7 +2437,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.424951Z"
+    "normalized_at": "2026-01-07T18:20:08.445477Z"
   },
   {
     "source_row": 123,
@@ -2457,7 +2457,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.425162Z"
+    "normalized_at": "2026-01-07T18:20:08.445801Z"
   },
   {
     "source_row": 124,
@@ -2477,7 +2477,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.425307Z"
+    "normalized_at": "2026-01-07T18:20:08.446102Z"
   },
   {
     "source_row": 125,
@@ -2497,7 +2497,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.425443Z"
+    "normalized_at": "2026-01-07T18:20:08.446408Z"
   },
   {
     "source_row": 126,
@@ -2517,7 +2517,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.425576Z"
+    "normalized_at": "2026-01-07T18:20:08.446724Z"
   },
   {
     "source_row": 127,
@@ -2537,7 +2537,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.425714Z"
+    "normalized_at": "2026-01-07T18:20:08.447033Z"
   },
   {
     "source_row": 128,
@@ -2557,7 +2557,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.425915Z"
+    "normalized_at": "2026-01-07T18:20:08.447356Z"
   },
   {
     "source_row": 129,
@@ -2577,7 +2577,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.426062Z"
+    "normalized_at": "2026-01-07T18:20:08.447659Z"
   },
   {
     "source_row": 130,
@@ -2597,7 +2597,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.426222Z"
+    "normalized_at": "2026-01-07T18:20:08.447963Z"
   },
   {
     "source_row": 131,
@@ -2617,7 +2617,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.426356Z"
+    "normalized_at": "2026-01-07T18:20:08.448273Z"
   },
   {
     "source_row": 132,
@@ -2637,7 +2637,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.426491Z"
+    "normalized_at": "2026-01-07T18:20:08.448577Z"
   },
   {
     "source_row": 133,
@@ -2657,7 +2657,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.426634Z"
+    "normalized_at": "2026-01-07T18:20:08.448885Z"
   },
   {
     "source_row": 134,
@@ -2677,7 +2677,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.426882Z"
+    "normalized_at": "2026-01-07T18:20:08.449190Z"
   },
   {
     "source_row": 135,
@@ -2697,7 +2697,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.427114Z"
+    "normalized_at": "2026-01-07T18:20:08.449473Z"
   },
   {
     "source_row": 136,
@@ -2717,7 +2717,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.427345Z"
+    "normalized_at": "2026-01-07T18:20:08.449671Z"
   },
   {
     "source_row": 137,
@@ -2737,7 +2737,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.427577Z"
+    "normalized_at": "2026-01-07T18:20:08.449843Z"
   },
   {
     "source_row": 138,
@@ -2757,7 +2757,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.427756Z"
+    "normalized_at": "2026-01-07T18:20:08.450045Z"
   },
   {
     "source_row": 139,
@@ -2777,7 +2777,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.427948Z"
+    "normalized_at": "2026-01-07T18:20:08.450218Z"
   },
   {
     "source_row": 140,
@@ -2797,7 +2797,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.428089Z"
+    "normalized_at": "2026-01-07T18:20:08.450391Z"
   },
   {
     "source_row": 141,
@@ -2817,7 +2817,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.428223Z"
+    "normalized_at": "2026-01-07T18:20:08.450566Z"
   },
   {
     "source_row": 142,
@@ -2837,7 +2837,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.428382Z"
+    "normalized_at": "2026-01-07T18:20:08.450871Z"
   },
   {
     "source_row": 143,
@@ -2857,7 +2857,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.428561Z"
+    "normalized_at": "2026-01-07T18:20:08.451201Z"
   },
   {
     "source_row": 144,
@@ -2877,7 +2877,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.428754Z"
+    "normalized_at": "2026-01-07T18:20:08.451515Z"
   },
   {
     "source_row": 145,
@@ -2897,7 +2897,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.428997Z"
+    "normalized_at": "2026-01-07T18:20:08.451822Z"
   },
   {
     "source_row": 146,
@@ -2917,7 +2917,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.429247Z"
+    "normalized_at": "2026-01-07T18:20:08.452115Z"
   },
   {
     "source_row": 147,
@@ -2937,7 +2937,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.429483Z"
+    "normalized_at": "2026-01-07T18:20:08.452299Z"
   },
   {
     "source_row": 148,
@@ -2957,7 +2957,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.429747Z"
+    "normalized_at": "2026-01-07T18:20:08.452471Z"
   },
   {
     "source_row": 149,
@@ -2977,7 +2977,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.430108Z"
+    "normalized_at": "2026-01-07T18:20:08.452666Z"
   },
   {
     "source_row": 150,
@@ -2997,7 +2997,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.430343Z"
+    "normalized_at": "2026-01-07T18:20:08.452834Z"
   },
   {
     "source_row": 151,
@@ -3017,7 +3017,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.430611Z"
+    "normalized_at": "2026-01-07T18:20:08.453109Z"
   },
   {
     "source_row": 152,
@@ -3037,7 +3037,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.430872Z"
+    "normalized_at": "2026-01-07T18:20:08.453390Z"
   },
   {
     "source_row": 153,
@@ -3057,7 +3057,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.431059Z"
+    "normalized_at": "2026-01-07T18:20:08.453695Z"
   },
   {
     "source_row": 154,
@@ -3077,7 +3077,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.431228Z"
+    "normalized_at": "2026-01-07T18:20:08.453988Z"
   },
   {
     "source_row": 155,
@@ -3097,7 +3097,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.431364Z"
+    "normalized_at": "2026-01-07T18:20:08.454349Z"
   },
   {
     "source_row": 156,
@@ -3117,7 +3117,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.431627Z"
+    "normalized_at": "2026-01-07T18:20:08.454737Z"
   },
   {
     "source_row": 157,
@@ -3137,7 +3137,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.431877Z"
+    "normalized_at": "2026-01-07T18:20:08.455032Z"
   },
   {
     "source_row": 158,
@@ -3157,7 +3157,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.432100Z"
+    "normalized_at": "2026-01-07T18:20:08.455354Z"
   },
   {
     "source_row": 159,
@@ -3177,7 +3177,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.432326Z"
+    "normalized_at": "2026-01-07T18:20:08.455684Z"
   },
   {
     "source_row": 160,
@@ -3197,7 +3197,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.432559Z"
+    "normalized_at": "2026-01-07T18:20:08.456022Z"
   },
   {
     "source_row": 161,
@@ -3217,7 +3217,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.432791Z"
+    "normalized_at": "2026-01-07T18:20:08.456428Z"
   },
   {
     "source_row": 162,
@@ -3237,7 +3237,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.433022Z"
+    "normalized_at": "2026-01-07T18:20:08.456733Z"
   },
   {
     "source_row": 163,
@@ -3257,7 +3257,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.433307Z"
+    "normalized_at": "2026-01-07T18:20:08.457014Z"
   },
   {
     "source_row": 164,
@@ -3277,7 +3277,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.433559Z"
+    "normalized_at": "2026-01-07T18:20:08.457291Z"
   },
   {
     "source_row": 165,
@@ -3297,7 +3297,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.433802Z"
+    "normalized_at": "2026-01-07T18:20:08.457580Z"
   },
   {
     "source_row": 166,
@@ -3317,7 +3317,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.434044Z"
+    "normalized_at": "2026-01-07T18:20:08.457869Z"
   },
   {
     "source_row": 167,
@@ -3337,7 +3337,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.434279Z"
+    "normalized_at": "2026-01-07T18:20:08.458184Z"
   },
   {
     "source_row": 168,
@@ -3357,7 +3357,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.434502Z"
+    "normalized_at": "2026-01-07T18:20:08.458470Z"
   },
   {
     "source_row": 169,
@@ -3377,7 +3377,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.434753Z"
+    "normalized_at": "2026-01-07T18:20:08.458777Z"
   },
   {
     "source_row": 170,
@@ -3397,7 +3397,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.435104Z"
+    "normalized_at": "2026-01-07T18:20:08.459081Z"
   },
   {
     "source_row": 171,
@@ -3417,7 +3417,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.435349Z"
+    "normalized_at": "2026-01-07T18:20:08.459372Z"
   },
   {
     "source_row": 172,
@@ -3437,7 +3437,7 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.435586Z"
+    "normalized_at": "2026-01-07T18:20:08.459649Z"
   },
   {
     "source_row": 173,
@@ -3457,6 +3457,6 @@
       "herramientas taller": null,
       "insumos taller": null
     },
-    "normalized_at": "2026-01-07T16:34:20.435827Z"
+    "normalized_at": "2026-01-07T18:20:08.459916Z"
   }
 ]

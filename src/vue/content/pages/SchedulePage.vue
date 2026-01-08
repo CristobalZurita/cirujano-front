@@ -370,7 +370,7 @@ const emit = defineEmits(['cancel'])
   font-size: 1.1rem;
 }
 
-/* Progress Bar -->
+/* Progress Bar */
 .progress-bar {
   display: flex;
   justify-content: space-around;
@@ -420,7 +420,7 @@ const emit = defineEmits(['cancel'])
   font-weight: 600;
 }
 
-/* Schedule Content -->
+/* Schedule Content */
 .schedule-content {
   min-height: 500px;
 }
@@ -452,7 +452,7 @@ const emit = defineEmits(['cancel'])
   font-size: 1rem;
 }
 
-/* Calendar -->
+/* Calendar */
 .calendar-container {
   background: #f7fafc;
   border-radius: 12px;
@@ -547,7 +547,7 @@ const emit = defineEmits(['cancel'])
   border-color: #667eea;
 }
 
-/* Time Slots -->
+/* Time Slots */
 .timeslots-container {
   margin-bottom: 2rem;
 }
@@ -591,7 +591,7 @@ const emit = defineEmits(['cancel'])
   border-color: #667eea;
 }
 
-/* Confirmation Card -->
+/* Confirmation Card */
 .confirmation-card {
   background: #f7fafc;
   border-radius: 12px;
@@ -664,7 +664,7 @@ const emit = defineEmits(['cancel'])
   font-size: 0.95rem;
 }
 
-/* Success Step -->
+/* Success Step */
 .success-step {
   text-align: center;
 }
@@ -704,7 +704,7 @@ const emit = defineEmits(['cancel'])
   margin-top: 1rem;
 }
 
-/* Actions -->
+/* Actions */
 .step-actions {
   display: flex;
   gap: 1rem;
@@ -753,7 +753,7 @@ const emit = defineEmits(['cancel'])
   border-color: #a0aec0;
 }
 
-/* Responsive -->
+/* Responsive */
 @media (max-width: 768px) {
   .schedule-container {
     padding: 1.5rem;

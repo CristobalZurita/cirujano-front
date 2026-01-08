@@ -20,7 +20,14 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 5173,
         strictPort: false,
-        
+        // Avoid scanning or watching vendored MODELOS subprojects
+        watch: {
+            ignored: ['**/MODELOS/**']
+        },
+        optimizeDeps: {
+            // limit dependency scanning to the primary index
+            entries: ['./index.html']
+        },
         proxy: {
             // Cualquier request a /api se reenvía al backend
             '/api': {

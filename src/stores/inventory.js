@@ -23,6 +23,7 @@ export const useInventoryStore = defineStore('inventory', {
       this.items = await res.json()
       this.loading = false
     }
+      ,
     async deleteItem(itemId) {
       const token = localStorage.getItem('access_token')
       const headers = token ? { Authorization: `Bearer ${token}` } : {}
