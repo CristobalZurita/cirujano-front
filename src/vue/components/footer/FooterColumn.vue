@@ -49,7 +49,8 @@ const props = defineProps(({
 @import "/src/scss/_theming.scss";
 
 p, span {
-    color: $light-5;
+    color: #eaeaea; /* increase contrast for footer text */
+    font-size: 1.02rem;
 }
 
 div.foxy-footer-col {

@@ -110,7 +110,8 @@ const props = defineProps({
 
 .map-frame iframe {
   width: 100%;
-  height: 100%;
+  height: 420px;
   border: 0;
+  display: block;
 }
 </style>

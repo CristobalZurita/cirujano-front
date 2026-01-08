@@ -1,4 +1,5 @@
 import "./scss/style.scss"
+import "@fortawesome/fontawesome-free/css/all.css"
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import App from "/src/vue/stack/App.vue"

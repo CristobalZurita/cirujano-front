@@ -13,8 +13,12 @@
             </div>
 
             <!-- Icon: prefer local svg files, fallback to font-awesome -->
-            <img v-if="link.iconPath" :src="link.iconPath" alt="" style="width:1em; height:1em;" />
-            <i v-else :class="link.faIcon"/>
+            <div class="social-icon-wrapper">
+                <img v-if="link.iconPath" :src="link.iconPath" alt="" class="social-icon-img" />
+                <!-- Overlay a font-awesome brand glyph on top of svg square for clearer branding -->
+                <i v-if="link.faIcon" :class="link.faIcon + ' social-icon-overlay'"/>
+                <i v-else-if="!link.iconPath" :class="link.faIcon"/>
+            </div>
         </a>
     </div>
 </template>
@@ -111,6 +115,26 @@ a.social-link {
         $white, lighten($primary, 10%), lighten($primary, 25%),
         $white, lighten($dark, 15%), lighten($dark, 25%),
     )
+}
+
+.social-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon-img {
+    width: 1em;
+    height: 1em;
+    display: block;
+}
+
+.social-icon-overlay {
+    position: absolute;
+    color: $white;
+    font-size: 0.9em;
+    pointer-events: none;
 }
 
 a.social-link-size-2 {
