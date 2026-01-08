@@ -147,21 +147,21 @@ header.foxy-header {
         color:$orange-pastel;
         text-transform: uppercase;
         text-align: center;
-        font-weight: 900;
-        font-size: clamp(70px, 7vw, 60px);
+        font-family: 'Cervo Neue', 'Steelfish', sans-serif;
+        font-weight: 800;
+        font-size: clamp(60px, 7vw, 100px);
         padding: 1.5rem 0 0.75rem;
         letter-spacing: 0.08em;
         line-height: 1.15;
         position: relative;
         z-index: 5;
-        transform: scaleX(3);
         margin: 0;
     }
 
     h4.subheading {
-        font-family: $font-family-base;
+        font-family: 'Cervo Neue', $font-family-base;
         color: $light-5;
-
+        font-weight: 400;
         font-size: clamp(16px, calc(var(--logo-proportion)/14), 100px);
         padding: calc(var(--logo-proportion)/20) 0;
         line-height: 24px;
@@ -192,13 +192,14 @@ header.foxy-header {
         border: 2px solid $orange-pastel;
         background-color: $orange-pastel;
         color: white;
-        font-family: $headings-font-family;
-        font-weight: 500;
+        font-family: 'Cervo Neue', $headings-font-family;
+        font-weight: 600;
         text-transform: uppercase;
         font-size: 1.25rem;
         cursor: pointer;
         transition: all 0.3s ease;
         text-decoration: none;
+        letter-spacing: 0.05em;
 
         i {
             font-size: 1.3rem;

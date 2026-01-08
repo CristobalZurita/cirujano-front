@@ -6,9 +6,9 @@
             </div>
 
             <div class="foxy-item-feature-content-wrapper">
-                <h5 v-html="parsedTitle" class="mb-1 mb-sm-2"/>
+                <h5 v-html="parsedTitle" class="mb-1 mb-sm-2 foxy-feature-title"/>
 
-                <p class="text-muted text-4 mb-0"
+                <p class="text-muted text-4 mb-0 foxy-feature-description"
                    v-html="parsedDescription"/>
             </div>
         </div>
@@ -56,5 +56,18 @@ div.foxy-item-feature-content-wrapper {
         lg:   (margin-top: 0, margin-left: 1rem),
         md:   (margin-left: 0.75rem)
     ));
+}
+
+h5.foxy-feature-title {
+    font-family: 'Cervo Neue', $headings-font-family;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: $dark;
+}
+
+p.foxy-feature-description {
+    font-family: 'Cervo Neue', $font-family-base;
+    font-weight: 400;
+    line-height: 1.6;
 }
 </style>

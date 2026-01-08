@@ -5,8 +5,8 @@ $fa-font-path:"@fortawesome/fontawesome-free/webfonts";
 $min-contrast-ratio: 1.5 !default;
 
 /** Typography - Según Manual de Identidad Cirujano de Sintetizadores **/
-$font-family-base: "Saira Condensed", "Saira", sans-serif;
-$headings-font-family: "Oswald", sans-serif;
+$font-family-base: 'Cervo Neue', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$headings-font-family: 'Steelfish', 'Cervo Neue', 'Oswald', serif;
 
 /** Bootstrap Colors - Paleta del Manual de Identidad **/
 $primary: #ec6b00;       // Orange (PANTONE 7577 C)

@@ -2,11 +2,12 @@
     <StateProviderLayer>
         <FeedbacksLayer>
             <ContentLayer>
-                <Master/>
+                <!-- Let the router mount the layout (Master) and its children -->
+                <router-view />
             </ContentLayer>
         </FeedbacksLayer>
     </StateProviderLayer>
-    
+
     <!-- Botón flotante global -->
     <FloatingQuoteButton />
 </template>
@@ -15,8 +16,7 @@
 import StateProviderLayer from "/src/vue/stack/StateProviderLayer.vue"
 import FeedbacksLayer from "/src/vue/stack/FeedbacksLayer.vue"
 import ContentLayer from "/src/vue/stack/ContentLayer.vue"
-import Master from "/src/vue/content/Master.vue"
-import FloatingQuoteButton from "/src/vue/components/widgets/FloatingQuoteButton.vue"  // ← AGREGAR
+import FloatingQuoteButton from "/src/vue/components/widgets/FloatingQuoteButton.vue"
 import {useEmails} from "/src/composables/emails.js"
 import {onMounted} from "vue"
 

@@ -6,12 +6,12 @@
                          class="mb-4"/>
 
                 <!-- Title -->
-                <h3 v-html="parsedTitle"/>
+                <h3 v-html="parsedTitle" class="foxy-footer-title"/>
 
                 <!-- Description -->
                 <p v-if="description"
                    v-html="parsedDescription"
-                   class="mt-3 mb-2 text-4"
+                   class="mt-3 mb-2 text-4 foxy-footer-description"
                    :class="descriptionTextClass"/>
 
                 <!-- Button -->
@@ -71,5 +71,19 @@ div.foxy-section-footer {
 div.foxy-section-footer-content {
     text-align: center;
     margin: 0 auto;
+}
+
+h3.foxy-footer-title {
+    font-family: 'Cervo Neue', $headings-font-family;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: $dark;
+    text-transform: uppercase;
+}
+
+p.foxy-footer-description {
+    font-family: 'Cervo Neue', $font-family-base;
+    font-weight: 400;
+    line-height: 1.6;
 }
 </style>

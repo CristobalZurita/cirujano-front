@@ -8,7 +8,7 @@
 
         <div class="description-wrapper">
             <p v-for="paragraph in parsedParagraphs"
-               class="text-4"
+               class="text-4 foxy-article-paragraph"
                v-html="paragraph"/>
         </div>
     </article>
@@ -74,5 +74,16 @@ div.image-wrapper-view {
 
 div.description-wrapper {
     width: 100%;
+}
+
+p.foxy-article-paragraph {
+    font-family: 'Cervo Neue', $font-family-base;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $text-normal;
+}
+
+p.foxy-article-paragraph strong {
+    font-weight: 700;
 }
 </style>

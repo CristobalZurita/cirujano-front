@@ -36,11 +36,12 @@ button.btn-xl {
     ));
 
     border-radius: 4rem;
-    font-weight: 400;
-    font-family: $headings-font-family;
+    font-weight: 600;
+    font-family: 'Cervo Neue', $headings-font-family;
     text-transform: uppercase;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    letter-spacing: 0.05em;
 }
 
 // Variante Orange (Principal CTA)

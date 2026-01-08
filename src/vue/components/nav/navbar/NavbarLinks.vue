@@ -96,9 +96,12 @@ button.foxy-nav-link {
     border: 0;
     padding: 0 0 0 1.2rem;
 
-    font-family: $font-family-base;
+    font-family: 'Cervo Neue', $font-family-base;
     color: $light-3;
     text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: 0.95rem;
 
     @include media-breakpoint-down(xl) {
         padding: 0 0 0 0.9rem;

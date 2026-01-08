@@ -44,10 +44,15 @@ div.foxy-section-header {
 h1 {
     text-transform: uppercase;
     color: inherit;
+    font-family: 'Cervo Neue', $headings-font-family;
+    font-weight: 800;
+    letter-spacing: 0.05em;
 }
 
 h5 {
-    font-family: $font-family-base;
+    font-family: 'Cervo Neue', $font-family-base;
     color: $text-muted;
+    font-weight: 400;
+    letter-spacing: 0.02em;
 }
 </style>

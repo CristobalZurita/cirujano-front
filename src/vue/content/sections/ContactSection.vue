@@ -19,7 +19,7 @@
                 <div class="contact-grid">
                   <div class="contact-box">
                     <strong>Dirección</strong>
-                    <p>Eusebio Lillo 362</p>
+                    <p>Eusebio Lillo 362, Valparaíso </p>
 
                     <strong>Teléfono</strong>
                     <p>+56 9 8295 7538</p>
@@ -60,7 +60,7 @@ const props = defineProps({
 
 .contact-form-wrapper {
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .contact-map-section {
@@ -84,7 +84,7 @@ const props = defineProps({
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 150fr;
   gap: 32px;
 }
 
@@ -96,10 +96,11 @@ const props = defineProps({
 
 .contact-box {
   border: 1px solid #ddd;
-  padding: 24px;
-  font-size: 1.05rem;
-  border-radius: 8px;
+  padding: 20px;
+  font-size: 1.5rem;
+  border-radius: 10px;
   background: rgba(255,255,255,0.02);
+   margin-bottom: 1rem;
 }
 
 
@@ -108,7 +109,7 @@ const props = defineProps({
   height: 400px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(47, 47, 51, 0.007);
 
   iframe {
     width: 100%;
@@ -121,10 +122,10 @@ const props = defineProps({
 
 /* Address info styling */
 .address-info {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.438);
   padding: 2rem;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(236, 122, 122, 0.1);
 
   h4 {
     font-size: 1.2rem;
@@ -134,9 +135,9 @@ const props = defineProps({
   }
 
   p {
-    font-size: 1.05rem;
+    font-size:1.05rem;
     line-height: 1.8;
-    color: #d0d0d0;
+    color: #ffffff;
     margin: 0.5rem 0;
   }
 }
