@@ -1,9 +1,11 @@
 # 🔧 AUDITORÍA TÉCNICA COMPLETA
+
 ## Cirujano de Sintetizadores
+
 ### Sistema de Gestión para Taller de Reparación de Instrumentos Electrónicos
 
-**Fecha:** Enero 2026  
-**Dominio:** www.cirujanodesintetizadores.cl  
+**Fecha:** Enero 2026
+**Dominio:** www.cirujanodesintetizadores.cl
 **Versión del Proyecto:** 2.0.1
 
 ---
@@ -70,31 +72,31 @@ Un sistema integral donde:
 
 ## Estado Actual
 
-| Componente | Estado | Completitud |
-|------------|--------|-------------|
-| Backend FastAPI | ✅ Funcional | 60% |
-| Frontend Vue 3 | ✅ Funcional | 55% |
-| Base de datos | ✅ Estructura básica | 50% |
-| Autenticación JWT | ✅ Implementado | 80% |
-| Sistema de cotización IA | 🟡 Parcial | 30% |
-| Diagnóstico visual interactivo | ❌ No existe | 0% |
-| Carrito de repuestos interno | ❌ No existe | 0% |
-| Sistema de tracking (tipo DHL) | ❌ No existe | 0% |
-| Integración APIs tracking | ❌ No existe | 0% |
-| Sistema de tickets | ❌ No existe | 0% |
-| Automatización / Respuestas auto | ❌ No existe | 0% |
-| Detección de instrumento por IA | ❌ No existe | 0% |
-| Drag & Drop de imágenes | ❌ No existe | 0% |
-| **🎬 Streaming en vivo** | ❌ No existe (hardware listo) | 0% |
-| **Portfolio automático** | ❌ No existe | 0% |
-| **Flujo trabajo técnico** | ❌ No existe | 0% |
-| **Cotización justa (% valor)** | ❌ No existe | 0% |
-| **YouTube auto-publicación** | ❌ No existe | 0% |
-| Sistema de pagos (Flow.cl) | ❌ No existe | 0% |
-| Integración Google Calendar | ❌ No existe | 0% |
-| Políticas y términos | ❌ No existe | 0% |
-| Scraper precios mercado | ❌ No existe | 0% |
-| SSL/Seguridad producción | ❌ Pendiente | 0% |
+| Componente                            | Estado                        | Completitud |
+| ------------------------------------- | ----------------------------- | ----------- |
+| Backend FastAPI                       | ✅ Funcional                  | 60%         |
+| Frontend Vue 3                        | ✅ Funcional                  | 55%         |
+| Base de datos                         | ✅ Estructura básica         | 50%         |
+| Autenticación JWT                    | ✅ Implementado               | 80%         |
+| Sistema de cotización IA             | 🟡 Parcial                    | 30%         |
+| Diagnóstico visual interactivo       | ❌ No existe                  | 0%          |
+| Carrito de repuestos interno          | ❌ No existe                  | 0%          |
+| Sistema de tracking (tipo DHL)        | ❌ No existe                  | 0%          |
+| Integración APIs tracking            | ❌ No existe                  | 0%          |
+| Sistema de tickets                    | ❌ No existe                  | 0%          |
+| Automatización / Respuestas auto     | ❌ No existe                  | 0%          |
+| Detección de instrumento por IA      | ❌ No existe                  | 0%          |
+| Drag & Drop de imágenes              | ❌ No existe                  | 0%          |
+| **🎬 Streaming en vivo**        | ❌ No existe (hardware listo) | 0%          |
+| **Portfolio automático**       | ❌ No existe                  | 0%          |
+| **Flujo trabajo técnico**      | ❌ No existe                  | 0%          |
+| **Cotización justa (% valor)** | ❌ No existe                  | 0%          |
+| **YouTube auto-publicación**   | ❌ No existe                  | 0%          |
+| Sistema de pagos (Flow.cl)            | ❌ No existe                  | 0%          |
+| Integración Google Calendar          | ❌ No existe                  | 0%          |
+| Políticas y términos                | ❌ No existe                  | 0%          |
+| Scraper precios mercado               | ❌ No existe                  | 0%          |
+| SSL/Seguridad producción             | ❌ Pendiente                  | 0%          |
 
 ---
 
@@ -103,6 +105,7 @@ Un sistema integral donde:
 ## 2.1 Backend (FastAPI)
 
 ### Lo que ESTÁ implementado:
+
 ```
 ✅ Estructura base FastAPI con lifespan
 ✅ CORS configurado para desarrollo
@@ -114,6 +117,7 @@ Un sistema integral donde:
 ```
 
 ### Lo que FALTA:
+
 ```
 ❌ Endpoint de cotización inteligente
 ❌ Análisis de imágenes para diagnóstico
@@ -130,6 +134,7 @@ Un sistema integral donde:
 ## 2.2 Frontend (Vue 3)
 
 ### Lo que ESTÁ implementado:
+
 ```
 ✅ SPA con Vue Router
 ✅ Estado global con Pinia
@@ -141,6 +146,7 @@ Un sistema integral donde:
 ```
 
 ### Lo que FALTA:
+
 ```
 ❌ Buscador inteligente marca → modelo
 ❌ Componente de diagnóstico visual interactivo
@@ -158,6 +164,7 @@ Un sistema integral donde:
 ## 2.3 Base de Datos
 
 ### Modelos actuales:
+
 ```sql
 -- Existentes
 users (id, email, password, role, created_at)
@@ -169,6 +176,7 @@ diagnostics (id, repair_id, ...)
 ```
 
 ### Modelos FALTANTES:
+
 ```sql
 -- Necesarios
 instrument_components (id, instrument_id, type, name, position_x, position_y, clickable_area)
@@ -229,13 +237,13 @@ audit_logs (id, user_id, action, entity, entity_id, details, created_at)
 
 ## 3.3 Limitaciones de tu Hosting Actual
 
-| Recurso | Límite | Implicación |
-|---------|--------|-------------|
-| Espacio | 5 GB | Suficiente para código, pero las imágenes deben ir a servicio externo (Cloudinary) |
-| MySQL | 2 bases de datos | Una para producción, una para staging |
-| Emails | 10 cuentas | Suficiente (noreply@, info@, soporte@, etc.) |
-| SSL | Incluido gratis | ✅ Perfecto |
-| Python | Via Passenger | Requiere configuración especial |
+| Recurso | Límite          | Implicación                                                                         |
+| ------- | ---------------- | ------------------------------------------------------------------------------------ |
+| Espacio | 5 GB             | Suficiente para código, pero las imágenes deben ir a servicio externo (Cloudinary) |
+| MySQL   | 2 bases de datos | Una para producción, una para staging                                               |
+| Emails  | 10 cuentas       | Suficiente (noreply@, info@, soporte@, etc.)                                         |
+| SSL     | Incluido gratis  | ✅ Perfecto                                                                          |
+| Python  | Via Passenger    | Requiere configuración especial                                                     |
 
 ---
 
@@ -246,6 +254,7 @@ audit_logs (id, user_id, action, entity, entity_id, details, created_at)
 ### 🔴 CRÍTICO - Secretos en código
 
 **Archivo:** `config.py`
+
 ```python
 # ❌ PELIGROSO - Secretos hardcodeados
 secret_key: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
@@ -253,6 +262,7 @@ jwt_secret: str = os.getenv("JWT_SECRET", "your-jwt-secret-change-in-production"
 ```
 
 **Solución:**
+
 ```python
 # ✅ CORRECTO - Sin valores por defecto peligrosos
 secret_key: str = os.getenv("SECRET_KEY")
@@ -265,6 +275,7 @@ if not secret_key or not jwt_secret:
 ### 🔴 CRÍTICO - CORS muy permisivo
 
 **Archivo:** `config.py`
+
 ```python
 # ❌ Solo para desarrollo
 allowed_origins: list = [
@@ -274,6 +285,7 @@ allowed_origins: list = [
 ```
 
 **Solución:**
+
 ```python
 # ✅ Para producción
 allowed_origins: list = os.getenv("ALLOWED_ORIGINS", "").split(",")
@@ -285,6 +297,7 @@ allowed_origins: list = os.getenv("ALLOWED_ORIGINS", "").split(",")
 **Problema:** Cualquiera puede hacer miles de requests por segundo.
 
 **Solución:** Agregar slowapi
+
 ```python
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -303,6 +316,7 @@ async def cotizar(request: Request):
 **Problema:** No hay validación de imágenes subidas.
 
 **Solución:**
+
 ```python
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
@@ -312,12 +326,12 @@ async def validate_image(file: UploadFile):
     ext = Path(file.filename).suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(400, "Formato no permitido")
-    
+  
     # Verificar tamaño
     content = await file.read()
     if len(content) > MAX_FILE_SIZE:
         raise HTTPException(400, "Archivo muy grande (max 5MB)")
-    
+  
     # Verificar que realmente es una imagen
     import imghdr
     if imghdr.what(None, h=content) not in ["jpeg", "png", "webp"]:
@@ -326,21 +340,21 @@ async def validate_image(file: UploadFile):
 
 ## 4.2 Checklist de Seguridad para Producción
 
-| Item | Estado | Prioridad |
-|------|--------|-----------|
-| Secretos en variables de entorno | ❌ Pendiente | CRÍTICA |
-| CORS restringido a dominio | ❌ Pendiente | CRÍTICA |
-| HTTPS forzado | ❌ Pendiente | CRÍTICA |
-| Rate limiting | ❌ Pendiente | ALTA |
-| Validación de uploads | ❌ Pendiente | ALTA |
-| Headers de seguridad | ❌ Pendiente | ALTA |
-| SQL injection protection | ✅ SQLAlchemy | OK |
-| XSS protection | 🟡 Parcial | MEDIA |
-| CSRF protection | ❌ Pendiente | MEDIA |
-| Password hashing | ✅ bcrypt | OK |
-| JWT expiration | ✅ 30 min | OK |
-| Audit logging | ❌ Pendiente | MEDIA |
-| Backup automático | ❌ Pendiente | ALTA |
+| Item                             | Estado        | Prioridad |
+| -------------------------------- | ------------- | --------- |
+| Secretos en variables de entorno | ❌ Pendiente  | CRÍTICA  |
+| CORS restringido a dominio       | ❌ Pendiente  | CRÍTICA  |
+| HTTPS forzado                    | ❌ Pendiente  | CRÍTICA  |
+| Rate limiting                    | ❌ Pendiente  | ALTA      |
+| Validación de uploads           | ❌ Pendiente  | ALTA      |
+| Headers de seguridad             | ❌ Pendiente  | ALTA      |
+| SQL injection protection         | ✅ SQLAlchemy | OK        |
+| XSS protection                   | 🟡 Parcial    | MEDIA     |
+| CSRF protection                  | ❌ Pendiente  | MEDIA     |
+| Password hashing                 | ✅ bcrypt     | OK        |
+| JWT expiration                   | ✅ 30 min     | OK        |
+| Audit logging                    | ❌ Pendiente  | MEDIA     |
+| Backup automático               | ❌ Pendiente  | ALTA      |
 
 ---
 
@@ -349,11 +363,13 @@ async def validate_image(file: UploadFile):
 ## 5.1 Sistema de Cotización Inteligente
 
 ### Tu visión:
+
 > "Busco mi instrumento por marca y modelo, muestra foto, el cliente marca lo malo en una interfaz visual, cuestionario aguas abajo, cotización aproximada"
 
 ### Estado actual: 🟡 30% implementado
 
 **Lo que existe:**
+
 - Catálogo de instrumentos con marcas
 - Valor estimado por instrumento
 - Multiplicadores de precio por categoría
@@ -416,15 +432,15 @@ async def validate_image(file: UploadFile):
 
 #### Lo que ve el CLIENTE vs lo que ve el TÉCNICO
 
-| Información | Cliente ve | Técnico ve |
-|-------------|------------|------------|
-| Foto del instrumento | ✅ Sí | ✅ Sí |
-| Valor de mercado del instrumento | ❌ NO | ✅ Sí |
-| Tier/Categoría del instrumento | ❌ NO | ✅ Sí |
-| Cotización de REPARACIÓN | ✅ Sí (aproximada) | ✅ Sí (detallada) |
-| Costo de presupuesto ($20.000) | ✅ Sí | ✅ Sí |
-| Cobro mínimo (10% del valor) | ❌ NO | ✅ Sí (calculado) |
-| Precios de Reverb/eBay/Thomann | ❌ NO | ✅ Sí |
+| Información                     | Cliente ve          | Técnico ve        |
+| -------------------------------- | ------------------- | ------------------ |
+| Foto del instrumento             | ✅ Sí              | ✅ Sí             |
+| Valor de mercado del instrumento | ❌ NO               | ✅ Sí             |
+| Tier/Categoría del instrumento  | ❌ NO               | ✅ Sí             |
+| Cotización de REPARACIÓN       | ✅ Sí (aproximada) | ✅ Sí (detallada) |
+| Costo de presupuesto ($20.000)   | ✅ Sí              | ✅ Sí             |
+| Cobro mínimo (10% del valor)    | ❌ NO               | ✅ Sí (calculado) |
+| Precios de Reverb/eBay/Thomann   | ❌ NO               | ✅ Sí             |
 
 #### Sistema de Tiers (Clasificación Interna)
 
@@ -511,60 +527,60 @@ TIER_RANGES = {
 
 Para mantener valores actualizados, se requiere un sistema que consulte:
 
-| Fuente | Tipo | Prioridad | Frecuencia sugerida |
-|--------|------|-----------|---------------------|
-| **Reverb** | Usado/Nuevo | ALTA | Semanal |
-| **eBay** | Usado internacional | ALTA | Semanal |
-| **Thomann** | Nuevo Europa | MEDIA | Mensual |
-| **Sweetwater** | Nuevo USA | MEDIA | Mensual |
-| **MercadoLibre CL** | Local | ALTA | Semanal |
+| Fuente                    | Tipo                | Prioridad | Frecuencia sugerida |
+| ------------------------- | ------------------- | --------- | ------------------- |
+| **Reverb**          | Usado/Nuevo         | ALTA      | Semanal             |
+| **eBay**            | Usado internacional | ALTA      | Semanal             |
+| **Thomann**         | Nuevo Europa        | MEDIA     | Mensual             |
+| **Sweetwater**      | Nuevo USA           | MEDIA     | Mensual             |
+| **MercadoLibre CL** | Local               | ALTA      | Semanal             |
 
 **Modelo propuesto para almacenar precios:**
 
 ```python
 class InstrumentPriceHistory(Base):
     __tablename__ = "instrument_price_history"
-    
+  
     id = Column(Integer, primary_key=True)
     instrument_id = Column(Integer, ForeignKey("instruments.id"))
-    
+  
     # Fuente del precio
     source = Column(String(50))  # 'reverb', 'ebay', 'thomann', etc.
     source_url = Column(String(500))
-    
+  
     # Precio
     price = Column(Integer)  # en CLP
     original_currency = Column(String(10))  # 'USD', 'EUR', 'CLP'
     original_price = Column(Integer)
-    
+  
     # Condición
     condition = Column(String(50))  # 'new', 'used_excellent', 'used_good', 'used_fair'
-    
+  
     # Disponibilidad en Chile
     available_in_chile = Column(Boolean, default=False)
     import_cost_estimate = Column(Integer, nullable=True)  # Costo estimado de importación
-    
+  
     fetched_at = Column(DateTime, default=datetime.utcnow)
 
 class InstrumentValuation(Base):
     """Valor calculado actual del instrumento (promedio de fuentes)"""
     __tablename__ = "instrument_valuations"
-    
+  
     id = Column(Integer, primary_key=True)
     instrument_id = Column(Integer, ForeignKey("instruments.id"), unique=True)
-    
+  
     # Valores calculados
     min_value = Column(Integer)
     max_value = Column(Integer)
     avg_value = Column(Integer)
-    
+  
     # Cobro mínimo calculado
     min_charge = Column(Integer)  # 10% de avg_value
-    
+  
     # Disponibilidad
     available_locally = Column(Boolean)
     import_cost = Column(Integer, nullable=True)
-    
+  
     last_updated = Column(DateTime, default=datetime.utcnow)
 ```
 
@@ -603,11 +619,13 @@ async def get_instrument_valuation(
 ## 5.2 Sistema de Gestión de Reparaciones
 
 ### Tu visión:
+
 > "Creo ficha, se manda mail automático, cliente ve avance, yo actualizo estado"
 
 ### Estado actual: 🟡 50% implementado
 
 **Lo que existe:**
+
 - Modelo Repair con 7 estados
 - CRUD básico de reparaciones
 - Relación cliente-reparación
@@ -675,6 +693,7 @@ async def get_instrument_valuation(
 ## 5.3 Sistema de Carrito, Tracking y Pagos
 
 ### Tu visión:
+
 > "Carrito se habilita si se necesita, lo activo yo o el cliente. Todo conectado con APIs de tracking internacional. CDS.cl es una central de atención y difusión de imagen."
 
 ### Estado actual: ❌ 0% implementado
@@ -778,14 +797,14 @@ async def get_instrument_valuation(
 
 ### 5.3.3 Integración con APIs de Tracking
 
-| Servicio | API | Cobertura | Costo |
-|----------|-----|-----------|-------|
-| **17track** | ✅ API REST | 900+ carriers mundial | Free tier + paid |
-| **AfterShip** | ✅ API REST | 1000+ carriers | Free 50 envíos/mes |
-| **TrackingMore** | ✅ API REST | 1100+ carriers | Free tier disponible |
-| **AliExpress** | ✅ Scraping/API | Solo AliExpress | Gratis |
-| **Correos Chile** | ✅ API | Chile nacional | Gratis |
-| **DHL** | ✅ API oficial | Internacional | Gratis con cuenta |
+| Servicio                | API             | Cobertura             | Costo                |
+| ----------------------- | --------------- | --------------------- | -------------------- |
+| **17track**       | ✅ API REST     | 900+ carriers mundial | Free tier + paid     |
+| **AfterShip**     | ✅ API REST     | 1000+ carriers        | Free 50 envíos/mes  |
+| **TrackingMore**  | ✅ API REST     | 1100+ carriers        | Free tier disponible |
+| **AliExpress**    | ✅ Scraping/API | Solo AliExpress       | Gratis               |
+| **Correos Chile** | ✅ API          | Chile nacional        | Gratis               |
+| **DHL**           | ✅ API oficial  | Internacional         | Gratis con cuenta    |
 
 **Recomendación:** Usar **17track** o **AfterShip** como agregador universal + APIs específicas para casos especiales.
 
@@ -793,7 +812,7 @@ async def get_instrument_valuation(
 # Servicio de tracking unificado
 class TrackingService:
     """Servicio que consulta múltiples APIs de tracking"""
-    
+  
     CARRIERS = {
         'aliexpress': AliExpressTracker,
         'dhl': DHLTracker,
@@ -801,7 +820,7 @@ class TrackingService:
         'correos_chile': CorreosChileTracker,
         'generic': SeventeenTrackTracker,  # 17track como fallback
     }
-    
+  
     async def get_tracking_info(self, tracking_number: str, carrier: str = None):
         """
         Obtiene info de tracking.
@@ -811,9 +830,9 @@ class TrackingService:
             tracker = self.CARRIERS[carrier]()
         else:
             tracker = self.CARRIERS['generic']()
-        
+      
         return await tracker.track(tracking_number)
-    
+  
     async def sync_all_pending_shipments(self):
         """Cron job: actualiza todos los envíos pendientes"""
         pending = await get_pending_shipments()
@@ -830,30 +849,30 @@ class TrackingService:
 class RepairPart(Base):
     """Repuesto asociado a una reparación"""
     __tablename__ = "repair_parts"
-    
+  
     id = Column(Integer, primary_key=True)
     repair_id = Column(Integer, ForeignKey("repairs.id"), nullable=False)
     added_by_id = Column(Integer, ForeignKey("users.id"))  # Técnico o cliente
-    
+  
     # Info del repuesto
     name = Column(String(255), nullable=False)
     description = Column(Text)
     part_number = Column(String(100))
     quantity = Column(Integer, default=1)
     image_url = Column(String(500))
-    
+  
     # Precio desglosado
     unit_price = Column(Integer)  # CLP
     shipping_cost = Column(Integer, default=0)
     customs_cost = Column(Integer, default=0)  # Aduana si aplica
     management_fee = Column(Integer, default=0)  # Gestión
     total_price = Column(Integer)
-    
+  
     # Origen
     source = Column(String(50))  # 'aliexpress', 'mouser', 'digikey', 'local'
     source_url = Column(String(500))
     source_order_id = Column(String(100))  # ID de orden en origen
-    
+  
     # Estado
     status = Column(Enum(
         "suggested",        # Técnico sugirió, cliente no ha visto
@@ -867,7 +886,7 @@ class RepairPart(Base):
         "installed",        # Instalado en equipo
         "cancelled"         # Cancelado
     ), default="suggested")
-    
+  
     # Timestamps de cada estado
     suggested_at = Column(DateTime, default=datetime.utcnow)
     approved_at = Column(DateTime)
@@ -876,7 +895,7 @@ class RepairPart(Base):
     shipped_at = Column(DateTime)
     delivered_at = Column(DateTime)
     installed_at = Column(DateTime)
-    
+  
     # Relaciones
     repair = relationship("Repair", back_populates="parts")
     shipment = relationship("Shipment", back_populates="part", uselist=False)
@@ -886,29 +905,29 @@ class RepairPart(Base):
 class Shipment(Base):
     """Envío de un repuesto con tracking"""
     __tablename__ = "shipments"
-    
+  
     id = Column(Integer, primary_key=True)
     part_id = Column(Integer, ForeignKey("repair_parts.id"), unique=True)
-    
+  
     # Tracking
     carrier = Column(String(50))  # 'dhl', 'fedex', 'correos_chile', '4px', etc.
     tracking_number = Column(String(100))
     tracking_url = Column(String(500))  # URL directa al carrier
-    
+  
     # Origen y destino
     origin_country = Column(String(50))
     origin_city = Column(String(100))
-    
+  
     # Estado actual
     current_status = Column(String(100))
     current_location = Column(String(200))
     estimated_delivery = Column(DateTime)
-    
+  
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     last_updated = Column(DateTime)
     delivered_at = Column(DateTime)
-    
+  
     # Relación
     part = relationship("RepairPart", back_populates="shipment")
     events = relationship("ShipmentEvent", back_populates="shipment", order_by="ShipmentEvent.timestamp")
@@ -917,23 +936,23 @@ class Shipment(Base):
 class ShipmentEvent(Base):
     """Evento de tracking (cada actualización del envío)"""
     __tablename__ = "shipment_events"
-    
+  
     id = Column(Integer, primary_key=True)
     shipment_id = Column(Integer, ForeignKey("shipments.id"))
-    
+  
     # Evento
     status = Column(String(100))  # 'in_transit', 'customs', 'delivered', etc.
     description = Column(String(500))  # "Paquete en centro de distribución Shanghai"
     location = Column(String(200))
     timestamp = Column(DateTime)
-    
+  
     # Foto del evento (si el técnico sube foto de llegada, etc.)
     photo_url = Column(String(500))
-    
+  
     # Metadata
     raw_data = Column(JSON)  # Respuesta cruda de la API
     created_at = Column(DateTime, default=datetime.utcnow)
-    
+  
     # Relación
     shipment = relationship("Shipment", back_populates="events")
 
@@ -941,29 +960,29 @@ class ShipmentEvent(Base):
 class Payment(Base):
     """Pagos realizados"""
     __tablename__ = "payments"
-    
+  
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     repair_id = Column(Integer, ForeignKey("repairs.id"), nullable=True)
     part_id = Column(Integer, ForeignKey("repair_parts.id"), nullable=True)
-    
+  
     # Tipo y monto
     payment_type = Column(Enum("budget", "repair", "parts", "storage", "other"))
     amount = Column(Integer)  # CLP
     description = Column(String(500))
-    
+  
     # Flow.cl
     flow_token = Column(String(255))
     flow_order = Column(String(255))
     flow_status = Column(String(50))
-    
+  
     # Estado
     status = Column(Enum("pending", "processing", "paid", "failed", "refunded"))
-    
+  
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     paid_at = Column(DateTime)
-    
+  
     # Relaciones
     user = relationship("User")
     repair = relationship("Repair")
@@ -1031,28 +1050,29 @@ El cliente ve TODO en un solo timeline (tipo DHL):
 
 ### 5.3.6 Pasarela de Pago (Flow.cl)
 
-| Pasarela | Comisión | Integración | Recomendación |
-|----------|----------|-------------|---------------|
-| **Flow.cl** | 2.9% + IVA | API REST simple | ⭐ RECOMENDADO |
-| Transbank | 2.5% + IVA | Más complejo | Para alto volumen |
-| MercadoPago | 3.5% + IVA | SDK fácil | Alternativa |
+| Pasarela          | Comisión  | Integración    | Recomendación    |
+| ----------------- | ---------- | --------------- | ----------------- |
+| **Flow.cl** | 2.9% + IVA | API REST simple | ⭐ RECOMENDADO    |
+| Transbank         | 2.5% + IVA | Más complejo   | Para alto volumen |
+| MercadoPago       | 3.5% + IVA | SDK fácil      | Alternativa       |
 
 ### 5.3.7 Emails Automáticos por Evento
 
-| Evento | Email al Cliente | Email al Técnico |
-|--------|------------------|------------------|
-| Repuesto sugerido | "Se requieren repuestos para tu equipo" | - |
-| Cliente aprueba | "Gracias por aprobar" | "Cliente aprobó repuestos CDS-XXX" |
-| Pago confirmado | "Pago recibido, procederemos a comprar" | "Pago recibido CDS-XXX" |
-| Repuesto comprado | "Repuesto comprado, pronto tracking" | - |
-| Envío despachado | "Tu repuesto está en camino" + tracking | - |
-| En aduana | "Repuesto en aduana Chile" | - |
-| Entregado en taller | "Repuesto llegó, reanudamos reparación" | - |
-| Instalado | "Repuesto instalado en tu equipo" | - |
+| Evento              | Email al Cliente                          | Email al Técnico                   |
+| ------------------- | ----------------------------------------- | ----------------------------------- |
+| Repuesto sugerido   | "Se requieren repuestos para tu equipo"   | -                                   |
+| Cliente aprueba     | "Gracias por aprobar"                     | "Cliente aprobó repuestos CDS-XXX" |
+| Pago confirmado     | "Pago recibido, procederemos a comprar"   | "Pago recibido CDS-XXX"             |
+| Repuesto comprado   | "Repuesto comprado, pronto tracking"      | -                                   |
+| Envío despachado   | "Tu repuesto está en camino" + tracking  | -                                   |
+| En aduana           | "Repuesto en aduana Chile"                | -                                   |
+| Entregado en taller | "Repuesto llegó, reanudamos reparación" | -                                   |
+| Instalado           | "Repuesto instalado en tu equipo"         | -                                   |
 
 ## 5.4 Sistema de Tracking de Reparaciones (Timeline)
 
 ### Tu visión:
+
 > "Como cuando AliExpress o DHL me manda un paquete, sale el estado, qué pasó qué día, y en mi caso con fotos"
 
 ### Estado actual: 🟡 Parcial (existen estados, falta timeline visual y fotos)
@@ -1063,11 +1083,11 @@ El cliente ve TODO en un solo timeline (tipo DHL):
 class RepairEvent(Base):
     """Cada evento/cambio en una reparación (timeline)"""
     __tablename__ = "repair_events"
-    
+  
     id = Column(Integer, primary_key=True)
     repair_id = Column(Integer, ForeignKey("repairs.id"), nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"))  # Quién generó el evento
-    
+  
     # Evento
     event_type = Column(Enum(
         "created",              # Ficha creada
@@ -1087,22 +1107,22 @@ class RepairEvent(Base):
         "note_added",           # Nota técnica agregada
         "status_changed"        # Cambio de estado genérico
     ))
-    
+  
     # Descripción
     title = Column(String(255))  # "Diagnóstico completado"
     description = Column(Text)   # Detalle largo si es necesario
-    
+  
     # Metadata
     old_status = Column(String(50))
     new_status = Column(String(50))
     progress_percent = Column(Integer)  # 0-100 si aplica
-    
+  
     # Visibilidad
     visible_to_client = Column(Boolean, default=True)  # Algunas notas son solo internas
-    
+  
     # Timestamp
     created_at = Column(DateTime, default=datetime.utcnow)
-    
+  
     # Relaciones
     repair = relationship("Repair", back_populates="events")
     photos = relationship("RepairEventPhoto", back_populates="event")
@@ -1112,18 +1132,18 @@ class RepairEvent(Base):
 class RepairEventPhoto(Base):
     """Fotos asociadas a un evento de reparación"""
     __tablename__ = "repair_event_photos"
-    
+  
     id = Column(Integer, primary_key=True)
     event_id = Column(Integer, ForeignKey("repair_events.id"))
-    
+  
     # Imagen
     url = Column(String(500), nullable=False)
     thumbnail_url = Column(String(500))
     caption = Column(String(255))
-    
+  
     # Metadata
     uploaded_at = Column(DateTime, default=datetime.utcnow)
-    
+  
     # Relación
     event = relationship("RepairEvent", back_populates="photos")
 ```
@@ -1139,25 +1159,25 @@ CRON_JOBS = {
         "schedule": "every 4 hours",
         "function": "sync_all_pending_shipments"
     },
-    
+  
     # Enviar recordatorios de retiro
     "send_pickup_reminders": {
         "schedule": "daily at 10:00",
         "function": "send_pending_pickup_reminders"
     },
-    
+  
     # Cobrar bodegaje automático
     "charge_storage_fees": {
         "schedule": "monthly on day 1",
         "function": "generate_storage_invoices"
     },
-    
+  
     # Actualizar precios de mercado (scraper)
     "update_market_prices": {
         "schedule": "weekly on sunday",
         "function": "scrape_market_prices"
     },
-    
+  
     # Backup de base de datos
     "database_backup": {
         "schedule": "daily at 03:00",
@@ -1169,6 +1189,7 @@ CRON_JOBS = {
 ## 5.6 Sistema de Tickets y Atención Automatizada
 
 ### Tu visión:
+
 > "Tickets de atención con tiempo de respuesta, automatizar todo lo posible, respuestas automáticas, la web se debe manejar sola"
 
 ### Estado actual: ❌ 0% implementado
@@ -1220,17 +1241,17 @@ CRON_JOBS = {
 class Ticket(Base):
     """Ticket de soporte/consulta"""
     __tablename__ = "tickets"
-    
+  
     id = Column(Integer, primary_key=True)
     ticket_number = Column(String(20), unique=True)  # TKT-2026-0001
     user_id = Column(Integer, ForeignKey("users.id"), nullable=True)  # Puede ser anónimo
     repair_id = Column(Integer, ForeignKey("repairs.id"), nullable=True)
-    
+  
     # Contacto (si no tiene cuenta)
     guest_name = Column(String(255))
     guest_email = Column(String(255))
     guest_phone = Column(String(50))
-    
+  
     # Contenido
     subject = Column(String(255), nullable=False)
     message = Column(Text, nullable=False)
@@ -1245,10 +1266,10 @@ class Ticket(Base):
         "parts_question",      # Pregunta sobre repuestos
         "other"                # Otro
     ))
-    
+  
     # Prioridad (auto-asignada o manual)
     priority = Column(Enum("low", "medium", "high", "urgent"), default="medium")
-    
+  
     # Estado
     status = Column(Enum(
         "new",                 # Nuevo, sin leer
@@ -1259,18 +1280,18 @@ class Ticket(Base):
         "resolved",            # Resuelto
         "closed"               # Cerrado
     ), default="new")
-    
+  
     # SLA (Service Level Agreement)
     sla_response_hours = Column(Integer, default=24)  # Tiempo máximo de respuesta
     sla_deadline = Column(DateTime)  # Fecha límite
     sla_breached = Column(Boolean, default=False)  # ¿Se pasó del tiempo?
-    
+  
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     first_response_at = Column(DateTime)
     resolved_at = Column(DateTime)
     closed_at = Column(DateTime)
-    
+  
     # Relaciones
     user = relationship("User")
     repair = relationship("Repair")
@@ -1280,24 +1301,24 @@ class Ticket(Base):
 class TicketMessage(Base):
     """Mensajes dentro de un ticket (conversación)"""
     __tablename__ = "ticket_messages"
-    
+  
     id = Column(Integer, primary_key=True)
     ticket_id = Column(Integer, ForeignKey("tickets.id"))
-    
+  
     # Autor
     author_type = Column(Enum("customer", "technician", "system"))  # system = automático
     author_id = Column(Integer, ForeignKey("users.id"), nullable=True)
-    
+  
     # Contenido
     message = Column(Text, nullable=False)
     is_auto_reply = Column(Boolean, default=False)
-    
+  
     # Adjuntos
     attachments = Column(JSON)  # [{"url": "...", "name": "foto.jpg"}]
-    
+  
     # Timestamp
     created_at = Column(DateTime, default=datetime.utcnow)
-    
+  
     # Relaciones
     ticket = relationship("Ticket", back_populates="messages")
 ```
@@ -1327,7 +1348,7 @@ Cirujano de Sintetizadores (respuesta automática)
         """,
         "sla_hours": 24
     },
-    
+  
     "repair_status": {
         "immediate_reply": True,
         "template": """
@@ -1348,7 +1369,7 @@ Cirujano de Sintetizadores (respuesta automática)
         "sla_hours": 12,
         "auto_resolve_if_info_provided": True
     },
-    
+  
     "payment_issue": {
         "immediate_reply": True,
         "priority": "high",
@@ -1368,7 +1389,7 @@ Cirujano de Sintetizadores (respuesta automática)
         "sla_hours": 4,
         "notify_technician_immediately": True
     },
-    
+  
     "schedule_change": {
         "immediate_reply": True,
         "template": """
@@ -1389,7 +1410,7 @@ Cirujano de Sintetizadores (respuesta automática)
         """,
         "sla_hours": 12
     },
-    
+  
     "complaint": {
         "immediate_reply": True,
         "priority": "urgent",
@@ -1416,43 +1437,43 @@ Cirujano de Sintetizadores (respuesta automática)
 
 class AutoResponseEngine:
     """Motor de respuestas automáticas"""
-    
+  
     async def process_new_ticket(self, ticket: Ticket):
         """Procesa un ticket nuevo y genera respuesta automática"""
-        
+      
         # 1. Clasificar categoría si no viene (usando IA simple)
         if not ticket.category:
             ticket.category = await self.classify_ticket(ticket.message)
-        
+      
         # 2. Asignar prioridad
         config = AUTO_RESPONSES.get(ticket.category, AUTO_RESPONSES["general_inquiry"])
         if config.get("priority"):
             ticket.priority = config["priority"]
-        
+      
         # 3. Calcular SLA
         ticket.sla_response_hours = config.get("sla_hours", 24)
         ticket.sla_deadline = datetime.utcnow() + timedelta(hours=ticket.sla_response_hours)
-        
+      
         # 4. Generar respuesta automática
         if config.get("immediate_reply"):
             response = await self.generate_response(ticket, config["template"])
             await self.send_auto_reply(ticket, response)
             ticket.status = "auto_replied"
-        
+      
         # 5. Notificar al técnico si es urgente
         if config.get("notify_technician_immediately"):
             await self.notify_technician(ticket)
-        
+      
         # 6. Enviar SMS si es crítico
         if config.get("send_sms"):
             await self.send_sms_alert(ticket)
-        
+      
         await ticket.save()
-    
+  
     async def classify_ticket(self, message: str) -> str:
         """Clasifica el ticket por palabras clave (puede mejorarse con IA)"""
         message_lower = message.lower()
-        
+      
         if any(word in message_lower for word in ["cotiz", "precio", "cuanto", "cuesta", "valor"]):
             return "quote_question"
         elif any(word in message_lower for word in ["estado", "como va", "avance", "cuando", "listo"]):
@@ -1523,50 +1544,50 @@ AUTOMATION_CRON_JOBS = {
         "schedule": "every 15 minutes",
         "function": "check_and_escalate_tickets"
     },
-    
+  
     # Cerrar tickets sin respuesta del cliente (7 días)
     "auto_close_inactive": {
         "schedule": "daily at 09:00",
         "function": "close_inactive_tickets",
         "params": {"days_inactive": 7}
     },
-    
+  
     # Enviar resumen diario al técnico
     "daily_summary": {
         "schedule": "daily at 08:00",
         "function": "send_technician_daily_summary"
     },
-    
+  
     # Recordatorio de citas del día siguiente
     "appointment_reminders": {
         "schedule": "daily at 18:00",
         "function": "send_tomorrow_appointment_reminders"
     },
-    
+  
     # Recordatorio de retiro (equipos listos hace 7 días)
     "pickup_reminders": {
         "schedule": "daily at 10:00",
         "function": "send_pickup_reminders"
     },
-    
+  
     # Actualizar tracking de envíos
     "update_tracking": {
         "schedule": "every 4 hours",
         "function": "sync_all_shipment_tracking"
     },
-    
+  
     # Generar cobros de bodegaje
     "storage_fees": {
         "schedule": "monthly on day 1 at 00:00",
         "function": "generate_storage_fees"
     },
-    
+  
     # Backup de base de datos
     "database_backup": {
         "schedule": "daily at 03:00",
         "function": "backup_database"
     },
-    
+  
     # Limpiar archivos temporales
     "cleanup_temp_files": {
         "schedule": "weekly on sunday at 04:00",
@@ -1578,6 +1599,7 @@ AUTOMATION_CRON_JOBS = {
 ## 5.7 Detección Automática de Instrumentos (IA)
 
 ### Tu visión:
+
 > "El algoritmo de Python detecta el teclado, ya sea nuestra base o la foto que suba el cliente, debe ser drag and drop y/o abrir ventana para buscar en PC"
 
 ### Estado actual: ❌ 0% implementado
@@ -1644,18 +1666,18 @@ AUTOMATION_CRON_JOBS = {
 ```python
 class InstrumentDetector:
     """Servicio de detección de instrumentos por imagen"""
-    
+  
     def __init__(self):
         # Opción 1: Modelo local (más rápido, offline)
         self.local_model = self.load_local_model()
-        
+      
         # Opción 2: API externa (más preciso)
         self.vision_api = GoogleVisionAPI()  # o OpenAI Vision, Claude Vision
-    
+  
     async def detect_instrument(self, image_path: str) -> DetectionResult:
         """
         Detecta el instrumento en una imagen.
-        
+      
         Returns:
             DetectionResult con:
             - instrument_id: ID en nuestra BD (si existe)
@@ -1664,19 +1686,19 @@ class InstrumentDetector:
             - confidence: 0-100%
             - suggestions: Lista de posibles coincidencias
         """
-        
+      
         # 1. Intentar con modelo local primero (rápido)
         local_result = await self.local_detection(image_path)
-        
+      
         if local_result.confidence > 85:
             return local_result
-        
+      
         # 2. Si no es seguro, usar API externa
         api_result = await self.api_detection(image_path)
-        
+      
         # 3. Buscar en nuestra base de datos
         matches = await self.find_in_database(api_result)
-        
+      
         return DetectionResult(
             brand=api_result.brand,
             model=api_result.model,
@@ -1684,16 +1706,16 @@ class InstrumentDetector:
             instrument_id=matches[0].id if matches else None,
             suggestions=matches[:5]  # Top 5 coincidencias
         )
-    
+  
     async def local_detection(self, image_path: str):
         """Detección usando modelo entrenado localmente"""
         # Usar modelo CLIP o similar entrenado con imágenes de sintetizadores
         # Se entrena con las imágenes de nuestra base de datos
         pass
-    
+  
     async def api_detection(self, image_path: str):
         """Detección usando API de visión (Google, OpenAI, Claude)"""
-        
+      
         # Ejemplo con OpenAI Vision
         response = await openai.chat.completions.create(
             model="gpt-4-vision-preview",
@@ -1715,28 +1737,28 @@ class InstrumentDetector:
                 ]
             }]
         )
-        
+      
         return parse_detection_response(response)
-    
+  
     async def find_in_database(self, detection) -> List[Instrument]:
         """Busca coincidencias en nuestra base de datos"""
-        
+      
         # Búsqueda por marca + modelo
         exact_match = await Instrument.query.filter(
             Instrument.brand.name.ilike(f"%{detection.brand}%"),
             Instrument.model.ilike(f"%{detection.model}%")
         ).first()
-        
+      
         if exact_match:
             return [exact_match]
-        
+      
         # Búsqueda fuzzy si no hay match exacto
         similar = await search_similar_instruments(
             brand=detection.brand,
             model=detection.model,
             limit=5
         )
-        
+      
         return similar
 ```
 
@@ -1761,7 +1783,7 @@ class InstrumentDetector:
       <button class="btn-browse">Buscar en mi PC</button>
       <p class="formats">Formatos: JPG, PNG, WEBP (máx 10MB)</p>
     </div>
-    
+  
     <!-- Estado: Analizando -->
     <div v-if="isAnalyzing" class="analyzing">
       <div class="spinner"></div>
@@ -1770,7 +1792,7 @@ class InstrumentDetector:
         <div :style="{ width: progress + '%' }"></div>
       </div>
     </div>
-    
+  
     <!-- Estado: Resultado -->
     <div v-if="detectionResult" class="detection-result">
       <img :src="imagePreview" class="preview" />
@@ -1780,7 +1802,7 @@ class InstrumentDetector:
         </span>
         <h3>{{ detectionResult.brand }} {{ detectionResult.model }}</h3>
         <p>{{ detectionResult.type }}</p>
-        
+      
         <div class="actions">
           <button @click="confirmDetection" class="btn-confirm">
             ✓ Sí, es correcto
@@ -1791,7 +1813,7 @@ class InstrumentDetector:
         </div>
       </div>
     </div>
-    
+  
     <input 
       ref="fileInput"
       type="file"
@@ -1853,14 +1875,15 @@ const showAlternatives = () => {
 
 ### 5.7.4 APIs de Visión Recomendadas
 
-| Servicio | Costo | Precisión | Velocidad | Recomendación |
-|----------|-------|-----------|-----------|---------------|
-| **Google Cloud Vision** | $1.50/1000 imgs | Alta | Rápida | ⭐ Recomendado |
-| **OpenAI GPT-4 Vision** | $0.01/imagen | Muy alta | Media | Para casos difíciles |
-| **Claude Vision** | $0.01/imagen | Muy alta | Media | Alternativa |
-| **Modelo local (CLIP)** | Gratis | Media | Muy rápida | Primera línea |
+| Servicio                      | Costo           | Precisión | Velocidad   | Recomendación        |
+| ----------------------------- | --------------- | ---------- | ----------- | --------------------- |
+| **Google Cloud Vision** | $1.50/1000 imgs | Alta       | Rápida     | ⭐ Recomendado        |
+| **OpenAI GPT-4 Vision** | $0.01/imagen    | Muy alta   | Media       | Para casos difíciles |
+| **Claude Vision**       | $0.01/imagen    | Muy alta   | Media       | Alternativa           |
+| **Modelo local (CLIP)** | Gratis          | Media      | Muy rápida | Primera línea        |
 
 **Estrategia recomendada:**
+
 1. Primero: Modelo local (gratis, rápido)
 2. Si confianza < 85%: API externa
 3. Si aún no hay match: Pedir confirmación manual
@@ -1876,12 +1899,12 @@ async def train_local_model():
     Entrena modelo de detección con imágenes de nuestra BD.
     Usa transfer learning sobre CLIP o similar.
     """
-    
+  
     # 1. Obtener todas las imágenes de instrumentos
     instruments = await Instrument.query.filter(
         Instrument.image.isnot(None)
     ).all()
-    
+  
     # 2. Preparar dataset
     dataset = []
     for inst in instruments:
@@ -1890,13 +1913,13 @@ async def train_local_model():
             "label": f"{inst.brand.name} {inst.model}",
             "instrument_id": inst.id
         })
-    
+  
     # 3. Entrenar (usando CLIP fine-tuning o similar)
     model = train_clip_classifier(dataset)
-    
+  
     # 4. Guardar modelo
     model.save("models/instrument_detector_v1.pt")
-    
+  
     return model
 ```
 
@@ -1939,6 +1962,7 @@ async def train_local_model():
 ## 5.9 STREAMING EN VIVO - Reparación Transmitida (DIFERENCIADOR ÚNICO)
 
 ### Tu visión:
+
 > "El cliente paga extra y VE su equipo siendo reparado EN VIVO. Tengo 6-9 cámaras con OBS. Se publica solo en YouTube después."
 
 ### Estado actual: ❌ 0% implementado (hardware listo)
@@ -1983,11 +2007,11 @@ async def train_local_model():
 
 ### 5.9.2 Modelo de Negocio
 
-| Opción | Descripción | Precio |
-|--------|-------------|--------|
-| **Estándar** | Reparación normal, timeline con fotos | Precio base |
-| **Premium VIVO** | Cliente ve en vivo, recibe video | +$30.000-50.000 |
-| **Público** | Se transmite público, se sube a YouTube | -$15.000-25.000 (descuento) |
+| Opción                | Descripción                             | Precio                      |
+| ---------------------- | ---------------------------------------- | --------------------------- |
+| **Estándar**    | Reparación normal, timeline con fotos   | Precio base                 |
+| **Premium VIVO** | Cliente ve en vivo, recibe video         | +$30.000-50.000             |
+| **Público**     | Se transmite público, se sube a YouTube | -$15.000-25.000 (descuento) |
 
 ### 5.9.3 Flujo Técnico
 
@@ -2005,6 +2029,7 @@ TÚ EN TU DASHBOARD:
 ## 5.10 Portfolio AUTOMÁTICO - "Últimos Trabajos"
 
 ### Tu visión:
+
 > "Entrego, y se genera SOLA la sección 'Último trabajo'. No hago nada más."
 
 ### Estado actual: ❌ 0% implementado
@@ -2061,6 +2086,7 @@ TÚ EN TU DASHBOARD:
 ## 5.11 Flujo de Trabajo del Técnico (Web Abierta Mientras Reparas)
 
 ### Tu visión:
+
 > "Me siento a trabajar con la web abierta y voy haciendo todo desde ahí."
 
 ### Estado actual: ❌ 0% implementado
@@ -2146,6 +2172,7 @@ CONSUMABLES_CATALOG = {
 ## 5.12 Sistema de Cotización JUSTA (Basado en Valor Real)
 
 ### Tu visión:
+
 > "No puedo cobrar 300 por instrumento de 100. Se compran 3 nuevos. Hay que ser JUSTOS."
 
 ### Estado actual: ❌ 0% implementado
@@ -2223,6 +2250,7 @@ CONSUMABLES_CATALOG = {
 ---
 
 ## 5.13 Políticas y Términos
+
 > "Política de compromiso, recepción, si no retira en X tiempo asume bodega, todo estipulado en ROJO MAYÚSCULA lo importante"
 
 ### Estado actual: ❌ 0% implementado
@@ -2230,12 +2258,13 @@ CONSUMABLES_CATALOG = {
 **Documentos necesarios:**
 
 1. **Términos y Condiciones del Servicio**
+
    - Alcance del servicio
    - Proceso de cotización
    - Tiempos de reparación
    - Garantía post-reparación
-
 2. **Política de Presupuesto y Cobros**
+
    ```
    ╔═══════════════════════════════════════════════════════════════╗
    ║  💰 POLÍTICA DE PRESUPUESTO                                   ║
@@ -2256,13 +2285,13 @@ CONSUMABLES_CATALOG = {
    ║                                                               ║
    ╚═══════════════════════════════════════════════════════════════╝
    ```
-
 3. **Política de Recepción de Equipos**
+
    - Estado del equipo al ingreso
    - Responsabilidad por daños previos
    - Fotos obligatorias de ingreso
-
 4. **Política de Bodega/Almacenamiento**
+
    ```
    ╔═══════════════════════════════════════════════════════════════╗
    ║  ⚠️ IMPORTANTE - POLÍTICA DE RETIRO                          ║
@@ -2277,13 +2306,13 @@ CONSUMABLES_CATALOG = {
    ║  Y COMPRENDIDO ESTA POLÍTICA.                                ║
    ╚═══════════════════════════════════════════════════════════════╝
    ```
-
 5. **Política de Privacidad (GDPR-like)**
+
    - Datos que recolectas
    - Uso de fotos
    - Retención de datos
-
 6. **Exención de Responsabilidad**
+
    - Equipos antiguos/frágiles
    - Reparaciones no garantizadas
    - Límites de responsabilidad
@@ -2294,7 +2323,7 @@ CONSUMABLES_CATALOG = {
 class Policy(Base):
     """Modelo para almacenar políticas versionadas"""
     __tablename__ = "policies"
-    
+  
     id = Column(Integer, primary_key=True)
     type = Column(String(50))  # 'terms', 'budget', 'storage', 'privacy', 'liability'
     title = Column(String(255))
@@ -2307,7 +2336,7 @@ class Policy(Base):
 class PolicyAcceptance(Base):
     """Registro de aceptación de políticas por usuario"""
     __tablename__ = "policy_acceptances"
-    
+  
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     policy_id = Column(Integer, ForeignKey("policies.id"))
@@ -2342,6 +2371,7 @@ class PolicyAcceptance(Base):
 ## 6.1 Fase 1: Fundamentos (2-3 semanas)
 
 ### Backend
+
 ```
 □ Migrar de SQLite a MySQL (compatibilidad cPanel)
 □ Implementar variables de entorno seguras
@@ -2352,6 +2382,7 @@ class PolicyAcceptance(Base):
 ```
 
 ### Frontend
+
 ```
 □ Crear página de términos y condiciones
 □ Crear página de políticas
@@ -2362,6 +2393,7 @@ class PolicyAcceptance(Base):
 ```
 
 ### Infraestructura
+
 ```
 □ Configurar SSL en cPanel
 □ Configurar dominio www.cirujanodesintetizadores.cl
@@ -2373,6 +2405,7 @@ class PolicyAcceptance(Base):
 ## 6.2 Fase 2: Cotizador Inteligente (3-4 semanas)
 
 ### Backend
+
 ```
 □ Modelo InstrumentComponent (teclas, botones, potes, etc.)
 □ Modelo FaultTemplate (tipos de falla y precios base)
@@ -2383,6 +2416,7 @@ class PolicyAcceptance(Base):
 ```
 
 ### Frontend
+
 ```
 □ Componente BrandModelSelector
 □ Componente VisualDiagnostic (imagen interactiva)
@@ -2393,6 +2427,7 @@ class PolicyAcceptance(Base):
 ```
 
 ### Base de datos
+
 ```sql
 -- Poblar con datos reales
 INSERT INTO instrument_components (instrument_id, type, name, position_data)
@@ -2406,9 +2441,11 @@ VALUES
 ## 6.2.1 Fase 2B: Scraper de Precios de Mercado (2 semanas)
 
 ### Objetivo
+
 Sistema automático para consultar precios en Reverb, eBay, Thomann y calcular el valor de mercado de cada instrumento. **Esta información es SOLO para uso interno del técnico.**
 
 ### Backend - Scraper
+
 ```
 □ Servicio de scraping con requests/BeautifulSoup o Playwright
 □ Modelo InstrumentPriceHistory (historial de precios)
@@ -2420,6 +2457,7 @@ Sistema automático para consultar precios en Reverb, eBay, Thomann y calcular e
 ```
 
 ### Fuentes a implementar
+
 ```python
 PRICE_SOURCES = {
     'reverb': {
@@ -2450,6 +2488,7 @@ PRICE_SOURCES = {
 ```
 
 ### Dashboard interno (solo admin)
+
 ```
 □ Vista de valoración por instrumento
 □ Gráfico de historial de precios
@@ -2459,6 +2498,7 @@ PRICE_SOURCES = {
 ```
 
 ### Consideraciones técnicas
+
 ```
 ⚠️ Rate limiting para no ser bloqueado
 ⚠️ User-Agent rotativo
@@ -2470,6 +2510,7 @@ PRICE_SOURCES = {
 ## 6.3 Fase 3: Sistema de Reparaciones Completo (3-4 semanas)
 
 ### Backend
+
 ```
 □ Endpoint para crear ficha desde cotización
 □ Sistema de numeración CDS-XXX
@@ -2480,6 +2521,7 @@ PRICE_SOURCES = {
 ```
 
 ### Frontend
+
 ```
 □ Dashboard técnico mejorado
 □ Formulario de ficha de ingreso
@@ -2490,6 +2532,7 @@ PRICE_SOURCES = {
 ```
 
 ### Emails transaccionales
+
 ```
 □ Plantilla: Equipo recibido
 □ Plantilla: Diagnóstico listo
@@ -2502,6 +2545,7 @@ PRICE_SOURCES = {
 ## 6.4 Fase 4: Agendamiento y Calendario (2 semanas)
 
 ### Backend
+
 ```
 □ Integración Google Calendar API
 □ Modelo Appointment
@@ -2511,6 +2555,7 @@ PRICE_SOURCES = {
 ```
 
 ### Frontend
+
 ```
 □ Widget de selección de fecha/hora
 □ Vista de disponibilidad
@@ -2521,6 +2566,7 @@ PRICE_SOURCES = {
 ## 6.5 Fase 5: Sistema de Pagos (2-3 semanas)
 
 ### Backend
+
 ```
 □ Integración Flow.cl API
 □ Modelo Payment
@@ -2530,6 +2576,7 @@ PRICE_SOURCES = {
 ```
 
 ### Frontend
+
 ```
 □ Carrito de repuestos
 □ Checkout con Flow.cl
@@ -2577,6 +2624,7 @@ PRICE_SOURCES = {
 ## 7.2 Configuración de Python en cPanel
 
 **Archivo: `passenger_wsgi.py`**
+
 ```python
 import sys
 import os
@@ -2589,6 +2637,7 @@ from app.main import app as application
 ```
 
 **Archivo: `.htaccess` en backend/**
+
 ```apache
 PassengerAppRoot /home/tuusuario/backend
 PassengerBaseURI /api
@@ -2619,6 +2668,7 @@ FROM_EMAIL = "Cirujano de Sintetizadores <noreply@cirujanodesintetizadores.cl>"
 
 1. En cPanel → SSL/TLS → Instalar certificado Let's Encrypt
 2. Forzar HTTPS en `.htaccess`:
+
 ```apache
 RewriteEngine On
 RewriteCond %{HTTPS} off
@@ -2632,6 +2682,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ## 8.1 SEO Técnico
 
 ### Meta tags esenciales
+
 ```html
 <!-- index.html -->
 <title>Cirujano de Sintetizadores | Reparación de Teclados y Sintetizadores en Chile</title>
@@ -2649,6 +2700,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
 ### Schema.org (LocalBusiness)
+
 ```json
 {
   "@context": "https://schema.org",
@@ -2685,6 +2737,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ```
 
 ### Eventos a trackear
+
 ```javascript
 // Cotización iniciada
 gtag('event', 'begin_quote', { instrument: 'KORG microKORG' });
@@ -2702,6 +2755,7 @@ gtag('event', 'purchase', { value: 85000, currency: 'CLP' });
 ## 8.3 Integraciones de Marketing
 
 ### WhatsApp Widget
+
 ```html
 <a href="https://wa.me/56912345678?text=Hola,%20necesito%20cotizar%20una%20reparación" 
    class="whatsapp-float">
@@ -2710,6 +2764,7 @@ gtag('event', 'purchase', { value: 85000, currency: 'CLP' });
 ```
 
 ### Instagram Feed (Embebido)
+
 ```html
 <script src="https://www.instagram.com/embed.js"></script>
 <blockquote class="instagram-media" data-instgrm-permalink="...">
@@ -2722,26 +2777,26 @@ gtag('event', 'purchase', { value: 85000, currency: 'CLP' });
 
 ## 9.1 Si contratas desarrollador
 
-| Fase | Horas estimadas | Costo aprox (USD) |
-|------|-----------------|-------------------|
-| Fase 1: Fundamentos | 40-60 hrs | $800 - $1,500 |
-| Fase 2: Cotizador | 80-120 hrs | $1,600 - $3,000 |
-| Fase 3: Reparaciones | 60-80 hrs | $1,200 - $2,000 |
-| Fase 4: Calendario | 30-40 hrs | $600 - $1,000 |
-| Fase 5: Pagos | 40-60 hrs | $800 - $1,500 |
-| Fase 6: Marketing | 20-30 hrs | $400 - $750 |
-| **TOTAL** | **270-390 hrs** | **$5,400 - $9,750** |
+| Fase                 | Horas estimadas       | Costo aprox (USD)         |
+| -------------------- | --------------------- | ------------------------- |
+| Fase 1: Fundamentos  | 40-60 hrs             | $800 - $1,500             |
+| Fase 2: Cotizador    | 80-120 hrs            | $1,600 - $3,000           |
+| Fase 3: Reparaciones | 60-80 hrs             | $1,200 - $2,000           |
+| Fase 4: Calendario   | 30-40 hrs             | $600 - $1,000             |
+| Fase 5: Pagos        | 40-60 hrs             | $800 - $1,500             |
+| Fase 6: Marketing    | 20-30 hrs             | $400 - $750               |
+| **TOTAL**      | **270-390 hrs** | **$5,400 - $9,750** |
 
 ## 9.2 Costos de Servicios Externos
 
-| Servicio | Costo mensual | Notas |
-|----------|---------------|-------|
-| Hosting actual | ~$5-10 USD | Ya pagado |
-| Cloudinary (imágenes) | $0 (free tier) | 25GB gratis |
-| Flow.cl | 2.9% por transacción | Sin mensualidad |
-| Google Workspace | $6 USD/usuario | Opcional |
-| Dominio (.cl) | ~$15 USD/año | Ya pagado |
-| **Total fijo mensual** | **~$10-20 USD** | |
+| Servicio                     | Costo mensual         | Notas           |
+| ---------------------------- | --------------------- | --------------- |
+| Hosting actual               | ~$5-10 USD            | Ya pagado       |
+| Cloudinary (imágenes)       | $0 (free tier)        | 25GB gratis     |
+| Flow.cl                      | 2.9% por transacción | Sin mensualidad |
+| Google Workspace             | $6 USD/usuario        | Opcional        |
+| Dominio (.cl)                | ~$15 USD/año         | Ya pagado       |
+| **Total fijo mensual** | **~$10-20 USD** |                 |
 
 ## 9.3 Si lo haces tú mismo (con mi ayuda)
 
@@ -2785,13 +2840,13 @@ ABRIL                           MAYO                            JUNIO+
 
 ## Hitos Clave
 
-| Fecha | Hito | Entregable |
-|-------|------|------------|
-| Fin Enero | MVP Online | Sitio básico funcionando con SSL |
-| Fin Febrero | Cotizador Live | Clientes pueden cotizar online |
-| Fin Marzo | Sistema Completo | Gestión de reparaciones + calendario |
-| Fin Abril | Pagos Activos | Clientes pueden pagar online |
-| Fin Mayo | Marketing Ready | SEO + Redes integradas |
+| Fecha       | Hito             | Entregable                            |
+| ----------- | ---------------- | ------------------------------------- |
+| Fin Enero   | MVP Online       | Sitio básico funcionando con SSL     |
+| Fin Febrero | Cotizador Live   | Clientes pueden cotizar online        |
+| Fin Marzo   | Sistema Completo | Gestión de reparaciones + calendario |
+| Fin Abril   | Pagos Activos    | Clientes pueden pagar online          |
+| Fin Mayo    | Marketing Ready  | SEO + Redes integradas                |
 
 ---
 
@@ -2800,19 +2855,20 @@ ABRIL                           MAYO                            JUNIO+
 ## Esta semana deberías:
 
 1. **Seguridad** (URGENTE)
+
    - [ ] Crear archivo `.env` con secretos reales
    - [ ] Nunca commitear `.env` a Git
-
 2. **Hosting**
+
    - [ ] Acceder a cPanel
    - [ ] Verificar versión de Python disponible
    - [ ] Crear base de datos MySQL
-
 3. **Dominio**
+
    - [ ] Apuntar DNS a tu hosting
    - [ ] Activar SSL gratuito
-
 4. **Decisiones**
+
    - [ ] Definir precios base de reparación
    - [ ] Escribir borrador de políticas
    - [ ] Listar los 20 instrumentos más comunes que reparas
