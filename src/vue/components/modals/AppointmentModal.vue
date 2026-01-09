@@ -4,7 +4,7 @@
             <!-- Header -->
             <div class="modal-header">
                 <h2>Agenda tu hora</h2>
-                <button class="close-btn" @click="closeModal">
+                <button class="close-btn" type="button" aria-label="Cerrar" @click.stop="closeModal">
                     <i class="fa-solid fa-times"></i>
                 </button>
             </div>
@@ -79,7 +79,7 @@
                 </div>
 
                 <!-- Mensaje -->
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label for="mensaje">Mensaje (opcional)</label>
                     <textarea 
                         id="mensaje"
@@ -91,12 +91,14 @@
                 </div>
 
                 <!-- Submit -->
-                <button type="submit" class="btn-submit" :disabled="isSubmitting">
-                    <span v-if="!isSubmitting">Agendar cita</span>
-                    <span v-else>
-                        <i class="fa-solid fa-spinner fa-spin"></i> Enviando...
-                    </span>
-                </button>
+                <div class="form-actions full-width">
+                    <button type="submit" class="btn-submit" :disabled="isSubmitting">
+                        <span v-if="!isSubmitting">Agendar cita</span>
+                        <span v-else>
+                            <i class="fa-solid fa-spinner fa-spin"></i> Enviando...
+                        </span>
+                    </button>
+                </div>
             </form>
 
             <!-- Success Message -->
@@ -115,7 +117,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 const emit = defineEmits(['close', 'submit'])
 
@@ -253,14 +255,26 @@ const submitForm = async () => {
 
 // Cerrar modal
 const closeModal = () => {
-    if (!showSuccess.value) {
-        emit('close')
-    } else {
-        // Si está mostrando success, limpiar y cerrar
-        showSuccess.value = false
-        emit('close')
+    // emitimos siempre para que el padre pueda ocultar el modal
+    emit('close')
+    // Reset success visual state
+    showSuccess.value = false
+}
+
+// Cerrar con ESC
+const handleKeydown = (e) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+        closeModal()
     }
 }
+
+onMounted(() => {
+    window.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <style scoped lang="scss">
@@ -276,7 +290,7 @@ const closeModal = () => {
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* modal centrado (formato apaisado) */
     z-index: 1000;
     padding: 1rem;
     animation: fadeIn 0.3s ease-in-out;
@@ -293,12 +307,13 @@ const closeModal = () => {
 
 .appointment-modal {
     background: white;
-    border-radius: 12px;
+    border-radius: 12px; /* modal centrado con bordes redondeados uniformes */
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 500px;
+    max-width: 900px; /* formato apaisado */
     overflow-y: auto;
     max-height: 90vh;
+    height: auto;
     animation: slideUp 0.3s ease-in-out;
 
     @keyframes slideUp {
@@ -352,9 +367,10 @@ const closeModal = () => {
 
 .appointment-form {
     padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+    align-items: start;
 }
 
 .form-group {
@@ -407,6 +423,10 @@ const closeModal = () => {
         font-weight: 500;
     }
 }
+
+.form-group.full-width { grid-column: 1 / -1 }
+.form-actions { grid-column: 1 / -1; display:flex; justify-content:flex-end }
+.form-actions .btn-submit { min-width: 220px }
 
 .btn-submit {
     padding: 0.75rem 1.5rem;
@@ -488,9 +508,15 @@ const closeModal = () => {
 
 // Responsive
 @media (max-width: 576px) {
+    .appointment-modal-overlay {
+        justify-content: center; /* en móviles volvemos al centro */
+    }
+
     .appointment-modal {
         max-width: 95vw;
         border-radius: 8px;
+        height: auto;
+        max-height: 90vh;
     }
 
     .modal-header {
@@ -504,6 +530,8 @@ const closeModal = () => {
     .appointment-form {
         padding: 1.5rem;
         gap: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
     .form-group {
