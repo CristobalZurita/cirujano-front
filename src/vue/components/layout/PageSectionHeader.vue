@@ -55,8 +55,9 @@ h5 {
     color: $text-muted;
     font-weight: 400;
     letter-spacing: 0.02em;
-    
+            font-size: 2.3rem;
 
-    margin-top: -0.5rem;   // SUBE el texto
+
+    margin-top: 1.5rem;   // SUBE el texto
 }
 </style>
