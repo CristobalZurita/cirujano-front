@@ -288,5 +288,59 @@ class EmailService:
             return False
 
 
+async def send_appointment_confirmation(
+    email: str,
+    nombre: str,
+    fecha,
+    appointment_id: int
+) -> bool:
+    """Send appointment confirmation email"""
+    
+    # Format fecha
+    fecha_formateada = fecha.strftime("%d de %B de %Y a las %H:%M")
+    
+    html_content = f"""
+    <html>
+        <body style="font-family: Arial, sans-serif; color: #3e3c38;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #ec6b00;">¡Cita Agendada Exitosamente!</h2>
+                
+                <p>Hola <strong>{nombre}</strong>,</p>
+                
+                <p>Tu cita ha sido agendada correctamente en nuestro taller de reparación de sintetizadores.</p>
+                
+                <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                    <h3 style="margin-top: 0; color: #ec6b00;">Detalles de tu cita:</h3>
+                    <p><strong>Fecha y hora:</strong> {fecha_formateada}</p>
+                    <p><strong>ID de cita:</strong> {appointment_id}</p>
+                </div>
+                
+                <p>Recibirás un mensaje de confirmación cuando nuestro equipo revise tu solicitud.</p>
+                
+                <p style="color: #5a5652; font-size: 0.9em;">
+                    Si necesitas cambiar o cancelar tu cita, por favor responde a este correo.
+                </p>
+                
+                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+                
+                <p style="color: #5a5652; font-size: 0.85em;">
+                    <strong>Cirujano de Sintetizadores</strong><br>
+                    Especialistas en reparación y mantenimiento de sintetizadores<br>
+                    <a href="https://www.cirujanodesintetizadores.cl" style="color: #ec6b00;">www.cirujanodesintetizadores.cl</a>
+                </p>
+            </div>
+        </body>
+    </html>
+    """
+    
+    service = EmailService()
+    return service.send_email(
+        to_email=email,
+        subject="Confirmación de cita - Cirujano de Sintetizadores",
+        html_content=html_content,
+        from_email=SENDGRID_FROM_EMAIL
+    )
+
+
 # Global instance
 email_service = EmailService()

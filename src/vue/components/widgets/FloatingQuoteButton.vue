@@ -1,25 +1,12 @@
 <template>
-  <div v-if="floatingButtonVisible && !loaderActive" class="floating-quote-button">
-    <button
-      class="quote-btn"
-      @click="scrollToQuote"
-      :class="{ 'pulse': isPulsing }"
-      aria-label="Cotiza tu instrumento"
-      title="Presiona para cotizar tu instrumento"
-    >
-      <i class="fas fa-file-circle-check"></i>
-      <span class="btn-text">¡COTIZA YA!</span>
+  <div v-if="floatingButtonVisible && !loaderActive && showScrollTop" class="floating-quote-button">
+    <!-- Botón redondeado: flecha blanca sobre fondo naranja -->
+    <button @click="scrollToTop" 
+            class="scroll-to-top-btn"
+            aria-label="Subir al inicio"
+            title="Ir arriba">
+      <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- Scroll to top small button -->
-    <button v-if="showScrollTop" @click="goTop" class="scroll-top" aria-label="Subir al inicio" title="Ir arriba">
-      ↑
-    </button>
-
-    <!-- Tooltip -->
-    <div class="tooltip-text" v-if="showTooltip">
-      Cotiza ahora
-    </div>
   </div>
 </template>
 
@@ -29,49 +16,30 @@ import { ref, onMounted, onUnmounted, inject } from 'vue'
 const floatingButtonVisible = inject("floatingButtonVisible", ref(true))
 const loaderActive = inject("loaderActive", ref(true))
 
-const isPulsing = ref(true)
-const showTooltip = ref(false)
 const showScrollTop = ref(false)
-let tooltipTimer = null
 
-const scrollToQuote = () => {
-  const quoteSection = document.getElementById('diagnostic-section')
-  if (quoteSection) {
-    quoteSection.scrollIntoView({ behavior: 'smooth' })
-  }
+// Calcula 1/3 de la altura total del documento
+const calculateOneThirdScroll = () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight
+  return docHeight / 3
 }
 
-const goTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
-
-const handleMouseEnter = () => {
-  showTooltip.value = true
-  if (tooltipTimer) clearTimeout(tooltipTimer)
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-const handleMouseLeave = () => {
-  tooltipTimer = setTimeout(() => {
-    showTooltip.value = false
-  }, 300)
+const handleScroll = () => {
+  const oneThirdScroll = calculateOneThirdScroll()
+  showScrollTop.value = window.scrollY > oneThirdScroll
 }
 
 onMounted(() => {
-  const btn = document.querySelector('.floating-quote-button .quote-btn')
-  if (btn) {
-    btn.addEventListener('mouseenter', handleMouseEnter)
-    btn.addEventListener('mouseleave', handleMouseLeave)
-  }
-
-  const onScroll = () => {
-    showScrollTop.value = window.scrollY > 300
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true })
-  onScroll()
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll()
 })
 
 onUnmounted(() => {
-  if (tooltipTimer) clearTimeout(tooltipTimer)
-  window.removeEventListener('scroll', () => {})
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -82,138 +50,48 @@ onUnmounted(() => {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  z-index: 999;
 
   @media (max-width: 768px) {
-    display: none;
+    bottom: 1rem;
+    right: 1rem;
   }
+}
 
-  .quote-btn {
+.scroll-to-top-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ff8c00; // Naranja
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+
+  i {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.875rem;
-    background-color: #ff8c00;
-    color: white;
-    border: 2px solid #ff8c00;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 700;
-    font-family: $headings-font-family;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-
-    i {
-      font-size: 1.1rem;
-    }
-
-    &:hover:not(.pulse) {
-      transform: scale(1.15);
-      background-color: #ff6600;
-      border-color: #ff6600;
-      color: white;
-      box-shadow: 0 8px 24px rgba(255, 102, 0, 0.6);
-    }
-
-    &:active {
-      transform: scale(1.08);
-    }
-
-    // Pulse animation - very subtle
-    &.pulse {
-      animation: float-pulse 3s ease-in-out infinite;
-
-      &:hover {
-        animation: none;
-      }
-    }
   }
 
-  .tooltip-text {
-    position: absolute;
-    right: 6rem;
-    bottom: 1rem;
-    background-color: $dark;
-    color: white;
-    padding: 0.75rem 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    animation: slideInRight 0.2s ease;
-
-    &::after {
-      content: '';
-      position: absolute;
-      right: -6px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid $dark;
-      border-top: 4px solid transparent;
-      border-bottom: 4px solid transparent;
-    }
+  &:hover {
+    background-color: #ff6600;
+    transform: translateY(-4px);
   }
 
-  /* put the small scroll-top above the main CTA so it doesn't overlap the CTA label */
-  .quote-btn { position: relative }
-
-  .scroll-top {
-    position: absolute;
-    right: -6px;
-    top: -52px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.65);
-    color: white;
-    font-weight: 700;
-    border: 0;
-    cursor: pointer;
-    transition: transform 0.15s ease, opacity 0.15s ease;
-    opacity: 0.95;
-    z-index: 60;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  &:active {
+    transform: translateY(-2px);
   }
 
-  .scroll-top:hover { transform: translateY(-3px); opacity: 1 }
-}
-
-// Animations
-@keyframes float-pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5), 0 10px 24px rgba(0, 0, 0, 0.2);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
   }
 }
 </style>

@@ -42,8 +42,18 @@ limits==1.6.0
 # File validation
 Pillow==10.1.0
 python-magic==0.4.27
+
 # Structured logging
 python-json-logger==2.0.6
+
+# Email service
+sendgrid==6.10.0
+
+# Google Calendar Integration
+google-auth==2.25.2
+google-auth-oauthlib==1.1.0
+google-auth-httplib2==0.2.0
+google-api-python-client==2.104.0
 
 # Optional: For Celery async tasks
 celery==5.3.4

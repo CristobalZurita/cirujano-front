@@ -20,9 +20,9 @@
 
                 <!-- CTA Buttons -->
                 <div v-if="showCtaButtons" class="hero-cta-buttons">
-                    <button class="btn-hero" @click="scrollToDiagnostic">
-                        <i class="fa-solid fa-search"></i>
-                        <span>Descubre más</span>
+                    <button class="btn-hero" @click="openAppointmentModal">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span>Agenda tu hora</span>
                     </button>
                     <Link url="/cotizador-ia">
                         <a class="btn-hero btn-hero-primary">
@@ -31,6 +31,12 @@
                         </a>
                     </Link>
                 </div>
+
+                <!-- Appointment Modal -->
+                <AppointmentModal v-if="showAppointmentModal" 
+                                  @close="showAppointmentModal = false"
+                                  @submit="handleAppointmentSubmit"/>
+
 
                 <!-- Button -->
                 <Link v-if="showButton"
@@ -48,11 +54,13 @@
 import BackgroundPromo from "/src/vue/components/layout/BackgroundPromo.vue"
 import ImageView from "/src/vue/components/generic/ImageView.vue"
 import {useUtils} from "/src/composables/utils.js"
-import {computed} from "vue"
+import {computed, ref} from "vue"
 import Link from "/src/vue/components/generic/Link.vue"
 import XLButton from "/src/vue/components/widgets/XLButton.vue"
+import AppointmentModal from "/src/vue/components/modals/AppointmentModal.vue"
 
 const utils = useUtils()
+const showAppointmentModal = ref(false)
 
 const props = defineProps({
     id: String,
@@ -74,10 +82,24 @@ const parsedSubtitle = computed(() => {
     return utils.parseCustomText(props.subtitle)
 })
 
-const scrollToDiagnostic = () => {
-    const element = document.getElementById('diagnostic-section')
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+const openAppointmentModal = () => {
+    showAppointmentModal.value = true
+}
+
+const handleAppointmentSubmit = async (formData) => {
+    // Enviar a backend
+    try {
+        const response = await fetch('/api/v1/appointments/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+        
+        if (response.ok) {
+            console.log('Cita agendada exitosamente')
+        }
+    } catch (error) {
+        console.error('Error al agendar cita:', error)
     }
 }
 </script>

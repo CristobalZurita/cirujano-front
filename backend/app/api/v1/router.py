@@ -13,14 +13,16 @@ try:
 	from backend.app.routers import diagnostic as diagnostic_router
 	from backend.app.routers import quotation as quotation_router
 	from backend.app.routers import payments as payments_router
+	from backend.app.routers import appointment as appointment_router
 except Exception:
 	# Si los módulos no existen en este entorno, se ignoran
 	user_router = repair_router = instrument_router = category_router = stock_movement_router = contact_router = None
+	appointment_router = None
 
 # If any router failed to import previously (e.g., due to transient import errors),
 # attempt a second import pass so that fixes applied at runtime are picked up.
 import importlib
-for name in ("repair", "user", "instrument", "category", "stock_movement", "contact", "quotation"):
+for name in ("repair", "user", "instrument", "category", "stock_movement", "contact", "quotation", "appointment"):
 	var_name = f"{name}_router"
 	if globals().get(var_name) is None:
 		try:
@@ -73,3 +75,5 @@ if globals().get("quotation_router"):
 	api_router.include_router(globals()["quotation_router"].router)
 if globals().get("payments_router"):
 	api_router.include_router(globals()["payments_router"].router)
+if globals().get("appointment_router"):
+	api_router.include_router(globals()["appointment_router"].router)
