@@ -3,8 +3,7 @@
     <PageSection variant="default"
                  :id="props.id">
         <!-- Title -->
-        <PageSectionHeader title="*Nosotros*"
-                           subtitle="Quiénes somos y nuestra historia"/>
+        <PageSectionHeader title="*Quiénes somos y nuestra historia*"/>
 
         <!-- Content -->
         <PageSectionContent>
@@ -28,7 +27,6 @@
 
             <!-- COLUMNA DERECHA: GALERÍA INTERACTIVA -->
             <div class="about-gallery-column">
-                <h4 class="gallery-title">Galería Interactiva</h4>
                 <div class="gallery-preview">
                     <div class="gallery-image-wrapper">
                         <img 
@@ -81,10 +79,11 @@
             </div>
 
             <!-- INFO DEL EVENTO SELECCIONADO -->
-            <div class="event-info">
-                <h4>{{ activeEvent?.title }}</h4>
-                <p>{{ activeEvent?.description }}</p>
-            </div>
+         <div class="event-info single-line">
+  <span class="event-title">{{ activeEvent?.title }}</span>
+  <span class="event-description">{{ activeEvent?.description }}</span>
+</div>
+
         </div>
         </PageSectionContent>
     </PageSection>
@@ -218,14 +217,14 @@ const scrollTimeline = (direction) => {
 .about-identity {
     h3 {
         margin-bottom: 1rem;
-        font-size: 1.3rem;
+        font-size: 2rem;
         font-weight: 600;
     }
 
     p {
         margin-bottom: 0.8rem;
         line-height: 1.55;
-        font-size: 0.95rem;
+        font-size: 1.3rem;
 
         &:last-child {
             margin-bottom: 0;
@@ -240,7 +239,7 @@ const scrollTimeline = (direction) => {
 }
 
 .gallery-title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
     color: $text-normal;
@@ -278,9 +277,9 @@ const scrollTimeline = (direction) => {
 // ============================================
 
 .about-divider {
-    height: 2px;
+    height: 3px;
     background: linear-gradient(to right, transparent, $light-2, transparent);
-    margin: 1.5rem 0 2rem 0;
+    margin: 1rem 0 2rem 0;
 }
 
 // ============================================
@@ -288,13 +287,13 @@ const scrollTimeline = (direction) => {
 // ============================================
 
 .about-bottom-section {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .history-title {
-    font-size: 1.3rem;
+    font-size: 2.3rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-align: center;
     color: $text-normal;
 }
@@ -419,8 +418,9 @@ const scrollTimeline = (direction) => {
 .event-info {
     background: rgba($light-2, 0.3);
     border-radius: 6px;
-    padding: 1.5rem;
+    padding: 0.85rem;
     margin-top: 1.5rem;
+
 
     h4 {
         font-size: 1.1rem;
@@ -430,7 +430,7 @@ const scrollTimeline = (direction) => {
     }
 
     p {
-        font-size: 0.95rem;
+        font-size: .95rem;
         line-height: 1.6;
         color: $text-muted;
         margin: 0;

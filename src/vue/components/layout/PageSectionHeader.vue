@@ -1,7 +1,7 @@
 <template>
     <div class="foxy-section-header">
         <h1 class="foxy-section-header-title" v-html="parsedTitle"/>
-        <h5 class="foxy-section-header-subtitle pt-1" v-html="parsedSubtitle"/>
+        <h5 class="foxy-section-header-subtitle" v-html="parsedSubtitle"/>
     </div>
 </template>
 
@@ -46,7 +46,8 @@ h1 {
     color: inherit;
     font-family: 'Cervo Neue', $headings-font-family;
     font-weight: 800;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+        font-size: 3.3rem;
 }
 
 h5 {
@@ -54,5 +55,8 @@ h5 {
     color: $text-muted;
     font-weight: 400;
     letter-spacing: 0.02em;
+    
+
+    margin-top: -0.5rem;   // SUBE el texto
 }
 </style>

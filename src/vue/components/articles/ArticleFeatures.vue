@@ -12,7 +12,7 @@
 
 article.foxy-features-article {
     text-align: center;
-    row-gap: 35px;
+    row-gap: 30px;
     @include media-breakpoint-down(lg) {
         row-gap: 30px;
     }
