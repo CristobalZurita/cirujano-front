@@ -84,11 +84,10 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "/src/scss/_theming.scss";
 
 .site-body {
-    /* ensure content (hero/logo etc) starts below the fixed navbar */
-    padding-top: $navbar-height;
+  padding-top: var(--navbar-height, 120px);
 }
 </style>

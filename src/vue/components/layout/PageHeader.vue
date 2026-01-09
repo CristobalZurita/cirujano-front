@@ -87,7 +87,7 @@ const scrollToDiagnostic = () => {
 
 header.foxy-header {
     /* expanded hero height to match reference - black box extends lower for buttons */
-    --height: clamp(480px, 75vh, 900px);
+   --height: clamp(600px, 90vh, 1100px);
     --content-margin-top: 64px;
     --max-logo-proportion:45vw;
     --max-logo-height:60vh; /* allow much taller hero on large viewports */
@@ -120,7 +120,8 @@ header.foxy-header {
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding-top:var(--content-margin-top);
+        padding-top: calc(var(--content-margin-top));
+          
         position: relative;
         z-index: 3;
     }
@@ -149,10 +150,12 @@ header.foxy-header {
         text-align: center;
         font-family: 'Cervo Neue', 'Steelfish', sans-serif;
         font-weight: 800;
-        font-size: clamp(60px, 7vw, 100px);
-        padding: 1.5rem 0 0.75rem;
+        font-size: clamp(60px, 7vw, 10px);
+           transform: scale(2);            /* agranda visualmente */
+    transform-origin: center top;
+        padding: 1.5rem 0 1.95rem;
         letter-spacing: 0.08em;
-        line-height: 1.15;
+        line-height: 0.5;
         position: relative;
         z-index: 5;
         margin: 0;
